@@ -13,6 +13,9 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import java.awt.Dimension;
+import java.awt.Cursor;
 
 public class jf_doctores extends javax.swing.JFrame {
 
@@ -24,9 +27,15 @@ public class jf_doctores extends javax.swing.JFrame {
 	 * 
 	 */Fondo fondo = new Fondo();
 	    public jf_doctores() {
+	    	setPreferredSize(new Dimension(1450, 750));
 	        this.setContentPane(fondo);      
 	        initComponents();
 	        this.setLocationRelativeTo(jp_menu);
+	        jp_menu.setLayout(null);
+	        jp_menu.add(btn_buscar_doctor);
+	        jp_menu.add(btn_especialidades);
+	        jp_menu.add(btn_baja_doctores);
+	        jp_menu.add(btn_alta_doctores);
 	    }
 
 	    /**
@@ -39,15 +48,36 @@ public class jf_doctores extends javax.swing.JFrame {
 	    private void initComponents() {
 
 	        jp_menu = new Fondo();
+	        jp_menu.setPreferredSize(new Dimension(1450, 750));
 	        btn_buscar_doctor = new javax.swing.JButton();
+	        btn_buscar_doctor.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+	        btn_buscar_doctor.setBounds(68, 590, 188, 41);
+	        btn_buscar_doctor.setIcon(new ImageIcon(jf_doctores.class.getResource("/iconos_submenus/btn_buscarDr_admin.png")));
+	        btn_buscar_doctor.setContentAreaFilled(false);
+	        btn_buscar_doctor.setOpaque(false);
 	        btn_buscar_doctor.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
 	        	}
 	        });
 	        btn_alta_doctores = new javax.swing.JButton();
+	        btn_alta_doctores.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+	        btn_alta_doctores.setIcon(new ImageIcon(jf_doctores.class.getResource("/iconos_submenus/btn_darAlta_admin.png")));
+	        btn_alta_doctores.setContentAreaFilled(false);
+	        btn_alta_doctores.setOpaque(false);
+	        btn_alta_doctores.setSelected(true);
+	        btn_alta_doctores.setBounds(1183, 590, 188, 41);
 	        btn_especialidades = new javax.swing.JButton();
+	        btn_especialidades.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+	        btn_especialidades.setIcon(new ImageIcon(jf_doctores.class.getResource("/iconos_submenus/btn_especialidades_admin.png")));
+	        btn_especialidades.setContentAreaFilled(false);
+	        btn_especialidades.setOpaque(false);
+	        btn_especialidades.setBounds(400, 590, 188, 41);
 	        btn_baja_doctores = new javax.swing.JButton();
-	        btn_baja_doctores.setText("DAR DE BAJA");
+	        btn_baja_doctores.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+	        btn_baja_doctores.setContentAreaFilled(false);
+	        btn_baja_doctores.setOpaque(false);
+	        btn_baja_doctores.setIcon(new ImageIcon(jf_doctores.class.getResource("/iconos_submenus/btn_darDeBaja_admin.png")));
+	        btn_baja_doctores.setBounds(863, 590, 188, 41);
 	        menu_inicio = new javax.swing.JMenuBar();
 	        jMenu1 = new javax.swing.JMenu();
 	        jMenu2 = new javax.swing.JMenu();
@@ -59,39 +89,6 @@ public class jf_doctores extends javax.swing.JFrame {
 	        jMenu8 = new javax.swing.JMenu();
 
 	        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-	        btn_buscar_doctor.setText("BUSCAR DOCTOR");
-
-	        btn_alta_doctores.setText("DAR DE ALTA");
-
-	        btn_especialidades.setText("ESPECIALIDADES");
-
-	        javax.swing.GroupLayout jp_menuLayout = new javax.swing.GroupLayout(jp_menu);
-	        jp_menuLayout.setHorizontalGroup(
-	        	jp_menuLayout.createParallelGroup(Alignment.LEADING)
-	        		.addGroup(jp_menuLayout.createSequentialGroup()
-	        			.addGap(68)
-	        			.addComponent(btn_buscar_doctor, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-	        			.addGap(187)
-	        			.addComponent(btn_especialidades, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-	        			.addPreferredGap(ComponentPlacement.RELATED, 239, Short.MAX_VALUE)
-	        			.addComponent(btn_baja_doctores, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-	        			.addGap(172)
-	        			.addComponent(btn_alta_doctores, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-	        			.addGap(79))
-	        );
-	        jp_menuLayout.setVerticalGroup(
-	        	jp_menuLayout.createParallelGroup(Alignment.TRAILING)
-	        		.addGroup(jp_menuLayout.createSequentialGroup()
-	        			.addContainerGap(596, Short.MAX_VALUE)
-	        			.addGroup(jp_menuLayout.createParallelGroup(Alignment.BASELINE)
-	        				.addComponent(btn_buscar_doctor, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-	        				.addComponent(btn_alta_doctores, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-	        				.addComponent(btn_baja_doctores, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-	        				.addComponent(btn_especialidades, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-	        			.addGap(44))
-	        );
-	        jp_menu.setLayout(jp_menuLayout);
 
 	        menu_inicio.setBackground(new java.awt.Color(32, 160, 216));
 	        menu_inicio.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
