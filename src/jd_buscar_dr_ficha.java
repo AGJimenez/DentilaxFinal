@@ -19,20 +19,23 @@ import java.awt.event.FocusEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class jd_buscar_dr_encontrado extends JDialog {
+public class jd_buscar_dr_ficha extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txt_dni;
 	private JTextField txt_nombre;
 	private JTextField txt_apellidos;
+	private JTextField txt_salario;
+	private JTextField txt_especialidad;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			jd_buscar_dr_encontrado dialog = new jd_buscar_dr_encontrado();
+			jd_buscar_dr_ficha dialog = new jd_buscar_dr_ficha();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -43,11 +46,11 @@ public class jd_buscar_dr_encontrado extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public jd_buscar_dr_encontrado() {
-		setPreferredSize(new Dimension(554, 343));
+	public jd_buscar_dr_ficha() {
 		setModal(true);
+		setPreferredSize(new Dimension(545, 554));
 		setResizable(false);
-		setBounds(100, 100, 554, 343);
+		setBounds(100, 100, 545, 554);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -55,17 +58,17 @@ public class jd_buscar_dr_encontrado extends JDialog {
 		contentPanel.setLayout(null);
 		setLocationRelativeTo(contentPanel);
 		{
-			JLabel lbl_coincidencia = new JLabel("COINCIDENCIA:");
-			lbl_coincidencia.setFont(new Font("Barlow", Font.BOLD, 20));
-			lbl_coincidencia.setBounds(35, 35, 167, 42);
-			contentPanel.add(lbl_coincidencia);
+			JLabel lbl_doctor = new JLabel("DOCTOR:");
+			lbl_doctor.setFont(new Font("Barlow", Font.BOLD, 20));
+			lbl_doctor.setBounds(35, 35, 167, 42);
+			contentPanel.add(lbl_doctor);
 		}
 		{
-			JLabel lbl_dni = new JLabel("DNI");
-			lbl_dni.setForeground(new Color(0, 128, 192));
-			lbl_dni.setFont(new Font("Barlow", Font.BOLD, 22));
-			lbl_dni.setBounds(21, 106, 38, 44);
-			contentPanel.add(lbl_dni);
+			JLabel lbl_Dni = new JLabel("DNI");
+			lbl_Dni.setForeground(new Color(0, 128, 192));
+			lbl_Dni.setFont(new Font("Barlow", Font.BOLD, 22));
+			lbl_Dni.setBounds(69, 130, 38, 44);
+			contentPanel.add(lbl_Dni);
 		}
 		{
 			JPanel panel = new JPanel();
@@ -74,25 +77,18 @@ public class jd_buscar_dr_encontrado extends JDialog {
 			contentPanel.add(panel);
 		}
 		{
-			JSeparator separator = new JSeparator();
-			separator.setForeground(new Color(0, 128, 192));
-			separator.setBackground(new Color(0, 128, 192));
-			separator.setBounds(21, 142, 495, 8);
-			contentPanel.add(separator);
-		}
-		{
 			JLabel lbl_nombre = new JLabel("Nombre");
 			lbl_nombre.setForeground(new Color(0, 128, 192));
 			lbl_nombre.setFont(new Font("Barlow", Font.BOLD, 22));
-			lbl_nombre.setBounds(124, 106, 78, 44);
+			lbl_nombre.setBounds(69, 177, 78, 44);
 			contentPanel.add(lbl_nombre);
 		}
 		{
-			JLabel lbl_apellidos = new JLabel("Apellidos");
-			lbl_apellidos.setForeground(new Color(0, 128, 192));
-			lbl_apellidos.setFont(new Font("Barlow", Font.BOLD, 22));
-			lbl_apellidos.setBounds(290, 106, 100, 44);
-			contentPanel.add(lbl_apellidos);
+			JLabel lbl_Apellidos = new JLabel("Apellidos");
+			lbl_Apellidos.setForeground(new Color(0, 128, 192));
+			lbl_Apellidos.setFont(new Font("Barlow", Font.BOLD, 22));
+			lbl_Apellidos.setBounds(69, 225, 100, 44);
+			contentPanel.add(lbl_Apellidos);
 		}
 		{
 			txt_dni = new JTextField();
@@ -102,7 +98,7 @@ public class jd_buscar_dr_encontrado extends JDialog {
 			txt_dni.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_dni.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_dni.setText("77981983t");
-			txt_dni.setBounds(21, 177, 83, 34);
+			txt_dni.setBounds(223, 130, 226, 34);
 			contentPanel.add(txt_dni);
 			txt_dni.setColumns(10);
 		}
@@ -114,7 +110,7 @@ public class jd_buscar_dr_encontrado extends JDialog {
 			txt_nombre.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_nombre.setText("Alejandro Alfredo");
 			txt_nombre.setHorizontalAlignment(SwingConstants.CENTER);
-			txt_nombre.setBounds(124, 177, 146, 34);
+			txt_nombre.setBounds(223, 177, 226, 34);
 			contentPanel.add(txt_nombre);
 			txt_nombre.setColumns(10);
 		}
@@ -126,9 +122,66 @@ public class jd_buscar_dr_encontrado extends JDialog {
 			txt_apellidos.setBackground(new Color(191, 231, 249));
 			txt_apellidos.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_apellidos.setText("Fernandez de la Rosa Ximenez");
-			txt_apellidos.setBounds(291, 177, 225, 34);
+			txt_apellidos.setBounds(224, 225, 225, 34);
 			contentPanel.add(txt_apellidos);
 			txt_apellidos.setColumns(10);
+		}
+		{
+			JLabel lbl_salario = new JLabel("Salario");
+			lbl_salario.setForeground(new Color(0, 128, 192));
+			lbl_salario.setFont(new Font("Barlow", Font.BOLD, 22));
+			lbl_salario.setBounds(69, 274, 100, 44);
+			contentPanel.add(lbl_salario);
+		}
+		{
+			txt_salario = new JTextField();
+			txt_salario.setText("24.000/año");
+			txt_salario.setHorizontalAlignment(SwingConstants.CENTER);
+			txt_salario.setFont(new Font("Arial", Font.PLAIN, 14));
+			txt_salario.setEditable(false);
+			txt_salario.setColumns(10);
+			txt_salario.setBorder(null);
+			txt_salario.setBackground(new Color(191, 231, 249));
+			txt_salario.setBounds(224, 274, 225, 34);
+			contentPanel.add(txt_salario);
+		}
+		{
+			JLabel lbl_especialidad = new JLabel("Especialidad");
+			lbl_especialidad.setForeground(new Color(0, 128, 192));
+			lbl_especialidad.setFont(new Font("Barlow", Font.BOLD, 22));
+			lbl_especialidad.setBounds(69, 319, 126, 44);
+			contentPanel.add(lbl_especialidad);
+		}
+		{
+			txt_especialidad = new JTextField();
+			txt_especialidad.setText("Odontopediatría");
+			txt_especialidad.setHorizontalAlignment(SwingConstants.CENTER);
+			txt_especialidad.setFont(new Font("Arial", Font.PLAIN, 14));
+			txt_especialidad.setEditable(false);
+			txt_especialidad.setColumns(10);
+			txt_especialidad.setBorder(null);
+			txt_especialidad.setBackground(new Color(191, 231, 249));
+			txt_especialidad.setBounds(224, 319, 225, 34);
+			contentPanel.add(txt_especialidad);
+		}
+		{
+			JLabel lbl_especialidad = new JLabel("Teléfono");
+			lbl_especialidad.setForeground(new Color(0, 128, 192));
+			lbl_especialidad.setFont(new Font("Barlow", Font.BOLD, 22));
+			lbl_especialidad.setBounds(69, 364, 126, 44);
+			contentPanel.add(lbl_especialidad);
+		}
+		{
+			textField = new JTextField();
+			textField.setText("662 59 25 50");
+			textField.setHorizontalAlignment(SwingConstants.CENTER);
+			textField.setFont(new Font("Arial", Font.PLAIN, 14));
+			textField.setEditable(false);
+			textField.setColumns(10);
+			textField.setBorder(null);
+			textField.setBackground(new Color(191, 231, 249));
+			textField.setBounds(224, 364, 225, 34);
+			contentPanel.add(textField);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -136,25 +189,6 @@ public class jd_buscar_dr_encontrado extends JDialog {
 			buttonPane.setPreferredSize(new Dimension(10, 60));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			buttonPane.setLayout(null);
-			{
-				JButton btn_ficha = new JButton("FICHA");
-				btn_ficha.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						//SQL consulta para sacar la ficha
-						jd_buscar_dr_ficha ventana = new jd_buscar_dr_ficha();
-						ventana.setVisible(true);
-					}
-				});
-				btn_ficha.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-				btn_ficha.setBorderPainted(false);
-				btn_ficha.setFont(new Font("Barlow", Font.BOLD, 20));
-				btn_ficha.setForeground(new Color(255, 255, 255));
-				btn_ficha.setBackground(new Color(32, 160, 216));
-				btn_ficha.setBounds(20, 0, 153, 43);
-				btn_ficha.setActionCommand("OK");
-				buttonPane.add(btn_ficha);
-				
-			}
 			{
 				JButton btn_salir = new JButton("SALIR");
 				btn_salir.addActionListener(new ActionListener() {
@@ -171,19 +205,6 @@ public class jd_buscar_dr_encontrado extends JDialog {
 				btn_salir.setActionCommand("Cancel");
 				buttonPane.add(btn_salir);
 			}
-			
-			JButton btn_historial = new JButton("HISTORIAL");
-			btn_historial.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-				}
-			});
-			btn_historial.setForeground(Color.WHITE);
-			btn_historial.setFont(new Font("Barlow", Font.BOLD, 20));
-			btn_historial.setBorderPainted(false);
-			btn_historial.setBackground(new Color(32, 160, 216));
-			btn_historial.setActionCommand("OK");
-			btn_historial.setBounds(194, 0, 153, 43);
-			buttonPane.add(btn_historial);
 		}
 	}
 }

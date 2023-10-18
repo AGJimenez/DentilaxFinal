@@ -22,7 +22,7 @@ public class jd_anadir_especialidad extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txtIntroduceEspecialidad;
+	private JTextField txt_especialidad;
 
 	/**
 	 * Launch the application.
@@ -57,32 +57,32 @@ public class jd_anadir_especialidad extends JDialog {
 		contentPanel.add(separator);
 		
 		
-		txtIntroduceEspecialidad = new JTextField();
-		txtIntroduceEspecialidad.addFocusListener(new FocusAdapter() {
+		txt_especialidad = new JTextField();
+		txt_especialidad.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if (txtIntroduceEspecialidad.getText().equals("Introduce especialidad")) {
-					txtIntroduceEspecialidad.setText("");
-					txtIntroduceEspecialidad.setForeground(Color.BLACK);
+				if (txt_especialidad.getText().equals("Introduce especialidad")) {
+					txt_especialidad.setText("");
+					txt_especialidad.setForeground(Color.BLACK);
                 }
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
-				if (txtIntroduceEspecialidad.getText().isEmpty()) {
-					txtIntroduceEspecialidad.setForeground(new Color(0, 128, 192));
-					txtIntroduceEspecialidad.setText("Introduce especialidad");
+				if (txt_especialidad.getText().isEmpty()) {
+					txt_especialidad.setForeground(new Color(0, 128, 192));
+					txt_especialidad.setText("Introduce especialidad");
                 }
 			}
 		});
-		txtIntroduceEspecialidad.setOpaque(false);
-		txtIntroduceEspecialidad.setHorizontalAlignment(SwingConstants.CENTER);
-		txtIntroduceEspecialidad.setText("Introduce especialidad");
-		txtIntroduceEspecialidad.setBorder(null);
-		txtIntroduceEspecialidad.setFont(new Font("Arial", Font.PLAIN, 17));
-		txtIntroduceEspecialidad.setBounds(18, 108, 407, 44);
-		txtIntroduceEspecialidad.setBackground(null);
-		contentPanel.add(txtIntroduceEspecialidad);
-		txtIntroduceEspecialidad.setColumns(10);
+		txt_especialidad.setOpaque(false);
+		txt_especialidad.setHorizontalAlignment(SwingConstants.CENTER);
+		txt_especialidad.setText("Introduce especialidad");
+		txt_especialidad.setBorder(null);
+		txt_especialidad.setFont(new Font("Arial", Font.PLAIN, 17));
+		txt_especialidad.setBounds(18, 108, 407, 44);
+		txt_especialidad.setBackground(null);
+		contentPanel.add(txt_especialidad);
+		txt_especialidad.setColumns(10);
 		{
 			JPanel panel = new JPanel();
 			panel.setBackground(new Color(191, 231, 249));
@@ -90,10 +90,10 @@ public class jd_anadir_especialidad extends JDialog {
 			contentPanel.add(panel);
 			panel.setLayout(null);
 			
-			JLabel lblNewLabel = new JLabel("TÍTULO DE ESPECIALIDAD");
-			lblNewLabel.setFont(new Font("Barlow", Font.BOLD, 19));
-			lblNewLabel.setBounds(30, 11, 222, 35);
-			panel.add(lblNewLabel);
+			JLabel lbl_especialidad = new JLabel("TÍTULO DE ESPECIALIDAD");
+			lbl_especialidad.setFont(new Font("Barlow", Font.BOLD, 19));
+			lbl_especialidad.setBounds(30, 11, 222, 35);
+			panel.add(lbl_especialidad);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -102,8 +102,8 @@ public class jd_anadir_especialidad extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			buttonPane.setLayout(null);
 			{
-				JButton okButton = new JButton("AÑADIR");
-				okButton.addActionListener(new ActionListener() {
+				JButton btn_anadir = new JButton("AÑADIR");
+				btn_anadir.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
 						
@@ -111,31 +111,31 @@ public class jd_anadir_especialidad extends JDialog {
 						
 					}
 				});
-				okButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-				okButton.setBorderPainted(false);
-				okButton.setFont(new Font("Barlow", Font.BOLD, 20));
-				okButton.setForeground(new Color(255, 255, 255));
-				okButton.setBackground(new Color(32, 160, 216));
-				okButton.setBounds(10, 0, 153, 43);
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
+				btn_anadir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				btn_anadir.setBorderPainted(false);
+				btn_anadir.setFont(new Font("Barlow", Font.BOLD, 20));
+				btn_anadir.setForeground(new Color(255, 255, 255));
+				btn_anadir.setBackground(new Color(32, 160, 216));
+				btn_anadir.setBounds(10, 0, 153, 43);
+				btn_anadir.setActionCommand("OK");
+				buttonPane.add(btn_anadir);
 				
 			}
 			{
-				JButton cancelButton = new JButton("CANCELAR");
-				cancelButton.addActionListener(new ActionListener() {
+				JButton btn_cancelar = new JButton("CANCELAR");
+				btn_cancelar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
 					}
 				});
-				cancelButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-				cancelButton.setBorderPainted(false);
-				cancelButton.setFont(new Font("Barlow", Font.BOLD, 20));
-				cancelButton.setForeground(new Color(255, 255, 255));
-				cancelButton.setBackground(new Color(32, 160, 216));
-				cancelButton.setBounds(271, 0, 153, 43);
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				btn_cancelar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				btn_cancelar.setBorderPainted(false);
+				btn_cancelar.setFont(new Font("Barlow", Font.BOLD, 20));
+				btn_cancelar.setForeground(new Color(255, 255, 255));
+				btn_cancelar.setBackground(new Color(32, 160, 216));
+				btn_cancelar.setBounds(271, 0, 153, 43);
+				btn_cancelar.setActionCommand("Cancel");
+				buttonPane.add(btn_cancelar);
 			}
 		}
 	}

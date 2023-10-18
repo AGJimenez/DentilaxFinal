@@ -58,23 +58,23 @@ public class jd_especialidades extends JDialog {
 		contentPanel.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("ESPECIALIDADES ENCONTRADAS");
-		lblNewLabel.setFont(new Font("Barlow", Font.BOLD, 20));
-		lblNewLabel.setBounds(10, 11, 334, 35);
-		panel.add(lblNewLabel);
+		JLabel lbl_especialidades = new JLabel("ESPECIALIDADES ENCONTRADAS");
+		lbl_especialidades.setFont(new Font("Barlow", Font.BOLD, 20));
+		lbl_especialidades.setBounds(10, 11, 334, 35);
+		panel.add(lbl_especialidades);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBorder(null);
-		scrollPane.setBackground(Color.WHITE);
-		scrollPane.setBounds(10, 79, 503, 411);
-		contentPanel.add(scrollPane);
+		JScrollPane sp_panelScroll = new JScrollPane();
+		sp_panelScroll.setBorder(null);
+		sp_panelScroll.setBackground(Color.WHITE);
+		sp_panelScroll.setBounds(10, 79, 503, 411);
+		contentPanel.add(sp_panelScroll);
 		
-		JList list = new JList();
-		list.setFont(new Font("Arial", Font.BOLD, 16));
-		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		list.setSelectionForeground(Color.BLACK);
-		list.setSelectionBackground(new Color(191, 231, 249));
-		scrollPane.setViewportView(list);
+		JList jl_listaEspecialidades = new JList();
+		jl_listaEspecialidades.setFont(new Font("Arial", Font.BOLD, 16));
+		jl_listaEspecialidades.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		jl_listaEspecialidades.setSelectionForeground(Color.BLACK);
+		jl_listaEspecialidades.setSelectionBackground(new Color(191, 231, 249));
+		sp_panelScroll.setViewportView(jl_listaEspecialidades);
 		
 		DefaultListModel dml = new DefaultListModel();
 		dml.addElement("Hola");
@@ -84,7 +84,7 @@ public class jd_especialidades extends JDialog {
 		dml.addElement("Hola");
 		dml.addElement("Hola");
 		dml.addElement("Hola");
-		list.setModel(new AbstractListModel() {
+		jl_listaEspecialidades.setModel(new AbstractListModel() {
 			String[] values = new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"};
 			public int getSize() {
 				return values.length;
@@ -100,8 +100,8 @@ public class jd_especialidades extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			buttonPane.setLayout(null);
 			{
-				JButton okButton = new JButton("AÑADIR");
-				okButton.addActionListener(new ActionListener() {
+				JButton btn_anadir = new JButton("AÑADIR");
+				btn_anadir.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
 						jd_anadir_especialidad ventana = new jd_anadir_especialidad();
@@ -109,31 +109,31 @@ public class jd_especialidades extends JDialog {
 						
 					}
 				});
-				okButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-				okButton.setBorderPainted(false);
-				okButton.setFont(new Font("Barlow", Font.BOLD, 20));
-				okButton.setForeground(new Color(255, 255, 255));
-				okButton.setBackground(new Color(32, 160, 216));
-				okButton.setBounds(38, 11, 153, 43);
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
+				btn_anadir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				btn_anadir.setBorderPainted(false);
+				btn_anadir.setFont(new Font("Barlow", Font.BOLD, 20));
+				btn_anadir.setForeground(new Color(255, 255, 255));
+				btn_anadir.setBackground(new Color(32, 160, 216));
+				btn_anadir.setBounds(38, 11, 153, 43);
+				btn_anadir.setActionCommand("OK");
+				buttonPane.add(btn_anadir);
 				
 			}
 			{
-				JButton cancelButton = new JButton("SALIR");
-				cancelButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-				cancelButton.addActionListener(new ActionListener() {
+				JButton btn_salir = new JButton("SALIR");
+				btn_salir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				btn_salir.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
 					}
 				});
-				cancelButton.setBorderPainted(false);
-				cancelButton.setFont(new Font("Barlow", Font.BOLD, 20));
-				cancelButton.setForeground(new Color(255, 255, 255));
-				cancelButton.setBackground(new Color(32, 160, 216));
-				cancelButton.setBounds(339, 11, 153, 43);
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				btn_salir.setBorderPainted(false);
+				btn_salir.setFont(new Font("Barlow", Font.BOLD, 20));
+				btn_salir.setForeground(new Color(255, 255, 255));
+				btn_salir.setBackground(new Color(32, 160, 216));
+				btn_salir.setBounds(339, 11, 153, 43);
+				btn_salir.setActionCommand("Cancel");
+				buttonPane.add(btn_salir);
 			}
 		}
 	}

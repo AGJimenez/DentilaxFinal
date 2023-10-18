@@ -23,7 +23,7 @@ public class jd_buscar_dr extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txtIntroduceDni;
+	private JTextField txt_IntroduceDni;
 
 	/**
 	 * Launch the application.
@@ -53,45 +53,45 @@ public class jd_buscar_dr extends JDialog {
 		contentPanel.setLayout(null);
 		setLocationRelativeTo(contentPanel);
 		{
-			JLabel lblNewLabel = new JLabel("BUSCAR DOCTOR");
-			lblNewLabel.setFont(new Font("Barlow", Font.BOLD, 20));
-			lblNewLabel.setBounds(35, 35, 167, 42);
-			contentPanel.add(lblNewLabel);
+			JLabel lbl_buscar_dr = new JLabel("BUSCAR DOCTOR");
+			lbl_buscar_dr.setFont(new Font("Barlow", Font.BOLD, 20));
+			lbl_buscar_dr.setBounds(35, 35, 167, 42);
+			contentPanel.add(lbl_buscar_dr);
 		}
 		{
-			txtIntroduceDni = new JTextField();
-			txtIntroduceDni.addFocusListener(new FocusAdapter() {
+			txt_IntroduceDni = new JTextField();
+			txt_IntroduceDni.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
-					if (txtIntroduceDni.getText().equals("Introduce DNI")) {
-						txtIntroduceDni.setText("");
-						txtIntroduceDni.setForeground(Color.BLACK);
+					if (txt_IntroduceDni.getText().equals("Introduce DNI")) {
+						txt_IntroduceDni.setText("");
+						txt_IntroduceDni.setForeground(Color.BLACK);
 	                }
 				}
 				@Override
 				public void focusLost(FocusEvent e) {
-					if (txtIntroduceDni.getText().isEmpty()) {
-						txtIntroduceDni.setForeground(new Color(0, 128, 192));
-						txtIntroduceDni.setText("Introduce DNI");
+					if (txt_IntroduceDni.getText().isEmpty()) {
+						txt_IntroduceDni.setForeground(new Color(0, 128, 192));
+						txt_IntroduceDni.setText("Introduce DNI");
 	                }
 				}
 			});
-			txtIntroduceDni.setOpaque(false);
-			txtIntroduceDni.setText("Introduce DNI");
-			txtIntroduceDni.setHorizontalAlignment(SwingConstants.LEFT);
-			txtIntroduceDni.setFont(new Font("Arial", Font.PLAIN, 17));
-			txtIntroduceDni.setColumns(10);
-			txtIntroduceDni.setBorder(null);
-			txtIntroduceDni.setBackground(new Color(0, 128, 192));
-			txtIntroduceDni.setBounds(110, 140, 382, 44);
-			contentPanel.add(txtIntroduceDni);
+			txt_IntroduceDni.setOpaque(false);
+			txt_IntroduceDni.setText("Introduce DNI");
+			txt_IntroduceDni.setHorizontalAlignment(SwingConstants.LEFT);
+			txt_IntroduceDni.setFont(new Font("Arial", Font.PLAIN, 17));
+			txt_IntroduceDni.setColumns(10);
+			txt_IntroduceDni.setBorder(null);
+			txt_IntroduceDni.setBackground(new Color(0, 128, 192));
+			txt_IntroduceDni.setBounds(110, 140, 382, 44);
+			contentPanel.add(txt_IntroduceDni);
 		}
 		{
-			JLabel lblDni = new JLabel("DNI");
-			lblDni.setForeground(new Color(0, 128, 192));
-			lblDni.setFont(new Font("Barlow", Font.BOLD, 22));
-			lblDni.setBounds(59, 140, 38, 44);
-			contentPanel.add(lblDni);
+			JLabel lbl_dni = new JLabel("DNI");
+			lbl_dni.setForeground(new Color(0, 128, 192));
+			lbl_dni.setFont(new Font("Barlow", Font.BOLD, 22));
+			lbl_dni.setBounds(59, 140, 38, 44);
+			contentPanel.add(lbl_dni);
 		}
 		{
 			JPanel panel = new JPanel();
@@ -113,37 +113,40 @@ public class jd_buscar_dr extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			buttonPane.setLayout(null);
 			{
-				JButton okButton = new JButton("BUSCAR");
-				okButton.addActionListener(new ActionListener() {
+				JButton btn_buscar = new JButton("BUSCAR");
+				btn_buscar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						//SQL
+						//SQL si lo encuentra, abre ventana:
+						jd_buscar_dr_encontrado ventana = new jd_buscar_dr_encontrado();
+						ventana.setVisible(true);
+						//si no if no encontrado
 					}
 				});
-				okButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-				okButton.setBorderPainted(false);
-				okButton.setFont(new Font("Barlow", Font.BOLD, 20));
-				okButton.setForeground(new Color(255, 255, 255));
-				okButton.setBackground(new Color(32, 160, 216));
-				okButton.setBounds(56, 0, 153, 43);
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
+				btn_buscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				btn_buscar.setBorderPainted(false);
+				btn_buscar.setFont(new Font("Barlow", Font.BOLD, 20));
+				btn_buscar.setForeground(new Color(255, 255, 255));
+				btn_buscar.setBackground(new Color(32, 160, 216));
+				btn_buscar.setBounds(56, 0, 153, 43);
+				btn_buscar.setActionCommand("OK");
+				buttonPane.add(btn_buscar);
 				
 			}
 			{
-				JButton cancelButton = new JButton("CANCELAR");
-				cancelButton.addActionListener(new ActionListener() {
+				JButton btn_cancelar = new JButton("CANCELAR");
+				btn_cancelar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
 					}
 				});
-				cancelButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-				cancelButton.setBorderPainted(false);
-				cancelButton.setFont(new Font("Barlow", Font.BOLD, 20));
-				cancelButton.setForeground(new Color(255, 255, 255));
-				cancelButton.setBackground(new Color(32, 160, 216));
-				cancelButton.setBounds(333, 0, 153, 43);
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				btn_cancelar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				btn_cancelar.setBorderPainted(false);
+				btn_cancelar.setFont(new Font("Barlow", Font.BOLD, 20));
+				btn_cancelar.setForeground(new Color(255, 255, 255));
+				btn_cancelar.setBackground(new Color(32, 160, 216));
+				btn_cancelar.setBounds(333, 0, 153, 43);
+				btn_cancelar.setActionCommand("Cancel");
+				buttonPane.add(btn_cancelar);
 			}
 		}
 	}
