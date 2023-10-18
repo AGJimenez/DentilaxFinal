@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
+import java.awt.Dimension;
 
 public class jf_consulta extends JFrame {
 
@@ -20,9 +21,16 @@ public class jf_consulta extends JFrame {
 	 */
 	Fondo fondo = new Fondo();
     public jf_consulta() {
+    	setPreferredSize(new Dimension(1450, 750));
+    	setResizable(false);
         this.setContentPane(fondo);      
         initComponents();
         this.setLocationRelativeTo(jp_menu);
+        jp_menu.setLayout(null);
+        jp_menu.add(btn_buscar_cita);
+        jp_menu.add(btn_historial);
+        jp_menu.add(btn_eliminar_cita);
+        jp_menu.add(btn_nueva_cita);
     }
 
     /**
@@ -35,17 +43,22 @@ public class jf_consulta extends JFrame {
     private void initComponents() {
 
         jp_menu = new Fondo();
+        jp_menu.setPreferredSize(new Dimension(1450, 750));
         btn_buscar_cita = new javax.swing.JButton();
+        btn_buscar_cita.setBounds(68, 622, 146, 23);
         btn_buscar_cita.setBorderPainted(false);
         btn_buscar_cita.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         	}
         });
         btn_nueva_cita = new javax.swing.JButton();
+        btn_nueva_cita.setBounds(1209, 622, 146, 23);
         btn_nueva_cita.setBorderPainted(false);
         btn_historial = new javax.swing.JButton();
+        btn_historial.setBounds(401, 622, 146, 23);
         btn_historial.setBorderPainted(false);
         btn_eliminar_cita = new javax.swing.JButton();
+        btn_eliminar_cita.setBounds(891, 622, 146, 23);
         btn_eliminar_cita.setBorderPainted(false);
         btn_eliminar_cita.setText("ELIMINAR CITA");
         menu_inicio = new javax.swing.JMenuBar();
@@ -65,33 +78,6 @@ public class jf_consulta extends JFrame {
         btn_nueva_cita.setText("NUEVA CITA");
 
         btn_historial.setText("HISTORIAL");
-
-        javax.swing.GroupLayout jp_menuLayout = new javax.swing.GroupLayout(jp_menu);
-        jp_menuLayout.setHorizontalGroup(
-        	jp_menuLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(jp_menuLayout.createSequentialGroup()
-        			.addGap(68)
-        			.addComponent(btn_buscar_cita, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-        			.addGap(187)
-        			.addComponent(btn_historial, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED, 239, Short.MAX_VALUE)
-        			.addComponent(btn_eliminar_cita, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-        			.addGap(172)
-        			.addComponent(btn_nueva_cita, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-        			.addGap(79))
-        );
-        jp_menuLayout.setVerticalGroup(
-        	jp_menuLayout.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(jp_menuLayout.createSequentialGroup()
-        			.addContainerGap(596, Short.MAX_VALUE)
-        			.addGroup(jp_menuLayout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(btn_buscar_cita, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(btn_nueva_cita, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(btn_eliminar_cita, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(btn_historial, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-        			.addGap(44))
-        );
-        jp_menu.setLayout(jp_menuLayout);
 
         menu_inicio.setBackground(new java.awt.Color(32, 160, 216));
         menu_inicio.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));

@@ -33,7 +33,8 @@ public class jf_facturacion extends JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-
+//aaaachoga
+    	//holiiii
         jp_menu = new Fondo();
         btn_buscar_factura = new javax.swing.JButton();
         btn_buscar_factura.setBorderPainted(false);
