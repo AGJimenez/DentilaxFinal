@@ -64,6 +64,15 @@ public class jf_doctores extends javax.swing.JFrame {
 	        	}
 	        });
 	        btn_alta_doctores = new javax.swing.JButton();
+	        btn_alta_doctores.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		
+	        		jd_doctores_alta ventana = new jd_doctores_alta();
+	        		ventana.setVisible(true);
+	        		
+	        		
+	        	}
+	        });
 	        btn_alta_doctores.setBorderPainted(false);
 	        btn_alta_doctores.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	        btn_alta_doctores.setIcon(new ImageIcon(jf_doctores.class.getResource("/iconos_submenus/btn_darAlta_admin.png")));
