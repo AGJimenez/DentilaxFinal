@@ -27,7 +27,7 @@ import java.awt.Dimension;
  */
 
 /**
- *
+ *hola que tal
  * @author alexg
  */
 public class jf_login extends javax.swing.JFrame {
