@@ -27,6 +27,7 @@ public class jf_doctores extends javax.swing.JFrame {
 	 * 
 	 */Fondo fondo = new Fondo();
 	    public jf_doctores() {
+	    	setResizable(false);
 	    	setPreferredSize(new Dimension(1450, 750));
 	        this.setContentPane(fondo);      
 	        initComponents();

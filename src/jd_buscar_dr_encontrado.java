@@ -173,10 +173,12 @@ public class jd_buscar_dr_encontrado extends JDialog {
 			}
 			
 			JButton btn_historial = new JButton("HISTORIAL");
+			btn_historial.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btn_historial.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
-					
+					jf_buscar_dr_historial ventana = new jf_buscar_dr_historial();
+					ventana.setVisible(true);
 					
 				}
 			});
