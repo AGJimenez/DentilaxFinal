@@ -18,6 +18,9 @@ import java.awt.Image;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Dimension;
+import javax.swing.SwingConstants;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 
 
@@ -103,10 +106,48 @@ public class jf_login extends javax.swing.JFrame {
         interior.setBounds(497, 141, 483, 350);
         interior.setOpaque(false);
         jtf_user = new javax.swing.JTextField();
+        jtf_user.setForeground(new Color(0, 128, 192));
+        jtf_user.addFocusListener(new FocusAdapter() {
+        	@Override
+        	public void focusGained(FocusEvent e) {
+        		if (jtf_user.getText().equals("Introduce usuario")) {
+                    jtf_user.setText("");
+                    jtf_user.setForeground(Color.BLACK);
+                }
+        	}
+        	@Override
+        	public void focusLost(FocusEvent e) {
+        		 if (jtf_user.getText().isEmpty()) {
+                     jtf_user.setForeground(new Color(0, 128, 192));
+                     jtf_user.setText("Introduce usuario");
+                 }
+        	}
+        });
+        jtf_user.setHorizontalAlignment(SwingConstants.CENTER);
+        jtf_user.setToolTipText("Introduce el DNI del usuario");
+        
         jtf_user.setBorder(null);
         jtf_user.setCaretColor(new Color(255, 255, 255));
         jtf_user.setBounds(132, 83, 294, 65);
         jtf_user1 = new javax.swing.JTextField();
+        jtf_user1.setForeground(new Color(0, 128, 192));
+        jtf_user1.addFocusListener(new FocusAdapter() {
+        	@Override
+        	public void focusGained(FocusEvent e) {
+        		if (jtf_user1.getText().equals("Introduce contraseña")) {
+                    jtf_user1.setText("");
+                    jtf_user1.setForeground(Color.BLACK);
+                }
+        	}
+        	@Override
+        	public void focusLost(FocusEvent e) {
+        		if (jtf_user1.getText().isEmpty()) {
+                    jtf_user1.setForeground(new Color(0, 128, 192));
+                    jtf_user1.setText("Introduce contraseña");
+                }
+        	}
+        });
+        jtf_user1.setHorizontalAlignment(SwingConstants.CENTER);
         jtf_user1.setToolTipText("Introduce contraseña");
         jtf_user1.setBorder(null);
         jtf_user1.setBounds(132, 199, 294, 65);
@@ -168,7 +209,9 @@ public class jf_login extends javax.swing.JFrame {
 
         jtf_user.setBackground(new java.awt.Color(128, 208, 244));
         jtf_user.setText("Introduce usuario");
-
+        
+        
+        
         jtf_user1.setBackground(new java.awt.Color(128, 208, 244));
         jtf_user1.setText("Introduce contraseña");
         jtf_user1.addActionListener(new java.awt.event.ActionListener() {
