@@ -102,7 +102,7 @@ public class jd_anadir_especialidad extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			buttonPane.setLayout(null);
 			{
-				JButton okButton = new JButton("BUSCAR");
+				JButton okButton = new JButton("AÑADIR");
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
