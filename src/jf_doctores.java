@@ -58,6 +58,8 @@ public class jf_doctores extends javax.swing.JFrame {
 	        btn_buscar_doctor.setOpaque(false);
 	        btn_buscar_doctor.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
+	        		jd_buscar_dr ventana = new jd_buscar_dr();
+	        		ventana.setVisible(true);
 	        	}
 	        });
 	        btn_alta_doctores = new javax.swing.JButton();

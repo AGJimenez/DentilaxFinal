@@ -101,6 +101,14 @@ public class jd_especialidades extends JDialog {
 			buttonPane.setLayout(null);
 			{
 				JButton okButton = new JButton("AÑADIR");
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						jd_anadir_especialidad ventana = new jd_anadir_especialidad();
+						ventana.setVisible(true);
+						
+					}
+				});
 				okButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				okButton.setBorderPainted(false);
 				okButton.setFont(new Font("Barlow", Font.BOLD, 20));
@@ -113,6 +121,7 @@ public class jd_especialidades extends JDialog {
 			}
 			{
 				JButton cancelButton = new JButton("SALIR");
+				cancelButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
