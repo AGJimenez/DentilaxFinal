@@ -92,7 +92,7 @@ public class jf_login extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-    	
+    	//comentario de prueba
     	 ConectorDB_mysql sentencias = new ConectorDB_mysql();
         panelFondo = new Fondo();
         panelFondo.setPreferredSize(new Dimension(1450, 750));
