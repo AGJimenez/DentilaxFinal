@@ -36,13 +36,17 @@ public class jf_consulta extends JFrame {
 
         jp_menu = new Fondo();
         btn_buscar_cita = new javax.swing.JButton();
+        btn_buscar_cita.setBorderPainted(false);
         btn_buscar_cita.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         	}
         });
         btn_nueva_cita = new javax.swing.JButton();
+        btn_nueva_cita.setBorderPainted(false);
         btn_historial = new javax.swing.JButton();
+        btn_historial.setBorderPainted(false);
         btn_eliminar_cita = new javax.swing.JButton();
+        btn_eliminar_cita.setBorderPainted(false);
         btn_eliminar_cita.setText("ELIMINAR CITA");
         menu_inicio = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -143,22 +147,7 @@ public class jf_consulta extends JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(jf_menu_ppal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(jf_menu_ppal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(jf_menu_ppal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(jf_menu_ppal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        
         //</editor-fold>
 
         /* Create and display the form */

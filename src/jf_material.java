@@ -36,13 +36,17 @@ public class jf_material extends JFrame {
 
         jp_menu = new Fondo();
         btn_buscar_pedido = new javax.swing.JButton();
+        btn_buscar_pedido.setBorderPainted(false);
         btn_buscar_pedido.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         	}
         });
         btn_nuevo_pedido = new javax.swing.JButton();
+        btn_nuevo_pedido.setBorderPainted(false);
         btn_proveedores = new javax.swing.JButton();
+        btn_proveedores.setBorderPainted(false);
         btn_cancelar_pedido = new javax.swing.JButton();
+        btn_cancelar_pedido.setBorderPainted(false);
         btn_cancelar_pedido.setText("CANCELAR PEDIDO");
         menu_inicio = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -63,9 +67,11 @@ public class jf_material extends JFrame {
         btn_proveedores.setText("PROVEEDORES");
         
         btn_inventario = new JButton();
+        btn_inventario.setBorderPainted(false);
         btn_inventario.setText("INVENTARIO");
         
         btn_solicitudes = new JButton();
+        btn_solicitudes.setBorderPainted(false);
         btn_solicitudes.setText("SOLICITUDES");
 
         javax.swing.GroupLayout jp_menuLayout = new javax.swing.GroupLayout(jp_menu);
@@ -159,22 +165,7 @@ public class jf_material extends JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(jf_menu_ppal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(jf_menu_ppal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(jf_menu_ppal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(jf_menu_ppal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+      
         //</editor-fold>
 
         /* Create and display the form */

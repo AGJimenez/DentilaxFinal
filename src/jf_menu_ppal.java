@@ -42,6 +42,7 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         jp_menu.setPreferredSize(new Dimension(1450, 750));
         jp_menu.setSize(new Dimension(1450, 750));
         btn_pacientes = new javax.swing.JButton();
+        btn_pacientes.setBorderPainted(false);
         btn_pacientes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_pacientes.setOpaque(false);
         btn_pacientes.setContentAreaFilled(false);
@@ -54,6 +55,7 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         	}
         });
         btn_material = new javax.swing.JButton();
+        btn_material.setBorderPainted(false);
         btn_material.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_material.setOpaque(false);
         btn_material.setIcon(new ImageIcon(jf_menu_ppal.class.getResource("/iconos_menus/btn_material_admin.png")));
@@ -68,6 +70,7 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         	}
         });
         btn_facturacion = new javax.swing.JButton();
+        btn_facturacion.setBorderPainted(false);
         btn_facturacion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_facturacion.setIcon(new ImageIcon(jf_menu_ppal.class.getResource("/iconos_menus/btn_facturacion_admin.png")));
         btn_facturacion.setContentAreaFilled(false);
@@ -82,6 +85,7 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         	}
         });
         btn_ajustes = new javax.swing.JButton();
+        btn_ajustes.setBorderPainted(false);
         btn_ajustes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_ajustes.setIcon(new ImageIcon(jf_menu_ppal.class.getResource("/iconos_menus/btn_ajustes_admin.png")));
         btn_ajustes.setContentAreaFilled(false);
@@ -91,6 +95,7 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         	}
         });
         btn_consultas = new javax.swing.JButton();
+        btn_consultas.setBorderPainted(false);
         btn_consultas.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_consultas.setIcon(new ImageIcon(jf_menu_ppal.class.getResource("/iconos_menus/btn_consultas_admin.png")));
         btn_consultas.setContentAreaFilled(false);
@@ -105,6 +110,7 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         	}
         });
         btn_doctores = new javax.swing.JButton();
+        btn_doctores.setBorderPainted(false);
         btn_doctores.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_doctores.setIcon(new ImageIcon(jf_menu_ppal.class.getResource("/iconos_menus/btn_doctores_admin.png")));
         btn_doctores.setContentAreaFilled(false);
@@ -222,22 +228,7 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(jf_menu_ppal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(jf_menu_ppal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(jf_menu_ppal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(jf_menu_ppal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+       
         //</editor-fold>
 
         /* Create and display the form */

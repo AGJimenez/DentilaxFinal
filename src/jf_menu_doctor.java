@@ -45,27 +45,29 @@ public class jf_menu_doctor extends javax.swing.JFrame {
         jp_menu = new Fondo();
         jp_menu.setPreferredSize(new Dimension(1450, 750));
         btn_buscar_paciente = new javax.swing.JButton();
+        btn_buscar_paciente.setBorderPainted(false);
         btn_buscar_paciente.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_buscar_paciente.setBounds(440, 218, 275, 101);
         btn_buscar_paciente.setContentAreaFilled(false);
         btn_buscar_paciente.setOpaque(false);
         btn_buscar_paciente.setIcon(new ImageIcon(jf_menu_doctor.class.getResource("/iconos_menus/btn_buscarPaciente_dr.png")));
         btn_solicitar = new javax.swing.JButton();
+        btn_solicitar.setBorderPainted(false);
         btn_solicitar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_solicitar.setBounds(440, 334, 275, 93);
         btn_solicitar.setIcon(new ImageIcon(jf_menu_doctor.class.getResource("/iconos_menus/btn_pedidos_doctor.png")));
         btn_solicitar.setOpaque(false);
         btn_solicitar.setContentAreaFilled(false);
         btn_ajustes = new javax.swing.JButton();
+        btn_ajustes.setBorderPainted(false);
         btn_ajustes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_ajustes.setIcon(new ImageIcon(jf_menu_doctor.class.getResource("/iconos_menus/btn_ajustes_admin.png")));
         btn_ajustes.setOpaque(false);
         btn_ajustes.setContentAreaFilled(false);
-        btn_ajustes.setBorderPainted(false);
         btn_ajustes.setBounds(733, 334, 282, 93);
         btn_nuevo_tratamiento = new javax.swing.JButton();
-        btn_nuevo_tratamiento.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_nuevo_tratamiento.setBorderPainted(false);
+        btn_nuevo_tratamiento.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_nuevo_tratamiento.setBounds(733, 218, 282, 98);
         btn_nuevo_tratamiento.setIcon(new ImageIcon(jf_menu_doctor.class.getResource("/iconos_menus/btn_nuevoTratamiento_dr.png")));
         btn_nuevo_tratamiento.setOpaque(false);
@@ -127,22 +129,7 @@ public class jf_menu_doctor extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(jf_menu_doctor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(jf_menu_doctor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(jf_menu_doctor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(jf_menu_doctor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+       
         //</editor-fold>
 
         /* Create and display the form */
