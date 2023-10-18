@@ -175,6 +175,9 @@ public class jd_buscar_dr_encontrado extends JDialog {
 			JButton btn_historial = new JButton("HISTORIAL");
 			btn_historial.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					
+					
+					
 				}
 			});
 			btn_historial.setForeground(Color.WHITE);
