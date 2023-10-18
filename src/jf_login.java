@@ -16,6 +16,7 @@ import java.awt.Cursor;
 import java.awt.Image;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Dimension;
 import javax.swing.SwingConstants;
@@ -196,8 +197,16 @@ public class jf_login extends javax.swing.JFrame {
 				
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
+				JOptionPane error = new JOptionPane();
+				error.showMessageDialog(error, "Error en el login");
 				e1.printStackTrace();
+				
 			}
+               catch(NullPointerException n) {
+            	   JOptionPane error = new JOptionPane();
+            	   error.showMessageDialog(error, "No hay datos, comprueba la conexión a la base de datos "
+            	   		+ "o en su defecto, que no haya campos vacíos y vuelve a intentarlo");
+               }
             }
                 
                 
