@@ -43,6 +43,7 @@ public class jd_crear_factura extends JDialog {
 	 * Create the dialog.
 	 */
 	public jd_crear_factura() {
+		setModal(true);
 		setResizable(false);
 		setBounds(100, 100, 614, 770);
 		getContentPane().setLayout(new BorderLayout());
@@ -50,6 +51,7 @@ public class jd_crear_factura extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		setLocationRelativeTo(this);
 		
 		JLabel lblNombre = new JLabel("NOMBRE");
 		lblNombre.setForeground(new Color(0, 128, 192));

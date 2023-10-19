@@ -37,16 +37,23 @@ public class jf_facturacion extends JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-//aaaachoga
-    	//holiiii
+
         jp_menu = new Fondo();
         btn_buscar_factura = new javax.swing.JButton();
         btn_buscar_factura.setBorderPainted(false);
         btn_buscar_factura.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		jd_buscar_factura ventana = new jd_buscar_factura();
+        		ventana.setVisible(true);
         	}
         });
         btn_nueva_factura = new javax.swing.JButton();
+        btn_nueva_factura.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	jd_crear_factura ventana = new jd_crear_factura();
+        	ventana.setVisible(true);
+        	}
+        });
         btn_nueva_factura.setBorderPainted(false);
         btn_historial_pago = new javax.swing.JButton();
         btn_historial_pago.setBorderPainted(false);

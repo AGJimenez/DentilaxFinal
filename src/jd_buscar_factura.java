@@ -1,3 +1,6 @@
+
+
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
@@ -5,16 +8,25 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.Dimension;
 import java.awt.Color;
-import java.awt.Font;
+import java.awt.Cursor;
+
 import javax.swing.JLabel;
+import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.JSeparator;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class jd_buscar_factura extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txtIntroduceTexto;
+	private JTextField txt_IntroduceDni;
 
 	/**
 	 * Launch the application.
@@ -33,83 +45,115 @@ public class jd_buscar_factura extends JDialog {
 	 * Create the dialog.
 	 */
 	public jd_buscar_factura() {
+		setPreferredSize(new Dimension(554, 343));
+		setModal(true);
 		setResizable(false);
-		setBounds(100, 100, 1450, 750);
+		setBounds(100, 100, 554, 343);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBackground(new Color(255, 255, 255));
+		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
-		JLabel lblDentilax = new JLabel("DENTILAX CLINICA ODONTOLOGICA");
-		lblDentilax.setFont(new Font("Barlow", Font.BOLD, 20));
-		lblDentilax.setBounds(201, 26, 317, 31);
-		contentPanel.add(lblDentilax);
-		
-		JLabel lblNombre = new JLabel("NOMBRE");
-		lblNombre.setFont(new Font("Barlow", Font.BOLD, 20));
-		lblNombre.setBounds(45, 89, 114, 31);
-		contentPanel.add(lblNombre);
-		
-		JLabel lblApellidos = new JLabel("APELLIDOS");
-		lblApellidos.setFont(new Font("Barlow", Font.BOLD, 20));
-		lblApellidos.setBounds(45, 131, 114, 24);
-		contentPanel.add(lblApellidos);
-		
-		JLabel lblDni = new JLabel("DNI");
-		lblDni.setFont(new Font("Barlow", Font.BOLD, 20));
-		lblDni.setBounds(45, 169, 60, 18);
-		contentPanel.add(lblDni);
-		
-		JLabel lblDireccion = new JLabel("DIRECCION");
-		lblDireccion.setFont(new Font("Barlow", Font.BOLD, 20));
-		lblDireccion.setBounds(45, 196, 114, 37);
-		contentPanel.add(lblDireccion);
-		
-		JLabel lblTelefono = new JLabel("TELEFONO");
-		lblTelefono.setFont(new Font("Barlow", Font.BOLD, 20));
-		lblTelefono.setBounds(45, 240, 114, 24);
-		contentPanel.add(lblTelefono);
-		
-		JLabel lblFecha = new JLabel("FECHA");
-		lblFecha.setFont(new Font("Barlow", Font.BOLD, 20));
-		lblFecha.setBounds(45, 275, 114, 37);
-		contentPanel.add(lblFecha);
-		
-		JLabel lblPagado = new JLabel("PAGADO");
-		lblPagado.setFont(new Font("Barlow", Font.BOLD, 20));
-		lblPagado.setBounds(45, 317, 114, 24);
-		contentPanel.add(lblPagado);
-		
-		JLabel lblPorPagar = new JLabel("POR PAGAR");
-		lblPorPagar.setFont(new Font("Barlow", Font.BOLD, 20));
-		lblPorPagar.setBounds(45, 352, 114, 31);
-		contentPanel.add(lblPorPagar);
-		
-		txtIntroduceTexto = new JTextField();
-		txtIntroduceTexto.setFont(new Font("Barlow", Font.BOLD, 20));
-		txtIntroduceTexto.setText("Introduce texto");
-		txtIntroduceTexto.setBounds(212, 94, 253, 20);
-		contentPanel.add(txtIntroduceTexto);
-		txtIntroduceTexto.setColumns(10);
+		setLocationRelativeTo(contentPanel);
+		{
+			JLabel lbl_buscar_factura = new JLabel("BUSCAR FACTURA");
+			lbl_buscar_factura.setFont(new Font("Barlow", Font.BOLD, 20));
+			lbl_buscar_factura.setBounds(26, 35, 176, 42);
+			contentPanel.add(lbl_buscar_factura);
+		}
+		{
+			txt_IntroduceDni = new JTextField();
+			txt_IntroduceDni.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent e) {
+					if (txt_IntroduceDni.getText().equals("Introduce DNI")) {
+						txt_IntroduceDni.setText("");
+						txt_IntroduceDni.setForeground(Color.BLACK);
+	                }
+				}
+				@Override
+				public void focusLost(FocusEvent e) {
+					if (txt_IntroduceDni.getText().isEmpty()) {
+						txt_IntroduceDni.setForeground(new Color(0, 128, 192));
+						txt_IntroduceDni.setText("Introduce DNI");
+	                }
+				}
+			});
+			txt_IntroduceDni.setOpaque(false);
+			txt_IntroduceDni.setText("Introduce DNI del paciente");
+			txt_IntroduceDni.setHorizontalAlignment(SwingConstants.LEFT);
+			txt_IntroduceDni.setFont(new Font("Arial", Font.PLAIN, 17));
+			txt_IntroduceDni.setColumns(10);
+			txt_IntroduceDni.setBorder(null);
+			txt_IntroduceDni.setBackground(new Color(0, 128, 192));
+			txt_IntroduceDni.setBounds(110, 140, 382, 44);
+			contentPanel.add(txt_IntroduceDni);
+		}
+		{
+			JLabel lbl_dni = new JLabel("DNI");
+			lbl_dni.setForeground(new Color(0, 128, 192));
+			lbl_dni.setFont(new Font("Barlow", Font.BOLD, 22));
+			lbl_dni.setBounds(59, 140, 38, 44);
+			contentPanel.add(lbl_dni);
+		}
+		{
+			JPanel panel = new JPanel();
+			panel.setBackground(new Color(191, 231, 249));
+			panel.setBounds(0, 24, 217, 64);
+			contentPanel.add(panel);
+		}
+		{
+			JSeparator separator = new JSeparator();
+			separator.setForeground(new Color(0, 128, 192));
+			separator.setBackground(new Color(0, 128, 192));
+			separator.setBounds(100, 175, 237, 8);
+			contentPanel.add(separator);
+		}
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setBackground(new Color(255, 255, 255));
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
+			buttonPane.setBackground(Color.WHITE);
+			buttonPane.setPreferredSize(new Dimension(10, 60));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
+			buttonPane.setLayout(null);
 			{
-				JButton okButton = new JButton("OK");
-				okButton.setFont(new Font("Barlow", Font.BOLD, 20));
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+				JButton btn_buscar = new JButton("BUSCAR");
+				btn_buscar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+						jd_ver_factura ventana = new jd_ver_factura();
+						ventana.setVisible(true);
+					}
+				});
+			
+					
+				
+				btn_buscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				btn_buscar.setBorderPainted(false);
+				btn_buscar.setFont(new Font("Barlow", Font.BOLD, 20));
+				btn_buscar.setForeground(new Color(255, 255, 255));
+				btn_buscar.setBackground(new Color(32, 160, 216));
+				btn_buscar.setBounds(56, 0, 153, 43);
+				btn_buscar.setActionCommand("OK");
+				buttonPane.add(btn_buscar);
+				
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setFont(new Font("Barlow", Font.BOLD, 20));
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				JButton btn_cancelar = new JButton("CANCELAR");
+				btn_cancelar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						dispose();
+					}
+				});
+				btn_cancelar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				btn_cancelar.setBorderPainted(false);
+				btn_cancelar.setFont(new Font("Barlow", Font.BOLD, 20));
+				btn_cancelar.setForeground(new Color(255, 255, 255));
+				btn_cancelar.setBackground(new Color(32, 160, 216));
+				btn_cancelar.setBounds(333, 0, 153, 43);
+				btn_cancelar.setActionCommand("Cancel");
+				buttonPane.add(btn_cancelar);
 			}
 		}
 	}
+
 }
