@@ -147,12 +147,87 @@ public class jf_doctores extends javax.swing.JFrame {
 
 	        jMenu2.setText("PACIENTES");
 	        menu_inicio.add(jMenu2);
+	        
+	        jmenuitem_menu_paciente = new JMenuItem("Menu paciente");
+	        jmenuitem_menu_paciente.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		dispose();
+	        		jf_pacientes ventana = new jf_pacientes();
+	        		ventana.setVisible(true);
+	        	}
+	        });
+	        jmenuitem_menu_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
+	        jMenu2.add(jmenuitem_menu_paciente);
+	        
+	        jmenuitem_buscar_paciente = new JMenuItem("Buscar paciente");
+	        jmenuitem_buscar_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
+	        jMenu2.add(jmenuitem_buscar_paciente);
+	        
+	        jmenuitem_editar_paciente = new JMenuItem("Editar paciente");
+	        jmenuitem_editar_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
+	        jMenu2.add(jmenuitem_editar_paciente);
+	        
+	        jmenuitem_baja_paciente = new JMenuItem("Dar de baja");
+	        jmenuitem_baja_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
+	        jMenu2.add(jmenuitem_baja_paciente);
+	        
+	        jmenuitem_alta_paciente = new JMenuItem("Dar de alta");
+	        jmenuitem_alta_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
+	        jMenu2.add(jmenuitem_alta_paciente);
 
 	        jMenu3.setText("DOCTORES");
 	        menu_inicio.add(jMenu3);
+	        
+	        jmenuitem_menu_doctor = new JMenuItem("Menu doctor");
+	        jmenuitem_menu_doctor.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		dispose();
+	        		jf_doctores ventana = new jf_doctores();
+	        		ventana.setVisible(true);
+	        	}
+	        });
+	        jmenuitem_menu_doctor.setFont(new Font("Arial", Font.PLAIN, 12));
+	        jMenu3.add(jmenuitem_menu_doctor);
+	        
+	        jmenuitem_buscar_doctor = new JMenuItem("Buscar doctor");
+	        jmenuitem_buscar_doctor.setFont(new Font("Arial", Font.PLAIN, 12));
+	        jMenu3.add(jmenuitem_buscar_doctor);
+	        
+	        jmenuitem_especialidad_doctor = new JMenuItem("Especialidad");
+	        jmenuitem_especialidad_doctor.setFont(new Font("Arial", Font.PLAIN, 12));
+	        jMenu3.add(jmenuitem_especialidad_doctor);
+	        
+	        jmenuitem_baja_doctor = new JMenuItem("Dar de baja");
+	        jmenuitem_baja_doctor.setFont(new Font("Arial", Font.PLAIN, 12));
+	        jMenu3.add(jmenuitem_baja_doctor);
+	        
+	        jmenuitem_alta_doctor = new JMenuItem("Dar de alta");
+	        jmenuitem_alta_doctor.setFont(new Font("Arial", Font.PLAIN, 12));
+	        jMenu3.add(jmenuitem_alta_doctor);
 
 	        jMenu4.setText("MATERIAL");
 	        menu_inicio.add(jMenu4);
+	        
+	        mntmNewMenuItem_1 = new JMenuItem("Menu material");
+	        jMenu4.add(mntmNewMenuItem_1);
+	        
+	        mntmNewMenuItem_3 = new JMenuItem("Buscar pedido");
+	        jMenu4.add(mntmNewMenuItem_3);
+	        
+	        mntmNewMenuItem_6 = new JMenuItem("Proveedores");
+	        jMenu4.add(mntmNewMenuItem_6);
+	        
+	        mntmNewMenuItem_4 = new JMenuItem("Cancelar pedido");
+	        jMenu4.add(mntmNewMenuItem_4);
+	        
+	        mntmNewMenuItem_5 = new JMenuItem("Nuevo pedido");
+	        jMenu4.add(mntmNewMenuItem_5);
+	        
+	        mntmNewMenuItem = new JMenuItem("Inventario");
+	        jMenu4.add(mntmNewMenuItem);
+	        
+	        mntmNewMenuItem_2 = new JMenuItem("Solicitudes");
+	        jMenu4.add(mntmNewMenuItem_2);
 
 	        jMenu5.setText("CONSULTAS");
 	        menu_inicio.add(jMenu5);
@@ -215,4 +290,21 @@ public class jf_doctores extends javax.swing.JFrame {
 	    private javax.swing.JPanel jp_menu;
 	    private javax.swing.JMenuBar menu_inicio;
 	    private JButton btn_baja_doctores;
+	    private JMenuItem jmenuitem_menu_paciente;
+	    private JMenuItem jmenuitem_buscar_paciente;
+	    private JMenuItem jmenuitem_editar_paciente;
+	    private JMenuItem jmenuitem_alta_paciente;
+	    private JMenuItem jmenuitem_baja_paciente;
+	    private JMenuItem jmenuitem_menu_doctor;
+	    private JMenuItem jmenuitem_buscar_doctor;
+	    private JMenuItem jmenuitem_alta_doctor;
+	    private JMenuItem jmenuitem_baja_doctor;
+	    private JMenuItem jmenuitem_especialidad_doctor;
+	    private JMenuItem mntmNewMenuItem;
+	    private JMenuItem mntmNewMenuItem_1;
+	    private JMenuItem mntmNewMenuItem_2;
+	    private JMenuItem mntmNewMenuItem_3;
+	    private JMenuItem mntmNewMenuItem_4;
+	    private JMenuItem mntmNewMenuItem_5;
+	    private JMenuItem mntmNewMenuItem_6;
 	}

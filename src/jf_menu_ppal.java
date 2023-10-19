@@ -198,6 +198,13 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         menu_inicio.add(jmenu_inicio);
         
         jmenuitem_volver = new JMenuItem("Volver");
+        jmenuitem_volver.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_menu_ppal ventana = new jf_menu_ppal();
+        		ventana.setVisible(true);
+        	}
+        });
         jmenuitem_volver.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_inicio.add(jmenuitem_volver);
 
@@ -285,6 +292,10 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         jmenu_doctor.add(jmenuitem_especialidad_doctores);
         
         jmenuitem_baja_doctores = new JMenuItem("Dar de baja");
+        jmenuitem_baja_doctores.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
         jmenuitem_baja_doctores.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_doctor.add(jmenuitem_baja_doctores);
         
@@ -357,9 +368,9 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         jmenuitem_buscar_cita.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_consulta.add(jmenuitem_buscar_cita);
         
-        jmenuitem_historial_solicitud = new JMenuItem("Historial");
-        jmenuitem_historial_solicitud.setFont(new Font("Arial", Font.PLAIN, 12));
-        jmenu_consulta.add(jmenuitem_historial_solicitud);
+        jmenuitem_historial = new JMenuItem("Historial");
+        jmenuitem_historial.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_consulta.add(jmenuitem_historial);
         
         jmenuitem_eliminar_cita = new JMenuItem("Eliminar cita");
         jmenuitem_eliminar_cita.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -401,6 +412,9 @@ public class jf_menu_ppal extends javax.swing.JFrame {
 
         jmenu_ajustes.setText("AJUSTES");
         menu_inicio.add(jmenu_ajustes);
+        
+        mntmNewMenuItem = new JMenuItem("New menu item");
+        jmenu_ajustes.add(mntmNewMenuItem);
 
         jmenu_ayuda.setText("AYUDA");
         menu_inicio.add(jmenu_ayuda);
@@ -480,7 +494,7 @@ public class jf_menu_ppal extends javax.swing.JFrame {
     private JMenuItem jmenuitem_solicitudes;
     private JMenuItem jmenuitem_menu_consulta;
     private JMenuItem jmenuitem_buscar_cita;
-    private JMenuItem jmenuitem_historial_solicitud;
+    private JMenuItem jmenuitem_historial;
     private JMenuItem jmenuitem_eliminar_cita;
     private JMenuItem jmenuitem_nueva_cita;
     private JMenuItem jmenuitem_menu_facturacion;
@@ -488,5 +502,6 @@ public class jf_menu_ppal extends javax.swing.JFrame {
     private JMenuItem jmenuitem_historial_pago;
     private JMenuItem jmenuitem_balance_gastos;
     private JMenuItem jmenuitem_nueva_factura;
+    private JMenuItem mntmNewMenuItem;
     // End of variables declaration//GEN-END:variables
 }

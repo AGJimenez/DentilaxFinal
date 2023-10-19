@@ -79,6 +79,9 @@ public class jf_material extends JFrame {
         btn_proveedores.setText("PROVEEDORES");
         
         btn_inventario = new JButton();
+        btn_inventario.setContentAreaFilled(false);
+        btn_inventario.setBorder(null);
+        btn_inventario.setOpaque(false);
         btn_inventario.setBorderPainted(false);
         btn_inventario.setText("INVENTARIO");
         
@@ -144,6 +147,9 @@ public class jf_material extends JFrame {
 
         jMenu2.setText("PACIENTES");
         menu_inicio.add(jMenu2);
+        
+        mntmNewMenuItem = new JMenuItem("New menu item");
+        jMenu2.add(mntmNewMenuItem);
 
         jMenu3.setText("DOCTORES");
         menu_inicio.add(jMenu3);
@@ -215,6 +221,7 @@ public class jf_material extends JFrame {
     private JButton btn_inventario;
     private JButton btn_solicitudes;
     private JMenuItem jmenuitem_volver;
+    private JMenuItem mntmNewMenuItem;
     // End of variables declaration//GEN-END:variables
 
 }
