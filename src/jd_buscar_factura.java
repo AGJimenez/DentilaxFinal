@@ -15,6 +15,13 @@ public class jd_buscar_factura extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtIntroduceTexto;
+	private JTextField txtIntroduceApellidos;
+	private JTextField txtIntroduceDni;
+	private JTextField txtIntroduceDireccion;
+	private JTextField txtIntroduceTelefono;
+	private JTextField txtIntroduceFecha;
+	private JTextField txtIntroducePagado;
+	private JTextField txtIntroducePorPagar;
 
 	/**
 	 * Launch the application.
@@ -34,7 +41,7 @@ public class jd_buscar_factura extends JDialog {
 	 */
 	public jd_buscar_factura() {
 		setResizable(false);
-		setBounds(100, 100, 1450, 750);
+		setBounds(100, 100, 545, 564);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(255, 255, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -89,9 +96,58 @@ public class jd_buscar_factura extends JDialog {
 		txtIntroduceTexto = new JTextField();
 		txtIntroduceTexto.setFont(new Font("Barlow", Font.BOLD, 20));
 		txtIntroduceTexto.setText("Introduce texto");
-		txtIntroduceTexto.setBounds(212, 94, 253, 20);
+		txtIntroduceTexto.setBounds(201, 94, 264, 20);
 		contentPanel.add(txtIntroduceTexto);
 		txtIntroduceTexto.setColumns(10);
+		
+		txtIntroduceApellidos = new JTextField();
+		txtIntroduceApellidos.setFont(new Font("Barlow", Font.BOLD, 20));
+		txtIntroduceApellidos.setText("Introduce Apellidos");
+		txtIntroduceApellidos.setBounds(201, 131, 264, 20);
+		contentPanel.add(txtIntroduceApellidos);
+		txtIntroduceApellidos.setColumns(10);
+		
+		txtIntroduceDni = new JTextField();
+		txtIntroduceDni.setText("Introduce DNI");
+		txtIntroduceDni.setFont(new Font("Barlow", Font.BOLD, 20));
+		txtIntroduceDni.setBounds(201, 167, 264, 20);
+		contentPanel.add(txtIntroduceDni);
+		txtIntroduceDni.setColumns(10);
+		
+		txtIntroduceDireccion = new JTextField();
+		txtIntroduceDireccion.setText("Introduce Direccion");
+		txtIntroduceDireccion.setFont(new Font("Barlow", Font.BOLD, 20));
+		txtIntroduceDireccion.setBounds(201, 204, 264, 20);
+		contentPanel.add(txtIntroduceDireccion);
+		txtIntroduceDireccion.setColumns(10);
+		
+		txtIntroduceTelefono = new JTextField();
+		txtIntroduceTelefono.setText("Introduce Telefono");
+		txtIntroduceTelefono.setFont(new Font("Barlow", Font.BOLD, 20));
+		txtIntroduceTelefono.setBounds(201, 244, 264, 20);
+		contentPanel.add(txtIntroduceTelefono);
+		txtIntroduceTelefono.setColumns(10);
+		
+		txtIntroduceFecha = new JTextField();
+		txtIntroduceFecha.setText("Introduce Fecha");
+		txtIntroduceFecha.setFont(new Font("Barlow", Font.BOLD, 20));
+		txtIntroduceFecha.setBounds(201, 287, 264, 20);
+		contentPanel.add(txtIntroduceFecha);
+		txtIntroduceFecha.setColumns(10);
+		
+		txtIntroducePagado = new JTextField();
+		txtIntroducePagado.setText("Introduce Pagado");
+		txtIntroducePagado.setFont(new Font("Barlow", Font.BOLD, 20));
+		txtIntroducePagado.setBounds(201, 321, 264, 20);
+		contentPanel.add(txtIntroducePagado);
+		txtIntroducePagado.setColumns(10);
+		
+		txtIntroducePorPagar = new JTextField();
+		txtIntroducePorPagar.setText("Introduce Por Pagar");
+		txtIntroducePorPagar.setFont(new Font("Barlow", Font.BOLD, 20));
+		txtIntroducePorPagar.setBounds(201, 361, 264, 20);
+		contentPanel.add(txtIntroducePorPagar);
+		txtIntroducePorPagar.setColumns(10);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(new Color(255, 255, 255));
