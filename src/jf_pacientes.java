@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Dimension;
+import javax.swing.ImageIcon;
+import java.awt.Color;
 
 public class jf_pacientes extends JFrame {
 
@@ -45,6 +47,8 @@ public class jf_pacientes extends JFrame {
 		setLocationRelativeTo(fondo);
 		
 		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBorderPainted(false);
+		menuBar.setBackground(new Color(32, 160, 216));
 		setJMenuBar(menuBar);
 		
 		JMenu mn_inicio = new JMenu("INICIO");
@@ -76,28 +80,44 @@ public class jf_pacientes extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btn_buscar_paciente = new JButton("Buscar paciente");
-		btn_buscar_paciente.setBounds(78, 620, 146, 23);
+		JButton btn_buscar_paciente = new JButton("");
+		btn_buscar_paciente.setBorder(null);
+		btn_buscar_paciente.setBorderPainted(false);
+		btn_buscar_paciente.setContentAreaFilled(false);
+		btn_buscar_paciente.setOpaque(false);
+		btn_buscar_paciente.setIcon(new ImageIcon(jf_pacientes.class.getResource("/iconos_submenus/btn_buscarPaciente_admin.png")));
+		btn_buscar_paciente.setBounds(68, 590, 188, 41);
 		contentPane.add(btn_buscar_paciente);
 		
-		JButton btn_editar_paciente = new JButton("Editar paciente");
-		btn_editar_paciente.setBounds(659, 620, 146, 23);
-		contentPane.add(btn_editar_paciente);
-		
-		JButton btn_baja_paciente = new JButton("Dar de baja");
-		btn_baja_paciente.setBounds(949, 620, 146, 23);
+		JButton btn_baja_paciente = new JButton("");
+		btn_baja_paciente.setOpaque(false);
+		btn_baja_paciente.setIcon(new ImageIcon(jf_pacientes.class.getResource("/iconos_submenus/btn_darDeBaja_admin.png")));
+		btn_baja_paciente.setBorder(null);
+		btn_baja_paciente.setContentAreaFilled(false);
+		btn_baja_paciente.setBorderPainted(false);
+		btn_baja_paciente.setBounds(863, 590, 188, 41);
 		contentPane.add(btn_baja_paciente);
 		
-		JButton btn_alta_paciente = new JButton("Dar de alta");
-		btn_alta_paciente.setBounds(1218, 620, 146, 23);
+		JButton btn_alta_paciente = new JButton("");
+		btn_alta_paciente.setOpaque(false);
+		btn_alta_paciente.setIcon(new ImageIcon(jf_pacientes.class.getResource("/iconos_submenus/btn_darAlta_admin.png")));
+		btn_alta_paciente.setBorder(null);
+		btn_alta_paciente.setBorderPainted(false);
+		btn_alta_paciente.setContentAreaFilled(false);
+		btn_alta_paciente.setBounds(1183, 590, 188, 41);
 		contentPane.add(btn_alta_paciente);
 		
-		JButton btn_nuevo_tratamiento = new JButton("Nuevo tratamiento");
-		btn_nuevo_tratamiento.setBounds(364, 620, 146, 23);
-		contentPane.add(btn_nuevo_tratamiento);
+		JButton btn_editar_paciente = new JButton("");
+		btn_editar_paciente.setIcon(new ImageIcon(jf_pacientes.class.getResource("/iconos_submenus/btn_editarPaciente_admin.png")));
+		btn_editar_paciente.setContentAreaFilled(false);
+		btn_editar_paciente.setBorder(null);
+		btn_editar_paciente.setBorderPainted(false);
+		btn_editar_paciente.setOpaque(false);
+		btn_editar_paciente.setBounds(400, 590, 188, 41);
+		contentPane.add(btn_editar_paciente);
 		
 		Fondo jp_menu = new Fondo();
-		jp_menu.setBounds(0, 0, 1450, 726);
+		jp_menu.setBounds(10, 0, 1450, 726);
 		contentPane.add(jp_menu);
 		GroupLayout gl_jp_menu = new GroupLayout(jp_menu);
 		gl_jp_menu.setHorizontalGroup(
