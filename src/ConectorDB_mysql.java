@@ -85,8 +85,56 @@ public class ConectorDB_mysql {
                 System.out.println("Resultado encontrado");
                 jd_buscar_dr_encontrado ventana = new jd_buscar_dr_encontrado();
                 String dniSql = resultSet.getString("DNI_doctor");
+                String nombreSql = resultSet.getString("Nombre");
+                String apellidosSql = resultSet.getString("Apellidos");
                // System.out.println(dniSql);
                 ventana.setTxt_dni(dniSql);
+                ventana.setTxt_nombre(nombreSql);
+                ventana.setTxt_apellidos(apellidosSql);
+                
+                ventana.setVisible(true);
+                
+                
+            } else {
+                // Acceso denegado
+                System.out.println("No se ha encontrado nada");
+                JOptionPane.showMessageDialog(null, "Error, no se ha encontrado nada");
+            }
+			
+			
+		}
+		catch(SQLException ex) {
+			
+		}
+		return dni;
+		
+	}
+	
+public String consulta_doctor_ficha(String dni) throws SQLException{
+		
+		try {
+			conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+			statement = conect.createStatement();
+			String query = "SELECT * FROM doctores WHERE DNI_doctor = '" + dni +"'";
+            ResultSet resultSet = statement.executeQuery(query);
+			
+            if (resultSet.next()) {
+                // Resultado encontrado
+                System.out.println("Resultado encontrado");
+                jd_buscar_dr_ficha ventana = new jd_buscar_dr_ficha();
+                String dniSql = resultSet.getString("DNI_doctor");
+                String nombreSql = resultSet.getString("Nombre");
+                String apellidosSql = resultSet.getString("Apellidos");
+                String salario = resultSet.getString("Salario");
+                String especialidad = resultSet.getString("Especialidad");
+                String telefono = resultSet.getString("Telefono");
+               // System.out.println(dniSql);
+                ventana.setTxt_dni(dniSql);
+                ventana.setTxt_nombre(nombreSql);
+                ventana.setTxt_apellidos(apellidosSql);
+                ventana.setTxt_especialidad(especialidad);
+                ventana.setTxt_salario(salario);
+                ventana.setTxt_telefono(telefono);
                 
                 ventana.setVisible(true);
                 

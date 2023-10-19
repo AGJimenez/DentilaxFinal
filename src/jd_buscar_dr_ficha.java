@@ -31,7 +31,7 @@ public class jd_buscar_dr_ficha extends JDialog {
 	private JTextField txt_apellidos;
 	private JTextField txt_salario;
 	private JTextField txt_especialidad;
-	private JTextField textField;
+	private JTextField txt_telefono;
 
 	/**
 	 * Launch the application.
@@ -175,16 +175,16 @@ public class jd_buscar_dr_ficha extends JDialog {
 			contentPanel.add(lbl_especialidad);
 		}
 		{
-			textField = new JTextField();
-			textField.setText("662 59 25 50");
-			textField.setHorizontalAlignment(SwingConstants.CENTER);
-			textField.setFont(new Font("Arial", Font.PLAIN, 14));
-			textField.setEditable(false);
-			textField.setColumns(10);
-			textField.setBorder(null);
-			textField.setBackground(new Color(191, 231, 249));
-			textField.setBounds(224, 364, 225, 34);
-			contentPanel.add(textField);
+			txt_telefono = new JTextField();
+			txt_telefono.setText("662 59 25 50");
+			txt_telefono.setHorizontalAlignment(SwingConstants.CENTER);
+			txt_telefono.setFont(new Font("Arial", Font.PLAIN, 14));
+			txt_telefono.setEditable(false);
+			txt_telefono.setColumns(10);
+			txt_telefono.setBorder(null);
+			txt_telefono.setBackground(new Color(191, 231, 249));
+			txt_telefono.setBounds(224, 364, 225, 34);
+			contentPanel.add(txt_telefono);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -210,4 +210,53 @@ public class jd_buscar_dr_ficha extends JDialog {
 			}
 		}
 	}
+
+	public JTextField getTxt_dni() {
+		return txt_dni;
+	}
+
+	public void setTxt_dni(String txt_dni) {
+		this.txt_dni.setText(txt_dni);;
+	}
+
+	public JTextField getTxt_nombre() {
+		return txt_nombre;
+	}
+
+	public void setTxt_nombre(String txt_nombre) {
+		this.txt_nombre.setText(txt_nombre);;
+	}
+
+	public JTextField getTxt_apellidos() {
+		return txt_apellidos;
+	}
+
+	public void setTxt_apellidos(String txt_apellidos) {
+		this.txt_apellidos.setText(txt_apellidos);;
+	}
+
+	public JTextField getTxt_salario() {
+		return txt_salario;
+	}
+
+	public void setTxt_salario(String txt_salario) {
+		this.txt_salario.setText(txt_salario);;
+	}
+
+	public JTextField getTxt_especialidad() {
+		return txt_especialidad;
+	}
+
+	public void setTxt_especialidad(String txt_especialidad) {
+		this.txt_especialidad.setText(txt_especialidad);;
+	}
+
+	public JTextField getTxt_telefono() {
+		return txt_telefono;
+	}
+
+	public void setTxt_telefono(String txt_telefono) {
+		this.txt_telefono.setText(txt_telefono);;
+	}
+	
 }

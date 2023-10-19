@@ -15,10 +15,13 @@ import java.awt.Cursor;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JRadioButton;
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.util.Enumeration;
 import java.awt.event.ActionEvent;
 
 public class jd_doctores_alta extends JDialog {
@@ -32,9 +35,9 @@ public class jd_doctores_alta extends JDialog {
 	private JTextField txt_especialidad;
 	private JTextField txt_salario;
 	private JTextField txt_apellidos;
-	private JTextField txtIntroduceFechaDe;
+	private JTextField txt_nacimiento;
 	private JTextField txt_correo;
-	private JTextField txtLineaDeDireccin;
+	private JTextField txt_direccion;
 
 	/**
 	 * Launch the application.
@@ -76,26 +79,26 @@ public class jd_doctores_alta extends JDialog {
 			contentPanel.add(panel);
 			panel.setLayout(null);
 			
-			JRadioButton rdbtnNewRadioButton = new JRadioButton("Varón");
-			btn_group_genero.add(rdbtnNewRadioButton);
-			rdbtnNewRadioButton.setOpaque(false);
-			rdbtnNewRadioButton.setFont(new Font("Arial", Font.PLAIN, 14));
-			rdbtnNewRadioButton.setBounds(24, 24, 71, 23);
-			panel.add(rdbtnNewRadioButton);
+			JRadioButton rbtn_varon = new JRadioButton("Varón");
+			btn_group_genero.add(rbtn_varon);
+			rbtn_varon.setOpaque(false);
+			rbtn_varon.setFont(new Font("Arial", Font.PLAIN, 14));
+			rbtn_varon.setBounds(24, 24, 71, 23);
+			panel.add(rbtn_varon);
 			
-			JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Mujer");
-			btn_group_genero.add(rdbtnNewRadioButton_1);
-			rdbtnNewRadioButton_1.setOpaque(false);
-			rdbtnNewRadioButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			rdbtnNewRadioButton_1.setBounds(24, 60, 71, 23);
-			panel.add(rdbtnNewRadioButton_1);
+			JRadioButton rbtn_mujer = new JRadioButton("Mujer");
+			btn_group_genero.add(rbtn_mujer);
+			rbtn_mujer.setOpaque(false);
+			rbtn_mujer.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			rbtn_mujer.setBounds(24, 60, 71, 23);
+			panel.add(rbtn_mujer);
 			
-			JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Otro");
-			btn_group_genero.add(rdbtnNewRadioButton_2);
-			rdbtnNewRadioButton_2.setOpaque(false);
-			rdbtnNewRadioButton_2.setFont(new Font("Arial", Font.PLAIN, 14));
-			rdbtnNewRadioButton_2.setBounds(24, 100, 71, 23);
-			panel.add(rdbtnNewRadioButton_2);
+			JRadioButton rbtn_otro = new JRadioButton("Otro");
+			btn_group_genero.add(rbtn_otro);
+			rbtn_otro.setOpaque(false);
+			rbtn_otro.setFont(new Font("Arial", Font.PLAIN, 14));
+			rbtn_otro.setBounds(24, 100, 71, 23);
+			panel.add(rbtn_otro);
 		}
 		{
 			JLabel lbl_nombre_dr = new JLabel("NOMBRE");
@@ -206,15 +209,15 @@ public class jd_doctores_alta extends JDialog {
 			contentPanel.add(lbl_nacimiento);
 		}
 		{
-			txtIntroduceFechaDe = new JTextField();
-			txtIntroduceFechaDe.setText("Introduce fecha de nacimiento.");
-			txtIntroduceFechaDe.setHorizontalAlignment(SwingConstants.CENTER);
-			txtIntroduceFechaDe.setFont(new Font("Arial", Font.PLAIN, 14));
-			txtIntroduceFechaDe.setColumns(10);
-			txtIntroduceFechaDe.setBorder(null);
-			txtIntroduceFechaDe.setBackground(new Color(191, 231, 249));
-			txtIntroduceFechaDe.setBounds(834, 120, 218, 40);
-			contentPanel.add(txtIntroduceFechaDe);
+			txt_nacimiento = new JTextField();
+			txt_nacimiento.setText("Introduce fecha de nacimiento.");
+			txt_nacimiento.setHorizontalAlignment(SwingConstants.CENTER);
+			txt_nacimiento.setFont(new Font("Arial", Font.PLAIN, 14));
+			txt_nacimiento.setColumns(10);
+			txt_nacimiento.setBorder(null);
+			txt_nacimiento.setBackground(new Color(191, 231, 249));
+			txt_nacimiento.setBounds(834, 120, 218, 40);
+			contentPanel.add(txt_nacimiento);
 		}
 		{
 			txt_correo = new JTextField();
@@ -234,15 +237,15 @@ public class jd_doctores_alta extends JDialog {
 			contentPanel.add(lbl_correo);
 		}
 		{
-			txtLineaDeDireccin = new JTextField();
-			txtLineaDeDireccin.setText("Linea de dirección.");
-			txtLineaDeDireccin.setHorizontalAlignment(SwingConstants.CENTER);
-			txtLineaDeDireccin.setFont(new Font("Arial", Font.PLAIN, 14));
-			txtLineaDeDireccin.setColumns(10);
-			txtLineaDeDireccin.setBorder(null);
-			txtLineaDeDireccin.setBackground(new Color(191, 231, 249));
-			txtLineaDeDireccin.setBounds(834, 249, 218, 40);
-			contentPanel.add(txtLineaDeDireccin);
+			txt_direccion = new JTextField();
+			txt_direccion.setText("Linea de dirección.");
+			txt_direccion.setHorizontalAlignment(SwingConstants.CENTER);
+			txt_direccion.setFont(new Font("Arial", Font.PLAIN, 14));
+			txt_direccion.setColumns(10);
+			txt_direccion.setBorder(null);
+			txt_direccion.setBackground(new Color(191, 231, 249));
+			txt_direccion.setBounds(834, 249, 218, 40);
+			contentPanel.add(txt_direccion);
 		}
 		{
 			JLabel lbl_nacimiento = new JLabel("DIRECCIÓN");
@@ -262,6 +265,35 @@ public class jd_doctores_alta extends JDialog {
 			btn_anadir.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					//sql
+					String nombre = txt_nombre.getText().toString();
+					String apellidos = txt_apellidos.getText().toString();
+					String dni = txt_dni.getText().toString();
+					String nacimiento = txt_nacimiento.getText().toString();
+					String telefono = txt_telefono.getText().toString();
+					String correo = txt_correo.getText().toString();
+					String especialidad = txt_especialidad.getText().toString();
+					String direccion = txt_direccion.getText().toString();
+					String salario = txt_salario.getText().toString();
+					String genero;
+					String btn_seleccionado = getSelectedButton(btn_group_genero);
+		            if (btn_seleccionado != null) {
+		                if (btn_seleccionado.equals("Varón")) {
+		                    // Realizar alguna acción si se selecciona "Varón"
+		                    System.out.println("Varón seleccionado");
+		                    genero = "Varón";
+		                } else if (btn_seleccionado.equals("Mujer")) {
+		                    // Realizar alguna acción si se selecciona "Mujer"
+		                    System.out.println("Mujer seleccionada");
+		                    genero = "Mujer";
+		                } else if (btn_seleccionado.equals("Otro")) {
+		                    // Realizar alguna acción si se selecciona "Otro"
+		                    System.out.println("Otro seleccionado");
+		                    genero = "Otro";
+		                }
+		            }//acaba el primer if
+
+					System.out.println(correo.toString());
+		            
 				}
 			});
 			btn_anadir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -289,4 +321,88 @@ public class jd_doctores_alta extends JDialog {
 			cancelButton.setActionCommand("Cancel");
 		}
 	}
+
+	public JTextField getTxt_nombre() {
+		return txt_nombre;
+	}
+
+	public void setTxt_nombre(JTextField txt_nombre) {
+		this.txt_nombre = txt_nombre;
+	}
+
+	public JTextField getTxt_dni() {
+		return txt_dni;
+	}
+
+	public void setTxt_dni(JTextField txt_dni) {
+		this.txt_dni = txt_dni;
+	}
+
+	public JTextField getTxt_telefono() {
+		return txt_telefono;
+	}
+
+	public void setTxt_telefono(JTextField txt_telefono) {
+		this.txt_telefono = txt_telefono;
+	}
+
+	public JTextField getTxt_especialidad() {
+		return txt_especialidad;
+	}
+
+	public void setTxt_especialidad(JTextField txt_especialidad) {
+		this.txt_especialidad = txt_especialidad;
+	}
+
+	public JTextField getTxt_salario() {
+		return txt_salario;
+	}
+
+	public void setTxt_salario(JTextField txt_salario) {
+		this.txt_salario = txt_salario;
+	}
+
+	public JTextField getTxt_apellidos() {
+		return txt_apellidos;
+	}
+
+	public void setTxt_apellidos(JTextField txt_apellidos) {
+		this.txt_apellidos = txt_apellidos;
+	}
+
+	public JTextField getTxtIntroduceFechaDe() {
+		return txt_nacimiento;
+	}
+
+	public void setTxtIntroduceFechaDe(JTextField txtIntroduceFechaDe) {
+		this.txt_nacimiento = txtIntroduceFechaDe;
+	}
+
+	public JTextField getTxt_correo() {
+		return txt_correo;
+	}
+
+	public void setTxt_correo(JTextField txt_correo) {
+		this.txt_correo = txt_correo;
+	}
+
+	public JTextField getTxtLineaDeDireccin() {
+		return txt_direccion;
+	}
+
+	public void setTxtLineaDeDireccin(JTextField txtLineaDeDireccin) {
+		this.txt_direccion = txtLineaDeDireccin;
+	}
+
+	public String getSelectedButton(ButtonGroup buttonGroup) {
+	    for (Enumeration<AbstractButton> botones = buttonGroup.getElements(); botones.hasMoreElements();) {
+	        AbstractButton button = botones.nextElement();
+
+	        if (button.isSelected()) {
+	            return button.getText(); // O devuelve cualquier otra propiedad que necesites
+	        }
+	    }
+	    return null; // O devuelve un valor predeterminado si no hay ningún botón seleccionado
+	}
+	
 }

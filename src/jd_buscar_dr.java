@@ -169,5 +169,6 @@ public class jd_buscar_dr extends JDialog {
 			}
 		}
 	}
+	
 
 }

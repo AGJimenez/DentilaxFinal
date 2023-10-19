@@ -19,6 +19,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.sql.SQLException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -146,8 +147,17 @@ public class jd_buscar_dr_encontrado extends JDialog {
 				btn_ficha.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						//SQL consulta para sacar la ficha
-						jd_buscar_dr_ficha ventana = new jd_buscar_dr_ficha();
-						ventana.setVisible(true);
+						
+						ConectorDB_mysql conector = new ConectorDB_mysql();
+						
+						try {
+							conector.consulta_doctor_ficha(getTxt_dni().getText().toString());
+							jd_buscar_dr_ficha ventana = new jd_buscar_dr_ficha();
+							
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 					}
 				});
 				btn_ficha.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -185,6 +195,9 @@ public class jd_buscar_dr_encontrado extends JDialog {
 					jd_buscar_dr_historial ventana = new jd_buscar_dr_historial();
 					ventana.setVisible(true);
 					
+					
+					
+					
 				}
 			});
 			btn_historial.setForeground(Color.WHITE);
@@ -201,24 +214,25 @@ public class jd_buscar_dr_encontrado extends JDialog {
 		return txt_dni;
 	}
 
-	public void setTxt_dni(JTextField txt_dni) {
-		this.txt_dni = txt_dni;
+	public void setTxt_dni(String dniSql) {
+	    this.txt_dni.setText(dniSql);
 	}
+
 
 	public JTextField getTxt_nombre() {
 		return txt_nombre;
 	}
 
-	public void setTxt_nombre(JTextField txt_nombre) {
-		this.txt_nombre = txt_nombre;
+	public void setTxt_nombre(String nombreSql) {
+		this.txt_nombre.setText(nombreSql);;
 	}
 
 	public JTextField getTxt_apellidos() {
 		return txt_apellidos;
 	}
 
-	public void setTxt_apellidos(JTextField txt_apellidos) {
-		this.txt_apellidos = txt_apellidos;
+	public void setTxt_apellidos(String apellidosSql) {
+		this.txt_apellidos.setText(apellidosSql);
 	}
 
 	
