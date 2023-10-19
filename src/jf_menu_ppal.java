@@ -8,6 +8,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import java.awt.Dimension;
 import java.awt.Cursor;
+import javax.swing.JMenuItem;
+import java.awt.Font;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -127,18 +129,18 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         	}
         });
         menu_inicio = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu2.addActionListener(new ActionListener() {
+        jmenu_inicio = new javax.swing.JMenu();
+        jmenu_paciente = new javax.swing.JMenu();
+        jmenu_paciente.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         	}
         });
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
-        jMenu7 = new javax.swing.JMenu();
-        jMenu8 = new javax.swing.JMenu();
+        jmenu_doctor = new javax.swing.JMenu();
+        jmenu_material = new javax.swing.JMenu();
+        jmenu_consulta = new javax.swing.JMenu();
+        jmenu_facturacion = new javax.swing.JMenu();
+        jmenu_ajustes = new javax.swing.JMenu();
+        jmenu_ayuda = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -182,30 +184,115 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         menu_inicio.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         menu_inicio.setBorderPainted(false);
 
-        jMenu1.setBackground(new java.awt.Color(32, 160, 216));
-        jMenu1.setText("INICIO");
-        menu_inicio.add(jMenu1);
+        jmenu_inicio.setBackground(new java.awt.Color(32, 160, 216));
+        jmenu_inicio.setText("INICIO");
+        menu_inicio.add(jmenu_inicio);
 
-        jMenu2.setText("PACIENTES");
-        menu_inicio.add(jMenu2);
+        jmenu_paciente.setText("PACIENTES");
+        menu_inicio.add(jmenu_paciente);
+        
+        jmenuitem_menu_paciente = new JMenuItem("Menu paciente");
+        jmenuitem_menu_paciente.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		jf_pacientes ventana = new jf_pacientes();
+        		dispose();
+        		ventana.setVisible(true);
+        	}
+        });
+        jmenuitem_menu_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_paciente.add(jmenuitem_menu_paciente);
+        
+        jmenuitem_buscar_paciente = new JMenuItem("Buscar paciente");
+        jmenuitem_buscar_paciente.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		jf_pacientes ventana = new jf_pacientes();
+        		jd_buscar_paciente ventana_buscar = new jd_buscar_paciente();
+        		dispose();
+        		ventana.setVisible(true);
+        		ventana_buscar.setVisible(true);
+        	}
+        });
+        jmenuitem_buscar_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_paciente.add(jmenuitem_buscar_paciente);
+        
+        jmenuitem_editar_paciente = new JMenuItem("Editar paciente");
+        jmenuitem_editar_paciente.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
+        jmenuitem_editar_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_paciente.add(jmenuitem_editar_paciente);
+        
+        jmenuitem_baja_paciente = new JMenuItem("Dar de baja");
+        jmenuitem_baja_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_paciente.add(jmenuitem_baja_paciente);
+        
+        jmenuitem_alta_paciente = new JMenuItem("Dar de alta");
+        jmenuitem_alta_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_paciente.add(jmenuitem_alta_paciente);
 
-        jMenu3.setText("DOCTORES");
-        menu_inicio.add(jMenu3);
+        jmenu_doctor.setText("DOCTORES");
+        menu_inicio.add(jmenu_doctor);
+        
+        jmenuitem_menu_doctores = new JMenuItem("Menu doctor");
+        jmenuitem_menu_doctores.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_doctores ventana = new jf_doctores();
+        		ventana.setVisible(true);
+        	}
+        });
+        jmenuitem_menu_doctores.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_doctor.add(jmenuitem_menu_doctores);
+        
+        jmenuitem_buscar_doctores = new JMenuItem("Buscar doctor");
+        jmenuitem_buscar_doctores.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_doctores ventana = new jf_doctores();
+        		jd_buscar_dr ventana_buscar = new jd_buscar_dr();
+        		ventana.setVisible(true);
+        		ventana_buscar.setVisible(true);
+        	}
+        });
+        jmenuitem_buscar_doctores.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_doctor.add(jmenuitem_buscar_doctores);
+        
+        jmenuitem_especialidad_doctores = new JMenuItem("Especialidad");
+        jmenuitem_especialidad_doctores.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_doctores ventana = new jf_doctores();
+        		jd_especialidades ventana_especialidad = new jd_especialidades();
+        		ventana.setVisible(true);
+        		ventana_especialidad.setVisible(true);
+        	}
+        });
+        jmenuitem_especialidad_doctores.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_doctor.add(jmenuitem_especialidad_doctores);
+        
+        jmenuitem_baja_doctores = new JMenuItem("Dar de baja");
+        jmenuitem_baja_doctores.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_doctor.add(jmenuitem_baja_doctores);
+        
+        jmenuitem_alta_doctores = new JMenuItem("Dar de alta");
+        jmenuitem_alta_doctores.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_doctor.add(jmenuitem_alta_doctores);
 
-        jMenu4.setText("MATERIAL");
-        menu_inicio.add(jMenu4);
+        jmenu_material.setText("MATERIAL");
+        menu_inicio.add(jmenu_material);
 
-        jMenu5.setText("CONSULTAS");
-        menu_inicio.add(jMenu5);
+        jmenu_consulta.setText("CONSULTAS");
+        menu_inicio.add(jmenu_consulta);
 
-        jMenu6.setText("FACTURACIÓN");
-        menu_inicio.add(jMenu6);
+        jmenu_facturacion.setText("FACTURACIÓN");
+        menu_inicio.add(jmenu_facturacion);
 
-        jMenu7.setText("AJUSTES");
-        menu_inicio.add(jMenu7);
+        jmenu_ajustes.setText("AJUSTES");
+        menu_inicio.add(jmenu_ajustes);
 
-        jMenu8.setText("AYUDA");
-        menu_inicio.add(jMenu8);
+        jmenu_ayuda.setText("AYUDA");
+        menu_inicio.add(jmenu_ayuda);
 
         setJMenuBar(menu_inicio);
         
@@ -252,15 +339,25 @@ public class jf_menu_ppal extends javax.swing.JFrame {
     private javax.swing.JButton btn_facturacion;
     private javax.swing.JButton btn_material;
     private javax.swing.JButton btn_pacientes;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jmenu_inicio;
+    private javax.swing.JMenu jmenu_paciente;
+    private javax.swing.JMenu jmenu_doctor;
+    private javax.swing.JMenu jmenu_material;
+    private javax.swing.JMenu jmenu_consulta;
+    private javax.swing.JMenu jmenu_facturacion;
+    private javax.swing.JMenu jmenu_ajustes;
+    private javax.swing.JMenu jmenu_ayuda;
     private javax.swing.JPanel jp_menu;
     private javax.swing.JMenuBar menu_inicio;
+    private JMenuItem jmenuitem_menu_paciente;
+    private JMenuItem jmenuitem_buscar_paciente;
+    private JMenuItem jmenuitem_editar_paciente;
+    private JMenuItem jmenuitem_baja_paciente;
+    private JMenuItem jmenuitem_alta_paciente;
+    private JMenuItem jmenuitem_menu_doctores;
+    private JMenuItem jmenuitem_buscar_doctores;
+    private JMenuItem jmenuitem_especialidad_doctores;
+    private JMenuItem jmenuitem_baja_doctores;
+    private JMenuItem jmenuitem_alta_doctores;
     // End of variables declaration//GEN-END:variables
 }

@@ -118,6 +118,10 @@ public class jf_pacientes extends JFrame {
 		contentPane.add(btn_alta_paciente);
 		
 		JButton btn_editar_paciente = new JButton("");
+		btn_editar_paciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btn_editar_paciente.setIcon(new ImageIcon(jf_pacientes.class.getResource("/iconos_submenus/btn_editarPaciente_admin.png")));
 		btn_editar_paciente.setContentAreaFilled(false);
 		btn_editar_paciente.setBorder(null);
