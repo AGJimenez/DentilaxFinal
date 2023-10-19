@@ -21,7 +21,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Cursor;
 import javax.swing.ListSelectionModel;
 
-public class jf_buscar_dr_historial extends JDialog {
+public class jd_buscar_dr_historial extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
@@ -32,7 +32,7 @@ public class jf_buscar_dr_historial extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			jf_buscar_dr_historial dialog = new jf_buscar_dr_historial();
+			jd_buscar_dr_historial dialog = new jd_buscar_dr_historial();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -43,7 +43,7 @@ public class jf_buscar_dr_historial extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public jf_buscar_dr_historial() {
+	public jd_buscar_dr_historial() {
 		setModal(true);
 		setPreferredSize(new Dimension(1198, 531));
 		setResizable(false);

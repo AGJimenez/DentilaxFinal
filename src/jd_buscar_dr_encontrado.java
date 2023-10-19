@@ -180,7 +180,7 @@ public class jd_buscar_dr_encontrado extends JDialog {
 			btn_historial.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					
-					jf_buscar_dr_historial ventana = new jf_buscar_dr_historial();
+					jd_buscar_dr_historial ventana = new jd_buscar_dr_historial();
 					ventana.setVisible(true);
 					
 				}
