@@ -12,6 +12,9 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Cursor;
 
 public class jf_pacientes extends JFrame {
 
@@ -81,6 +84,13 @@ public class jf_pacientes extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btn_buscar_paciente = new JButton("");
+		btn_buscar_paciente.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btn_buscar_paciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				jd_buscar_paciente ventana = new jd_buscar_paciente();
+				ventana.setVisible(true);
+			}
+		});
 		btn_buscar_paciente.setBorder(null);
 		btn_buscar_paciente.setBorderPainted(false);
 		btn_buscar_paciente.setContentAreaFilled(false);
