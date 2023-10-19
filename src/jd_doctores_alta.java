@@ -21,6 +21,7 @@ import javax.swing.ButtonModel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.Enumeration;
 import java.awt.event.ActionEvent;
 
@@ -272,9 +273,10 @@ public class jd_doctores_alta extends JDialog {
 					String telefono = txt_telefono.getText().toString();
 					String correo = txt_correo.getText().toString();
 					String especialidad = txt_especialidad.getText().toString();
+					String estado = "alta";
 					String direccion = txt_direccion.getText().toString();
 					String salario = txt_salario.getText().toString();
-					String genero;
+					String genero="";
 					String btn_seleccionado = getSelectedButton(btn_group_genero);
 		            if (btn_seleccionado != null) {
 		                if (btn_seleccionado.equals("Varón")) {
@@ -292,7 +294,13 @@ public class jd_doctores_alta extends JDialog {
 		                }
 		            }//acaba el primer if
 
-					System.out.println(correo.toString());
+		            ConectorDB_mysql bdd = new ConectorDB_mysql();
+		            try {
+						bdd.insertar_doctor(dni, apellidos, nombre, nacimiento, telefono, correo, especialidad, direccion, salario, genero, estado);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 		            
 				}
 			});

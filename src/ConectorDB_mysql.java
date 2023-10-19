@@ -153,5 +153,32 @@ public String consulta_doctor_ficha(String dni) throws SQLException{
 		return dni;
 		
 	}
+
+
+
+public void insertar_doctor(String dni, String apellidos, String nombre, String nacimiento, String telefono, String correo, String especialidad, String direccion,
+		String salario, String genero, String estado) throws SQLException{
+	
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "INSERT INTO doctores (DNI_doctor, Nombre, Apellidos, Nacimiento, Genero, Estado, Telefono, Correo, Direccion, Salario, Especialidad) " +
+            "VALUES ('" + dni + "', '" + nombre + "', '" + apellidos + "', '" + nacimiento + "', '" + genero + "', '" + estado + "', '" + telefono + "', '" + correo + "', '" + direccion + "', '" + salario + "', '" + especialidad + "')";
+
+		int fila = statement.executeUpdate(query);
+		
+		// Verificar si la inserción se realizó con éxito
+		if (fila > 0) {
+			System.out.println("Inserción exitosa.");
+		} else {
+			System.out.println("La inserción no tuvo éxito.");
+		}
+		
+	}
+	catch(SQLException ex) {
+		ex.printStackTrace();
+	}
+}
+
 	
 }
