@@ -13,12 +13,15 @@ import java.awt.Color;
 import java.awt.Cursor;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.sql.SQLException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -27,7 +30,7 @@ public class jd_buscar_dr extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txt_IntroduceDni;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -120,6 +123,22 @@ public class jd_buscar_dr extends JDialog {
 				btn_buscar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						//SQL si lo encuentra, abre ventana:
+						ConectorDB_mysql consulta = new ConectorDB_mysql();
+						try {
+			            	String dni = txt_IntroduceDni.getText().toString();			            	
+							String comprobar = consulta.consulta_doctor(dni);
+							
+			}
+							
+							
+						 catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							JOptionPane error = new JOptionPane();
+							error.showMessageDialog(error, "Error en el login");
+							e1.printStackTrace();
+							
+						}
+						
 						jd_buscar_dr_encontrado ventana = new jd_buscar_dr_encontrado();
 						ventana.setVisible(true);
 						//si no if no encontrado

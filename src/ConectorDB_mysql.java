@@ -47,7 +47,7 @@ public class ConectorDB_mysql {
 		
 		 try {
 			 		 
-            conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+			 conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
              statement = conect.createStatement();
              String query = "SELECT * FROM usuario WHERE DNI_usuario = '" + user + "' AND Contraseña = '" + pass + "'";
              ResultSet resultSet = statement.executeQuery(query);
@@ -69,4 +69,32 @@ public class ConectorDB_mysql {
 		 return valor_rol;
 		
 	}
+	
+	public String consulta_doctor(String dni) throws SQLException{
+		
+		try {
+			conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+			statement = conect.createStatement();
+			String query = "SELECT * FROM doctores WHERE DNI_doctor = '" + dni +"'";
+            ResultSet resultSet = statement.executeQuery(query);
+			
+            if (resultSet.next()) {
+                // Resultado encontrado
+                System.out.println("Resultado encontrado");
+                //valor_rol = resultSet.getString("Rol");
+                
+            } else {
+                // Acceso denegado
+                System.out.println("No se ha encontrado nada");
+            }
+			
+			
+		}
+		catch(SQLException ex) {
+			
+		}
+		return dni;
+		
+	}
+	
 }
