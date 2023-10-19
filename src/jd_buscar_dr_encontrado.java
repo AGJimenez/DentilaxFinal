@@ -105,6 +105,7 @@ public class jd_buscar_dr_encontrado extends JDialog {
 			txt_dni.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_dni.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_dni.setText("77981983t");
+			
 			txt_dni.setBounds(21, 177, 83, 34);
 			contentPanel.add(txt_dni);
 			txt_dni.setColumns(10);
@@ -133,6 +134,7 @@ public class jd_buscar_dr_encontrado extends JDialog {
 			contentPanel.add(txt_apellidos);
 			txt_apellidos.setColumns(10);
 		}
+		
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(Color.WHITE);
@@ -194,4 +196,30 @@ public class jd_buscar_dr_encontrado extends JDialog {
 			buttonPane.add(btn_historial);
 		}
 	}
+
+	public JTextField getTxt_dni() {
+		return txt_dni;
+	}
+
+	public void setTxt_dni(JTextField txt_dni) {
+		this.txt_dni = txt_dni;
+	}
+
+	public JTextField getTxt_nombre() {
+		return txt_nombre;
+	}
+
+	public void setTxt_nombre(JTextField txt_nombre) {
+		this.txt_nombre = txt_nombre;
+	}
+
+	public JTextField getTxt_apellidos() {
+		return txt_apellidos;
+	}
+
+	public void setTxt_apellidos(JTextField txt_apellidos) {
+		this.txt_apellidos = txt_apellidos;
+	}
+
+	
 }

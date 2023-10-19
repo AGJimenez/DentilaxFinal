@@ -84,8 +84,12 @@ public class ConectorDB_mysql {
                 // Resultado encontrado
                 System.out.println("Resultado encontrado");
                 jd_buscar_dr_encontrado ventana = new jd_buscar_dr_encontrado();
+                String dniSql = resultSet.getString("DNI_doctor");
+               // System.out.println(dniSql);
+                ventana.setTxt_dni(dniSql);
+                
                 ventana.setVisible(true);
-                //valor_rol = resultSet.getString("Rol");
+                
                 
             } else {
                 // Acceso denegado
