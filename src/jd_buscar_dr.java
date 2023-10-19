@@ -139,9 +139,6 @@ public class jd_buscar_dr extends JDialog {
 							
 						}
 						
-						jd_buscar_dr_encontrado ventana = new jd_buscar_dr_encontrado();
-						ventana.setVisible(true);
-						//si no if no encontrado
 					}
 				});
 				btn_buscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

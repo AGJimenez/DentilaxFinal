@@ -4,6 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.swing.JOptionPane;
+
 
 public class ConectorDB_mysql {
 
@@ -81,11 +83,14 @@ public class ConectorDB_mysql {
             if (resultSet.next()) {
                 // Resultado encontrado
                 System.out.println("Resultado encontrado");
+                jd_buscar_dr_encontrado ventana = new jd_buscar_dr_encontrado();
+                ventana.setVisible(true);
                 //valor_rol = resultSet.getString("Rol");
                 
             } else {
                 // Acceso denegado
                 System.out.println("No se ha encontrado nada");
+                JOptionPane.showMessageDialog(null, "Error, no se ha encontrado nada");
             }
 			
 			
