@@ -15,6 +15,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Cursor;
+import java.awt.Font;
 
 public class jf_pacientes extends JFrame {
 
@@ -43,11 +44,12 @@ public class jf_pacientes extends JFrame {
 	 */
 	Fondo fondo = new Fondo();
 	public jf_pacientes() {
+		setPreferredSize(new Dimension(1450, 750));
 		setSize(new Dimension(1450, 750));
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1450, 750);
-		setLocationRelativeTo(fondo);
+		setLocationRelativeTo(this);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBorderPainted(false);
@@ -55,27 +57,46 @@ public class jf_pacientes extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenu mn_inicio = new JMenu("INICIO");
+		mn_inicio.setFont(new Font("Arial", Font.PLAIN, 12));
 		menuBar.add(mn_inicio);
 		
+		JMenuItem jmenuitem_volver = new JMenuItem("Volver");
+		jmenuitem_volver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+        		jf_menu_ppal ventana = new jf_menu_ppal();
+        		ventana.setVisible(true);
+			}
+		});
+		jmenuitem_volver.setFont(new Font("Arial", Font.PLAIN, 12));
+		mn_inicio.add(jmenuitem_volver);
+		
 		JMenu mn_pacientes = new JMenu("PACIENTES");
+		mn_pacientes.setFont(new Font("Arial", Font.PLAIN, 12));
 		menuBar.add(mn_pacientes);
 		
 		mn_doctores = new JMenu("DOCTORES");
+		mn_doctores.setFont(new Font("Arial", Font.PLAIN, 12));
 		menuBar.add(mn_doctores);
 		
 		JMenu mn_material = new JMenu("MATERIAL");
+		mn_material.setFont(new Font("Arial", Font.PLAIN, 12));
 		menuBar.add(mn_material);
 		
 		JMenu mn_consultas = new JMenu("CONSULTAS");
+		mn_consultas.setFont(new Font("Arial", Font.PLAIN, 12));
 		menuBar.add(mn_consultas);
 		
 		JMenu mn_facturacion = new JMenu("FACTURACIÓN");
+		mn_facturacion.setFont(new Font("Arial", Font.PLAIN, 12));
 		menuBar.add(mn_facturacion);
 		
 		JMenu mn_ajustes = new JMenu("AJUSTES");
+		mn_ajustes.setFont(new Font("Arial", Font.PLAIN, 12));
 		menuBar.add(mn_ajustes);
 		
 		JMenu mn_ayuda = new JMenu("AYUDA");
+		mn_ayuda.setFont(new Font("Arial", Font.PLAIN, 12));
 		menuBar.add(mn_ayuda);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -131,6 +152,7 @@ public class jf_pacientes extends JFrame {
 		contentPane.add(btn_editar_paciente);
 		
 		Fondo jp_menu = new Fondo();
+		jp_menu.setPreferredSize(new Dimension(1450, 750));
 		jp_menu.setBounds(10, 0, 1450, 726);
 		contentPane.add(jp_menu);
 		GroupLayout gl_jp_menu = new GroupLayout(jp_menu);
