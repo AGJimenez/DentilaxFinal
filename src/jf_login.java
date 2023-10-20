@@ -22,6 +22,8 @@ import java.awt.Dimension;
 import javax.swing.SwingConstants;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.Font;
+import javax.swing.border.LineBorder;
 
 
 
@@ -73,10 +75,18 @@ public class jf_login extends javax.swing.JFrame {
         interior.add(btn_recuperar_pass);
         interior.add(jPanel1);
         jPanel1.setLayout(null);
-        jPanel1.add(jPanel3);
+        
+        lblNewLabel_2 = new JLabel("");
+        lblNewLabel_2.setIcon(new ImageIcon(jf_login.class.getResource("/iconos_menus/password.png")));
+        lblNewLabel_2.setBounds(8, 9, 48, 48);
+        jPanel1.add(lblNewLabel_2);
         interior.add(jPanel2);
         jPanel2.setLayout(null);
-        jPanel2.add(jPanel4);
+        
+        lblNewLabel_1 = new JLabel("");
+        lblNewLabel_1.setIcon(new ImageIcon(jf_login.class.getResource("/iconos_menus/user (Personalizado).png")));
+        lblNewLabel_1.setBounds(10, 11, 43, 44);
+        jPanel2.add(lblNewLabel_1);
         interior.add(jtf_user1);
         interior.add(jtf_user);
         panelFondo.add(btn_entrar);
@@ -154,17 +164,23 @@ public class jf_login extends javax.swing.JFrame {
         jtf_user1.setBounds(132, 199, 294, 65);
         jPanel1 = new javax.swing.JPanel();
         jPanel1.setBounds(63, 199, 63, 65);
-        jPanel3 = new FondoPass();
-        jPanel3.setBounds(10, 11, 43, 43);
         jPanel2 = new javax.swing.JPanel();
         jPanel2.setBounds(63, 83, 63, 65);
-        jPanel4 = new FondoUser();
-        jPanel4.setBounds(10, 11, 43, 43);
         cb_recordar = new javax.swing.JCheckBox();
-        cb_recordar.setBounds(63, 289, 103, 23);
+        cb_recordar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        cb_recordar.setForeground(new Color(32, 160, 216));
+        cb_recordar.setFont(new Font("Arial", Font.PLAIN, 12));
+        cb_recordar.setContentAreaFilled(false);
+        cb_recordar.setBorder(null);
+        cb_recordar.setBounds(63, 291, 105, 37);
         btn_recuperar_pass = new javax.swing.JButton();
-        btn_recuperar_pass.setBorderPainted(false);
-        btn_recuperar_pass.setBounds(269, 289, 157, 23);
+        btn_recuperar_pass.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btn_recuperar_pass.setOpaque(false);
+        btn_recuperar_pass.setBorder(new LineBorder(new Color(32, 160, 216), 1, true));
+        btn_recuperar_pass.setBackground(new Color(255, 255, 255));
+        btn_recuperar_pass.setForeground(new Color(32, 160, 216));
+        btn_recuperar_pass.setFont(new Font("Arial", Font.PLAIN, 12));
+        btn_recuperar_pass.setBounds(269, 291, 157, 37);
         btn_entrar = new javax.swing.JButton();
         btn_entrar.setBorderPainted(false);
         btn_entrar.setBounds(551, 572, 375, 63);
@@ -235,29 +251,7 @@ public class jf_login extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(32, 160, 216));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 43, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 43, Short.MAX_VALUE)
-        );
-
         jPanel2.setBackground(new java.awt.Color(32, 160, 216));
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 43, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 43, Short.MAX_VALUE)
-        );
 
         cb_recordar.setText("Recuérdame");
 
@@ -310,10 +304,10 @@ public class jf_login extends javax.swing.JFrame {
     private javax.swing.JPanel interior;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField jtf_user;
     private javax.swing.JTextField jtf_user1;
     private javax.swing.JPanel panelFondo;
     private JLabel lblNewLabel;
+    private JLabel lblNewLabel_1;
+    private JLabel lblNewLabel_2;
 }
