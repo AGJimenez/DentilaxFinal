@@ -29,12 +29,12 @@ public class jd_pacientes_alta extends JDialog {
 	private JTextField txt_nombre;
 	private JTextField txt_dni;
 	private JTextField txt_telefono;
-	private JTextField txt_especialidad;
-	private JTextField txt_salario;
+	private JTextField txt_seguro;
+	private JTextField txt_observaciones;
 	private JTextField txt_apellidos;
-	private JTextField txtIntroduceFechaDe;
+	private JTextField txt_nacimiento;
 	private JTextField txt_correo;
-	private JTextField txtLineaDeDireccin;
+	private JTextField txt_direccion;
 
 	/**
 	 * Launch the application.
@@ -55,8 +55,8 @@ public class jd_pacientes_alta extends JDialog {
 	public jd_pacientes_alta() {
 		setModal(true);
 		setResizable(false);
-		setPreferredSize(new Dimension(1192, 452));
-		setBounds(100, 100, 1192, 452);
+		setPreferredSize(new Dimension(1192, 529));
+		setBounds(100, 100, 1192, 560);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -76,26 +76,26 @@ public class jd_pacientes_alta extends JDialog {
 			contentPanel.add(panel);
 			panel.setLayout(null);
 			
-			JRadioButton rdbtnNewRadioButton = new JRadioButton("Varón");
-			btn_group_genero.add(rdbtnNewRadioButton);
-			rdbtnNewRadioButton.setOpaque(false);
-			rdbtnNewRadioButton.setFont(new Font("Arial", Font.PLAIN, 14));
-			rdbtnNewRadioButton.setBounds(24, 24, 71, 23);
-			panel.add(rdbtnNewRadioButton);
+			JRadioButton btn_genero_varon = new JRadioButton("Varón");
+			btn_group_genero.add(btn_genero_varon);
+			btn_genero_varon.setOpaque(false);
+			btn_genero_varon.setFont(new Font("Arial", Font.PLAIN, 14));
+			btn_genero_varon.setBounds(24, 24, 71, 23);
+			panel.add(btn_genero_varon);
 			
-			JRadioButton rdbtnNewRadioButton_1 = new JRadioButton("Mujer");
-			btn_group_genero.add(rdbtnNewRadioButton_1);
-			rdbtnNewRadioButton_1.setOpaque(false);
-			rdbtnNewRadioButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			rdbtnNewRadioButton_1.setBounds(24, 60, 71, 23);
-			panel.add(rdbtnNewRadioButton_1);
+			JRadioButton btn_genero_mujer = new JRadioButton("Mujer");
+			btn_group_genero.add(btn_genero_mujer);
+			btn_genero_mujer.setOpaque(false);
+			btn_genero_mujer.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			btn_genero_mujer.setBounds(24, 60, 71, 23);
+			panel.add(btn_genero_mujer);
 			
-			JRadioButton rdbtnNewRadioButton_2 = new JRadioButton("Otro");
-			btn_group_genero.add(rdbtnNewRadioButton_2);
-			rdbtnNewRadioButton_2.setOpaque(false);
-			rdbtnNewRadioButton_2.setFont(new Font("Arial", Font.PLAIN, 14));
-			rdbtnNewRadioButton_2.setBounds(24, 100, 71, 23);
-			panel.add(rdbtnNewRadioButton_2);
+			JRadioButton btn_genero_otro = new JRadioButton("Otro");
+			btn_group_genero.add(btn_genero_otro);
+			btn_genero_otro.setOpaque(false);
+			btn_genero_otro.setFont(new Font("Arial", Font.PLAIN, 14));
+			btn_genero_otro.setBounds(24, 100, 71, 23);
+			panel.add(btn_genero_otro);
 		}
 		{
 			JLabel lbl_nombre_dr = new JLabel("NOMBRE");
@@ -149,38 +149,32 @@ public class jd_pacientes_alta extends JDialog {
 			contentPanel.add(txt_telefono);
 		}
 		{
-			JLabel lbl_especialidad = new JLabel("ESPECIALIDAD");
-			lbl_especialidad.setFont(new Font("Barlow", Font.BOLD, 20));
-			lbl_especialidad.setBounds(233, 245, 131, 40);
-			contentPanel.add(lbl_especialidad);
+			JLabel lbl_seguro = new JLabel("SEGURO");
+			lbl_seguro.setFont(new Font("Barlow", Font.BOLD, 20));
+			lbl_seguro.setBounds(233, 245, 83, 40);
+			contentPanel.add(lbl_seguro);
 		}
 		{
-			txt_especialidad = new JTextField();
-			txt_especialidad.setText("Introduce la especialidad.");
-			txt_especialidad.setHorizontalAlignment(SwingConstants.CENTER);
-			txt_especialidad.setFont(new Font("Arial", Font.PLAIN, 14));
-			txt_especialidad.setColumns(10);
-			txt_especialidad.setBorder(null);
-			txt_especialidad.setBackground(new Color(191, 231, 249));
-			txt_especialidad.setBounds(387, 249, 218, 40);
-			contentPanel.add(txt_especialidad);
+			txt_seguro = new JTextField();
+			txt_seguro.setText("Introduce la especialidad.");
+			txt_seguro.setHorizontalAlignment(SwingConstants.CENTER);
+			txt_seguro.setFont(new Font("Arial", Font.PLAIN, 14));
+			txt_seguro.setColumns(10);
+			txt_seguro.setBorder(null);
+			txt_seguro.setBackground(new Color(191, 231, 249));
+			txt_seguro.setBounds(387, 249, 218, 40);
+			contentPanel.add(txt_seguro);
 		}
 		{
-			JLabel lbl_salario = new JLabel("SALARIO");
-			lbl_salario.setFont(new Font("Barlow", Font.BOLD, 20));
-			lbl_salario.setBounds(233, 313, 103, 40);
-			contentPanel.add(lbl_salario);
-		}
-		{
-			txt_salario = new JTextField();
-			txt_salario.setText("Introduce el salario");
-			txt_salario.setHorizontalAlignment(SwingConstants.CENTER);
-			txt_salario.setFont(new Font("Arial", Font.PLAIN, 14));
-			txt_salario.setColumns(10);
-			txt_salario.setBorder(null);
-			txt_salario.setBackground(new Color(191, 231, 249));
-			txt_salario.setBounds(387, 313, 218, 40);
-			contentPanel.add(txt_salario);
+			txt_observaciones = new JTextField();
+			txt_observaciones.setText("Introduce observacion");
+			txt_observaciones.setHorizontalAlignment(SwingConstants.CENTER);
+			txt_observaciones.setFont(new Font("Arial", Font.PLAIN, 14));
+			txt_observaciones.setColumns(10);
+			txt_observaciones.setBorder(null);
+			txt_observaciones.setBackground(new Color(191, 231, 249));
+			txt_observaciones.setBounds(233, 339, 819, 96);
+			contentPanel.add(txt_observaciones);
 		}
 		{
 			JLabel lbl_apellidos = new JLabel("APELLIDOS");
@@ -206,15 +200,15 @@ public class jd_pacientes_alta extends JDialog {
 			contentPanel.add(lbl_nacimiento);
 		}
 		{
-			txtIntroduceFechaDe = new JTextField();
-			txtIntroduceFechaDe.setText("Introduce fecha de nacimiento.");
-			txtIntroduceFechaDe.setHorizontalAlignment(SwingConstants.CENTER);
-			txtIntroduceFechaDe.setFont(new Font("Arial", Font.PLAIN, 14));
-			txtIntroduceFechaDe.setColumns(10);
-			txtIntroduceFechaDe.setBorder(null);
-			txtIntroduceFechaDe.setBackground(new Color(191, 231, 249));
-			txtIntroduceFechaDe.setBounds(834, 120, 218, 40);
-			contentPanel.add(txtIntroduceFechaDe);
+			txt_nacimiento = new JTextField();
+			txt_nacimiento.setText("Introduce fecha de nacimiento.");
+			txt_nacimiento.setHorizontalAlignment(SwingConstants.CENTER);
+			txt_nacimiento.setFont(new Font("Arial", Font.PLAIN, 14));
+			txt_nacimiento.setColumns(10);
+			txt_nacimiento.setBorder(null);
+			txt_nacimiento.setBackground(new Color(191, 231, 249));
+			txt_nacimiento.setBounds(834, 120, 218, 40);
+			contentPanel.add(txt_nacimiento);
 		}
 		{
 			txt_correo = new JTextField();
@@ -234,15 +228,15 @@ public class jd_pacientes_alta extends JDialog {
 			contentPanel.add(lbl_correo);
 		}
 		{
-			txtLineaDeDireccin = new JTextField();
-			txtLineaDeDireccin.setText("Linea de dirección.");
-			txtLineaDeDireccin.setHorizontalAlignment(SwingConstants.CENTER);
-			txtLineaDeDireccin.setFont(new Font("Arial", Font.PLAIN, 14));
-			txtLineaDeDireccin.setColumns(10);
-			txtLineaDeDireccin.setBorder(null);
-			txtLineaDeDireccin.setBackground(new Color(191, 231, 249));
-			txtLineaDeDireccin.setBounds(834, 249, 218, 40);
-			contentPanel.add(txtLineaDeDireccin);
+			txt_direccion = new JTextField();
+			txt_direccion.setText("Linea de dirección.");
+			txt_direccion.setHorizontalAlignment(SwingConstants.CENTER);
+			txt_direccion.setFont(new Font("Arial", Font.PLAIN, 14));
+			txt_direccion.setColumns(10);
+			txt_direccion.setBorder(null);
+			txt_direccion.setBackground(new Color(191, 231, 249));
+			txt_direccion.setBounds(834, 249, 218, 40);
+			contentPanel.add(txt_direccion);
 		}
 		{
 			JLabel lbl_nacimiento = new JLabel("DIRECCIÓN");
@@ -251,13 +245,13 @@ public class jd_pacientes_alta extends JDialog {
 			contentPanel.add(lbl_nacimiento);
 		}
 		{
-			JPanel panel = new JPanel();
-			panel.setBounds(54, 263, 116, 116);
-			contentPanel.add(panel);
+			JPanel panel_foto = new JPanel();
+			panel_foto.setBounds(54, 263, 116, 116);
+			contentPanel.add(panel_foto);
 		}
 		{
 			JButton btn_anadir = new JButton("AÑADIR");
-			btn_anadir.setBounds(665, 336, 153, 43);
+			btn_anadir.setBounds(708, 455, 153, 43);
 			contentPanel.add(btn_anadir);
 			btn_anadir.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -273,20 +267,20 @@ public class jd_pacientes_alta extends JDialog {
 			
 		}
 		{
-			JButton cancelButton = new JButton("CANCELAR");
-			cancelButton.addActionListener(new ActionListener() {
+			JButton btn_cancelar = new JButton("CANCELAR");
+			btn_cancelar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					dispose();
 				}
 			});
-			cancelButton.setBounds(899, 336, 153, 43);
-			cancelButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			cancelButton.setBorderPainted(false);
-			cancelButton.setFont(new Font("Barlow", Font.BOLD, 20));
-			cancelButton.setForeground(new Color(255, 255, 255));
-			cancelButton.setBackground(new Color(32, 160, 216));
-			contentPanel.add(cancelButton);
-			cancelButton.setActionCommand("Cancel");
+			btn_cancelar.setBounds(899, 455, 153, 43);
+			btn_cancelar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			btn_cancelar.setBorderPainted(false);
+			btn_cancelar.setFont(new Font("Barlow", Font.BOLD, 20));
+			btn_cancelar.setForeground(new Color(255, 255, 255));
+			btn_cancelar.setBackground(new Color(32, 160, 216));
+			contentPanel.add(btn_cancelar);
+			btn_cancelar.setActionCommand("Cancel");
 		}
 	}
 }

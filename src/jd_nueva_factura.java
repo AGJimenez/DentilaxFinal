@@ -13,7 +13,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class jd_crear_factura extends JDialog {
+public class jd_nueva_factura extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
@@ -31,7 +31,7 @@ public class jd_crear_factura extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			jd_crear_factura dialog = new jd_crear_factura();
+			jd_nueva_factura dialog = new jd_nueva_factura();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -42,7 +42,7 @@ public class jd_crear_factura extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public jd_crear_factura() {
+	public jd_nueva_factura() {
 		setModal(true);
 		setResizable(false);
 		setBounds(100, 100, 614, 770);

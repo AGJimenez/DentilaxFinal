@@ -50,7 +50,7 @@ public class jf_facturacion extends JFrame {
         btn_nueva_factura = new javax.swing.JButton();
         btn_nueva_factura.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        	jd_crear_factura ventana = new jd_crear_factura();
+        	jd_nueva_factura ventana = new jd_nueva_factura();
         	ventana.setVisible(true);
         	}
         });

@@ -294,6 +294,11 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         jmenuitem_baja_doctores = new JMenuItem("Dar de baja");
         jmenuitem_baja_doctores.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_doctores ventana = new jf_doctores();
+        		jd_buscar_doctor_baja ventana_alta = new jd_buscar_doctor_baja();
+        		ventana.setVisible(true);
+        		ventana_alta.setVisible(true);
         	}
         });
         jmenuitem_baja_doctores.setFont(new Font("Arial", Font.PLAIN, 12));
