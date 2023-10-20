@@ -136,8 +136,6 @@ public class jf_doctores extends javax.swing.JFrame {
 	        btn_baja_doctores.setIcon(new ImageIcon(jf_doctores.class.getResource("/iconos_submenus/btn_darDeBaja_admin.png")));
 	        btn_baja_doctores.setBounds(863, 590, 188, 41);
 	        menu_inicio = new javax.swing.JMenuBar();
-	        jMenu1 = new javax.swing.JMenu();
-	        jMenu1.setFont(new Font("Arial", Font.PLAIN, 12));
 	        jMenu2 = new javax.swing.JMenu();
 	        jMenu2.setFont(new Font("Arial", Font.PLAIN, 12));
 	        jMenu3 = new javax.swing.JMenu();
@@ -158,21 +156,22 @@ public class jf_doctores extends javax.swing.JFrame {
 	        menu_inicio.setBackground(new java.awt.Color(32, 160, 216));
 	        menu_inicio.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 	        menu_inicio.setBorderPainted(false);
-
-	        jMenu1.setBackground(new java.awt.Color(32, 160, 216));
-	        jMenu1.setText("INICIO");
-	        menu_inicio.add(jMenu1);
 	        
-	        JMenuItem jmenuitem_volver = new JMenuItem("Volver");
-	        jmenuitem_volver.addActionListener(new ActionListener() {
+	        JButton btnNewButton = new JButton("INICIO");
+	        btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+	        btnNewButton.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
 	        		dispose();
 	        		jf_menu_ppal ventana = new jf_menu_ppal();
 	        		ventana.setVisible(true);
 	        	}
 	        });
-	        jmenuitem_volver.setFont(new Font("Arial", Font.PLAIN, 12));
-	        jMenu1.add(jmenuitem_volver);
+	        btnNewButton.setOpaque(false);
+	        btnNewButton.setFont(new Font("Arial", Font.PLAIN, 12));
+	        btnNewButton.setFocusPainted(false);
+	        btnNewButton.setContentAreaFilled(false);
+	        btnNewButton.setBorderPainted(false);
+	        menu_inicio.add(btnNewButton);
 
 	        jMenu2.setText("PACIENTES");
 	        menu_inicio.add(jMenu2);
@@ -403,7 +402,6 @@ public class jf_doctores extends javax.swing.JFrame {
 	    private javax.swing.JButton btn_especialidades;
 	    private javax.swing.JButton btn_alta_doctores;
 	    private javax.swing.JButton btn_buscar_doctor;
-	    private javax.swing.JMenu jMenu1;
 	    private javax.swing.JMenu jMenu2;
 	    private javax.swing.JMenu jMenu3;
 	    private javax.swing.JMenu jMenu4;

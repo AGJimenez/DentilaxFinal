@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Font;
 import javax.swing.JMenuItem;
 import java.awt.Dimension;
+import java.awt.Cursor;
 
 public class jf_facturacion extends JFrame {
 
@@ -61,8 +62,6 @@ public class jf_facturacion extends JFrame {
         btn_balance_gastos.setBorderPainted(false);
         btn_balance_gastos.setText("BALANCE DE GASTOS");
         menu_inicio = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu1.setFont(new Font("Arial", Font.PLAIN, 12));
         jMenu2 = new javax.swing.JMenu();
         jMenu2.setFont(new Font("Arial", Font.PLAIN, 12));
         jMenu3 = new javax.swing.JMenu();
@@ -116,21 +115,22 @@ public class jf_facturacion extends JFrame {
         menu_inicio.setBackground(new java.awt.Color(32, 160, 216));
         menu_inicio.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         menu_inicio.setBorderPainted(false);
-
-        jMenu1.setBackground(new java.awt.Color(32, 160, 216));
-        jMenu1.setText("INICIO");
-        menu_inicio.add(jMenu1);
         
-        jmenuitem_volver = new JMenuItem("Volver");
-        jmenuitem_volver.addActionListener(new ActionListener() {
+        btnNewButton = new JButton("INICIO");
+        btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
         		jf_menu_ppal ventana = new jf_menu_ppal();
         		ventana.setVisible(true);
         	}
         });
-        jmenuitem_volver.setFont(new Font("Arial", Font.PLAIN, 12));
-        jMenu1.add(jmenuitem_volver);
+        btnNewButton.setOpaque(false);
+        btnNewButton.setFont(new Font("Arial", Font.PLAIN, 12));
+        btnNewButton.setFocusPainted(false);
+        btnNewButton.setContentAreaFilled(false);
+        btnNewButton.setBorderPainted(false);
+        menu_inicio.add(btnNewButton);
 
         jMenu2.setText("PACIENTES");
         menu_inicio.add(jMenu2);
@@ -191,7 +191,6 @@ public class jf_facturacion extends JFrame {
     private javax.swing.JButton btn_historial_pago;
     private javax.swing.JButton btn_nueva_factura;
     private javax.swing.JButton btn_buscar_factura;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -202,7 +201,7 @@ public class jf_facturacion extends JFrame {
     private javax.swing.JPanel jp_menu;
     private javax.swing.JMenuBar menu_inicio;
     private JButton btn_balance_gastos;
-    private JMenuItem jmenuitem_volver;
+    private JButton btnNewButton;
     // End of variables declaration//GEN-END:variables
 
 }

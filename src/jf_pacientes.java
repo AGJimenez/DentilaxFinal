@@ -56,20 +56,21 @@ public class jf_pacientes extends JFrame {
 		menuBar.setBackground(new Color(32, 160, 216));
 		setJMenuBar(menuBar);
 		
-		JMenu mn_inicio = new JMenu("INICIO");
-		mn_inicio.setFont(new Font("Arial", Font.PLAIN, 12));
-		menuBar.add(mn_inicio);
-		
-		JMenuItem jmenuitem_volver = new JMenuItem("Volver");
-		jmenuitem_volver.addActionListener(new ActionListener() {
+		JButton btnNewButton = new JButton("INICIO");
+		btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
         		jf_menu_ppal ventana = new jf_menu_ppal();
         		ventana.setVisible(true);
 			}
 		});
-		jmenuitem_volver.setFont(new Font("Arial", Font.PLAIN, 12));
-		mn_inicio.add(jmenuitem_volver);
+		btnNewButton.setOpaque(false);
+		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 12));
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setBorderPainted(false);
+		menuBar.add(btnNewButton);
 		
 		JMenu mn_pacientes = new JMenu("PACIENTES");
 		mn_pacientes.setFont(new Font("Arial", Font.PLAIN, 12));

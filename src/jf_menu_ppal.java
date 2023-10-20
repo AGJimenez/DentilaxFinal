@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import java.awt.Cursor;
 import javax.swing.JMenuItem;
 import java.awt.Font;
+import javax.swing.JButton;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -130,8 +131,6 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         	}
         });
         menu_inicio = new javax.swing.JMenuBar();
-        jmenu_inicio = new javax.swing.JMenu();
-        jmenu_inicio.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_paciente = new javax.swing.JMenu();
         jmenu_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_paciente.addActionListener(new ActionListener() {
@@ -192,21 +191,22 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         menu_inicio.setBackground(new java.awt.Color(32, 160, 216));
         menu_inicio.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         menu_inicio.setBorderPainted(false);
-
-        jmenu_inicio.setBackground(new java.awt.Color(32, 160, 216));
-        jmenu_inicio.setText("INICIO");
-        menu_inicio.add(jmenu_inicio);
         
-        jmenuitem_volver = new JMenuItem("Volver");
-        jmenuitem_volver.addActionListener(new ActionListener() {
+        btnNewButton = new JButton("INICIO");
+        btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnNewButton.setFont(new Font("Arial", Font.PLAIN, 12));
+        btnNewButton.setFocusPainted(false);
+        btnNewButton.setContentAreaFilled(false);
+        btnNewButton.setBorderPainted(false);
+        btnNewButton.setOpaque(false);
+        btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
         		jf_menu_ppal ventana = new jf_menu_ppal();
         		ventana.setVisible(true);
         	}
         });
-        jmenuitem_volver.setFont(new Font("Arial", Font.PLAIN, 12));
-        jmenu_inicio.add(jmenuitem_volver);
+        menu_inicio.add(btnNewButton);
 
         jmenu_paciente.setText("PACIENTES");
         menu_inicio.add(jmenu_paciente);
@@ -474,7 +474,6 @@ public class jf_menu_ppal extends javax.swing.JFrame {
     private javax.swing.JButton btn_facturacion;
     private javax.swing.JButton btn_material;
     private javax.swing.JButton btn_pacientes;
-    private javax.swing.JMenu jmenu_inicio;
     private javax.swing.JMenu jmenu_paciente;
     private javax.swing.JMenu jmenu_doctor;
     private javax.swing.JMenu jmenu_material;
@@ -494,7 +493,6 @@ public class jf_menu_ppal extends javax.swing.JFrame {
     private JMenuItem jmenuitem_especialidad_doctores;
     private JMenuItem jmenuitem_baja_doctores;
     private JMenuItem jmenuitem_alta_doctores;
-    private JMenuItem jmenuitem_volver;
     private JMenuItem jmenuitem_menu_material;
     private JMenuItem jmenuitem_proveedores;
     private JMenuItem jmenuitem_cancelar;
@@ -513,5 +511,6 @@ public class jf_menu_ppal extends javax.swing.JFrame {
     private JMenuItem jmenuitem_balance_gastos;
     private JMenuItem jmenuitem_nueva_factura;
     private JMenuItem mntmNewMenuItem;
+    private JButton btnNewButton;
     // End of variables declaration//GEN-END:variables
 }
