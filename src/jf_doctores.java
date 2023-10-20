@@ -44,8 +44,11 @@ public class jf_doctores extends javax.swing.JFrame {
 	        jp_menu.add(btn_alta_doctores);
 	        
 	        JButton btn_editar_dr = new JButton("");
+	        btn_editar_dr.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	        btn_editar_dr.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
+	        		jd_buscar_doctor_editar ventana = new jd_buscar_doctor_editar();
+	        		ventana.setVisible(true);
 	        		ConectorDB_mysql sentencia = new ConectorDB_mysql();
 	        	//	sentencia.editar_doctor(getWarningString(), getName(), getName(), getName(), getName(), getName(), getName(), getTitle(), getWarningString(), getName());
 	        		

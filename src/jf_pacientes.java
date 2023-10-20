@@ -87,6 +87,15 @@ public class jf_pacientes extends JFrame {
 		mn_pacientes.add(jmenuitem_menu_paciente);
 		
 		JMenuItem jmenuitem_buscar_paciente = new JMenuItem("Buscar paciente");
+		jmenuitem_buscar_paciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				jf_pacientes ventana = new jf_pacientes();
+				jd_buscar_paciente ventana_buscar = new jd_buscar_paciente();
+				ventana.setVisible(true);
+				ventana_buscar.setVisible(true);
+			}
+		});
 		jmenuitem_buscar_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
 		mn_pacientes.add(jmenuitem_buscar_paciente);
 		
@@ -335,6 +344,8 @@ public class jf_pacientes extends JFrame {
 		btn_editar_paciente.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btn_editar_paciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				jd_buscar_paciente_editar ventana = new jd_buscar_paciente_editar();
+				ventana.setVisible(true);
 			}
 		});
 		btn_editar_paciente.setIcon(new ImageIcon(jf_pacientes.class.getResource("/iconos_submenus/btn_editarPaciente_admin.png")));

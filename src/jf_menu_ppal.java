@@ -225,9 +225,9 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         jmenuitem_buscar_paciente = new JMenuItem("Buscar paciente");
         jmenuitem_buscar_paciente.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		dispose();
         		jf_pacientes ventana = new jf_pacientes();
         		jd_buscar_paciente ventana_buscar = new jd_buscar_paciente();
-        		dispose();
         		ventana.setVisible(true);
         		ventana_buscar.setVisible(true);
         	}
@@ -238,6 +238,11 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         jmenuitem_editar_paciente = new JMenuItem("Editar paciente");
         jmenuitem_editar_paciente.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_pacientes ventana = new jf_pacientes();
+        		jd_buscar_paciente_editar ventana_buscar = new jd_buscar_paciente_editar();
+        		ventana.setVisible(true);
+        		ventana_buscar.setVisible(true);
         	}
         });
         jmenuitem_editar_paciente.setFont(new Font("Arial", Font.PLAIN, 12));

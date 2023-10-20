@@ -148,8 +148,32 @@ public class jf_material extends JFrame {
         jMenu2.setText("PACIENTES");
         menu_inicio.add(jMenu2);
         
-        mntmNewMenuItem = new JMenuItem("New menu item");
-        jMenu2.add(mntmNewMenuItem);
+        jmenuitem_menu_paciente = new JMenuItem("Menu paciente");
+        jmenuitem_menu_paciente.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_pacientes ventana = new jf_pacientes();
+        		ventana.setVisible(true);
+        	}
+        });
+        jmenuitem_menu_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
+        jMenu2.add(jmenuitem_menu_paciente);
+        
+        jmenuitem_buscar_paciente = new JMenuItem("Buscar paciente");
+        jmenuitem_buscar_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
+        jMenu2.add(jmenuitem_buscar_paciente);
+        
+        jmenuitem_editar_paciente = new JMenuItem("Editar paciente");
+        jmenuitem_editar_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
+        jMenu2.add(jmenuitem_editar_paciente);
+        
+        jmenuitem_baja_paciente = new JMenuItem("Dar de baja");
+        jmenuitem_baja_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
+        jMenu2.add(jmenuitem_baja_paciente);
+        
+        jmenuitem_alta_paciente = new JMenuItem("Dar de alta");
+        jmenuitem_alta_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
+        jMenu2.add(jmenuitem_alta_paciente);
 
         jMenu3.setText("DOCTORES");
         menu_inicio.add(jMenu3);
@@ -221,7 +245,11 @@ public class jf_material extends JFrame {
     private JButton btn_inventario;
     private JButton btn_solicitudes;
     private JMenuItem jmenuitem_volver;
-    private JMenuItem mntmNewMenuItem;
+    private JMenuItem jmenuitem_buscar_paciente;
+    private JMenuItem jmenuitem_menu_paciente;
+    private JMenuItem jmenuitem_editar_paciente;
+    private JMenuItem jmenuitem_alta_paciente;
+    private JMenuItem jmenuitem_baja_paciente;
     // End of variables declaration//GEN-END:variables
 
 }
