@@ -144,6 +144,15 @@ public class jf_pacientes extends JFrame {
 		mn_doctores.add(jmenuitem_especialidad_doctor);
 		
 		JMenuItem jmenuitem_baja_doctor = new JMenuItem("Dar de baja");
+		jmenuitem_baja_doctor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+        		jf_doctores ventana = new jf_doctores();
+        		jd_buscar_doctor_baja ventana_baja = new jd_buscar_doctor_baja();
+        		ventana.setVisible(true);
+        		ventana_baja.setVisible(true);
+			}
+		});
 		jmenuitem_baja_doctor.setFont(new Font("Arial", Font.PLAIN, 12));
 		mn_doctores.add(jmenuitem_baja_doctor);
 		
@@ -291,6 +300,13 @@ public class jf_pacientes extends JFrame {
 		contentPane.add(btn_buscar_paciente);
 		
 		JButton btn_baja_paciente = new JButton("");
+		btn_baja_paciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				jd_buscar_paciente_baja ventana = new jd_buscar_paciente_baja();
+				ventana.setVisible(true);
+			}
+		});
+		btn_baja_paciente.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btn_baja_paciente.setOpaque(false);
 		btn_baja_paciente.setIcon(new ImageIcon(jf_pacientes.class.getResource("/iconos_submenus/btn_darDeBaja_admin.png")));
 		btn_baja_paciente.setBorder(null);
@@ -300,6 +316,13 @@ public class jf_pacientes extends JFrame {
 		contentPane.add(btn_baja_paciente);
 		
 		JButton btn_alta_paciente = new JButton("");
+		btn_alta_paciente.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btn_alta_paciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				jd_pacientes_alta ventana = new jd_pacientes_alta();
+				ventana.setVisible(true);
+			}
+		});
 		btn_alta_paciente.setOpaque(false);
 		btn_alta_paciente.setIcon(new ImageIcon(jf_pacientes.class.getResource("/iconos_submenus/btn_darAlta_admin.png")));
 		btn_alta_paciente.setBorder(null);
@@ -309,6 +332,7 @@ public class jf_pacientes extends JFrame {
 		contentPane.add(btn_alta_paciente);
 		
 		JButton btn_editar_paciente = new JButton("");
+		btn_editar_paciente.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btn_editar_paciente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
