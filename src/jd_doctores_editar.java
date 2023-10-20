@@ -262,7 +262,7 @@ public class jd_doctores_editar extends JDialog {
 			contentPanel.add(panel);
 		}
 		{
-			JButton btn_anadir = new JButton("AÑADIR");
+			JButton btn_anadir = new JButton("MODIFICAR");
 			btn_anadir.setBounds(665, 336, 153, 43);
 			contentPanel.add(btn_anadir);
 			btn_anadir.addActionListener(new ActionListener() {
@@ -299,8 +299,8 @@ public class jd_doctores_editar extends JDialog {
 
 		            ConectorDB_mysql bdd = new ConectorDB_mysql();
 		            try {
-						bdd.insertar_doctor(dni, apellidos, nombre, nacimiento, telefono, correo, especialidad, direccion, salario, genero, estado);
-						bdd.insertar_dr_usuario(dni, estado, contrasena);
+						bdd.editar_doctor(dni, apellidos, nombre, nacimiento, telefono, correo, especialidad, direccion, salario, genero);
+						
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -338,73 +338,76 @@ public class jd_doctores_editar extends JDialog {
 		return txt_nombre;
 	}
 
-	public void setTxt_nombre(JTextField txt_nombre) {
-		this.txt_nombre = txt_nombre;
+	public void setTxt_nombre(String txt_nombre) {
+		this.txt_nombre.setText(txt_nombre);
 	}
 
 	public JTextField getTxt_dni() {
 		return txt_dni;
 	}
 
-	public void setTxt_dni(JTextField txt_dni) {
-		this.txt_dni = txt_dni;
+	public void setTxt_dni(String txt_dni) {
+		this.txt_dni.setText(txt_dni);
 	}
 
 	public JTextField getTxt_telefono() {
 		return txt_telefono;
 	}
 
-	public void setTxt_telefono(JTextField txt_telefono) {
-		this.txt_telefono = txt_telefono;
+	public void setTxt_telefono(String txt_telefono) {
+		this.txt_telefono.setText(txt_telefono);
 	}
 
 	public JTextField getTxt_especialidad() {
 		return txt_especialidad;
 	}
 
-	public void setTxt_especialidad(JTextField txt_especialidad) {
-		this.txt_especialidad = txt_especialidad;
+	public void setTxt_especialidad(String txt_especialidad) {
+		this.txt_especialidad.setText(txt_especialidad);
 	}
 
 	public JTextField getTxt_salario() {
 		return txt_salario;
 	}
 
-	public void setTxt_salario(JTextField txt_salario) {
-		this.txt_salario = txt_salario;
+	public void setTxt_salario(String txt_salario) {
+		this.txt_salario.setText(txt_salario);
 	}
 
 	public JTextField getTxt_apellidos() {
 		return txt_apellidos;
 	}
 
-	public void setTxt_apellidos(JTextField txt_apellidos) {
-		this.txt_apellidos = txt_apellidos;
+	public void setTxt_apellidos(String txt_apellidos) {
+		this.txt_apellidos.setText(txt_apellidos);
 	}
 
-	public JTextField getTxtIntroduceFechaDe() {
+	public JTextField getTxt_nacimiento() {
 		return txt_nacimiento;
 	}
 
-	public void setTxtIntroduceFechaDe(JTextField txtIntroduceFechaDe) {
-		this.txt_nacimiento = txtIntroduceFechaDe;
+	public void setTxt_nacimiento(String txtIntroduceFechaDe) {
+		this.txt_nacimiento.setText(txtIntroduceFechaDe);
 	}
 
 	public JTextField getTxt_correo() {
 		return txt_correo;
 	}
 
-	public void setTxt_correo(JTextField txt_correo) {
-		this.txt_correo = txt_correo;
+	public void setTxt_correo(String txt_correo) {
+		this.txt_correo.setText(txt_correo);;
 	}
 
-	public JTextField getTxtLineaDeDireccin() {
+	public JTextField getTxt_direccion() {
 		return txt_direccion;
 	}
 
-	public void setTxtLineaDeDireccin(JTextField txtLineaDeDireccin) {
-		this.txt_direccion = txtLineaDeDireccin;
+	public void setTxt_direccion(String txtLineaDeDireccin) {
+		this.txt_direccion.setText(txtLineaDeDireccin);;
 	}
+	
+	
+	
 
 	public String getSelectedButton(ButtonGroup buttonGroup) {
 	    for (Enumeration<AbstractButton> botones = buttonGroup.getElements(); botones.hasMoreElements();) {

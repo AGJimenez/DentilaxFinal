@@ -122,8 +122,22 @@ public class jd_buscar_doctor_editar extends JDialog {
 				JButton btn_buscar = new JButton("BUSCAR");
 				btn_buscar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						jd_doctores_editar ventana = new jd_doctores_editar();
-						ventana.setVisible(true);
+						
+						ConectorDB_mysql consulta = new ConectorDB_mysql();
+						try {
+			            	String dni = txt_IntroduceDni.getText().toString();			            	
+							String comprobar = consulta.consulta_doctor_editar(dni);
+							consulta.consulta_doctor_cargar(dni);
+			}
+							
+							
+						 catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							JOptionPane error = new JOptionPane();
+							error.showMessageDialog(error, "Error en el login");
+							e1.printStackTrace();
+							
+						}
 					}
 				});
 				btn_buscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
