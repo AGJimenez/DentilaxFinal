@@ -26,7 +26,7 @@ public class jd_especialidades extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-
+	private JList<String> jl_listaEspecialidades;
 	/**
 	 * Launch the application.
 	 */
@@ -72,30 +72,23 @@ public class jd_especialidades extends JDialog {
 		sp_panelScroll.setBounds(10, 79, 503, 411);
 		contentPanel.add(sp_panelScroll);
 		
-		JList jl_listaEspecialidades = new JList();
+		 jl_listaEspecialidades = new JList<String>();
+		 jl_listaEspecialidades.setModel(new AbstractListModel() {
+		 	String[] values = new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+		 	public int getSize() {
+		 		return values.length;
+		 	}
+		 	public Object getElementAt(int index) {
+		 		return values[index];
+		 	}
+		 });
 		jl_listaEspecialidades.setFont(new Font("Arial", Font.BOLD, 16));
 		jl_listaEspecialidades.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		jl_listaEspecialidades.setSelectionForeground(Color.BLACK);
 		jl_listaEspecialidades.setSelectionBackground(new Color(191, 231, 249));
 		sp_panelScroll.setViewportView(jl_listaEspecialidades);
 		
-		DefaultListModel dml = new DefaultListModel();
-		dml.addElement("Hola");
-		dml.addElement("Hola");
-		dml.addElement("Hola");
-		dml.addElement("Hola");
-		dml.addElement("Hola");
-		dml.addElement("Hola");
-		dml.addElement("Hola");
-		jl_listaEspecialidades.setModel(new AbstractListModel() {
-			String[] values = new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
+		
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(Color.WHITE);
@@ -139,5 +132,11 @@ public class jd_especialidades extends JDialog {
 				buttonPane.add(btn_salir);
 			}
 		}
+		
+	}
+	
+	public JList<String> getJlist() {
+		return jl_listaEspecialidades;
+		
 	}
 }

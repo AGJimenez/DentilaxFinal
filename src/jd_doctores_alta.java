@@ -13,6 +13,8 @@ import java.awt.Color;
 import java.awt.Cursor;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JRadioButton;
 import javax.swing.AbstractButton;
@@ -278,6 +280,7 @@ public class jd_doctores_alta extends JDialog {
 					String salario = txt_salario.getText().toString();
 					String genero="";
 					String btn_seleccionado = getSelectedButton(btn_group_genero);
+					String contrasena = JOptionPane.showInputDialog("Introduce contraseña para el login");
 		            if (btn_seleccionado != null) {
 		                if (btn_seleccionado.equals("Varón")) {
 		                    // Realizar alguna acción si se selecciona "Varón"
@@ -297,6 +300,7 @@ public class jd_doctores_alta extends JDialog {
 		            ConectorDB_mysql bdd = new ConectorDB_mysql();
 		            try {
 						bdd.insertar_doctor(dni, apellidos, nombre, nacimiento, telefono, correo, especialidad, direccion, salario, genero, estado);
+						bdd.insertar_dr_usuario(dni, estado, contrasena);
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

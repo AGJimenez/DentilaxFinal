@@ -194,7 +194,9 @@ public class jf_login extends javax.swing.JFrame {
 				else {
 
 					System.out.println("Estoy accediendo como doctor");
-
+					jf_menu_doctor ventana = new jf_menu_doctor();
+					ventana.setVisible(true);
+					dispose();
 }
 				
 			} catch (SQLException e1) {

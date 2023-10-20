@@ -92,6 +92,9 @@ public class jf_doctores extends javax.swing.JFrame {
 	        		jd_especialidades ventana = new jd_especialidades();
 	        		ventana.setVisible(true);
 	        		
+	        		
+	        		
+	        		
 	        	}
 	        });
 	        btn_especialidades.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
