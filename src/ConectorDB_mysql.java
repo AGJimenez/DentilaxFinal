@@ -180,6 +180,42 @@ public void insertar_doctor(String dni, String apellidos, String nombre, String 
 	}
 }
 
+public void editar_doctor(String dni, String apellidos, String nombre, String nacimiento, String telefono, String correo, String especialidad, String direccion,
+		String salario, String genero) throws SQLException {
+
+    try {
+        // Conectar con la base de datos
+        conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+        statement = conect.createStatement();
+
+        // Crear la consulta
+        String query = "UPDATE doctores " +
+                "SET Apellidos = '" + apellidos + "', " +
+                "Salario = '" + salario + "', " +
+                "Nacimiento = '" + nacimiento + "', " +
+                "Genero = '" + genero + "', " +
+                "Nombre = '" + nombre + "', " +
+                "Correo = '" + correo + "', " +
+                "Direccion = '" + direccion + "', " +
+                "Telefono = '" + telefono + "', " +
+                "Especialidad = '" + especialidad + "'" +
+                "WHERE DNI_doctor = '" + dni + "'";
+
+        // Ejecutar la consulta
+        int fila = statement.executeUpdate(query);
+
+        // Verificar si la actualización se realizó con éxito
+        if (fila > 0) {
+            System.out.println("Actualización exitosa.");
+        } else {
+            System.out.println("La actualización no tuvo éxito.");
+        }
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+}
+
 public void insertar_dr_usuario(String dni, String estado, String contrasena) {
 	
 	try {
@@ -204,38 +240,11 @@ public void insertar_dr_usuario(String dni, String estado, String contrasena) {
 	
 }
 
-public String consulta_especialidades(String especialidades) throws SQLException{
-	
-	try {
-		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
-		statement = conect.createStatement();
-		String query = "SELECT * FROM especialidades";
-        ResultSet resultSet = statement.executeQuery(query);
-		
-        if (resultSet.next()) {
-            // Resultado encontrado
-            System.out.println("Resultado encontrado");
-            jd_especialidades ventana = new jd_especialidades();
-            String especialidadSql = resultSet.getString("Nombre_especialidad");          
-           // System.out.println(dniSql);
-            ventana.jl_listaEspecialidad.
-            ventana.setVisible(true);
-            
-            
-        } else {
-            // Acceso denegado
-            System.out.println("No se ha encontrado nada");
-            JOptionPane.showMessageDialog(null, "Error, no se ha encontrado nada");
-        }
-		
-		
-	}
-	catch(SQLException ex) {
-		
-	}
-	return dni;
+
+
+
+
 	
 }
 
 	
-}

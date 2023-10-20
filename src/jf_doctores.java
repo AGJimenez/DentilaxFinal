@@ -42,6 +42,23 @@ public class jf_doctores extends javax.swing.JFrame {
 	        jp_menu.add(btn_especialidades);
 	        jp_menu.add(btn_baja_doctores);
 	        jp_menu.add(btn_alta_doctores);
+	        
+	        JButton btn_editar_dr = new JButton("");
+	        btn_editar_dr.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		ConectorDB_mysql sentencia = new ConectorDB_mysql();
+	        	//	sentencia.editar_doctor(getWarningString(), getName(), getName(), getName(), getName(), getName(), getName(), getTitle(), getWarningString(), getName());
+	        		
+	        		
+	        	}
+	        });
+	        btn_editar_dr.setIcon(new ImageIcon(jf_doctores.class.getResource("/iconos_submenus/btn_editarPaciente_admin.png")));
+	        btn_editar_dr.setOpaque(false);
+	        btn_editar_dr.setContentAreaFilled(false);
+	        btn_editar_dr.setBorderPainted(false);
+	        btn_editar_dr.setBorder(null);
+	        btn_editar_dr.setBounds(633, 590, 188, 41);
+	        jp_menu.add(btn_editar_dr);
 	    }
 
 	    /**
