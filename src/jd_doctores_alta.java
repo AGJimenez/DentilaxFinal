@@ -26,6 +26,8 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.Enumeration;
 import java.awt.event.ActionEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class jd_doctores_alta extends JDialog {
 
@@ -111,9 +113,19 @@ public class jd_doctores_alta extends JDialog {
 		}
 		{
 			txt_nombre = new JTextField();
+			txt_nombre.setText("Introduce el nombre del doctor.");
+			txt_nombre.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent e) {
+					txt_nombre.setText("");
+				}
+				@Override
+				public void focusLost(FocusEvent e) {
+					txt_nombre.setText("Introduce el nombre del doctor.");
+				}
+			});
 			txt_nombre.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_nombre.setFont(new Font("Arial", Font.PLAIN, 14));
-			txt_nombre.setText("Introduce el nombre del doctor.");
 			txt_nombre.setBorder(null);
 			txt_nombre.setBackground(new Color(191, 231, 249));
 			txt_nombre.setBounds(387, 58, 218, 40);
@@ -122,7 +134,17 @@ public class jd_doctores_alta extends JDialog {
 		}
 		{
 			txt_dni = new JTextField();
-			txt_dni.setText("Introduce el DNI.");
+			txt_dni.setText("Introduce el dni.");
+			txt_dni.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent e) {
+					txt_dni.setText("");
+				}
+				@Override
+				public void focusLost(FocusEvent e) {
+					txt_dni.setText("Introduce el dni.");
+				}
+			});
 			txt_dni.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_dni.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_dni.setColumns(10);
@@ -145,7 +167,17 @@ public class jd_doctores_alta extends JDialog {
 		}
 		{
 			txt_telefono = new JTextField();
-			txt_telefono.setText("Introduce el teléfono.");
+			txt_telefono.setText("Introduce el telefono.");
+			txt_telefono.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent e) {
+					txt_telefono.setText("");
+				}
+				@Override
+				public void focusLost(FocusEvent e) {
+					txt_telefono.setText("Introduce el telefono.");
+				}
+			});
 			txt_telefono.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_telefono.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_telefono.setColumns(10);
@@ -163,6 +195,16 @@ public class jd_doctores_alta extends JDialog {
 		{
 			txt_especialidad = new JTextField();
 			txt_especialidad.setText("Introduce la especialidad.");
+			txt_especialidad.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent e) {
+					txt_especialidad.setText("");
+				}
+				@Override
+				public void focusLost(FocusEvent e) {
+					txt_especialidad.setText("Introduce la especialidad.");
+				}
+			});
 			txt_especialidad.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_especialidad.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_especialidad.setColumns(10);
@@ -179,7 +221,17 @@ public class jd_doctores_alta extends JDialog {
 		}
 		{
 			txt_salario = new JTextField();
-			txt_salario.setText("Introduce el salario");
+			txt_salario.setText("Introduce el salario.");
+			txt_salario.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent e) {
+					txt_salario.setText("");
+				}
+				@Override
+				public void focusLost(FocusEvent e) {
+					txt_salario.setText("Introduce el salario.");
+				}
+			});
 			txt_salario.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_salario.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_salario.setColumns(10);
@@ -196,7 +248,17 @@ public class jd_doctores_alta extends JDialog {
 		}
 		{
 			txt_apellidos = new JTextField();
-			txt_apellidos.setText("Introduce el nombre del doctor.");
+			txt_apellidos.setText("Introduce los apellidos del doctor.");
+			txt_apellidos.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent e) {
+					txt_apellidos.setText("");
+				}
+				@Override
+				public void focusLost(FocusEvent e) {
+					txt_apellidos.setText("Introduce los apellidos del doctor");
+				}
+			});
 			txt_apellidos.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_apellidos.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_apellidos.setColumns(10);
@@ -213,7 +275,17 @@ public class jd_doctores_alta extends JDialog {
 		}
 		{
 			txt_nacimiento = new JTextField();
-			txt_nacimiento.setText("Introduce fecha de nacimiento.");
+			txt_nacimiento.setText("Introduce la fecha de nacimiento.");
+			txt_nacimiento.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent e) {
+					txt_nacimiento.setText("");
+				}
+				@Override
+				public void focusLost(FocusEvent e) {
+					txt_nacimiento.setText("Introduce la fecha de nacimiento.");
+				}
+			});
 			txt_nacimiento.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_nacimiento.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_nacimiento.setColumns(10);
@@ -224,7 +296,17 @@ public class jd_doctores_alta extends JDialog {
 		}
 		{
 			txt_correo = new JTextField();
-			txt_correo.setText("Introduce correo.");
+			txt_correo.setText("Introduce el correo.");
+			txt_correo.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent e) {
+					txt_correo.setText("");
+				}
+				@Override
+				public void focusLost(FocusEvent e) {
+					txt_correo.setText("Introduce el correo");
+				}
+			});
 			txt_correo.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_correo.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_correo.setColumns(10);
@@ -241,7 +323,17 @@ public class jd_doctores_alta extends JDialog {
 		}
 		{
 			txt_direccion = new JTextField();
-			txt_direccion.setText("Linea de dirección.");
+			txt_direccion.setText("Introduce la direccion.");
+			txt_direccion.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent e) {
+					txt_direccion.setText("");
+				}
+				@Override
+				public void focusLost(FocusEvent e) {
+					txt_direccion.setText("Introduce la direccion");
+				}
+			});
 			txt_direccion.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_direccion.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_direccion.setColumns(10);

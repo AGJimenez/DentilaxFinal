@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Font;
 import javax.swing.JMenuItem;
 import java.awt.Dimension;
+import java.awt.Cursor;
 
 public class jf_material extends JFrame {
 
@@ -40,21 +41,19 @@ public class jf_material extends JFrame {
 
         jp_menu = new Fondo();
         btn_buscar_pedido = new javax.swing.JButton();
+        btn_buscar_pedido.setBounds(68, 620, 146, 23);
         btn_buscar_pedido.setBorderPainted(false);
         btn_buscar_pedido.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         	}
         });
         btn_nuevo_pedido = new javax.swing.JButton();
+        btn_nuevo_pedido.setBounds(879, 620, 146, 23);
         btn_nuevo_pedido.setBorderPainted(false);
         btn_proveedores = new javax.swing.JButton();
+        btn_proveedores.setBounds(401, 620, 146, 23);
         btn_proveedores.setBorderPainted(false);
-        btn_cancelar_pedido = new javax.swing.JButton();
-        btn_cancelar_pedido.setBorderPainted(false);
-        btn_cancelar_pedido.setText("CANCELAR PEDIDO");
         menu_inicio = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu1.setFont(new Font("Arial", Font.PLAIN, 12));
         jMenu2 = new javax.swing.JMenu();
         jMenu2.setFont(new Font("Arial", Font.PLAIN, 12));
         jMenu3 = new javax.swing.JMenu();
@@ -79,6 +78,7 @@ public class jf_material extends JFrame {
         btn_proveedores.setText("PROVEEDORES");
         
         btn_inventario = new JButton();
+        btn_inventario.setBounds(68, 561, 146, 15);
         btn_inventario.setContentAreaFilled(false);
         btn_inventario.setBorder(null);
         btn_inventario.setOpaque(false);
@@ -86,64 +86,29 @@ public class jf_material extends JFrame {
         btn_inventario.setText("INVENTARIO");
         
         btn_solicitudes = new JButton();
+        btn_solicitudes.setBounds(1210, 620, 146, 23);
         btn_solicitudes.setBorderPainted(false);
         btn_solicitudes.setText("SOLICITUDES");
-
-        javax.swing.GroupLayout jp_menuLayout = new javax.swing.GroupLayout(jp_menu);
-        jp_menuLayout.setHorizontalGroup(
-        	jp_menuLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(jp_menuLayout.createSequentialGroup()
-        			.addGap(68)
-        			.addGroup(jp_menuLayout.createParallelGroup(Alignment.LEADING)
-        				.addGroup(Alignment.TRAILING, jp_menuLayout.createSequentialGroup()
-        					.addComponent(btn_inventario, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-        					.addPreferredGap(ComponentPlacement.RELATED, 890, Short.MAX_VALUE)
-        					.addComponent(btn_solicitudes, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE))
-        				.addGroup(jp_menuLayout.createSequentialGroup()
-        					.addComponent(btn_buscar_pedido, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-        					.addGap(187)
-        					.addComponent(btn_proveedores, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-        					.addPreferredGap(ComponentPlacement.RELATED, 239, Short.MAX_VALUE)
-        					.addComponent(btn_cancelar_pedido, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-        					.addGap(172)
-        					.addComponent(btn_nuevo_pedido, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)))
-        			.addGap(79))
-        );
-        jp_menuLayout.setVerticalGroup(
-        	jp_menuLayout.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(jp_menuLayout.createSequentialGroup()
-        			.addContainerGap(533, Short.MAX_VALUE)
-        			.addGroup(jp_menuLayout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(btn_solicitudes)
-        				.addComponent(btn_inventario))
-        			.addGap(40)
-        			.addGroup(jp_menuLayout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(btn_buscar_pedido, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(btn_nuevo_pedido, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(btn_cancelar_pedido, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(btn_proveedores, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-        			.addGap(44))
-        );
-        jp_menu.setLayout(jp_menuLayout);
 
         menu_inicio.setBackground(new java.awt.Color(32, 160, 216));
         menu_inicio.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         menu_inicio.setBorderPainted(false);
-
-        jMenu1.setBackground(new java.awt.Color(32, 160, 216));
-        jMenu1.setText("INICIO");
-        menu_inicio.add(jMenu1);
         
-        jmenuitem_volver = new JMenuItem("Volver");
-        jmenuitem_volver.addActionListener(new ActionListener() {
+        btnNewButton = new JButton("INICIO");
+        btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnNewButton.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
         		jf_menu_ppal ventana = new jf_menu_ppal();
         		ventana.setVisible(true);
         	}
         });
-        jmenuitem_volver.setFont(new Font("Arial", Font.PLAIN, 12));
-        jMenu1.add(jmenuitem_volver);
+        btnNewButton.setOpaque(false);
+        btnNewButton.setFont(new Font("Arial", Font.PLAIN, 12));
+        btnNewButton.setFocusPainted(false);
+        btnNewButton.setContentAreaFilled(false);
+        btnNewButton.setBorderPainted(false);
+        menu_inicio.add(btnNewButton);
 
         jMenu2.setText("PACIENTES");
         menu_inicio.add(jMenu2);
@@ -205,6 +170,12 @@ public class jf_material extends JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jp_menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+        jp_menu.setLayout(null);
+        jp_menu.add(btn_inventario);
+        jp_menu.add(btn_solicitudes);
+        jp_menu.add(btn_buscar_pedido);
+        jp_menu.add(btn_proveedores);
+        jp_menu.add(btn_nuevo_pedido);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -231,7 +202,6 @@ public class jf_material extends JFrame {
     private javax.swing.JButton btn_proveedores;
     private javax.swing.JButton btn_nuevo_pedido;
     private javax.swing.JButton btn_buscar_pedido;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -241,15 +211,14 @@ public class jf_material extends JFrame {
     private javax.swing.JMenu jMenu8;
     private javax.swing.JPanel jp_menu;
     private javax.swing.JMenuBar menu_inicio;
-    private JButton btn_cancelar_pedido;
     private JButton btn_inventario;
     private JButton btn_solicitudes;
-    private JMenuItem jmenuitem_volver;
     private JMenuItem jmenuitem_buscar_paciente;
     private JMenuItem jmenuitem_menu_paciente;
     private JMenuItem jmenuitem_editar_paciente;
     private JMenuItem jmenuitem_alta_paciente;
     private JMenuItem jmenuitem_baja_paciente;
+    private JButton btnNewButton;
     // End of variables declaration//GEN-END:variables
 
 }
