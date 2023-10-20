@@ -116,16 +116,21 @@ public class jd_doctores_alta extends JDialog {
 			txt_nombre.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
-					txt_nombre.setText("");
+					if(txt_nombre.getText().equals("Introduce el nombre del doctor")) {
+						txt_nombre.setText("");
+					}
 				}
 				@Override
 				public void focusLost(FocusEvent e) {
-					txt_nombre.setText("Introduce el nombre del doctor");
+					if (txt_nombre.getText().isEmpty()) {
+						txt_nombre.setText("Introduce el nombre del doctor");
+					}
+					
 				}
 			});
 			txt_nombre.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_nombre.setFont(new Font("Arial", Font.PLAIN, 14));
-			txt_nombre.setText("Introduce el nombre del doctor.");
+			txt_nombre.setText("Introduce el nombre del doctor");
 			txt_nombre.setBorder(null);
 			txt_nombre.setBackground(new Color(191, 231, 249));
 			txt_nombre.setBounds(387, 58, 218, 40);
@@ -137,14 +142,19 @@ public class jd_doctores_alta extends JDialog {
 			txt_dni.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
-					txt_dni.setText("");
+					if(txt_dni.getText().equals("Introduce el DNI")) {
+						txt_dni.setText("");
+					}
+					
 				}
 				@Override
 				public void focusLost(FocusEvent e) {
-					txt_dni.setText("Introduce el dni");
+					if (txt_dni.getText().isEmpty()) {
+						txt_dni.setText("Introduce el DNI");
+					}
 				}
 			});
-			txt_dni.setText("Introduce el DNI.");
+			txt_dni.setText("Introduce el DNI");
 			txt_dni.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_dni.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_dni.setColumns(10);
@@ -170,14 +180,20 @@ public class jd_doctores_alta extends JDialog {
 			txt_telefono.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
-					txt_telefono.setText("");
+
+					if(txt_telefono.getText().equals("Introduce el telefono")) {
+						txt_telefono.setText("");
+					}
 				}
 				@Override
 				public void focusLost(FocusEvent e) {
-					txt_telefono.setText("Introduce el telefono");
+					if (txt_telefono.getText().isEmpty()) {
+						txt_telefono.setText("Introduce el telefono");
+					}
+					
 				}
 			});
-			txt_telefono.setText("Introduce el teléfono.");
+			txt_telefono.setText("Introduce el telefono");
 			txt_telefono.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_telefono.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_telefono.setColumns(10);
@@ -197,14 +213,19 @@ public class jd_doctores_alta extends JDialog {
 			txt_especialidad.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
-					txt_especialidad.setText("");
+					if(txt_especialidad.getText().equals("Introduce la especialidad")) {
+						txt_especialidad.setText("");
+					}
 				}
 				@Override
 				public void focusLost(FocusEvent e) {
-					txt_especialidad.setText("Introduce la especialdad");
+					if (txt_especialidad.getText().isEmpty()) {
+						txt_especialidad.setText("Introduce la especialidad");
+					}
+					
 				}
 			});
-			txt_especialidad.setText("Introduce la especialidad.");
+			txt_especialidad.setText("Introduce la especialidad");
 			txt_especialidad.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_especialidad.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_especialidad.setColumns(10);
@@ -224,11 +245,15 @@ public class jd_doctores_alta extends JDialog {
 			txt_salario.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
-					txt_salario.setText("");
+					if(txt_salario.getText().equals("Introduce el salario")) {
+						txt_salario.setText("");
+					}
 				}
 				@Override
 				public void focusLost(FocusEvent e) {
-					txt_salario.setText("Introduce el salario");
+					if (txt_salario.getText().isEmpty()) {
+						txt_salario.setText("Introduce el salario");
+					}
 				}
 			});
 			txt_salario.setText("Introduce el salario");
@@ -251,14 +276,18 @@ public class jd_doctores_alta extends JDialog {
 			txt_apellidos.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
-					txt_apellidos.setText("");
+					if(txt_apellidos.getText().equals("Introduce los apellidos del doctor")) {
+						txt_apellidos.setText("");
+					}
 				}
 				@Override
 				public void focusLost(FocusEvent e) {
-					txt_apellidos.setText("Introduce los apellidos del doctor");
+					if (txt_apellidos.getText().isEmpty()) {
+						txt_apellidos.setText("Introduce los apellidos del doctor");
+					}
 				}
 			});
-			txt_apellidos.setText("Introduce el nombre del doctor.");
+			txt_apellidos.setText("Introduce los apellidos del doctor");
 			txt_apellidos.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_apellidos.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_apellidos.setColumns(10);
@@ -278,14 +307,19 @@ public class jd_doctores_alta extends JDialog {
 			txt_nacimiento.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
-					txt_nacimiento.setText("");
+					if(txt_nacimiento.getText().equals("Introduce la fecha de nacimiento")) {
+						txt_nacimiento.setText("");
+					}
+					
 				}
 				@Override
 				public void focusLost(FocusEvent e) {
-					txt_nacimiento.setText("Introduce la fecha de nacimiento");
+					if (txt_nacimiento.getText().isEmpty()) {
+						txt_nacimiento.setText("Introduce la fecha de nacimiento");
+					}
 				}
 			});
-			txt_nacimiento.setText("Introduce fecha de nacimiento.");
+			txt_nacimiento.setText("Introduce la fecha de nacimiento");
 			txt_nacimiento.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_nacimiento.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_nacimiento.setColumns(10);
@@ -299,15 +333,19 @@ public class jd_doctores_alta extends JDialog {
 			txt_correo.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
-					txt_correo.setText("");
+					if(txt_correo.getText().equals("Introduce el correo")) {
+						txt_correo.setText("");
+					}
 				}
 				@Override
 				public void focusLost(FocusEvent e) {
-
-					txt_correo.setText("Introduce el correo");
+					if (txt_correo.getText().isEmpty()) {
+						txt_correo.setText("Introduce el correo");
+					}
+					
 				}
 			});
-			txt_correo.setText("Introduce correo.");
+			txt_correo.setText("Introduce el correo");
 			txt_correo.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_correo.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_correo.setColumns(10);
@@ -327,14 +365,19 @@ public class jd_doctores_alta extends JDialog {
 			txt_direccion.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
-					txt_direccion.setText("");
+					if(txt_direccion.getText().equals("Introduce la direccion")) {
+						txt_direccion.setText("");
+					}
 				}
 				@Override
 				public void focusLost(FocusEvent e) {
-					txt_direccion.setText("Introduce la direccion");
+	        		 if (txt_direccion.getText().isEmpty()) {
+	        			 txt_direccion.setText("Introduce la direccion");
+	        		 }
+					
 				}
 			});
-			txt_direccion.setText("Linea de dirección.");
+			txt_direccion.setText("Introduce la direccion");
 			txt_direccion.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_direccion.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_direccion.setColumns(10);
