@@ -101,14 +101,41 @@ public class jf_pacientes extends JFrame {
 		mn_pacientes.add(jmenuitem_buscar_paciente);
 		
 		JMenuItem jmenuitem_editar_paciente = new JMenuItem("Editar paciente");
+		jmenuitem_editar_paciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				jf_pacientes ventana = new jf_pacientes();
+				jd_buscar_paciente_editar ventana_editar = new jd_buscar_paciente_editar();
+				ventana.setVisible(true);
+				ventana_editar.setVisible(true);
+			}
+		});
 		jmenuitem_editar_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
 		mn_pacientes.add(jmenuitem_editar_paciente);
 		
 		JMenuItem jmenuitem_baja_paciente = new JMenuItem("Dar de baja");
+		jmenuitem_baja_paciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				jf_pacientes ventana = new jf_pacientes();
+				jd_buscar_paciente_baja ventana_buscar = new jd_buscar_paciente_baja();
+				ventana.setVisible(true);
+				ventana_buscar.setVisible(true);
+			}
+		});
 		jmenuitem_baja_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
 		mn_pacientes.add(jmenuitem_baja_paciente);
 		
 		JMenuItem jmenuitem_alta_paciente = new JMenuItem("Dar de alta");
+		jmenuitem_alta_paciente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				jf_pacientes ventana = new jf_pacientes();
+				jd_pacientes_alta ventana_alta = new jd_pacientes_alta();
+				ventana.setVisible(true);
+				ventana_alta.setVisible(true);
+			}
+		});
 		jmenuitem_alta_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
 		mn_pacientes.add(jmenuitem_alta_paciente);
 		
