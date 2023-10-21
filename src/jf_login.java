@@ -24,6 +24,10 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
+import javax.swing.JPanel;
+import javax.swing.JButton;
+import java.awt.Toolkit;
+import java.awt.Window.Type;
 
 
 
@@ -61,6 +65,9 @@ public class jf_login extends javax.swing.JFrame {
      */
     Fondo fondo = new Fondo();
     public jf_login() {
+    	setUndecorated(true);
+    	setTitle("Dentilax");
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(jf_login.class.getResource("/iconos_menus/dentilaxIcono.png")));
     	setPreferredSize(new Dimension(1450, 750));
         this.setContentPane(fondo);
         initComponents();
@@ -91,10 +98,52 @@ public class jf_login extends javax.swing.JFrame {
         interior.add(jtf_user);
         panelFondo.add(btn_entrar);
         
+        panel = new JPanel();
+        panel.setOpaque(false);
+        panel.setBounds(150, 504, 164, 63);
+        panelFondo.add(panel);
+        panel.setLayout(null);
+        
+        btnNewButton = new JButton("");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        	}
+        });
+        btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnNewButton.setIcon(new ImageIcon("C:\\Users\\alexg\\Downloads\\icono_salir.png"));
+        btnNewButton.setOpaque(false);
+        btnNewButton.setContentAreaFilled(false);
+        btnNewButton.setBorder(null);
+        btnNewButton.setBorderPainted(false);
+        btnNewButton.setBounds(0, 0, 65, 63);
+        panel.add(btnNewButton);
+        
+        btnNewButton_1 = new JButton("");
+        btnNewButton_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		Ayuda_login ayuda = new Ayuda_login();
+        		ayuda.setVisible(true);
+        	}
+        });
+        btnNewButton_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\alexg\\Downloads\\icono_ayuda.png"));
+        btnNewButton_1.setOpaque(false);
+        btnNewButton_1.setContentAreaFilled(false);
+        btnNewButton_1.setBorderPainted(false);
+        btnNewButton_1.setBorder(null);
+        btnNewButton_1.setBounds(99, 0, 65, 63);
+        panel.add(btnNewButton_1);
+        
         lblNewLabel = new JLabel("");
-        lblNewLabel.setBounds(486, 93, 500, 450);
+        lblNewLabel.setBounds(683, 87, 500, 450);
         panelFondo.add(lblNewLabel);
         lblNewLabel.setIcon(new ImageIcon(jf_login.class.getResource("/iconos_menus/panel_login.png")));
+        
+        JLabel lblNewLabel_3 = new JLabel("");
+        lblNewLabel_3.setIcon(new ImageIcon(jf_login.class.getResource("/iconos_menus/dent.png")));
+        lblNewLabel_3.setBounds(0, 84, 483, 545);
+        panelFondo.add(lblNewLabel_3);
         this.setLocationRelativeTo(this);
     }
 
@@ -114,7 +163,7 @@ public class jf_login extends javax.swing.JFrame {
         panelFondo.setOpaque(false);
         panelFondo.setBorder(null);
         interior = new javax.swing.JPanel();
-        interior.setBounds(497, 141, 483, 350);
+        interior.setBounds(694, 135, 483, 350);
         interior.setOpaque(false);
         jtf_user = new javax.swing.JTextField();
         jtf_user.setForeground(new Color(0, 128, 192));
@@ -183,7 +232,7 @@ public class jf_login extends javax.swing.JFrame {
         btn_recuperar_pass.setBounds(269, 291, 157, 37);
         btn_entrar = new javax.swing.JButton();
         btn_entrar.setBorderPainted(false);
-        btn_entrar.setBounds(551, 572, 375, 63);
+        btn_entrar.setBounds(748, 566, 375, 63);
         btn_entrar.setContentAreaFilled(false);
         btn_entrar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_entrar.setBorder(null);
@@ -310,4 +359,7 @@ public class jf_login extends javax.swing.JFrame {
     private JLabel lblNewLabel;
     private JLabel lblNewLabel_1;
     private JLabel lblNewLabel_2;
+    private JPanel panel;
+    private JButton btnNewButton;
+    private JButton btnNewButton_1;
 }
