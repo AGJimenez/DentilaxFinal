@@ -41,13 +41,14 @@ public class Ayuda_login extends JDialog {
 		setTitle("Ayuda en el login");
 		getContentPane().setBackground(new Color(255, 255, 255));
 		getContentPane().setLayout(null);
-		this.setLocationRelativeTo(null);
+		
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setBounds(29, 23, 379, 154);
 		getContentPane().add(panel);
 		panel.setLayout(null);
+		
 		
 		JLabel lblNewLabel = new JLabel("¡Veo que tienes problemas de acceso!");
 		lblNewLabel.setFont(new Font("Barlow", Font.PLAIN, 15));
@@ -89,7 +90,7 @@ public class Ayuda_login extends JDialog {
 		btn_salir.setBounds(255, 207, 153, 43);
 		getContentPane().add(btn_salir);
 		setBounds(100, 100, 450, 301);
-
+		setLocationRelativeTo(panel);
 	}
 
 }

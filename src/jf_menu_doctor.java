@@ -12,6 +12,7 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
 import java.awt.Cursor;
+import javax.swing.JButton;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -33,10 +34,18 @@ public class jf_menu_doctor extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(jp_menu);
         jp_menu.setLayout(null);
-        jp_menu.add(btn_buscar_paciente);
         jp_menu.add(btn_nuevo_tratamiento);
         jp_menu.add(btn_solicitar);
         jp_menu.add(btn_ajustes);
+        
+        JButton btn_buscar_paciente_dr = new JButton();
+        btn_buscar_paciente_dr.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btn_buscar_paciente_dr.setBorderPainted(false);
+        btn_buscar_paciente_dr.setIcon(new ImageIcon(jf_menu_doctor.class.getResource("/iconos_menus/btn_buscarPaciente_dr.png")));
+        btn_buscar_paciente_dr.setOpaque(false);
+        btn_buscar_paciente_dr.setContentAreaFilled(false);
+        btn_buscar_paciente_dr.setBounds(433, 218, 282, 98);
+        jp_menu.add(btn_buscar_paciente_dr);
     }
 
     /**
@@ -50,33 +59,27 @@ public class jf_menu_doctor extends javax.swing.JFrame {
 
         jp_menu = new Fondo();
         jp_menu.setPreferredSize(new Dimension(1450, 750));
-        btn_buscar_paciente = new javax.swing.JButton();
-        btn_buscar_paciente.setBorderPainted(false);
-        btn_buscar_paciente.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        btn_buscar_paciente.setBounds(440, 218, 275, 101);
-        btn_buscar_paciente.setContentAreaFilled(false);
-        btn_buscar_paciente.setOpaque(false);
-        btn_buscar_paciente.setIcon(new ImageIcon(jf_menu_doctor.class.getResource("/iconos_menus/btn_buscarPaciente_dr.png")));
         btn_solicitar = new javax.swing.JButton();
+        btn_solicitar.setOpaque(false);
         btn_solicitar.setBorderPainted(false);
+        btn_solicitar.setContentAreaFilled(false);
         btn_solicitar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_solicitar.setBounds(440, 334, 275, 93);
         btn_solicitar.setIcon(new ImageIcon(jf_menu_doctor.class.getResource("/iconos_menus/btn_pedidos_doctor.png")));
-        btn_solicitar.setOpaque(false);
-        btn_solicitar.setContentAreaFilled(false);
         btn_ajustes = new javax.swing.JButton();
+        btn_ajustes.setOpaque(false);
         btn_ajustes.setBorderPainted(false);
+        btn_ajustes.setContentAreaFilled(false);
         btn_ajustes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_ajustes.setIcon(new ImageIcon(jf_menu_doctor.class.getResource("/iconos_menus/btn_ajustes_admin.png")));
-        btn_ajustes.setOpaque(false);
-        btn_ajustes.setContentAreaFilled(false);
         btn_ajustes.setBounds(733, 334, 282, 93);
         btn_nuevo_tratamiento = new javax.swing.JButton();
+        btn_nuevo_tratamiento.setOpaque(false);
         btn_nuevo_tratamiento.setBorderPainted(false);
+        btn_nuevo_tratamiento.setContentAreaFilled(false);
         btn_nuevo_tratamiento.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_nuevo_tratamiento.setBounds(733, 218, 282, 98);
         btn_nuevo_tratamiento.setIcon(new ImageIcon(jf_menu_doctor.class.getResource("/iconos_menus/btn_nuevoTratamiento_dr.png")));
-        btn_nuevo_tratamiento.setOpaque(false);
         menu_inicio = new javax.swing.JMenuBar();
         mn_buscar = new javax.swing.JMenu();
         mn_tratamiento = new javax.swing.JMenu();
@@ -150,7 +153,6 @@ public class jf_menu_doctor extends javax.swing.JFrame {
     private javax.swing.JButton btn_ajustes;
     private javax.swing.JButton btn_nuevo_tratamiento;
     private javax.swing.JButton btn_solicitar;
-    private javax.swing.JButton btn_buscar_paciente;
     private javax.swing.JMenu mn_buscar;
     private javax.swing.JMenu mn_tratamiento;
     private javax.swing.JMenu mn_solictar;
