@@ -111,7 +111,7 @@ public class jf_login extends javax.swing.JFrame {
         	}
         });
         btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        btnNewButton.setIcon(new ImageIcon("C:\\Users\\alexg\\Downloads\\icono_salir.png"));
+        btnNewButton.setIcon(new ImageIcon(jf_login.class.getResource("/iconos_menus/icono_salir.png")));
         btnNewButton.setOpaque(false);
         btnNewButton.setContentAreaFilled(false);
         btnNewButton.setBorder(null);
@@ -127,7 +127,7 @@ public class jf_login extends javax.swing.JFrame {
         	}
         });
         btnNewButton_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\alexg\\Downloads\\icono_ayuda.png"));
+        btnNewButton_1.setIcon(new ImageIcon(jf_login.class.getResource("/iconos_menus/icono_ayuda.png")));
         btnNewButton_1.setOpaque(false);
         btnNewButton_1.setContentAreaFilled(false);
         btnNewButton_1.setBorderPainted(false);
@@ -166,13 +166,14 @@ public class jf_login extends javax.swing.JFrame {
         interior.setBounds(694, 135, 483, 350);
         interior.setOpaque(false);
         jtf_user = new javax.swing.JTextField();
+        jtf_user.setFont(new Font("Barlow", Font.PLAIN, 14));
         jtf_user.setForeground(new Color(0, 128, 192));
         jtf_user.addFocusListener(new FocusAdapter() {
         	@Override
         	public void focusGained(FocusEvent e) {
         		if (jtf_user.getText().equals("Introduce usuario")) {
                     jtf_user.setText("");
-                    jtf_user.setForeground(Color.BLACK);
+                 //   jtf_user.setForeground(Color.WHITE);
                 }
         	}
         	@Override
@@ -190,13 +191,14 @@ public class jf_login extends javax.swing.JFrame {
         jtf_user.setCaretColor(new Color(255, 255, 255));
         jtf_user.setBounds(132, 83, 294, 65);
         jtf_user1 = new javax.swing.JTextField();
+        jtf_user1.setFont(new Font("Barlow", Font.PLAIN, 14));
         jtf_user1.setForeground(new Color(0, 128, 192));
         jtf_user1.addFocusListener(new FocusAdapter() {
         	@Override
         	public void focusGained(FocusEvent e) {
         		if (jtf_user1.getText().equals("Introduce contraseña")) {
                     jtf_user1.setText("");
-                    jtf_user1.setForeground(Color.BLACK);
+                 //   jtf_user1.setForeground(Color.WHITE);
                 }
         	}
         	@Override
