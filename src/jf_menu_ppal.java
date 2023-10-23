@@ -302,6 +302,19 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         		ventana_alta.setVisible(true);
         	}
         });
+        
+        JMenuItem jmenuitem_editar_doctor = new JMenuItem("Editar doctor");
+        jmenuitem_editar_doctor.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_doctores ventana = new jf_doctores();
+        		jd_buscar_doctor_editar ventana_buscar = new jd_buscar_doctor_editar();
+        		ventana.setVisible(true);
+        		ventana_buscar.setVisible(true);
+        	}
+        });
+        jmenuitem_editar_doctor.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_doctor.add(jmenuitem_editar_doctor);
         jmenuitem_baja_doctores.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_doctor.add(jmenuitem_baja_doctores);
         

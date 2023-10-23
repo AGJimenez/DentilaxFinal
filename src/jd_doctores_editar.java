@@ -267,10 +267,10 @@ public class jd_doctores_editar extends JDialog {
 			contentPanel.add(panel);
 		}
 		{
-			JButton btn_anadir = new JButton("MODIFICAR");
-			btn_anadir.setBounds(665, 336, 153, 43);
-			contentPanel.add(btn_anadir);
-			btn_anadir.addActionListener(new ActionListener() {
+			JButton btn_modificar = new JButton("MODIFICAR");
+			btn_modificar.setBounds(665, 336, 153, 43);
+			contentPanel.add(btn_modificar);
+			btn_modificar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					//sql
 					String nombre = txt_nombre.getText().toString();
@@ -313,12 +313,12 @@ public class jd_doctores_editar extends JDialog {
 		            
 				}
 			});
-			btn_anadir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btn_anadir.setBorderPainted(false);
-			btn_anadir.setFont(new Font("Barlow", Font.BOLD, 20));
-			btn_anadir.setForeground(new Color(255, 255, 255));
-			btn_anadir.setBackground(new Color(32, 160, 216));
-			btn_anadir.setActionCommand("OK");
+			btn_modificar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			btn_modificar.setBorderPainted(false);
+			btn_modificar.setFont(new Font("Barlow", Font.BOLD, 20));
+			btn_modificar.setForeground(new Color(255, 255, 255));
+			btn_modificar.setBackground(new Color(32, 160, 216));
+			btn_modificar.setActionCommand("OK");
 			
 		}
 		{

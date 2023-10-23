@@ -50,7 +50,7 @@ public class jd_buscar_paciente_editar extends JDialog {
 	 */
 	public jd_buscar_paciente_editar() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_buscar_paciente_editar.class.getResource("/iconos_menus/dentilaxIcono.png")));
-		setTitle("Editar  paciente");
+		setTitle("Editar paciente");
 		setPreferredSize(new Dimension(554, 343));
 		setModal(true);
 		setResizable(false);
@@ -72,13 +72,15 @@ public class jd_buscar_paciente_editar extends JDialog {
 			txt_IntroduceDni.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
+					if(txt_IntroduceDni.getText().equals("Introduce DNI paciente")) {
 						txt_IntroduceDni.setText("");
-	                
+					}
 				}
 				@Override
 				public void focusLost(FocusEvent e) {
-						txt_IntroduceDni.setText("Introduce DNI");
-	                
+					if(txt_IntroduceDni.getText().equals("")) {
+						txt_IntroduceDni.setText("Introduce DNI paciente");
+					}
 				}
 			});
 			txt_IntroduceDni.setOpaque(false);
@@ -121,8 +123,22 @@ public class jd_buscar_paciente_editar extends JDialog {
 				JButton btn_buscar = new JButton("BUSCAR");
 				btn_buscar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						jd_pacientes_editar ventana = new jd_pacientes_editar();
-						ventana.setVisible(true);
+
+						ConectorDB_mysql consulta = new ConectorDB_mysql();
+						try {
+			            	String dni = txt_IntroduceDni.getText().toString();			            	
+							consulta.consulta_paciente_editar(dni);
+							consulta.consulta_paciente_cargar(dni);
+							//String consulta_paciente_cargar = ; dejadme esto para yo luego trabajar en lo del radio button
+			}
+							
+							
+						 catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							
+							e1.printStackTrace();
+							
+						}
 					}
 				});
 				btn_buscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

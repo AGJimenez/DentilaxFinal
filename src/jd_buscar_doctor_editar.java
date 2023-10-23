@@ -69,13 +69,15 @@ public class jd_buscar_doctor_editar extends JDialog {
 			txt_IntroduceDni.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
+					if(txt_IntroduceDni.getText().equals("Introduce DNI doctor")) {
 						txt_IntroduceDni.setText("");
-	                
+					}
 				}
 				@Override
 				public void focusLost(FocusEvent e) {
-						txt_IntroduceDni.setText("Introduce DNI");
-	                
+					if(txt_IntroduceDni.getText().equals("")) {
+						txt_IntroduceDni.setText("Introduce DNI doctor");
+					}
 				}
 			});
 			txt_IntroduceDni.setOpaque(false);
@@ -122,7 +124,7 @@ public class jd_buscar_doctor_editar extends JDialog {
 						ConectorDB_mysql consulta = new ConectorDB_mysql();
 						try {
 			            	String dni = txt_IntroduceDni.getText().toString();			            	
-							String comprobar = consulta.consulta_doctor_editar(dni);
+							consulta.consulta_doctor_editar(dni);
 							consulta.consulta_doctor_cargar(dni);
 			}
 							

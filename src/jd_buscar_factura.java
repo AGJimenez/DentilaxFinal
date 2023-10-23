@@ -27,7 +27,7 @@ public class jd_buscar_factura extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txt_IntroduceDni;
+	private JTextField txt_introduce_factura;
 
 	/**
 	 * Launch the application.
@@ -65,32 +65,30 @@ public class jd_buscar_factura extends JDialog {
 			contentPanel.add(lbl_buscar_factura);
 		}
 		{
-			txt_IntroduceDni = new JTextField();
-			txt_IntroduceDni.addFocusListener(new FocusAdapter() {
+			txt_introduce_factura = new JTextField();
+			txt_introduce_factura.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
-					if (txt_IntroduceDni.getText().equals("Introduce DNI")) {
-						txt_IntroduceDni.setText("");
-						txt_IntroduceDni.setForeground(Color.BLACK);
+					if (txt_introduce_factura.getText().equals("Introduce factura")) {
+						txt_introduce_factura.setText("");
 	                }
 				}
 				@Override
 				public void focusLost(FocusEvent e) {
-					if (txt_IntroduceDni.getText().isEmpty()) {
-						txt_IntroduceDni.setForeground(new Color(0, 128, 192));
-						txt_IntroduceDni.setText("Introduce DNI");
+					if (txt_introduce_factura.getText().isEmpty()) {
+						txt_introduce_factura.setText("Introduce factura");
 	                }
 				}
 			});
-			txt_IntroduceDni.setOpaque(false);
-			txt_IntroduceDni.setText("Introduce DNI del paciente");
-			txt_IntroduceDni.setHorizontalAlignment(SwingConstants.LEFT);
-			txt_IntroduceDni.setFont(new Font("Arial", Font.PLAIN, 17));
-			txt_IntroduceDni.setColumns(10);
-			txt_IntroduceDni.setBorder(null);
-			txt_IntroduceDni.setBackground(new Color(0, 128, 192));
-			txt_IntroduceDni.setBounds(110, 140, 382, 44);
-			contentPanel.add(txt_IntroduceDni);
+			txt_introduce_factura.setOpaque(false);
+			txt_introduce_factura.setText("Introduce factura");
+			txt_introduce_factura.setHorizontalAlignment(SwingConstants.LEFT);
+			txt_introduce_factura.setFont(new Font("Arial", Font.PLAIN, 17));
+			txt_introduce_factura.setColumns(10);
+			txt_introduce_factura.setBorder(null);
+			txt_introduce_factura.setBackground(new Color(0, 128, 192));
+			txt_introduce_factura.setBounds(110, 140, 382, 44);
+			contentPanel.add(txt_introduce_factura);
 		}
 		{
 			JLabel lbl_dni = new JLabel("DNI");

@@ -13,8 +13,11 @@ import java.awt.Color;
 import java.awt.Cursor;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JRadioButton;
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -22,6 +25,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.sql.SQLException;
+import java.util.Enumeration;
 import java.awt.Toolkit;
 
 public class jd_pacientes_editar extends JDialog {
@@ -91,7 +96,7 @@ public class jd_pacientes_editar extends JDialog {
 			JRadioButton btn_genero_mujer = new JRadioButton("Mujer");
 			btn_group_genero.add(btn_genero_mujer);
 			btn_genero_mujer.setOpaque(false);
-			btn_genero_mujer.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			btn_genero_mujer.setFont(new Font("Arial", Font.PLAIN, 14));
 			btn_genero_mujer.setBounds(24, 60, 71, 23);
 			panel.add(btn_genero_mujer);
 			
@@ -255,20 +260,57 @@ public class jd_pacientes_editar extends JDialog {
 			contentPanel.add(panel_foto);
 		}
 		{
-			JButton btn_anadir = new JButton("AÑADIR");
-			btn_anadir.setBounds(708, 455, 153, 43);
-			contentPanel.add(btn_anadir);
-			btn_anadir.addActionListener(new ActionListener() {
+			JButton btn_modificar = new JButton("MODIFICAR");
+			btn_modificar.setBounds(708, 455, 153, 43);
+			contentPanel.add(btn_modificar);
+			btn_modificar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					//sql
+					String nombre = txt_nombre.getText().toString();
+					String apellidos = txt_apellidos.getText().toString();
+					String dni = txt_dni.getText().toString();
+					String nacimiento = txt_nacimiento.getText().toString();
+					String telefono = txt_telefono.getText().toString();
+					String correo = txt_correo.getText().toString();
+					String seguro = txt_seguro.getText().toString();
+					String estado = "alta";
+					String direccion = txt_direccion.getText().toString();
+					String observacion = txt_observaciones.getText().toString();
+					String genero="";
+					String btn_seleccionado = getSelectedButton(btn_group_genero);
+					String contrasena = JOptionPane.showInputDialog("Introduce contraseña para el login");
+		            if (btn_seleccionado != null) {
+		                if (btn_seleccionado.equals("Varón")) {
+		                    // Realizar alguna acción si se selecciona "Varón"
+		                    System.out.println("Varón seleccionado");
+		                    genero = "Varón";
+		                } else if (btn_seleccionado.equals("Mujer")) {
+		                    // Realizar alguna acción si se selecciona "Mujer"
+		                    System.out.println("Mujer seleccionada");
+		                    genero = "Mujer";
+		                } else if (btn_seleccionado.equals("Otro")) {
+		                    // Realizar alguna acción si se selecciona "Otro"
+		                    System.out.println("Otro seleccionado");
+		                    genero = "Otro";
+		                }
+		            }//acaba el primer if
+
+		            ConectorDB_mysql bdd = new ConectorDB_mysql();
+		            try {
+						bdd.editar_paciente(dni, apellidos, nombre, nacimiento, telefono, correo, seguro, direccion, observacion, genero);
+						
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
 			});
-			btn_anadir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btn_anadir.setBorderPainted(false);
-			btn_anadir.setFont(new Font("Barlow", Font.BOLD, 20));
-			btn_anadir.setForeground(new Color(255, 255, 255));
-			btn_anadir.setBackground(new Color(32, 160, 216));
-			btn_anadir.setActionCommand("OK");
+			btn_modificar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			btn_modificar.setBorderPainted(false);
+			btn_modificar.setFont(new Font("Barlow", Font.BOLD, 20));
+			btn_modificar.setForeground(new Color(255, 255, 255));
+			btn_modificar.setBackground(new Color(32, 160, 216));
+			btn_modificar.setActionCommand("OK");
 			
 		}
 		{
@@ -287,5 +329,92 @@ public class jd_pacientes_editar extends JDialog {
 			contentPanel.add(btn_cancelar);
 			btn_cancelar.setActionCommand("Cancel");
 		}
+	}
+
+	public ButtonGroup getBtn_group_genero() {
+		return btn_group_genero;
+	}
+
+	public JTextField getTxt_nombre() {
+		return txt_nombre;
+	}
+
+	public void setTxt_nombre(String txt_nombre) {
+		this.txt_nombre.setText(txt_nombre);
+	}
+
+	public JTextField getTxt_dni() {
+		return txt_dni;
+	}
+
+	public void setTxt_dni(String txt_dni) {
+		this.txt_dni.setText(txt_dni);
+	}
+
+	public JTextField getTxt_telefono() {
+		return txt_telefono;
+	}
+
+	public void setTxt_telefono(String txt_telefono) {
+		this.txt_telefono.setText(txt_telefono);
+	}
+
+	public JTextField getTxt_seguro() {
+		return txt_seguro;
+	}
+
+	public void setTxt_seguro(String txt_seguro) {
+		this.txt_seguro.setText(txt_seguro);
+	}
+
+	public JTextField getTxt_observaciones() {
+		return txt_observaciones;
+	}
+
+	public void setTxt_observaciones(String txt_observaciones) {
+		this.txt_observaciones.setText(txt_observaciones);
+	}
+
+	public JTextField getTxt_apellidos() {
+		return txt_apellidos;
+	}
+
+	public void setTxt_apellidos(String txt_apellidos) {
+		this.txt_apellidos.setText(txt_apellidos);
+	}
+
+	public JTextField getTxt_nacimiento() {
+		return txt_nacimiento;
+	}
+
+	public void setTxt_nacimiento(String txt_nacimiento) {
+		this.txt_nacimiento.setText(txt_nacimiento);
+	}
+
+	public JTextField getTxt_correo() {
+		return txt_correo;
+	}
+
+	public void setTxt_correo(String txt_correo) {
+		this.txt_correo.setText(txt_correo);
+	}
+
+	public JTextField getTxt_direccion() {
+		return txt_direccion;
+	}
+
+	public void setTxt_direccion(String txt_direccion) {
+		this.txt_direccion.setText(txt_direccion);
+	}
+	
+	public String getSelectedButton(ButtonGroup buttonGroup) {
+	    for (Enumeration<AbstractButton> botones = buttonGroup.getElements(); botones.hasMoreElements();) {
+	        AbstractButton button = botones.nextElement();
+
+	        if (button.isSelected()) {
+	            return button.getText(); // O devuelve cualquier otra propiedad que necesites
+	        }
+	    }
+	    return null; // O devuelve un valor predeterminado si no hay ningún botón seleccionado
 	}
 }

@@ -317,6 +317,19 @@ public class jf_doctores extends javax.swing.JFrame {
 	        		ventana_baja.setVisible(true);
 	        	}
 	        });
+	        
+	        jmenuitem_editar_doctor = new JMenuItem("Editar doctor");
+	        jmenuitem_editar_doctor.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		dispose();
+	        		jf_doctores ventana = new jf_doctores();
+	        		jd_buscar_doctor_editar ventana_buscar = new jd_buscar_doctor_editar();
+	        		ventana.setVisible(true);
+	        		ventana_buscar.setVisible(true);
+	        	}
+	        });
+	        jmenuitem_editar_doctor.setFont(new Font("Arial", Font.PLAIN, 12));
+	        jMenu3.add(jmenuitem_editar_doctor);
 	        jmenuitem_baja_doctor.setFont(new Font("Arial", Font.PLAIN, 12));
 	        jMenu3.add(jmenuitem_baja_doctor);
 	        
@@ -525,4 +538,5 @@ public class jf_doctores extends javax.swing.JFrame {
 	    private JMenuItem jmenuitem_nueva_factura;
 	    private JMenuItem jmenuitem_balance_gastos;
 	    private JLabel lbl_fecha;
+	    private JMenuItem jmenuitem_editar_doctor;
 	}

@@ -13,6 +13,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import java.awt.Cursor;
 
 public class jd_ver_factura extends JDialog {
 
@@ -194,6 +195,7 @@ public class jd_ver_factura extends JDialog {
 			buttonPane.setLayout(null);
 			{
 				JButton btn_imprimir = new JButton("IMPRIMIR");
+				btn_imprimir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				btn_imprimir.setForeground(Color.WHITE);
 				btn_imprimir.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -210,6 +212,7 @@ public class jd_ver_factura extends JDialog {
 			}
 			{
 				JButton btn_salir = new JButton("SALIR");
+				btn_salir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				btn_salir.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();

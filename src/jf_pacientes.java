@@ -197,6 +197,19 @@ public class jf_pacientes extends JFrame {
         		ventana_baja.setVisible(true);
 			}
 		});
+		
+		JMenuItem jmenuitem_editar_doctor = new JMenuItem("Editar doctor");
+		jmenuitem_editar_doctor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+        		jf_doctores ventana = new jf_doctores();
+        		jd_buscar_doctor_editar ventana_buscar = new jd_buscar_doctor_editar();
+        		ventana.setVisible(true);
+        		ventana_buscar.setVisible(true);
+			}
+		});
+		jmenuitem_editar_doctor.setFont(new Font("Arial", Font.PLAIN, 12));
+		mn_doctores.add(jmenuitem_editar_doctor);
 		jmenuitem_baja_doctor.setFont(new Font("Arial", Font.PLAIN, 12));
 		mn_doctores.add(jmenuitem_baja_doctor);
 		

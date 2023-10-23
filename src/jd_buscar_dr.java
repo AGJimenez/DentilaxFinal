@@ -72,11 +72,17 @@ public class jd_buscar_dr extends JDialog {
 			txt_IntroduceDni.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
-					//	txt_IntroduceDni.setText("");
+					if (txt_IntroduceDni.getText().equals("Introduce DNI")) {
+						txt_IntroduceDni.setText("");
+					}
+						
 				}
 				@Override
 				public void focusLost(FocusEvent e) {
-					//	txt_IntroduceDni.setText("Introduce DNI");
+					if (txt_IntroduceDni.getText().isEmpty()) {
+						txt_IntroduceDni.setText("Introduce DNI");
+					}
+					
 				}
 			});
 			txt_IntroduceDni.setOpaque(false);

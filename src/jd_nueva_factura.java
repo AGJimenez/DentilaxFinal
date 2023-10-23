@@ -13,12 +13,15 @@ import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.Cursor;
 
 public class jd_nueva_factura extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txtIntroduceTexto;
+	private JTextField txtIntroduceNombre;
 	private JTextField txtIntroduceApellidos;
 	private JTextField txtIntroduceDni;
 	private JTextField txtIntroduceDireccion;
@@ -104,15 +107,43 @@ public class jd_nueva_factura extends JDialog {
 		lblPorPagar.setBounds(80, 567, 114, 31);
 		contentPanel.add(lblPorPagar);
 		
-		txtIntroduceTexto = new JTextField();
-		txtIntroduceTexto.setBackground(new Color(191, 231, 249));
-		txtIntroduceTexto.setFont(new Font("Arial", Font.PLAIN, 14));
-		txtIntroduceTexto.setText("Introduce texto");
-		txtIntroduceTexto.setBounds(236, 111, 264, 40);
-		contentPanel.add(txtIntroduceTexto);
-		txtIntroduceTexto.setColumns(10);
+		txtIntroduceNombre = new JTextField();
+		txtIntroduceNombre.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(txtIntroduceNombre.getText().equals("Introduce nombre")){
+					txtIntroduceNombre.setText("");
+				}	
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtIntroduceNombre.getText().isEmpty()) {
+					txtIntroduceNombre.setText("Introduce nombre");
+				}
+			}
+		});
+		txtIntroduceNombre.setBackground(new Color(191, 231, 249));
+		txtIntroduceNombre.setFont(new Font("Arial", Font.PLAIN, 14));
+		txtIntroduceNombre.setText("Introduce nombre");
+		txtIntroduceNombre.setBounds(236, 111, 264, 40);
+		contentPanel.add(txtIntroduceNombre);
+		txtIntroduceNombre.setColumns(10);
 		
 		txtIntroduceApellidos = new JTextField();
+		txtIntroduceApellidos.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(txtIntroduceApellidos.getText().equals("Introduce Apellidos")){
+					txtIntroduceApellidos.setText("");
+				}	
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtIntroduceApellidos.getText().isEmpty()) {
+					txtIntroduceApellidos.setText("Introduce Apellidos");
+				}
+			}
+		});
 		txtIntroduceApellidos.setBackground(new Color(191, 231, 249));
 		txtIntroduceApellidos.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtIntroduceApellidos.setText("Introduce Apellidos");
@@ -121,6 +152,20 @@ public class jd_nueva_factura extends JDialog {
 		txtIntroduceApellidos.setColumns(10);
 		
 		txtIntroduceDni = new JTextField();
+		txtIntroduceDni.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(txtIntroduceDni.getText().equals("Introduce DNI")){
+					txtIntroduceDni.setText("");
+				}	
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtIntroduceDni.getText().isEmpty()) {
+					txtIntroduceDni.setText("Introduce DNI");
+				}
+			}
+		});
 		txtIntroduceDni.setBackground(new Color(191, 231, 249));
 		txtIntroduceDni.setText("Introduce DNI");
 		txtIntroduceDni.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -129,6 +174,20 @@ public class jd_nueva_factura extends JDialog {
 		txtIntroduceDni.setColumns(10);
 		
 		txtIntroduceDireccion = new JTextField();
+		txtIntroduceDireccion.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(txtIntroduceDireccion.getText().equals("Introduce Direccion")){
+					txtIntroduceDireccion.setText("");
+				}	
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtIntroduceDireccion.getText().isEmpty()) {
+					txtIntroduceDireccion.setText("Introduce Direccion");
+				}
+			}
+		});
 		txtIntroduceDireccion.setBackground(new Color(191, 231, 249));
 		txtIntroduceDireccion.setText("Introduce Direccion");
 		txtIntroduceDireccion.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -137,6 +196,20 @@ public class jd_nueva_factura extends JDialog {
 		txtIntroduceDireccion.setColumns(10);
 		
 		txtIntroduceTelefono = new JTextField();
+		txtIntroduceTelefono.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(txtIntroduceTelefono.getText().equals("Introduce Telefono")){
+					txtIntroduceTelefono.setText("");
+				}	
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtIntroduceTelefono.getText().isEmpty()) {
+					txtIntroduceTelefono.setText("Introduce Telefono");
+				}
+			}
+		});
 		txtIntroduceTelefono.setBackground(new Color(191, 231, 249));
 		txtIntroduceTelefono.setText("Introduce Telefono");
 		txtIntroduceTelefono.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -145,6 +218,20 @@ public class jd_nueva_factura extends JDialog {
 		txtIntroduceTelefono.setColumns(10);
 		
 		txtIntroduceFecha = new JTextField();
+		txtIntroduceFecha.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(txtIntroduceFecha.getText().equals("Introduce Fecha")){
+					txtIntroduceFecha.setText("");
+				}	
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtIntroduceFecha.getText().isEmpty()) {
+					txtIntroduceFecha.setText("Introduce Fecha");
+				}
+			}
+		});
 		txtIntroduceFecha.setBackground(new Color(191, 231, 249));
 		txtIntroduceFecha.setText("Introduce Fecha");
 		txtIntroduceFecha.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -153,6 +240,20 @@ public class jd_nueva_factura extends JDialog {
 		txtIntroduceFecha.setColumns(10);
 		
 		txtIntroducePagado = new JTextField();
+		txtIntroducePagado.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(txtIntroducePagado.getText().equals("Introduce Pagado")){
+					txtIntroducePagado.setText("");
+				}	
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtIntroducePagado.getText().isEmpty()) {
+					txtIntroducePagado.setText("Introduce Pagado");
+				}
+			}
+		});
 		txtIntroducePagado.setBackground(new Color(191, 231, 249));
 		txtIntroducePagado.setText("Introduce Pagado");
 		txtIntroducePagado.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -161,6 +262,20 @@ public class jd_nueva_factura extends JDialog {
 		txtIntroducePagado.setColumns(10);
 		
 		txtIntroducePorPagar = new JTextField();
+		txtIntroducePorPagar.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(txtIntroducePorPagar.getText().equals("Introduce Por Pagar")){
+					txtIntroducePorPagar.setText("");
+				}	
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtIntroducePorPagar.getText().isEmpty()) {
+					txtIntroducePorPagar.setText("Introduce Por Pagar");
+				}
+			}
+		});
 		txtIntroducePorPagar.setBackground(new Color(191, 231, 249));
 		txtIntroducePorPagar.setText("Introduce Por Pagar");
 		txtIntroducePorPagar.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -188,6 +303,7 @@ public class jd_nueva_factura extends JDialog {
 			buttonPane.setLayout(null);
 			{
 				JButton btn_imprimir = new JButton("IMPRIMIR");
+				btn_imprimir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				btn_imprimir.setForeground(Color.WHITE);
 				btn_imprimir.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -204,6 +320,7 @@ public class jd_nueva_factura extends JDialog {
 			}
 			{
 				JButton btn_salir = new JButton("SALIR");
+				btn_salir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				btn_salir.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
@@ -220,6 +337,7 @@ public class jd_nueva_factura extends JDialog {
 			}
 			
 			JButton btn_confirmar = new JButton("CONFIRMAR");
+			btn_confirmar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btn_confirmar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 				}
