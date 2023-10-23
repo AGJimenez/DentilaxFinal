@@ -42,13 +42,12 @@ import javax.swing.JPasswordField;
  */
 
 /**
- *hola que tal
+ *
  * @author alexg
  */
 public class jf_login extends javax.swing.JFrame {
 
-	
-	
+	//en las siguientes lineas de código usamos los get para que nos devuelva el "resultado" y el set para establecer el contenido de los textfield en otros campos	
     public javax.swing.JTextField getJtf_user() {
 		return jtf_user;
 	}
@@ -70,7 +69,7 @@ public class jf_login extends javax.swing.JFrame {
      */
     Fondo fondo = new Fondo();
     public jf_login() {
-    	setUndecorated(true);
+    	setUndecorated(true); //con setUndecorated true, no aparece la barra de título del JFrame
     	setTitle("Dentilax");
     	setIconImage(Toolkit.getDefaultToolkit().getImage(jf_login.class.getResource("/iconos_menus/dentilaxIcono.png")));
     	setPreferredSize(new Dimension(1450, 750));
@@ -159,12 +158,14 @@ public class jf_login extends javax.swing.JFrame {
         lblNewLabel.setBounds(683, 87, 500, 450);
         panelFondo.add(lblNewLabel);
         lblNewLabel.setIcon(new ImageIcon(jf_login.class.getResource("/iconos_menus/panel_login.png")));
-        
-        JLabel lblNewLabel_3 = new JLabel("");
+     
+     //aqui empieza el Jlabel que será modificado por el hilo:
+        JLabel lblNewLabel_3 = new JLabel(""); 
         lblNewLabel_3.setIcon(new ImageIcon(jf_login.class.getResource("/iconos_menus/dent.png")));
         lblNewLabel_3.setBounds(0, 84, 483, 545);
         panelFondo.add(lblNewLabel_3);
         
+        //aqui empieza el hilo para poder colocar la fecha y hora en nuestro programa:
         Timer timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -199,6 +200,8 @@ public class jf_login extends javax.swing.JFrame {
         jtf_user = new javax.swing.JTextField();
         jtf_user.setFont(new Font("Barlow", Font.PLAIN, 14));
         jtf_user.setForeground(new Color(0, 128, 192));
+        
+        //a partir de aqui conseguimos que el texto desaparezca cuando el textfield reciba el click:
         jtf_user.addFocusListener(new FocusAdapter() {
         	@Override
         	public void focusGained(FocusEvent e) {
@@ -251,11 +254,11 @@ public class jf_login extends javax.swing.JFrame {
         btn_entrar.setIcon(new ImageIcon(jf_login.class.getResource("/iconos_menus/btn_entrar_icon.png")));
         
         
-        
+       //Acceso a SQL: 
         btn_entrar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
                
-               try {
+               try {//Si esto es correcto entrarás como administrador
             	String user = jtf_user.getText().toString();
             	String pass = jtf_user1.getText().toString();
 				String comprobar = sentencias.consulta_login(user, pass);
@@ -264,10 +267,10 @@ public class jf_login extends javax.swing.JFrame {
 					System.out.println("Estoy accediendo como administrador");
 				jf_menu_ppal menu_admin = new jf_menu_ppal();
 				menu_admin.setVisible(true);
-				dispose();
+				dispose(); 
 }
 				else {
-
+                           //si no es el admin, entrará como doctor 
 					System.out.println("Estoy accediendo como doctor");
 					jf_menu_doctor ventana = new jf_menu_doctor();
 					ventana.setVisible(true);
@@ -279,7 +282,7 @@ public class jf_login extends javax.swing.JFrame {
 				JOptionPane error = new JOptionPane();
 				error.showMessageDialog(error, "Error en el login");
 				e1.printStackTrace();
-				
+				//si no consigue los datos va a dar error al logearte
 			}
                catch(NullPointerException n) {
             	   JOptionPane error = new JOptionPane();
