@@ -231,4 +231,61 @@ public class jd_buscar_paciente_ficha extends JDialog {
 			}
 		}
 	}
+
+	public JTextField getTxt_dni() {
+		return txt_dni;
+	}
+
+	public void setTxt_dni(String txt_dni) {
+		this.txt_dni.setText(txt_dni);;
+	}
+
+	public JTextField getTxt_nombre() {
+		return txt_nombre;
+	}
+
+	public void setTxt_nombre(String txt_nombre) {
+		this.txt_nombre.setText(txt_nombre);;
+	}
+
+	public JTextField getTxt_apellidos() {
+		return txt_apellidos;
+	}
+
+	public void setTxt_apellidos(String txt_apellidos) {
+		this.txt_apellidos.setText(txt_apellidos);;
+	}
+
+	public JTextField getTxt_genero() {
+		return txt_genero;
+	}
+
+	public void setTxt_genero(String txt_genero) {
+		this.txt_genero.setText(txt_genero);;
+	}
+
+	public JTextField getTxt_estado() {
+		return txt_estado;
+	}
+
+	public void setTxt_estado(String txt_estado) {
+		this.txt_estado.setText(txt_estado);;
+	}
+
+	public JTextField getTxt_seguro() {
+		return txt_seguro;
+	}
+
+	public void setTxt_seguro(String txt_seguro) {
+		this.txt_seguro.setText(txt_seguro);;
+	}
+
+	public JTextField getTxt_telefono() {
+		return txt_telefono;
+	}
+
+	public void setTxt_telefono(String txt_telefono) {
+		this.txt_telefono.setText(txt_telefono);;
+	}
+	
 }

@@ -19,6 +19,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.sql.SQLException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
@@ -123,8 +124,16 @@ public class jd_buscar_paciente extends JDialog {
 				btn_buscar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						//SQL si lo encuentra, abre ventana:
-						jd_buscar_paciente_encontrado ventana = new jd_buscar_paciente_encontrado();
-						ventana.setVisible(true);
+						ConectorDB_mysql consulta= new ConectorDB_mysql();
+						String dni = txt_IntroduceDni.getText().toString();		
+						try {
+							consulta.consulta_paciente(dni);
+							
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
 						//si no if no encontrado
 					}
 				});

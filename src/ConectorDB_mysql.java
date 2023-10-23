@@ -212,6 +212,44 @@ public String consulta_paciente_cargar(String dni) throws SQLException{
 		
 	}
 	
+public String consulta_paciente(String dni) throws SQLException{
+		
+		try {
+			conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+			statement = conect.createStatement();
+			String query = "SELECT * FROM pacientes WHERE DNI_paciente = '" + dni +"'";
+            ResultSet resultSet = statement.executeQuery(query);
+			
+            if (resultSet.next()) {
+                // Resultado encontrado
+                System.out.println("Resultado encontrado");
+                jd_buscar_paciente_encontrado ventana = new jd_buscar_paciente_encontrado();
+                String dniSql = resultSet.getString("DNI_paciente");
+                String nombreSql = resultSet.getString("Nombre");
+                String apellidosSql = resultSet.getString("Apellidos");
+               // System.out.println(dniSql);
+                ventana.setTxt_dni(dniSql);
+                ventana.setTxt_nombre(nombreSql);
+                ventana.setTxt_apellidos(apellidosSql);
+                
+                ventana.setVisible(true);
+                
+                
+            } else {
+                // Acceso denegado
+                System.out.println("No se ha encontrado nada");
+                JOptionPane.showMessageDialog(null, "Error, no se ha encontrado nada");
+            }
+			
+			
+		}
+		catch(SQLException ex) {
+			
+		}
+		return dni;
+		
+	}
+	
 	public String consulta_doctor_editar(String dni) throws SQLException{
 		
 		try {
@@ -286,6 +324,52 @@ public String consulta_doctor_ficha(String dni) throws SQLException{
 		return dni;
 		
 	}
+
+public String consulta_paciente_ficha(String dni) throws SQLException{
+	
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "SELECT * FROM pacientes WHERE DNI_paciente = '" + dni +"'";
+        ResultSet resultSet = statement.executeQuery(query);
+		
+        if (resultSet.next()) {
+            // Resultado encontrado
+            System.out.println("Resultado encontrado");
+            jd_buscar_paciente_ficha ventana = new jd_buscar_paciente_ficha();
+            String dniSql = resultSet.getString("DNI_paciente");
+            String nombreSql = resultSet.getString("Nombre");
+            String apellidosSql = resultSet.getString("Apellidos");
+            String estado = resultSet.getString("Estado");
+            String genero = resultSet.getString("Genero");
+            String seguro = resultSet.getString("Seguro");
+            String telefono = resultSet.getString("Telefono");
+           // System.out.println(dniSql);
+            ventana.setTxt_dni(dniSql);
+            ventana.setTxt_nombre(nombreSql);
+            ventana.setTxt_apellidos(apellidosSql);
+            ventana.setTxt_estado(estado);
+            ventana.setTxt_genero(genero);
+            ventana.setTxt_seguro(seguro);
+            ventana.setTxt_telefono(telefono);
+            
+            ventana.setVisible(true);
+            
+            
+        } else {
+            // Acceso denegado
+            System.out.println("No se ha encontrado nada");
+            JOptionPane.showMessageDialog(null, "Error, no se ha encontrado nada");
+        }
+		
+		
+	}
+	catch(SQLException ex) {
+		
+	}
+	return dni;
+	
+}
 
 public String consulta_doctor_cargar(String dni) throws SQLException{
 	

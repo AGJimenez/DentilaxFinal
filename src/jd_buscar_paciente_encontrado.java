@@ -19,6 +19,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.sql.SQLException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
@@ -147,8 +148,16 @@ public class jd_buscar_paciente_encontrado extends JDialog {
 				btn_ficha.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						//SQL consulta para sacar la ficha
-						jd_buscar_paciente_ficha ventana = new jd_buscar_paciente_ficha();
-						ventana.setVisible(true);
+						ConectorDB_mysql conector = new ConectorDB_mysql();
+						
+						try {
+							conector.consulta_paciente_ficha(getTxt_dni().getText().toString());
+							jd_buscar_paciente_ficha ventana = new jd_buscar_paciente_ficha();
+							
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 					}
 				});
 				btn_ficha.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -196,5 +205,29 @@ public class jd_buscar_paciente_encontrado extends JDialog {
 			btn_historial.setBounds(194, 0, 153, 43);
 			buttonPane.add(btn_historial);
 		}
+	}
+
+	public JTextField getTxt_dni() {
+		return txt_dni;
+	}
+
+	public void setTxt_dni(String txt_dni) {
+		this.txt_dni.setText(txt_dni);
+	}
+
+	public JTextField getTxt_nombre() {
+		return txt_nombre;
+	}
+
+	public void setTxt_nombre(String txt_nombre) {
+		this.txt_nombre.setText(txt_nombre);
+	}
+
+	public JTextField getTxt_apellidos() {
+		return txt_apellidos;
+	}
+
+	public void setTxt_apellidos(String txt_apellidos) {
+		this.txt_apellidos.setText(txt_apellidos);
 	}
 }
