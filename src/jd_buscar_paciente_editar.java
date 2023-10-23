@@ -24,6 +24,7 @@ import java.awt.event.FocusEvent;
 import java.sql.SQLException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class jd_buscar_paciente_editar extends JDialog {
 
@@ -48,6 +49,8 @@ public class jd_buscar_paciente_editar extends JDialog {
 	 * Create the dialog.
 	 */
 	public jd_buscar_paciente_editar() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_buscar_paciente_editar.class.getResource("/iconos_menus/dentilaxIcono.png")));
+		setTitle("Editar  paciente");
 		setPreferredSize(new Dimension(554, 343));
 		setModal(true);
 		setResizable(false);

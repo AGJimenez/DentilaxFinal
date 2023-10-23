@@ -437,9 +437,11 @@ public class jd_doctores_alta extends JDialog {
 		            try {
 						bdd.insertar_doctor(dni, apellidos, nombre, nacimiento, telefono, correo, especialidad, direccion, salario, genero, estado);
 						bdd.insertar_dr_usuario(dni, "Doctor", contrasena);
+						
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
+						
 					}
 		            
 				}

@@ -22,6 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.Toolkit;
 
 public class jd_pacientes_alta extends JDialog {
 
@@ -55,6 +56,8 @@ public class jd_pacientes_alta extends JDialog {
 	 * Create the dialog.
 	 */
 	public jd_pacientes_alta() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_pacientes_alta.class.getResource("/iconos_menus/dentilaxIcono.png")));
+		setTitle("Alta de paciente");
 		setModal(true);
 		setResizable(false);
 		setPreferredSize(new Dimension(1192, 529));

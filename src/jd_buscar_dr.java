@@ -24,6 +24,7 @@ import java.awt.event.FocusEvent;
 import java.sql.SQLException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class jd_buscar_dr extends JDialog {
 
@@ -48,6 +49,8 @@ public class jd_buscar_dr extends JDialog {
 	 * Create the dialog.
 	 */
 	public jd_buscar_dr() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_buscar_dr.class.getResource("/iconos_menus/dentilaxIcono.png")));
+		setTitle("Buscar doctor");
 		setPreferredSize(new Dimension(554, 343));
 		setModal(true);
 		setResizable(false);

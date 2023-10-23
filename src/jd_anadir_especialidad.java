@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.Toolkit;
 
 public class jd_anadir_especialidad extends JDialog {
 
@@ -44,6 +45,9 @@ public class jd_anadir_especialidad extends JDialog {
 	 * Create the dialog.
 	 */
 	public jd_anadir_especialidad() {
+		setTitle("Añadir especialidad");
+		setResizable(false);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_anadir_especialidad.class.getResource("/iconos_menus/dentilaxIcono.png")));
 		setModal(true);
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());

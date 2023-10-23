@@ -7,6 +7,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.border.EmptyBorder;
@@ -20,6 +22,8 @@ import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Dimension;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
+
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.Font;
@@ -98,6 +102,12 @@ public class jf_login extends javax.swing.JFrame {
         interior.add(jtf_user);
         panelFondo.add(btn_entrar);
         
+        lbl_fecha = new JLabel("");
+        lbl_fecha.setBackground(Color.WHITE);
+        lbl_fecha.setFont(new Font("Barlow", Font.PLAIN, 25));
+        lbl_fecha.setBounds(821, 496, 250, 23);
+        panelFondo.add(lbl_fecha);
+        
         panel = new JPanel();
         panel.setOpaque(false);
         panel.setBounds(150, 504, 164, 63);
@@ -144,6 +154,17 @@ public class jf_login extends javax.swing.JFrame {
         lblNewLabel_3.setIcon(new ImageIcon(jf_login.class.getResource("/iconos_menus/dent.png")));
         lblNewLabel_3.setBounds(0, 84, 483, 545);
         panelFondo.add(lblNewLabel_3);
+        
+        Timer timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	 Date fechaActual = new Date();
+                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                 String fechaHoraFormateada = formato.format(fechaActual);
+                 lbl_fecha.setText(fechaHoraFormateada);
+            }
+        });
+        timer.start();
         this.setLocationRelativeTo(this);
     }
 
@@ -364,4 +385,5 @@ public class jf_login extends javax.swing.JFrame {
     private JPanel panel;
     private JButton btnNewButton;
     private JButton btnNewButton_1;
+    private JLabel lbl_fecha;
 }

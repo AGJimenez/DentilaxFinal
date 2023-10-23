@@ -13,6 +13,7 @@ import java.awt.Font;
 import javax.swing.JMenuItem;
 import java.awt.Dimension;
 import java.awt.Cursor;
+import java.awt.Toolkit;
 
 public class jf_material extends JFrame {
 
@@ -24,6 +25,8 @@ public class jf_material extends JFrame {
 	 */
 	Fondo fondo = new Fondo();
     public jf_material() {
+    	setTitle("Gestión de material");
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(jf_material.class.getResource("/iconos_menus/dentilaxIcono.png")));
     	setPreferredSize(new Dimension(1450, 750));
         this.setContentPane(fondo);      
         initComponents();

@@ -254,12 +254,15 @@ public void insertar_doctor(String dni, String apellidos, String nombre, String 
 		// Verificar si la inserción se realizó con éxito
 		if (fila > 0) {
 			System.out.println("Inserción exitosa.");
+			JOptionPane.showMessageDialog(null, "Doctor añadido con éxito");
 		} else {
 			System.out.println("La inserción no tuvo éxito.");
+			
 		}
 		
 	}
 	catch(SQLException ex) {
+		JOptionPane.showMessageDialog(null, "Error en la inserción de doctor, comprueba los campos.");
 		ex.printStackTrace();
 	}
 }
@@ -291,11 +294,13 @@ public void editar_doctor(String dni, String apellidos, String nombre, String na
         // Verificar si la actualización se realizó con éxito
         if (fila > 0) {
             System.out.println("Actualización exitosa.");
+            JOptionPane.showMessageDialog(null, "Actualización con éxito");
         } else {
             System.out.println("La actualización no tuvo éxito.");
         }
 
     } catch (SQLException ex) {
+    	JOptionPane.showMessageDialog(null, "Error al actualizar, comprueba los campos.");
         ex.printStackTrace();
     }
 }

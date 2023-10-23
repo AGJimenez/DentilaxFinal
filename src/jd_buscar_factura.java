@@ -21,6 +21,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class jd_buscar_factura extends JDialog {
 
@@ -45,6 +46,8 @@ public class jd_buscar_factura extends JDialog {
 	 * Create the dialog.
 	 */
 	public jd_buscar_factura() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_buscar_factura.class.getResource("/iconos_menus/dentilaxIcono.png")));
+		setTitle("Buscar factura");
 		setPreferredSize(new Dimension(554, 343));
 		setModal(true);
 		setResizable(false);

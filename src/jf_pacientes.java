@@ -2,6 +2,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -13,9 +14,13 @@ import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.awt.Cursor;
 import java.awt.Font;
+import javax.swing.JLabel;
+import java.awt.Toolkit;
 
 public class jf_pacientes extends JFrame {
 
@@ -44,6 +49,8 @@ public class jf_pacientes extends JFrame {
 	 */
 	Fondo fondo = new Fondo();
 	public jf_pacientes() {
+		setTitle("Gestión de pacientes");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(jf_pacientes.class.getResource("/iconos_menus/dentilaxIcono.png")));
 		setPreferredSize(new Dimension(1450, 750));
 		setSize(new Dimension(1450, 750));
 		
@@ -384,18 +391,43 @@ public class jf_pacientes extends JFrame {
 		btn_editar_paciente.setBounds(400, 590, 188, 41);
 		contentPane.add(btn_editar_paciente);
 		
+		
 		Fondo jp_menu = new Fondo();
 		jp_menu.setPreferredSize(new Dimension(1450, 750));
 		jp_menu.setBounds(0, 0, 1450, 726);
 		contentPane.add(jp_menu);
+		
+		JLabel lbl_fecha = new JLabel("");
+		
+        lbl_fecha.setBackground(Color.WHITE);
+        lbl_fecha.setFont(new Font("Barlow", Font.PLAIN, 25));
+        lbl_fecha.setBounds(1184, 642, 240, 23);
+        jp_menu.add(lbl_fecha);
+        
+        Timer timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	 Date fechaActual = new Date();
+                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                 String fechaHoraFormateada = formato.format(fechaActual);
+                 lbl_fecha.setText(fechaHoraFormateada);
+            }
+        });
+        timer.start();
 		GroupLayout gl_jp_menu = new GroupLayout(jp_menu);
 		gl_jp_menu.setHorizontalGroup(
 			gl_jp_menu.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 1450, Short.MAX_VALUE)
+				.addGroup(Alignment.TRAILING, gl_jp_menu.createSequentialGroup()
+					.addContainerGap(1373, Short.MAX_VALUE)
+					.addComponent(lbl_fecha)
+					.addGap(31))
 		);
 		gl_jp_menu.setVerticalGroup(
 			gl_jp_menu.createParallelGroup(Alignment.LEADING)
-				.addGap(0, 726, Short.MAX_VALUE)
+				.addGroup(Alignment.TRAILING, gl_jp_menu.createSequentialGroup()
+					.addContainerGap(666, Short.MAX_VALUE)
+					.addComponent(lbl_fecha)
+					.addGap(46))
 		);
 		jp_menu.setLayout(gl_jp_menu);
 	}

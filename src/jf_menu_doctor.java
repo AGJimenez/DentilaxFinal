@@ -8,11 +8,19 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.JMenu;
 import javax.swing.JSeparator;
+import javax.swing.Timer;
+
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.Cursor;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -46,6 +54,23 @@ public class jf_menu_doctor extends javax.swing.JFrame {
         btn_buscar_paciente_dr.setContentAreaFilled(false);
         btn_buscar_paciente_dr.setBounds(433, 218, 282, 98);
         jp_menu.add(btn_buscar_paciente_dr);
+        
+        lbl_fecha = new JLabel("");
+        lbl_fecha.setBackground(Color.WHITE);
+        lbl_fecha.setFont(new Font("Barlow", Font.PLAIN, 25));
+        lbl_fecha.setBounds(1184, 642, 240, 23);
+        jp_menu.add(lbl_fecha);
+        
+        Timer timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	 Date fechaActual = new Date();
+                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                 String fechaHoraFormateada = formato.format(fechaActual);
+                 lbl_fecha.setText(fechaHoraFormateada);
+            }
+        });
+        timer.start();
     }
 
     /**
@@ -81,6 +106,7 @@ public class jf_menu_doctor extends javax.swing.JFrame {
         btn_nuevo_tratamiento.setBounds(733, 218, 282, 98);
         btn_nuevo_tratamiento.setIcon(new ImageIcon(jf_menu_doctor.class.getResource("/iconos_menus/btn_nuevoTratamiento_dr.png")));
         menu_inicio = new javax.swing.JMenuBar();
+        
         mn_buscar = new javax.swing.JMenu();
         mn_tratamiento = new javax.swing.JMenu();
         mn_solictar = new javax.swing.JMenu();
@@ -161,4 +187,5 @@ public class jf_menu_doctor extends javax.swing.JFrame {
     private javax.swing.JMenuBar menu_inicio;
     private JMenu mn_ayuda;
     private JSeparator separator;
+    private JLabel lbl_fecha;
 }

@@ -28,6 +28,7 @@ import java.util.Enumeration;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.Toolkit;
 
 public class jd_doctores_editar extends JDialog {
 
@@ -61,6 +62,8 @@ public class jd_doctores_editar extends JDialog {
 	 * Create the dialog.
 	 */
 	public jd_doctores_editar() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_doctores_editar.class.getResource("/iconos_menus/dentilaxIcono.png")));
+		setTitle("Editar doctor");
 		setModal(true);
 		setResizable(false);
 		setPreferredSize(new Dimension(1192, 452));

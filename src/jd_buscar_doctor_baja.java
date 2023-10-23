@@ -24,6 +24,7 @@ import java.awt.event.FocusEvent;
 import java.sql.SQLException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class jd_buscar_doctor_baja extends JDialog {
 
@@ -48,6 +49,8 @@ public class jd_buscar_doctor_baja extends JDialog {
 	 * Create the dialog.
 	 */
 	public jd_buscar_doctor_baja() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_buscar_doctor_baja.class.getResource("/iconos_menus/dentilaxIcono.png")));
+		setTitle("Dar baja");
 		setPreferredSize(new Dimension(554, 343));
 		setModal(true);
 		setResizable(false);

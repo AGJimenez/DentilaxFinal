@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class jd_nueva_factura extends JDialog {
 
@@ -43,6 +44,8 @@ public class jd_nueva_factura extends JDialog {
 	 * Create the dialog.
 	 */
 	public jd_nueva_factura() {
+		setTitle("Nueva factura");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_nueva_factura.class.getResource("/iconos_menus/dentilaxIcono.png")));
 		setModal(true);
 		setResizable(false);
 		setBounds(100, 100, 614, 770);

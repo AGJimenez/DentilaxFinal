@@ -129,8 +129,7 @@ public class jd_buscar_doctor_editar extends JDialog {
 							
 						 catch (SQLException e1) {
 							// TODO Auto-generated catch block
-							JOptionPane error = new JOptionPane();
-							error.showMessageDialog(error, "Error en el login");
+							
 							e1.printStackTrace();
 							
 						}

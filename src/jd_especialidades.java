@@ -21,6 +21,7 @@ import javax.swing.ListSelectionModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Cursor;
+import java.awt.Toolkit;
 
 public class jd_especialidades extends JDialog {
 
@@ -44,6 +45,9 @@ public class jd_especialidades extends JDialog {
 	 * Create the dialog.
 	 */
 	public jd_especialidades() {
+		setTitle("Especialidades");
+		setResizable(false);
+		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_especialidades.class.getResource("/iconos_menus/dentilaxIcono.png")));
 		this.getRootPane().setDefaultButton(null);
 		setModal(true);
 		setPreferredSize(new Dimension(439, 490));

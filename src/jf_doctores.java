@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
 import javax.swing.JButton;
@@ -16,11 +17,16 @@ import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import java.awt.Dimension;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import javax.swing.JLabel;
+import java.awt.Toolkit;
 
 public class jf_doctores extends javax.swing.JFrame {
 
@@ -32,6 +38,8 @@ public class jf_doctores extends javax.swing.JFrame {
 	 * 
 	 */Fondo fondo = new Fondo();
 	    public jf_doctores() {
+	    	setIconImage(Toolkit.getDefaultToolkit().getImage(jf_doctores.class.getResource("/iconos_menus/dentilaxIcono.png")));
+	    	setTitle("Gestión de doctores");
 	    	setResizable(false);
 	    	setPreferredSize(new Dimension(1450, 750));
 	        this.setContentPane(fondo);      
@@ -44,6 +52,7 @@ public class jf_doctores extends javax.swing.JFrame {
 	        jp_menu.add(btn_alta_doctores);
 	        
 	        JButton btn_editar_dr = new JButton("");
+	        btn_editar_dr.setBounds(633, 590, 188, 41);
 	        btn_editar_dr.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	        btn_editar_dr.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
@@ -55,13 +64,29 @@ public class jf_doctores extends javax.swing.JFrame {
 	        		
 	        	}
 	        });
-	        btn_editar_dr.setIcon(new ImageIcon(jf_doctores.class.getResource("/iconos_submenus/btn_editarPaciente_admin.png")));
+	        btn_editar_dr.setIcon(new ImageIcon(jf_doctores.class.getResource("/iconos_submenus/btn_editarDr_admin.png")));
 	        btn_editar_dr.setOpaque(false);
 	        btn_editar_dr.setContentAreaFilled(false);
 	        btn_editar_dr.setBorderPainted(false);
 	        btn_editar_dr.setBorder(null);
-	        btn_editar_dr.setBounds(633, 590, 188, 41);
 	        jp_menu.add(btn_editar_dr);
+	        
+	        lbl_fecha = new JLabel("");
+	        lbl_fecha.setBackground(Color.WHITE);
+	        lbl_fecha.setFont(new Font("Barlow", Font.PLAIN, 25));
+	        lbl_fecha.setBounds(1184, 642, 240, 23);
+	        jp_menu.add(lbl_fecha);
+	        
+	        Timer timer = new Timer(1000, new ActionListener() {
+	            @Override
+	            public void actionPerformed(ActionEvent e) {
+	            	 Date fechaActual = new Date();
+	                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+	                 String fechaHoraFormateada = formato.format(fechaActual);
+	                 lbl_fecha.setText(fechaHoraFormateada);
+	            }
+	        });
+	        timer.start();
 	    }
 
 	    /**
@@ -76,9 +101,9 @@ public class jf_doctores extends javax.swing.JFrame {
 	        jp_menu = new Fondo();
 	        jp_menu.setPreferredSize(new Dimension(1450, 750));
 	        btn_buscar_doctor = new javax.swing.JButton();
+	        btn_buscar_doctor.setBounds(68, 590, 188, 41);
 	        btn_buscar_doctor.setBorderPainted(false);
 	        btn_buscar_doctor.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-	        btn_buscar_doctor.setBounds(68, 590, 188, 41);
 	        btn_buscar_doctor.setIcon(new ImageIcon(jf_doctores.class.getResource("/iconos_submenus/btn_buscarDr_admin.png")));
 	        btn_buscar_doctor.setContentAreaFilled(false);
 	        btn_buscar_doctor.setOpaque(false);
@@ -89,6 +114,7 @@ public class jf_doctores extends javax.swing.JFrame {
 	        	}
 	        });
 	        btn_alta_doctores = new javax.swing.JButton();
+	        btn_alta_doctores.setBounds(1183, 590, 188, 41);
 	        btn_alta_doctores.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
 	        		
@@ -104,8 +130,8 @@ public class jf_doctores extends javax.swing.JFrame {
 	        btn_alta_doctores.setContentAreaFilled(false);
 	        btn_alta_doctores.setOpaque(false);
 	        btn_alta_doctores.setSelected(true);
-	        btn_alta_doctores.setBounds(1183, 590, 188, 41);
 	        btn_especialidades = new javax.swing.JButton();
+	        btn_especialidades.setBounds(400, 590, 188, 41);
 	        btn_especialidades.setBorderPainted(false);
 	        btn_especialidades.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
@@ -121,8 +147,8 @@ public class jf_doctores extends javax.swing.JFrame {
 	        btn_especialidades.setIcon(new ImageIcon(jf_doctores.class.getResource("/iconos_submenus/btn_especialidades_admin.png")));
 	        btn_especialidades.setContentAreaFilled(false);
 	        btn_especialidades.setOpaque(false);
-	        btn_especialidades.setBounds(400, 590, 188, 41);
 	        btn_baja_doctores = new javax.swing.JButton();
+	        btn_baja_doctores.setBounds(863, 590, 188, 41);
 	        btn_baja_doctores.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
 	        		jd_buscar_doctor_baja ventana = new jd_buscar_doctor_baja();
@@ -134,7 +160,6 @@ public class jf_doctores extends javax.swing.JFrame {
 	        btn_baja_doctores.setContentAreaFilled(false);
 	        btn_baja_doctores.setOpaque(false);
 	        btn_baja_doctores.setIcon(new ImageIcon(jf_doctores.class.getResource("/iconos_submenus/btn_darDeBaja_admin.png")));
-	        btn_baja_doctores.setBounds(863, 590, 188, 41);
 	        menu_inicio = new javax.swing.JMenuBar();
 	        jMenu2 = new javax.swing.JMenu();
 	        jMenu2.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -496,4 +521,5 @@ public class jf_doctores extends javax.swing.JFrame {
 	    private JMenuItem jmenuitem_historial_pago;
 	    private JMenuItem jmenuitem_nueva_factura;
 	    private JMenuItem jmenuitem_balance_gastos;
+	    private JLabel lbl_fecha;
 	}

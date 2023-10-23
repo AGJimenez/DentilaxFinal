@@ -1,18 +1,25 @@
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import java.awt.Font;
 import javax.swing.JMenuItem;
 import java.awt.Dimension;
+import java.awt.Color;
 import java.awt.Cursor;
+import javax.swing.JLabel;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 
 public class jf_facturacion extends JFrame {
 
@@ -24,6 +31,8 @@ public class jf_facturacion extends JFrame {
 	 */
 	Fondo fondo = new Fondo();
     public jf_facturacion() {
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(jf_facturacion.class.getResource("/iconos_menus/dentilaxIcono.png")));
+    	setTitle("Gestión de facturación");
     	setPreferredSize(new Dimension(1450, 750));
         this.setContentPane(fondo);      
         initComponents();
@@ -40,7 +49,13 @@ public class jf_facturacion extends JFrame {
     private void initComponents() {
 
         jp_menu = new Fondo();
+        jp_menu.setPreferredSize(new Dimension(1450, 750));
         btn_buscar_factura = new javax.swing.JButton();
+        btn_buscar_factura.setOpaque(false);
+        btn_buscar_factura.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btn_buscar_factura.setContentAreaFilled(false);
+        btn_buscar_factura.setIcon(new ImageIcon(jf_facturacion.class.getResource("/iconos_submenus/btn_buscarFactura_admin.png")));
+        btn_buscar_factura.setBounds(68, 594, 188, 41);
         btn_buscar_factura.setBorderPainted(false);
         btn_buscar_factura.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -49,6 +64,11 @@ public class jf_facturacion extends JFrame {
         	}
         });
         btn_nueva_factura = new javax.swing.JButton();
+        btn_nueva_factura.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btn_nueva_factura.setContentAreaFilled(false);
+        btn_nueva_factura.setIcon(new ImageIcon(jf_facturacion.class.getResource("/iconos_submenus/btn_nuevaFactura_admin.png")));
+        btn_nueva_factura.setOpaque(false);
+        btn_nueva_factura.setBounds(1209, 594, 188, 41);
         btn_nueva_factura.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         	jd_nueva_factura ventana = new jd_nueva_factura();
@@ -57,10 +77,19 @@ public class jf_facturacion extends JFrame {
         });
         btn_nueva_factura.setBorderPainted(false);
         btn_historial_pago = new javax.swing.JButton();
+        btn_historial_pago.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btn_historial_pago.setContentAreaFilled(false);
+        btn_historial_pago.setOpaque(false);
+        btn_historial_pago.setIcon(new ImageIcon(jf_facturacion.class.getResource("/iconos_submenus/btn_historialpago_admin.png")));
+        btn_historial_pago.setBounds(401, 594, 188, 41);
         btn_historial_pago.setBorderPainted(false);
         btn_balance_gastos = new javax.swing.JButton();
+        btn_balance_gastos.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btn_balance_gastos.setContentAreaFilled(false);
+        btn_balance_gastos.setIcon(new ImageIcon(jf_facturacion.class.getResource("/iconos_submenus/btn_balanceGastos_admin.png")));
+        btn_balance_gastos.setOpaque(false);
+        btn_balance_gastos.setBounds(891, 594, 188, 41);
         btn_balance_gastos.setBorderPainted(false);
-        btn_balance_gastos.setText("BALANCE DE GASTOS");
         menu_inicio = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu2.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -78,39 +107,6 @@ public class jf_facturacion extends JFrame {
         jMenu8.setFont(new Font("Arial", Font.PLAIN, 12));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        btn_buscar_factura.setText("BUSCAR FACTURA");
-
-        btn_nueva_factura.setText("NUEVA FACTURA");
-
-        btn_historial_pago.setText("HISTORIAL DE PAGO");
-
-        javax.swing.GroupLayout jp_menuLayout = new javax.swing.GroupLayout(jp_menu);
-        jp_menuLayout.setHorizontalGroup(
-        	jp_menuLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(jp_menuLayout.createSequentialGroup()
-        			.addGap(68)
-        			.addComponent(btn_buscar_factura, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-        			.addGap(187)
-        			.addComponent(btn_historial_pago, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED, 239, Short.MAX_VALUE)
-        			.addComponent(btn_balance_gastos, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
-        			.addGap(160)
-        			.addComponent(btn_nueva_factura, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-        			.addGap(79))
-        );
-        jp_menuLayout.setVerticalGroup(
-        	jp_menuLayout.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(jp_menuLayout.createSequentialGroup()
-        			.addContainerGap(596, Short.MAX_VALUE)
-        			.addGroup(jp_menuLayout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(btn_buscar_factura, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(btn_nueva_factura, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(btn_balance_gastos, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(btn_historial_pago, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-        			.addGap(44))
-        );
-        jp_menu.setLayout(jp_menuLayout);
 
         menu_inicio.setBackground(new java.awt.Color(32, 160, 216));
         menu_inicio.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -165,6 +161,28 @@ public class jf_facturacion extends JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jp_menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+        jp_menu.setLayout(null);
+        jp_menu.add(btn_buscar_factura);
+        jp_menu.add(btn_historial_pago);
+        jp_menu.add(btn_balance_gastos);
+        jp_menu.add(btn_nueva_factura);
+        
+        lbl_fecha = new JLabel("");
+        lbl_fecha.setBackground(Color.WHITE);
+        lbl_fecha.setFont(new Font("Barlow", Font.PLAIN, 25));
+        lbl_fecha.setBounds(1184, 642, 240, 23);
+        jp_menu.add(lbl_fecha);
+        
+        Timer timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	 Date fechaActual = new Date();
+                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                 String fechaHoraFormateada = formato.format(fechaActual);
+                 lbl_fecha.setText(fechaHoraFormateada);
+            }
+        });
+        timer.start();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -202,6 +220,7 @@ public class jf_facturacion extends JFrame {
     private javax.swing.JMenuBar menu_inicio;
     private JButton btn_balance_gastos;
     private JButton btnNewButton;
+    private JLabel lbl_fecha;
     // End of variables declaration//GEN-END:variables
 
 }

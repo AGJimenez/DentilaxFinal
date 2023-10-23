@@ -1,16 +1,23 @@
 
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.Timer;
 
 import java.awt.Dimension;
 import java.awt.Cursor;
 import javax.swing.JMenuItem;
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JLabel;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.Color;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -48,6 +55,7 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         jp_menu.setPreferredSize(new Dimension(1450, 750));
         jp_menu.setSize(new Dimension(1450, 750));
         btn_pacientes = new javax.swing.JButton();
+        btn_pacientes.setBounds(435, 204, 281, 101);
         btn_pacientes.setBorderPainted(false);
         btn_pacientes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_pacientes.setOpaque(false);
@@ -61,6 +69,7 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         	}
         });
         btn_material = new javax.swing.JButton();
+        btn_material.setBounds(435, 309, 281, 101);
         btn_material.setBorderPainted(false);
         btn_material.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_material.setOpaque(false);
@@ -76,6 +85,7 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         	}
         });
         btn_facturacion = new javax.swing.JButton();
+        btn_facturacion.setBounds(435, 416, 281, 101);
         btn_facturacion.setBorderPainted(false);
         btn_facturacion.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_facturacion.setIcon(new ImageIcon(jf_menu_ppal.class.getResource("/iconos_menus/btn_facturacion_admin.png")));
@@ -91,6 +101,7 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         	}
         });
         btn_ajustes = new javax.swing.JButton();
+        btn_ajustes.setBounds(726, 416, 273, 101);
         btn_ajustes.setBorderPainted(false);
         btn_ajustes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_ajustes.setIcon(new ImageIcon(jf_menu_ppal.class.getResource("/iconos_menus/btn_ajustes_admin.png")));
@@ -101,6 +112,7 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         	}
         });
         btn_consultas = new javax.swing.JButton();
+        btn_consultas.setBounds(726, 309, 273, 101);
         btn_consultas.setBorderPainted(false);
         btn_consultas.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_consultas.setIcon(new ImageIcon(jf_menu_ppal.class.getResource("/iconos_menus/btn_consultas_admin.png")));
@@ -116,6 +128,7 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         	}
         });
         btn_doctores = new javax.swing.JButton();
+        btn_doctores.setBounds(726, 204, 273, 98);
         btn_doctores.setBorderPainted(false);
         btn_doctores.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_doctores.setIcon(new ImageIcon(jf_menu_ppal.class.getResource("/iconos_menus/btn_doctores_admin.png")));
@@ -151,42 +164,7 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         jmenu_ayuda.setFont(new Font("Arial", Font.PLAIN, 12));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout jp_menuLayout = new javax.swing.GroupLayout(jp_menu);
-        jp_menuLayout.setHorizontalGroup(
-        	jp_menuLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(jp_menuLayout.createSequentialGroup()
-        			.addContainerGap(440, Short.MAX_VALUE)
-        			.addGroup(jp_menuLayout.createParallelGroup(Alignment.TRAILING, false)
-        				.addComponent(btn_facturacion, 0, 0, Short.MAX_VALUE)
-        				.addComponent(btn_pacientes, GroupLayout.PREFERRED_SIZE, 277, Short.MAX_VALUE)
-        				.addComponent(btn_material, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 281, Short.MAX_VALUE))
-        			.addPreferredGap(ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-        			.addGroup(jp_menuLayout.createParallelGroup(Alignment.TRAILING)
-        				.addGroup(jp_menuLayout.createParallelGroup(Alignment.LEADING, false)
-        					.addComponent(btn_consultas, 0, 0, Short.MAX_VALUE)
-        					.addComponent(btn_doctores, GroupLayout.PREFERRED_SIZE, 273, Short.MAX_VALUE))
-        				.addComponent(btn_ajustes, GroupLayout.PREFERRED_SIZE, 273, GroupLayout.PREFERRED_SIZE))
-        			.addContainerGap(441, Short.MAX_VALUE))
-        );
-        jp_menuLayout.setVerticalGroup(
-        	jp_menuLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(jp_menuLayout.createSequentialGroup()
-        			.addGap(218)
-        			.addGroup(jp_menuLayout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(btn_pacientes, GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-        				.addComponent(btn_doctores, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE))
-        			.addGap(4)
-        			.addGroup(jp_menuLayout.createParallelGroup(Alignment.LEADING)
-        				.addComponent(btn_consultas, GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-        				.addComponent(btn_material, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        			.addPreferredGap(ComponentPlacement.RELATED)
-        			.addGroup(jp_menuLayout.createParallelGroup(Alignment.LEADING, false)
-        				.addComponent(btn_facturacion, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        				.addComponent(btn_ajustes, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        			.addGap(217))
-        );
-        jp_menu.setLayout(jp_menuLayout);
+       
 
         menu_inicio.setBackground(new java.awt.Color(32, 160, 216));
         menu_inicio.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -461,8 +439,32 @@ public class jf_menu_ppal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jp_menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+        jp_menu.setLayout(null);
+        jp_menu.add(btn_facturacion);
+        jp_menu.add(btn_pacientes);
+        jp_menu.add(btn_material);
+        jp_menu.add(btn_consultas);
+        jp_menu.add(btn_doctores);
+        jp_menu.add(btn_ajustes);
+        
+        lbl_fecha = new JLabel("");
+        lbl_fecha.setBackground(Color.WHITE);
+        lbl_fecha.setFont(new Font("Barlow", Font.PLAIN, 25));
+        lbl_fecha.setBounds(1184, 642, 240, 23);
+        jp_menu.add(lbl_fecha);
+        
+        Timer timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	 Date fechaActual = new Date();
+                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                 String fechaHoraFormateada = formato.format(fechaActual);
+                 lbl_fecha.setText(fechaHoraFormateada);
+            }
+        });
+        timer.start();
 
-        pack();
+        
     }// </editor-fold>//GEN-END:initComponents
 
     /**
@@ -483,6 +485,9 @@ public class jf_menu_ppal extends javax.swing.JFrame {
                 new jf_menu_ppal().setVisible(true);
             }
         });
+        
+        
+       
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -530,5 +535,5 @@ public class jf_menu_ppal extends javax.swing.JFrame {
     private JMenuItem jmenuitem_nueva_factura;
     private JMenuItem mntmNewMenuItem;
     private JButton btnNewButton;
-    // End of variables declaration//GEN-END:variables
+    private JLabel lbl_fecha;
 }

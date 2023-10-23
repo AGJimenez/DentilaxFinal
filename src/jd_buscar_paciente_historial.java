@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Cursor;
 import javax.swing.ListSelectionModel;
+import java.awt.Toolkit;
 
 public class jd_buscar_paciente_historial extends JDialog {
 
@@ -44,6 +45,8 @@ public class jd_buscar_paciente_historial extends JDialog {
 	 * Create the dialog.
 	 */
 	public jd_buscar_paciente_historial() {
+		setTitle("Historial de paciente");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_buscar_paciente_historial.class.getResource("/iconos_menus/dentilaxIcono.png")));
 		setModal(true);
 		setPreferredSize(new Dimension(1198, 531));
 		setResizable(false);

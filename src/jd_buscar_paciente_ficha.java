@@ -21,6 +21,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
 public class jd_buscar_paciente_ficha extends JDialog {
 
@@ -51,6 +52,8 @@ public class jd_buscar_paciente_ficha extends JDialog {
 	 * Create the dialog.
 	 */
 	public jd_buscar_paciente_ficha() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_buscar_paciente_ficha.class.getResource("/iconos_menus/dentilaxIcono.png")));
+		setTitle("Ficha de paciente");
 		setModal(true);
 		setPreferredSize(new Dimension(545, 554));
 		setResizable(false);
