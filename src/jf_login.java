@@ -32,6 +32,7 @@ import javax.swing.JPanel;
 import javax.swing.JButton;
 import java.awt.Toolkit;
 import java.awt.Window.Type;
+import javax.swing.JPasswordField;
 
 
 
@@ -60,7 +61,7 @@ public class jf_login extends javax.swing.JFrame {
 		return jtf_user1;
 	}
 
-	public void setJtf_user1(javax.swing.JTextField jtf_user1) {
+	public void setJtf_user1(javax.swing.JPasswordField jtf_user1) {
 		this.jtf_user1 = jtf_user1;
 	}
 
@@ -98,14 +99,23 @@ public class jf_login extends javax.swing.JFrame {
         lblNewLabel_1.setIcon(new ImageIcon(jf_login.class.getResource("/iconos_menus/user (Personalizado).png")));
         lblNewLabel_1.setBounds(10, 11, 43, 44);
         jPanel2.add(lblNewLabel_1);
-        interior.add(jtf_user1);
         interior.add(jtf_user);
+        
+        jtf_user1 = new JPasswordField();
+        jtf_user1.setBorder(null);
+        jtf_user1.setHorizontalAlignment(SwingConstants.CENTER);
+        jtf_user1.setFont(new Font("Barlow", Font.PLAIN, 14));
+        jtf_user1.setToolTipText("Introduce contraseña");
+        jtf_user1.setBackground(new Color(128, 208, 244));
+        jtf_user1.setBounds(136, 199, 290, 65);
+        interior.add(jtf_user1);
         panelFondo.add(btn_entrar);
         
         lbl_fecha = new JLabel("");
+        lbl_fecha.setForeground(new Color(0, 203, 208));
         lbl_fecha.setBackground(Color.WHITE);
-        lbl_fecha.setFont(new Font("Barlow", Font.PLAIN, 25));
-        lbl_fecha.setBounds(821, 496, 250, 23);
+        lbl_fecha.setFont(new Font("Microsoft JhengHei Light", Font.PLAIN, 25));
+        lbl_fecha.setBounds(124, 165, 261, 35);
         panelFondo.add(lbl_fecha);
         
         panel = new JPanel();
@@ -211,29 +221,6 @@ public class jf_login extends javax.swing.JFrame {
         jtf_user.setBorder(null);
         jtf_user.setCaretColor(new Color(255, 255, 255));
         jtf_user.setBounds(132, 83, 294, 65);
-        jtf_user1 = new javax.swing.JTextField();
-        jtf_user1.setFont(new Font("Barlow", Font.PLAIN, 14));
-        jtf_user1.setForeground(new Color(0, 128, 192));
-        jtf_user1.addFocusListener(new FocusAdapter() {
-        	@Override
-        	public void focusGained(FocusEvent e) {
-        		if (jtf_user1.getText().equals("Introduce contraseña")) {
-                    jtf_user1.setText("");
-                 //   jtf_user1.setForeground(Color.WHITE);
-                }
-        	}
-        	@Override
-        	public void focusLost(FocusEvent e) {
-        		if (jtf_user1.getText().isEmpty()) {
-                    jtf_user1.setForeground(new Color(0, 128, 192));
-                    jtf_user1.setText("Introduce contraseña");
-                }
-        	}
-        });
-        jtf_user1.setHorizontalAlignment(SwingConstants.CENTER);
-        jtf_user1.setToolTipText("Introduce contraseña");
-        jtf_user1.setBorder(null);
-        jtf_user1.setBounds(132, 199, 294, 65);
         jPanel1 = new javax.swing.JPanel();
         jPanel1.setBounds(63, 199, 63, 65);
         jPanel2 = new javax.swing.JPanel();
@@ -310,16 +297,6 @@ public class jf_login extends javax.swing.JFrame {
 
         jtf_user.setBackground(new java.awt.Color(128, 208, 244));
         jtf_user.setText("Introduce usuario");
-        
-        
-        
-        jtf_user1.setBackground(new java.awt.Color(128, 208, 244));
-        jtf_user1.setText("Introduce contraseña");
-        jtf_user1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtf_user1ActionPerformed(evt);
-            }
-        });
 
         jPanel1.setBackground(new java.awt.Color(32, 160, 216));
 
@@ -342,10 +319,6 @@ public class jf_login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jtf_user1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_user1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtf_user1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -377,7 +350,6 @@ public class jf_login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jtf_user;
-    private javax.swing.JTextField jtf_user1;
     private javax.swing.JPanel panelFondo;
     private JLabel lblNewLabel;
     private JLabel lblNewLabel_1;
@@ -386,4 +358,5 @@ public class jf_login extends javax.swing.JFrame {
     private JButton btnNewButton;
     private JButton btnNewButton_1;
     private JLabel lbl_fecha;
+    private JPasswordField jtf_user1;
 }
