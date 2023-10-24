@@ -23,6 +23,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.Toolkit;
+import javax.swing.JTextArea;
 
 public class jd_pacientes_alta extends JDialog {
 
@@ -33,7 +34,7 @@ public class jd_pacientes_alta extends JDialog {
 	private JTextField txt_dni;
 	private JTextField txt_telefono;
 	private JTextField txt_seguro;
-	private JTextField txt_observaciones;
+	private JTextArea txt_observaciones;
 	private JTextField txt_apellidos;
 	private JTextField txt_nacimiento;
 	private JTextField txt_correo;
@@ -231,24 +232,8 @@ public class jd_pacientes_alta extends JDialog {
 			contentPanel.add(txt_seguro);
 		}
 		{
-			txt_observaciones = new JTextField();
-			txt_observaciones.addFocusListener(new FocusAdapter() {
-				@Override
-				public void focusGained(FocusEvent e) {
-					if(txt_observaciones.getText().equals("Introduce la observacion")) {
-						txt_observaciones.setText("");
-					}
-					
-				}
-				@Override
-				public void focusLost(FocusEvent e) {
-					if (txt_observaciones.getText().isEmpty()) {
-						txt_observaciones.setText("Introduce la observacion");
-					}
-				}
-			});
+			txt_observaciones = new JTextArea();
 			txt_observaciones.setText("Introduce la observacion");
-			txt_observaciones.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_observaciones.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_observaciones.setColumns(10);
 			txt_observaciones.setBorder(null);

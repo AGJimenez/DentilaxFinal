@@ -103,7 +103,7 @@ public class jf_login extends javax.swing.JFrame {
         jtf_user1 = new JPasswordField();
         jtf_user1.setBorder(null);
         jtf_user1.setHorizontalAlignment(SwingConstants.CENTER);
-        jtf_user1.setFont(new Font("Barlow", Font.PLAIN, 14));
+        jtf_user1.setFont(new Font("Barlow", Font.PLAIN, 25));
         jtf_user1.setToolTipText("Introduce contraseña");
         jtf_user1.setBackground(new Color(128, 208, 244));
         jtf_user1.setBounds(136, 199, 290, 65);
@@ -198,7 +198,7 @@ public class jf_login extends javax.swing.JFrame {
         interior.setBounds(694, 135, 483, 350);
         interior.setOpaque(false);
         jtf_user = new javax.swing.JTextField();
-        jtf_user.setFont(new Font("Barlow", Font.PLAIN, 14));
+        jtf_user.setFont(new Font("Barlow", Font.PLAIN, 20));
         jtf_user.setForeground(new Color(0, 128, 192));
         
         //a partir de aqui conseguimos que el texto desaparezca cuando el textfield reciba el click:

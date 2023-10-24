@@ -18,6 +18,8 @@ import javax.swing.JLabel;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.Color;
+import java.awt.Toolkit;
+import javax.swing.border.LineBorder;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -34,6 +36,8 @@ public class jf_menu_ppal extends javax.swing.JFrame {
      */
     Fondo fondo = new Fondo();
     public jf_menu_ppal() {
+    	setTitle("Dentilax");
+    	setIconImage(Toolkit.getDefaultToolkit().getImage(jf_menu_ppal.class.getResource("/iconos_menus/dentilaxIcono.png")));
     	setPreferredSize(new Dimension(1450, 750));
     	setSize(new Dimension(1450, 750));
     	setResizable(false);
@@ -465,6 +469,22 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         lbl_fecha.setFont(new Font("Barlow", Font.PLAIN, 25));
         lbl_fecha.setBounds(1184, 642, 240, 23);
         jp_menu.add(lbl_fecha);
+        
+        JButton btnNewButton_1 = new JButton("SALIR");
+        btnNewButton_1.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+        btnNewButton_1.setForeground(new Color(0, 161, 219));
+        btnNewButton_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_login ventana = new jf_login();
+        		ventana.setVisible(true);        	}
+        });
+        btnNewButton_1.setFont(new Font("Barlow", Font.BOLD, 20));
+        btnNewButton_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnNewButton_1.setBackground(new Color(255, 255, 255));
+        btnNewButton_1.setIcon(new ImageIcon(jf_menu_ppal.class.getResource("/iconos_menus/image.png")));
+        btnNewButton_1.setBounds(28, 599, 148, 66);
+        jp_menu.add(btnNewButton_1);
         
         Timer timer = new Timer(1000, new ActionListener() {
             @Override
