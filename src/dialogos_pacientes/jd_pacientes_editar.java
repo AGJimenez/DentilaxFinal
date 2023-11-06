@@ -281,7 +281,11 @@ public class jd_pacientes_editar extends JDialog {
 					String direccion = txt_direccion.getText().toString();
 					String observacion = txt_observaciones.getText().toString();
 					String genero="";
+<<<<<<< HEAD:src/dialogos_pacientes/jd_pacientes_editar.java
 					String btn_seleccionado = getSelectedButton(btn_group_genero);					
+=======
+					String btn_seleccionado = getSelectedButton(btn_group_genero);
+>>>>>>> 922c3bcece9bc22fe15b8492d94cb789a92085aa:src/jd_pacientes_editar.java
 		            if (btn_seleccionado != null) {
 		                if (btn_seleccionado.equals("Varón")) {
 		                    // Realizar alguna acción si se selecciona "Varón"

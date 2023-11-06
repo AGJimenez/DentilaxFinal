@@ -28,6 +28,9 @@ import java.awt.Cursor;
 import java.awt.Font;
 import javax.swing.JLabel;
 import java.awt.Toolkit;
+import javax.swing.KeyStroke;
+import java.awt.event.KeyEvent;
+import java.awt.event.InputEvent;
 
 public class jf_doctores extends javax.swing.JFrame {
 
@@ -206,6 +209,7 @@ public class jf_doctores extends javax.swing.JFrame {
 	        menu_inicio.add(jMenu2);
 	        
 	        jmenuitem_menu_paciente = new JMenuItem("Menu paciente");
+	        jmenuitem_menu_paciente.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.ALT_DOWN_MASK));
 	        jmenuitem_menu_paciente.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
 	        		dispose();
@@ -272,6 +276,7 @@ public class jf_doctores extends javax.swing.JFrame {
 	        menu_inicio.add(jMenu3);
 	        
 	        jmenuitem_menu_doctor = new JMenuItem("Menu doctor");
+	        jmenuitem_menu_doctor.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.ALT_DOWN_MASK));
 	        jmenuitem_menu_doctor.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
 	        		dispose();
@@ -351,6 +356,7 @@ public class jf_doctores extends javax.swing.JFrame {
 	        menu_inicio.add(jMenu4);
 	        
 	        jmenuitem_menu_material = new JMenuItem("Menu material");
+	        jmenuitem_menu_material.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.ALT_DOWN_MASK));
 	        jmenuitem_menu_material.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
 	        		dispose();
@@ -389,6 +395,7 @@ public class jf_doctores extends javax.swing.JFrame {
 	        menu_inicio.add(jMenu5);
 	        
 	        JMenuItem jmenuitem_menu_consulta = new JMenuItem("Menu consulta");
+	        jmenuitem_menu_consulta.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.ALT_DOWN_MASK));
 	        jmenuitem_menu_consulta.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
 	        		dispose();
@@ -419,6 +426,7 @@ public class jf_doctores extends javax.swing.JFrame {
 	        menu_inicio.add(jMenu6);
 	        
 	        jmenuitem_menu_facturacion = new JMenuItem("Menu facturacion");
+	        jmenuitem_menu_facturacion.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, InputEvent.ALT_DOWN_MASK));
 	        jmenuitem_menu_facturacion.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
 	        		dispose();

@@ -13,6 +13,8 @@ import javax.swing.Timer;
 import java.awt.Dimension;
 import java.awt.Cursor;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -21,10 +23,14 @@ import java.awt.event.FocusEvent;
 import java.awt.Color;
 import java.awt.Toolkit;
 import javax.swing.border.LineBorder;
+import javax.swing.KeyStroke;
+import java.awt.event.KeyEvent;
+import java.awt.event.InputEvent;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+import java.awt.event.KeyAdapter;
 
 import login.jf_login;
 
@@ -61,6 +67,7 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         jp_menu = new fondos.Fondo();
         jp_menu.setPreferredSize(new Dimension(1450, 750));
         jp_menu.setSize(new Dimension(1450, 750));
+        jp_menu.setFocusable(true);
         btn_pacientes = new javax.swing.JButton();
         btn_pacientes.setBounds(435, 204, 281, 101);
         btn_pacientes.setBorderPainted(false);
@@ -68,6 +75,16 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         btn_pacientes.setOpaque(false);
         btn_pacientes.setContentAreaFilled(false);
         btn_pacientes.setIcon(new ImageIcon(jf_menu_ppal.class.getResource("/iconos_menus/btn_pacientes_admin.png")));
+        jp_menu.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.isAltDown()&&e.getKeyCode()==KeyEvent.VK_S) {
+					dispose();
+	        		jf_menu_ppal ventana = new jf_menu_ppal();
+	        		ventana.setVisible(true);
+				}
+			}
+		});
         btn_pacientes.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
@@ -177,26 +194,27 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         menu_inicio.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         menu_inicio.setBorderPainted(false);
         
-        btnNewButton = new JButton("INICIO");
-        btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        btnNewButton.setFont(new Font("Arial", Font.PLAIN, 12));
-        btnNewButton.setFocusPainted(false);
-        btnNewButton.setContentAreaFilled(false);
-        btnNewButton.setBorderPainted(false);
-        btnNewButton.setOpaque(false);
-        btnNewButton.addActionListener(new ActionListener() {
+        btn_inicio = new JButton("INICIO");
+        btn_inicio.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btn_inicio.setFont(new Font("Arial", Font.PLAIN, 12));
+        btn_inicio.setFocusPainted(false);
+        btn_inicio.setContentAreaFilled(false);
+        btn_inicio.setBorderPainted(false);
+        btn_inicio.setOpaque(false);
+        btn_inicio.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
         		jf_menu_ppal ventana = new jf_menu_ppal();
         		ventana.setVisible(true);
         	}
         });
-        menu_inicio.add(btnNewButton);
+        menu_inicio.add(btn_inicio);
 
         jmenu_paciente.setText("PACIENTES");
         menu_inicio.add(jmenu_paciente);
         
         jmenuitem_menu_paciente = new JMenuItem("Menu paciente");
+        jmenuitem_menu_paciente.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.ALT_DOWN_MASK));
         jmenuitem_menu_paciente.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		jf_pacientes ventana = new jf_pacientes();
@@ -263,6 +281,7 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         menu_inicio.add(jmenu_doctor);
         
         jmenuitem_menu_doctores = new JMenuItem("Menu doctor");
+        jmenuitem_menu_doctores.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, InputEvent.ALT_DOWN_MASK));
         jmenuitem_menu_doctores.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
@@ -342,6 +361,7 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         menu_inicio.add(jmenu_material);
         
         jmenuitem_menu_material = new JMenuItem("Menu material");
+        jmenuitem_menu_material.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.ALT_DOWN_MASK));
         jmenuitem_menu_material.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
@@ -380,6 +400,7 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         menu_inicio.add(jmenu_consulta);
         
         jmenuitem_menu_consulta = new JMenuItem("Menu consulta");
+        jmenuitem_menu_consulta.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.ALT_DOWN_MASK));
         jmenuitem_menu_consulta.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
@@ -410,6 +431,7 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         menu_inicio.add(jmenu_facturacion);
         
         jmenuitem_menu_facturacion = new JMenuItem("Menu facturacion");
+        jmenuitem_menu_facturacion.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, InputEvent.ALT_DOWN_MASK));
         jmenuitem_menu_facturacion.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
@@ -570,6 +592,6 @@ public class jf_menu_ppal extends javax.swing.JFrame {
     private JMenuItem jmenuitem_balance_gastos;
     private JMenuItem jmenuitem_nueva_factura;
     private JMenuItem mntmNewMenuItem;
-    private JButton btnNewButton;
+    private JButton btn_inicio;
     private JLabel lbl_fecha;
 }

@@ -153,7 +153,7 @@ public class jd_buscar_paciente_encontrado extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						//SQL consulta para sacar la ficha
 						ConectorDB_mysql conector = new ConectorDB_mysql();
-						
+						dispose();
 						try {
 							conector.consulta_paciente_ficha(getTxt_dni().getText().toString());
 							jd_buscar_paciente_ficha ventana = new jd_buscar_paciente_ficha();
@@ -195,7 +195,7 @@ public class jd_buscar_paciente_encontrado extends JDialog {
 			btn_historial.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btn_historial.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					dispose();
 					jd_buscar_paciente_historial ventana = new jd_buscar_paciente_historial();
 					ventana.setVisible(true);
 					

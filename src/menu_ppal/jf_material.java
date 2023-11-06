@@ -15,6 +15,9 @@ import javax.swing.JMenuItem;
 import java.awt.Dimension;
 import java.awt.Cursor;
 import java.awt.Toolkit;
+import javax.swing.KeyStroke;
+import java.awt.event.KeyEvent;
+import java.awt.event.InputEvent;
 
 public class jf_material extends JFrame {
 
@@ -118,6 +121,7 @@ public class jf_material extends JFrame {
         menu_inicio.add(jMenu2);
         
         jmenuitem_menu_paciente = new JMenuItem("Menu paciente");
+        jmenuitem_menu_paciente.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.ALT_DOWN_MASK));
         jmenuitem_menu_paciente.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
