@@ -6,6 +6,7 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.AbstractAction;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.Timer;
@@ -17,6 +18,7 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -68,6 +70,14 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         jp_menu.setPreferredSize(new Dimension(1450, 750));
         jp_menu.setSize(new Dimension(1450, 750));
         jp_menu.setFocusable(true);
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+                KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.ALT_DOWN_MASK), "clickButton");
+
+            getRootPane().getActionMap().put("clickButton", new AbstractAction() {
+                public void actionPerformed(ActionEvent ae) {
+                    btn_inicio.doClick(); // Simula el clic del botón
+                }
+            });
         btn_pacientes = new javax.swing.JButton();
         btn_pacientes.setBounds(435, 204, 281, 101);
         btn_pacientes.setBorderPainted(false);

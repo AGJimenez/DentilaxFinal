@@ -10,10 +10,13 @@ import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import java.awt.Panel;
+
+import javax.swing.AbstractAction;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -104,6 +107,7 @@ public class jf_doctores extends javax.swing.JFrame {
 	    @SuppressWarnings("unchecked")
 	    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
 	    private void initComponents() {
+	    	
         //Aqui vamos a inicializar los menús y submenús de nuestro JFrame:
 	        jp_menu = new fondos.Fondo();
 	        jp_menu.setPreferredSize(new Dimension(1450, 750));
@@ -189,21 +193,29 @@ public class jf_doctores extends javax.swing.JFrame {
 	        menu_inicio.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 	        menu_inicio.setBorderPainted(false);
 	        
-	        JButton btnNewButton = new JButton("INICIO");
-	        btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-	        btnNewButton.addActionListener(new ActionListener() {
+	        JButton btn_inicio = new JButton("INICIO");
+	        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+	                KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.ALT_DOWN_MASK), "clickButton");
+
+	            getRootPane().getActionMap().put("clickButton", new AbstractAction() {
+	                public void actionPerformed(ActionEvent ae) {
+	                    btn_inicio.doClick(); // Simula el clic del botón
+	                }
+	            });
+	        btn_inicio.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+	        btn_inicio.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
 	        		dispose();
 	        		jf_menu_ppal ventana = new jf_menu_ppal();
 	        		ventana.setVisible(true);
 	        	}
 	        });
-	        btnNewButton.setOpaque(false);
-	        btnNewButton.setFont(new Font("Arial", Font.PLAIN, 12));
-	        btnNewButton.setFocusPainted(false);
-	        btnNewButton.setContentAreaFilled(false);
-	        btnNewButton.setBorderPainted(false);
-	        menu_inicio.add(btnNewButton);
+	        btn_inicio.setOpaque(false);
+	        btn_inicio.setFont(new Font("Arial", Font.PLAIN, 12));
+	        btn_inicio.setFocusPainted(false);
+	        btn_inicio.setContentAreaFilled(false);
+	        btn_inicio.setBorderPainted(false);
+	        menu_inicio.add(btn_inicio);
 
 	        jMenu2.setText("PACIENTES");
 	        menu_inicio.add(jMenu2);
