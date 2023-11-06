@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.border.EmptyBorder;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.AbstractAction;
 import javax.swing.GroupLayout;
 import java.awt.Cursor;
 import java.awt.Image;
@@ -27,13 +28,17 @@ import javax.swing.Timer;
 
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.KeyEvent;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+
 import java.awt.Toolkit;
 import java.awt.Window.Type;
 import javax.swing.JPasswordField;
+import javax.swing.KeyStroke;
 
 
 
@@ -87,6 +92,17 @@ public class jf_login extends javax.swing.JFrame {
         interior.add(btn_recuperar_pass);
         interior.add(jPanel1);
         jPanel1.setLayout(null);
+        
+        
+        //implementación del botón con enter
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+                KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "clickButton");
+
+            getRootPane().getActionMap().put("clickButton", new AbstractAction() {
+                public void actionPerformed(ActionEvent ae) {
+                    btn_entrar.doClick(); // Simula el clic del botón
+                }
+            });
         
         lblNewLabel_2 = new JLabel("");
         lblNewLabel_2.setIcon(new ImageIcon(jf_login.class.getResource("/iconos_menus/password.png")));
