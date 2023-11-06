@@ -60,20 +60,20 @@ public class jf_consulta extends JFrame {
         btn_eliminar_cita.setBorderPainted(false);
         btn_eliminar_cita.setText("ELIMINAR CITA");
         menu_inicio = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu2.setFont(new Font("Arial", Font.PLAIN, 12));
-        jMenu3 = new javax.swing.JMenu();
-        jMenu3.setFont(new Font("Arial", Font.PLAIN, 12));
-        jMenu4 = new javax.swing.JMenu();
-        jMenu4.setFont(new Font("Arial", Font.PLAIN, 12));
-        jMenu5 = new javax.swing.JMenu();
-        jMenu5.setFont(new Font("Arial", Font.PLAIN, 12));
-        jMenu6 = new javax.swing.JMenu();
-        jMenu6.setFont(new Font("Arial", Font.PLAIN, 12));
-        jMenu7 = new javax.swing.JMenu();
-        jMenu7.setFont(new Font("Arial", Font.PLAIN, 12));
-        jMenu8 = new javax.swing.JMenu();
-        jMenu8.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_paciente = new javax.swing.JMenu();
+        jmenu_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_doctor = new javax.swing.JMenu();
+        jmenu_doctor.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_material = new javax.swing.JMenu();
+        jmenu_material.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_consulta = new javax.swing.JMenu();
+        jmenu_consulta.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_facturacion = new javax.swing.JMenu();
+        jmenu_facturacion.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_ajustes = new javax.swing.JMenu();
+        jmenu_ajustes.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_ayuda = new javax.swing.JMenu();
+        jmenu_ayuda.setFont(new Font("Arial", Font.PLAIN, 12));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -114,42 +114,270 @@ public class jf_consulta extends JFrame {
         menu_inicio.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         menu_inicio.setBorderPainted(false);
         
-        btnNewButton = new JButton("INICIO");
-        btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        btnNewButton.addActionListener(new ActionListener() {
+        btn_inicio = new JButton("INICIO");
+        btn_inicio.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btn_inicio.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
         		jf_menu_ppal ventana = new jf_menu_ppal();
         		ventana.setVisible(true);
         	}
         });
-        btnNewButton.setOpaque(false);
-        btnNewButton.setFont(new Font("Arial", Font.PLAIN, 12));
-        btnNewButton.setFocusPainted(false);
-        btnNewButton.setContentAreaFilled(false);
-        btnNewButton.setBorderPainted(false);
-        menu_inicio.add(btnNewButton);
+        btn_inicio.setOpaque(false);
+        btn_inicio.setFont(new Font("Arial", Font.PLAIN, 12));
+        btn_inicio.setFocusPainted(false);
+        btn_inicio.setContentAreaFilled(false);
+        btn_inicio.setBorderPainted(false);
+        menu_inicio.add(btn_inicio);
 
-        jMenu2.setText("PACIENTES");
-        menu_inicio.add(jMenu2);
+        jmenu_paciente.setText("PACIENTES");
+        menu_inicio.add(jmenu_paciente);
+        
+        jmenuitem_menu_paciente = new JMenuItem("Menu paciente");
+        jmenuitem_menu_paciente.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		jf_pacientes ventana = new jf_pacientes();
+        		dispose();
+        		ventana.setVisible(true);
+        	}
+        });
+        jmenuitem_menu_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_paciente.add(jmenuitem_menu_paciente);
+        
+        jmenuitem_buscar_paciente = new JMenuItem("Buscar paciente");
+        jmenuitem_buscar_paciente.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_pacientes ventana = new jf_pacientes();
+        		jd_buscar_paciente ventana_buscar = new jd_buscar_paciente();
+        		ventana.setVisible(true);
+        		ventana_buscar.setVisible(true);
+        	}
+        });
+        jmenuitem_buscar_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_paciente.add(jmenuitem_buscar_paciente);
+        
+        jmenuitem_editar_paciente = new JMenuItem("Editar paciente");
+        jmenuitem_editar_paciente.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_pacientes ventana = new jf_pacientes();
+        		jd_buscar_paciente_editar ventana_buscar = new jd_buscar_paciente_editar();
+        		ventana.setVisible(true);
+        		ventana_buscar.setVisible(true);
+        	}
+        });
+        jmenuitem_editar_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_paciente.add(jmenuitem_editar_paciente);
+        
+        jmenuitem_baja_paciente = new JMenuItem("Dar de baja");
+        jmenuitem_baja_paciente.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+				jf_pacientes ventana = new jf_pacientes();
+				jd_buscar_paciente_baja ventana_buscar = new jd_buscar_paciente_baja();
+				ventana.setVisible(true);
+				ventana_buscar.setVisible(true);
+        	}
+        });
+        jmenuitem_baja_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_paciente.add(jmenuitem_baja_paciente);
+        
+        jmenuitem_alta_paciente = new JMenuItem("Dar de alta");
+        jmenuitem_alta_paciente.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+				jf_pacientes ventana = new jf_pacientes();
+				jd_pacientes_alta ventana_alta = new jd_pacientes_alta();
+				ventana.setVisible(true);
+				ventana_alta.setVisible(true);
+        	}
+        });
+        jmenuitem_alta_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_paciente.add(jmenuitem_alta_paciente);
 
-        jMenu3.setText("DOCTORES");
-        menu_inicio.add(jMenu3);
+        jmenu_doctor.setText("DOCTORES");
+        menu_inicio.add(jmenu_doctor);
+        
+        jmenuitem_menu_doctores = new JMenuItem("Menu doctor");
+        jmenuitem_menu_doctores.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_doctores ventana = new jf_doctores();
+        		ventana.setVisible(true);
+        	}
+        });
+        jmenuitem_menu_doctores.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_doctor.add(jmenuitem_menu_doctores);
+        
+        jmenuitem_buscar_doctores = new JMenuItem("Buscar doctor");
+        jmenuitem_buscar_doctores.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_doctores ventana = new jf_doctores();
+        		jd_buscar_dr ventana_buscar = new jd_buscar_dr();
+        		ventana.setVisible(true);
+        		ventana_buscar.setVisible(true);
+        	}
+        });
+        jmenuitem_buscar_doctores.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_doctor.add(jmenuitem_buscar_doctores);
+        
+        jmenuitem_especialidad_doctores = new JMenuItem("Especialidad");
+        jmenuitem_especialidad_doctores.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_doctores ventana = new jf_doctores();
+        		jd_especialidades ventana_especialidad = new jd_especialidades();
+        		ventana.setVisible(true);
+        		ventana_especialidad.setVisible(true);
+        	}
+        });
+        jmenuitem_especialidad_doctores.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_doctor.add(jmenuitem_especialidad_doctores);
+        
+        jmenuitem_editar_doctor = new JMenuItem("Editar doctor");
+        jmenuitem_editar_doctor.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_doctores ventana = new jf_doctores();
+        		jd_buscar_doctor_editar ventana_buscar = new jd_buscar_doctor_editar();
+        		ventana.setVisible(true);
+        		ventana_buscar.setVisible(true);
+        	}
+        });
+        jmenuitem_editar_doctor.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_doctor.add(jmenuitem_editar_doctor);
+        
+        jmenuitem_baja_doctores = new JMenuItem("Dar de baja");
+        jmenuitem_baja_doctores.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_doctores ventana = new jf_doctores();
+        		jd_buscar_doctor_baja ventana_alta = new jd_buscar_doctor_baja();
+        		ventana.setVisible(true);
+        		ventana_alta.setVisible(true);
+        	}
+        });
+        jmenuitem_baja_doctores.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_doctor.add(jmenuitem_baja_doctores);
+        
+        jmenuitem_alta_doctores = new JMenuItem("Dar de alta");
+        jmenuitem_alta_doctores.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_doctores ventana = new jf_doctores();
+        		jd_doctores_alta ventana_alta = new jd_doctores_alta();
+        		ventana.setVisible(true);
+        		ventana_alta.setVisible(true);
+        	}
+        });
+        jmenuitem_alta_doctores.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_doctor.add(jmenuitem_alta_doctores);
 
-        jMenu4.setText("MATERIAL");
-        menu_inicio.add(jMenu4);
+        jmenu_material.setText("MATERIAL");
+        menu_inicio.add(jmenu_material);
+        
+        jmenuitem_menu_material = new JMenuItem("Menu material");
+        jmenuitem_menu_material.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_material ventana = new jf_material();
+        		ventana.setVisible(true);
+        	}
+        });
+        jmenuitem_menu_material.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_material.add(jmenuitem_menu_material);
+        
+        jmenuitem_buscar_pedido = new JMenuItem("Buscar pedido");
+        jmenuitem_buscar_pedido.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_material.add(jmenuitem_buscar_pedido);
+        
+        jmenuitem_proveedores = new JMenuItem("Proveedores");
+        jmenuitem_proveedores.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_material.add(jmenuitem_proveedores);
+        
+        jmenuitem_cancelar = new JMenuItem("Cancelar pedido");
+        jmenuitem_cancelar.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_material.add(jmenuitem_cancelar);
+        
+        jmenuitem_nuevo_pedido = new JMenuItem("Nuevo pedido");
+        jmenuitem_nuevo_pedido.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_material.add(jmenuitem_nuevo_pedido);
+        
+        jmenuitem_inventario = new JMenuItem("Inventario");
+        jmenuitem_inventario.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_material.add(jmenuitem_inventario);
+        
+        jmenuitem_solicitudes = new JMenuItem("Solicitudes");
+        jmenuitem_solicitudes.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_material.add(jmenuitem_solicitudes);
 
-        jMenu5.setText("CONSULTAS");
-        menu_inicio.add(jMenu5);
+        jmenu_consulta.setText("CONSULTAS");
+        menu_inicio.add(jmenu_consulta);
+        
+        jmenuitem_menu_consulta = new JMenuItem("Menu consulta");
+        jmenuitem_menu_consulta.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_consulta ventana = new jf_consulta();
+        		ventana.setVisible(true);
+        	}
+        });
+        jmenuitem_menu_consulta.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_consulta.add(jmenuitem_menu_consulta);
+        
+        jmenuitem_buscar_cita = new JMenuItem("Buscar cita");
+        jmenuitem_buscar_cita.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_consulta.add(jmenuitem_buscar_cita);
+        
+        jmenuitem_historial = new JMenuItem("Historial");
+        jmenuitem_historial.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_consulta.add(jmenuitem_historial);
+        
+        jmenuitem_eliminar_cita = new JMenuItem("Eliminar cita");
+        jmenuitem_eliminar_cita.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_consulta.add(jmenuitem_eliminar_cita);
+        
+        jmenuitem_nueva_cita = new JMenuItem("Nueva cita");
+        jmenuitem_nueva_cita.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_consulta.add(jmenuitem_nueva_cita);
 
-        jMenu6.setText("FACTURACIÓN");
-        menu_inicio.add(jMenu6);
+        jmenu_facturacion.setText("FACTURACIÓN");
+        menu_inicio.add(jmenu_facturacion);
+        
+        jmenuitem_menu_facturacion = new JMenuItem("Menu facturacion");
+        jmenuitem_menu_facturacion.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_facturacion ventana = new jf_facturacion();
+        		ventana.setVisible(true);
+        	}
+        });
+        jmenuitem_menu_facturacion.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_facturacion.add(jmenuitem_menu_facturacion);
+        
+        jmenuitem_buscar_factura = new JMenuItem("Buscar factura");
+        jmenuitem_buscar_factura.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_facturacion.add(jmenuitem_buscar_factura);
+        
+        jmenuitem_historial_pago = new JMenuItem("Historial de pago");
+        jmenuitem_historial_pago.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_facturacion.add(jmenuitem_historial_pago);
+        
+        jmenuitem_balance_gastos = new JMenuItem("Balance de gastos");
+        jmenuitem_balance_gastos.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_facturacion.add(jmenuitem_balance_gastos);
+        
+        jmenuitem_nueva_factura = new JMenuItem("Nueva factura");
+        jmenuitem_nueva_factura.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_facturacion.add(jmenuitem_nueva_factura);
 
-        jMenu7.setText("AJUSTES");
-        menu_inicio.add(jMenu7);
+        jmenu_ajustes.setText("AJUSTES");
+        menu_inicio.add(jmenu_ajustes);
 
-        jMenu8.setText("AYUDA");
-        menu_inicio.add(jMenu8);
+        jmenu_ayuda.setText("AYUDA");
+        menu_inicio.add(jmenu_ayuda);
 
         setJMenuBar(menu_inicio);
 
@@ -189,17 +417,45 @@ public class jf_consulta extends JFrame {
     private javax.swing.JButton btn_historial;
     private javax.swing.JButton btn_nueva_cita;
     private javax.swing.JButton btn_buscar_cita;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
+    private javax.swing.JMenu jmenu_paciente;
+    private javax.swing.JMenu jmenu_doctor;
+    private javax.swing.JMenu jmenu_material;
+    private javax.swing.JMenu jmenu_consulta;
+    private javax.swing.JMenu jmenu_facturacion;
+    private javax.swing.JMenu jmenu_ajustes;
+    private javax.swing.JMenu jmenu_ayuda;
     private javax.swing.JPanel jp_menu;
     private javax.swing.JMenuBar menu_inicio;
     private JButton btn_eliminar_cita;
-    private JButton btnNewButton;
+    private JButton btn_inicio;
+    private JMenuItem jmenuitem_menu_paciente;
+    private JMenuItem jmenuitem_alta_paciente;
+    private JMenuItem jmenuitem_buscar_paciente;
+    private JMenuItem jmenuitem_editar_paciente;
+    private JMenuItem jmenuitem_baja_paciente;
+    private JMenuItem jmenuitem_menu_doctores;
+    private JMenuItem jmenuitem_alta_doctores;
+    private JMenuItem jmenuitem_buscar_doctores;
+    private JMenuItem jmenuitem_especialidad_doctores;
+    private JMenuItem jmenuitem_baja_doctores;
+    private JMenuItem jmenuitem_editar_doctor;
+    private JMenuItem jmenuitem_menu_material;
+    private JMenuItem jmenuitem_buscar_pedido;
+    private JMenuItem jmenuitem_proveedores;
+    private JMenuItem jmenuitem_solicitudes;
+    private JMenuItem jmenuitem_inventario;
+    private JMenuItem jmenuitem_cancelar;
+    private JMenuItem jmenuitem_nuevo_pedido;
+    private JMenuItem jmenuitem_menu_consulta;
+    private JMenuItem jmenuitem_nueva_cita;
+    private JMenuItem jmenuitem_buscar_cita;
+    private JMenuItem jmenuitem_historial;
+    private JMenuItem jmenuitem_eliminar_cita;
+    private JMenuItem jmenuitem_menu_facturacion;
+    private JMenuItem jmenuitem_nueva_factura;
+    private JMenuItem jmenuitem_balance_gastos;
+    private JMenuItem jmenuitem_buscar_factura;
+    private JMenuItem jmenuitem_historial_pago;
     // End of variables declaration//GEN-END:variables
 
 }
