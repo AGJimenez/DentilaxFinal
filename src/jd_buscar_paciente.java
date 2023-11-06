@@ -125,7 +125,8 @@ public class jd_buscar_paciente extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						//SQL si lo encuentra, abre ventana:
 						ConectorDB_mysql consulta= new ConectorDB_mysql();
-						String dni = txt_IntroduceDni.getText().toString();		
+						String dni = txt_IntroduceDni.getText().toString();	
+						dispose();
 						try {
 							consulta.consulta_paciente(dni);
 							
