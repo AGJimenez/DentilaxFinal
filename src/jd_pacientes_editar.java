@@ -278,7 +278,6 @@ public class jd_pacientes_editar extends JDialog {
 					String observacion = txt_observaciones.getText().toString();
 					String genero="";
 					String btn_seleccionado = getSelectedButton(btn_group_genero);
-					String contrasena = JOptionPane.showInputDialog("Introduce contraseña para el login");
 		            if (btn_seleccionado != null) {
 		                if (btn_seleccionado.equals("Varón")) {
 		                    // Realizar alguna acción si se selecciona "Varón"
