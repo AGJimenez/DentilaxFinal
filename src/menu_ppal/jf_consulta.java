@@ -150,7 +150,7 @@ public class jf_consulta extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
         		jf_pacientes ventana = new jf_pacientes();
-        		jd_buscar_paciente ventana_buscar = new jd_buscar_paciente();
+        		dialogos_pacientes.jd_buscar_paciente ventana_buscar = new dialogos_pacientes.jd_buscar_paciente();
         		ventana.setVisible(true);
         		ventana_buscar.setVisible(true);
         	}
@@ -163,7 +163,7 @@ public class jf_consulta extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
         		jf_pacientes ventana = new jf_pacientes();
-        		jd_buscar_paciente_editar ventana_buscar = new jd_buscar_paciente_editar();
+        		dialogos_pacientes.jd_buscar_paciente_editar ventana_buscar = new dialogos_pacientes.jd_buscar_paciente_editar();
         		ventana.setVisible(true);
         		ventana_buscar.setVisible(true);
         	}
@@ -176,7 +176,7 @@ public class jf_consulta extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
 				jf_pacientes ventana = new jf_pacientes();
-				jd_buscar_paciente_baja ventana_buscar = new jd_buscar_paciente_baja();
+				dialogos_pacientes.jd_buscar_paciente_baja ventana_buscar = new dialogos_pacientes.jd_buscar_paciente_baja();
 				ventana.setVisible(true);
 				ventana_buscar.setVisible(true);
         	}
@@ -189,7 +189,7 @@ public class jf_consulta extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
 				jf_pacientes ventana = new jf_pacientes();
-				jd_pacientes_alta ventana_alta = new jd_pacientes_alta();
+				dialogos_pacientes.jd_pacientes_alta ventana_alta = new dialogos_pacientes.jd_pacientes_alta();
 				ventana.setVisible(true);
 				ventana_alta.setVisible(true);
         	}
@@ -216,7 +216,7 @@ public class jf_consulta extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
         		jf_doctores ventana = new jf_doctores();
-        		jd_buscar_dr ventana_buscar = new jd_buscar_dr();
+        		dialogos_doctores.jd_buscar_dr ventana_buscar = new dialogos_doctores.jd_buscar_dr();
         		ventana.setVisible(true);
         		ventana_buscar.setVisible(true);
         	}
@@ -229,7 +229,7 @@ public class jf_consulta extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
         		jf_doctores ventana = new jf_doctores();
-        		jd_especialidades ventana_especialidad = new jd_especialidades();
+        		dialogos_doctores.jd_especialidades ventana_especialidad = new dialogos_doctores.jd_especialidades();
         		ventana.setVisible(true);
         		ventana_especialidad.setVisible(true);
         	}
@@ -242,7 +242,7 @@ public class jf_consulta extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
         		jf_doctores ventana = new jf_doctores();
-        		jd_buscar_doctor_editar ventana_buscar = new jd_buscar_doctor_editar();
+        		dialogos_doctores.jd_buscar_doctor_editar ventana_buscar = new dialogos_doctores.jd_buscar_doctor_editar();
         		ventana.setVisible(true);
         		ventana_buscar.setVisible(true);
         	}
@@ -255,7 +255,7 @@ public class jf_consulta extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
         		jf_doctores ventana = new jf_doctores();
-        		jd_buscar_doctor_baja ventana_alta = new jd_buscar_doctor_baja();
+        		dialogos_doctores.jd_buscar_doctor_baja ventana_alta = new dialogos_doctores.jd_buscar_doctor_baja();
         		ventana.setVisible(true);
         		ventana_alta.setVisible(true);
         	}
@@ -268,7 +268,7 @@ public class jf_consulta extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
         		jf_doctores ventana = new jf_doctores();
-        		jd_doctores_alta ventana_alta = new jd_doctores_alta();
+        		dialogos_doctores.jd_doctores_alta ventana_alta = new dialogos_doctores.jd_doctores_alta();
         		ventana.setVisible(true);
         		ventana_alta.setVisible(true);
         	}
