@@ -27,6 +27,10 @@ import java.awt.Toolkit;
 import javax.swing.KeyStroke;
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
+import javax.swing.JPopupMenu;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class jf_pacientes extends JFrame {
 
@@ -439,6 +443,24 @@ public class jf_pacientes extends JFrame {
         });
         timer.start();
 		GroupLayout gl_jp_menu = new GroupLayout(jp_menu);
+		
+		JPopupMenu popupMenu = new JPopupMenu();
+		addPopup(jp_menu, popupMenu);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Menu paciente");
+		popupMenu.add(mntmNewMenuItem);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Buscar paciente");
+		popupMenu.add(mntmNewMenuItem_1);
+		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Editar paciente");
+		popupMenu.add(mntmNewMenuItem_2);
+		
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Dar de baja");
+		popupMenu.add(mntmNewMenuItem_3);
+		
+		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Dar de alta");
+		popupMenu.add(mntmNewMenuItem_4);
 		gl_jp_menu.setHorizontalGroup(
 			gl_jp_menu.createParallelGroup(Alignment.LEADING)
 				.addGroup(Alignment.TRAILING, gl_jp_menu.createSequentialGroup()
@@ -464,5 +486,22 @@ public class jf_pacientes extends JFrame {
                     btn_inicio.doClick(); // Simula el clic del botón
                 }
             });
+	}
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
 	}
 }
