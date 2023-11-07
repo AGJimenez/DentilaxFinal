@@ -130,6 +130,7 @@ public class jd_buscar_dr extends JDialog {
 				btn_buscar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						//SQL si lo encuentra, abre ventana:
+						dispose();
 						ConectorDB_mysql consulta = new ConectorDB_mysql();
 						try {
 			            	String dni = txt_IntroduceDni.getText().toString();			            	

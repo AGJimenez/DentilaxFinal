@@ -120,6 +120,7 @@ public class jd_buscar_doctor_baja extends JDialog {
 				JButton btn_buscar = new JButton("BUSCAR");
 				btn_buscar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						dispose();
 						jd_buscar_doctor_baja_encontrado ventana = new jd_buscar_doctor_baja_encontrado();
 						ventana.setVisible(true);
 					}

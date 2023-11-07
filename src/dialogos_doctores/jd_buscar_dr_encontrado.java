@@ -151,7 +151,7 @@ public class jd_buscar_dr_encontrado extends JDialog {
 				btn_ficha.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						//SQL consulta para sacar la ficha
-						
+						dispose();
 						ConectorDB_mysql conector = new ConectorDB_mysql();
 						
 						try {
@@ -195,7 +195,7 @@ public class jd_buscar_dr_encontrado extends JDialog {
 			btn_historial.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btn_historial.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					dispose();
 					jd_buscar_dr_historial ventana = new jd_buscar_dr_historial();
 					ventana.setVisible(true);
 					

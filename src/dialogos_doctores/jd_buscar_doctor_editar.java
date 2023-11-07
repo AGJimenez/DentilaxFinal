@@ -124,7 +124,7 @@ public class jd_buscar_doctor_editar extends JDialog {
 				JButton btn_buscar = new JButton("BUSCAR");
 				btn_buscar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+						dispose();
 						ConectorDB_mysql consulta = new ConectorDB_mysql();
 						try {
 			            	String dni = txt_IntroduceDni.getText().toString();			            	
