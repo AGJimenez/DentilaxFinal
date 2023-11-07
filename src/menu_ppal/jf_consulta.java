@@ -63,6 +63,12 @@ public class jf_consulta extends JFrame {
         btn_historial = new javax.swing.JButton();
         btn_historial.setBorderPainted(false);
         btn_eliminar_cita = new javax.swing.JButton();
+        btn_eliminar_cita.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dialogos_consultas.jd_buscar_consulta_eliminar ventana = new dialogos_consultas.jd_buscar_consulta_eliminar();
+        		ventana.setVisible(true);
+        	}
+        });
         btn_eliminar_cita.setBorderPainted(false);
         btn_eliminar_cita.setText("ELIMINAR CITA");
         menu_inicio = new javax.swing.JMenuBar();
