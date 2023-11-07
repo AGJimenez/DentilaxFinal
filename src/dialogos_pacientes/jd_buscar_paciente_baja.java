@@ -73,12 +73,15 @@ public class jd_buscar_paciente_baja extends JDialog {
 			txt_IntroduceDni.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
+					if(txt_IntroduceDni.getText().equals("Introduce DNI paciente")) {
 						txt_IntroduceDni.setText("");
-	                
+					}
 				}
 				@Override
 				public void focusLost(FocusEvent e) {
+					if(txt_IntroduceDni.getText().isEmpty()) {
 						txt_IntroduceDni.setText("Introduce DNI paciente");
+					}
 				}
 			});
 			txt_IntroduceDni.setOpaque(false);
@@ -121,9 +124,16 @@ public class jd_buscar_paciente_baja extends JDialog {
 				JButton btn_buscar = new JButton("BUSCAR");
 				btn_buscar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						dentilax_bdd.ConectorDB_mysql consulta = new dentilax_bdd.ConectorDB_mysql();
+						try {
+							consulta.consulta_paciente_eliminar(txt_IntroduceDni.getText().toString());
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						dispose();
 						jd_buscar_paciente_baja_encontrado ventana = new jd_buscar_paciente_baja_encontrado();
-						ventana.setVisible(true);
+						
 					}
 				});
 				btn_buscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -153,6 +163,14 @@ public class jd_buscar_paciente_baja extends JDialog {
 				buttonPane.add(btn_cancelar);
 			}
 		}
+	}
+
+	public JTextField getTxt_IntroduceDni() {
+		return txt_IntroduceDni;
+	}
+
+	public void setTxt_IntroduceDni(JTextField txt_IntroduceDni) {
+		this.txt_IntroduceDni = txt_IntroduceDni;
 	}
 	
 

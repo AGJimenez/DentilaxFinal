@@ -147,7 +147,14 @@ public class jd_buscar_paciente_baja_encontrado extends JDialog {
 				JButton btn_baja = new JButton("DAR DE BAJA");
 				btn_baja.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+						dentilax_bdd.ConectorDB_mysql consulta_baja = new dentilax_bdd.ConectorDB_mysql();
+						try {
+							consulta_baja.baja_paciente(txt_dni.getText().toString());
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+											
 						dispose();
 					
 					}

@@ -248,6 +248,44 @@ public String consulta_paciente(String dni) throws SQLException{
 		return dni;
 		
 	}
+
+public String consulta_paciente_eliminar(String dni) throws SQLException{
+	
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "SELECT * FROM pacientes WHERE DNI_paciente = '" + dni +"'";
+        ResultSet resultSet = statement.executeQuery(query);
+		
+        if (resultSet.next()) {
+            // Resultado encontrado
+            System.out.println("Resultado encontrado");
+            dialogos_pacientes.jd_buscar_paciente_baja_encontrado ventana = new dialogos_pacientes.jd_buscar_paciente_baja_encontrado();
+            String dniSql = resultSet.getString("DNI_paciente");
+            String nombreSql = resultSet.getString("Nombre");
+            String apellidosSql = resultSet.getString("Apellidos");
+           // System.out.println(dniSql);
+            ventana.setTxt_dni(dniSql);
+            ventana.setTxt_nombre(nombreSql);
+            ventana.setTxt_apellidos(apellidosSql);
+            
+            ventana.setVisible(true);
+            
+            
+        } else {
+            // Acceso denegado
+            System.out.println("No se ha encontrado nada");
+            JOptionPane.showMessageDialog(null, "Error, no se ha encontrado nada");
+        }
+		
+		
+	}
+	catch(SQLException ex) {
+		
+	}
+	return dni;
+	
+}
 	
 	public String consulta_doctor_editar(String dni) throws SQLException{
 		
@@ -512,6 +550,35 @@ public void editar_paciente(String dni, String apellidos, String nombre, String 
 
     } catch (SQLException ex) {
     	JOptionPane.showMessageDialog(null, "Error al actualizar, comprueba los campos.");
+        ex.printStackTrace();
+    }
+}
+
+public void baja_paciente(String dni) throws SQLException {
+
+    try {
+        // Conectar con la base de datos
+        conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+        statement = conect.createStatement();
+
+        // Crear la consulta
+        String query = "UPDATE pacientes " +
+                "SET Estado = '" + "baja" + "'" +
+                "WHERE DNI_paciente = '" + dni + "'";
+
+        // Ejecutar la consulta
+        int fila = statement.executeUpdate(query);
+
+        // Verificar si la actualización se realizó con éxito
+        if (fila > 0) {
+            System.out.println("Baja con exito.");
+            JOptionPane.showMessageDialog(null, "Baja dada con éxito");
+        } else {
+            System.out.println("La baja no tuvo éxito.");
+        }
+
+    } catch (SQLException ex) {
+    	JOptionPane.showMessageDialog(null, "Error al dar de baja, comprueba los campos.");
         ex.printStackTrace();
     }
 }
