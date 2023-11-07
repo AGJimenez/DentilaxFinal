@@ -9,6 +9,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JMenu;
 import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.AbstractAction;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.awt.Dimension;
@@ -67,21 +69,21 @@ public class jf_pacientes extends JFrame {
 		menuBar.setBackground(new Color(32, 160, 216));
 		setJMenuBar(menuBar);
 		
-		JButton btnNewButton = new JButton("INICIO");
-		btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btn_inicio = new JButton("INICIO");
+		btn_inicio.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btn_inicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
         		jf_menu_ppal ventana = new jf_menu_ppal();
         		ventana.setVisible(true);
 			}
 		});
-		btnNewButton.setOpaque(false);
-		btnNewButton.setFont(new Font("Arial", Font.PLAIN, 12));
-		btnNewButton.setFocusPainted(false);
-		btnNewButton.setContentAreaFilled(false);
-		btnNewButton.setBorderPainted(false);
-		menuBar.add(btnNewButton);
+		btn_inicio.setOpaque(false);
+		btn_inicio.setFont(new Font("Arial", Font.PLAIN, 12));
+		btn_inicio.setFocusPainted(false);
+		btn_inicio.setContentAreaFilled(false);
+		btn_inicio.setBorderPainted(false);
+		menuBar.add(btn_inicio);
 		
 		JMenu mn_pacientes = new JMenu("PACIENTES");
 		mn_pacientes.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -452,5 +454,15 @@ public class jf_pacientes extends JFrame {
 					.addGap(46))
 		);
 		jp_menu.setLayout(gl_jp_menu);
+		
+		//Alt + S para ir al inicio
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+                KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.ALT_DOWN_MASK), "clickButton");
+
+            getRootPane().getActionMap().put("clickButton", new AbstractAction() {
+                public void actionPerformed(ActionEvent ae) {
+                    btn_inicio.doClick(); // Simula el clic del botón
+                }
+            });
 	}
 }

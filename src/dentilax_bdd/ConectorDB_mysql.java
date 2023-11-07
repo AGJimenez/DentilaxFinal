@@ -552,6 +552,33 @@ public void insertar_dr_usuario(String dni, String estado, String contrasena) {
 	
 }
 
+public void insertar_consulta(String DNI_doctor, String fecha, String especialidad, String observaciones, String DNI_paciente ) {
+	
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "INSERT INTO citas (DNI_doctor, Fecha, Especialidad, Observaciones, DNI_paciente) " +
+            "VALUES ('" + DNI_doctor + "', '" + fecha + "', '" + "', '" + especialidad + "', '" + observaciones + "', '" + DNI_paciente + "')";
+
+		int fila = statement.executeUpdate(query);
+		
+		// Verificar si la inserción se realizó con éxito
+		if (fila > 0) {
+			System.out.println("Inserción exitosa.");
+		} else {
+			System.out.println("La inserción no tuvo éxito.");
+		}
+		
+	}
+	catch(SQLException ex) {
+		ex.printStackTrace();
+	}
+	
+	
+	
+	
+}
+
 }
 
 	

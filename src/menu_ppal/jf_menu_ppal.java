@@ -69,15 +69,6 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         jp_menu = new fondos.Fondo();
         jp_menu.setPreferredSize(new Dimension(1450, 750));
         jp_menu.setSize(new Dimension(1450, 750));
-        jp_menu.setFocusable(true);
-        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
-                KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.ALT_DOWN_MASK), "clickButton");
-
-            getRootPane().getActionMap().put("clickButton", new AbstractAction() {
-                public void actionPerformed(ActionEvent ae) {
-                    btn_inicio.doClick(); // Simula el clic del botón
-                }
-            });
         btn_pacientes = new javax.swing.JButton();
         btn_pacientes.setBounds(435, 204, 281, 101);
         btn_pacientes.setBorderPainted(false);
@@ -85,16 +76,6 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         btn_pacientes.setOpaque(false);
         btn_pacientes.setContentAreaFilled(false);
         btn_pacientes.setIcon(new ImageIcon(jf_menu_ppal.class.getResource("/iconos_menus/btn_pacientes_admin.png")));
-        jp_menu.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if(e.isAltDown()&&e.getKeyCode()==KeyEvent.VK_S) {
-					dispose();
-	        		jf_menu_ppal ventana = new jf_menu_ppal();
-	        		ventana.setVisible(true);
-				}
-			}
-		});
         btn_pacientes.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
@@ -222,7 +203,6 @@ public class jf_menu_ppal extends javax.swing.JFrame {
 
         jmenu_paciente.setText("PACIENTES");
         menu_inicio.add(jmenu_paciente);
-        
         jmenuitem_menu_paciente = new JMenuItem("Menu paciente");
         jmenuitem_menu_paciente.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.ALT_DOWN_MASK));
         jmenuitem_menu_paciente.addActionListener(new ActionListener() {
@@ -531,6 +511,16 @@ public class jf_menu_ppal extends javax.swing.JFrame {
             }
         });
         timer.start();
+        
+        //Alt + S para ir al inicio
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+                KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.ALT_DOWN_MASK), "clickButton");
+
+            getRootPane().getActionMap().put("clickButton", new AbstractAction() {
+                public void actionPerformed(ActionEvent ae) {
+                    btn_inicio.doClick(); // Simula el clic del botón
+                }
+            });
 
         
     }// </editor-fold>//GEN-END:initComponents

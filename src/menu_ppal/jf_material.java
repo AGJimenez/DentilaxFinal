@@ -3,8 +3,10 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.AbstractAction;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.GroupLayout.Alignment;
@@ -101,21 +103,21 @@ public class jf_material extends JFrame {
         menu_inicio.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         menu_inicio.setBorderPainted(false);
         
-        btnNewButton = new JButton("INICIO");
-        btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        btnNewButton.addActionListener(new ActionListener() {
+        btn_inicio = new JButton("INICIO");
+        btn_inicio.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btn_inicio.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
         		jf_menu_ppal ventana = new jf_menu_ppal();
         		ventana.setVisible(true);
         	}
         });
-        btnNewButton.setOpaque(false);
-        btnNewButton.setFont(new Font("Arial", Font.PLAIN, 12));
-        btnNewButton.setFocusPainted(false);
-        btnNewButton.setContentAreaFilled(false);
-        btnNewButton.setBorderPainted(false);
-        menu_inicio.add(btnNewButton);
+        btn_inicio.setOpaque(false);
+        btn_inicio.setFont(new Font("Arial", Font.PLAIN, 12));
+        btn_inicio.setFocusPainted(false);
+        btn_inicio.setContentAreaFilled(false);
+        btn_inicio.setBorderPainted(false);
+        menu_inicio.add(btn_inicio);
 
         jMenu2.setText("PACIENTES");
         menu_inicio.add(jMenu2);
@@ -184,6 +186,16 @@ public class jf_material extends JFrame {
         jp_menu.add(btn_buscar_pedido);
         jp_menu.add(btn_proveedores);
         jp_menu.add(btn_nuevo_pedido);
+		
+		//Alt + S para ir al inicio
+        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+                KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.ALT_DOWN_MASK), "clickButton");
+
+            getRootPane().getActionMap().put("clickButton", new AbstractAction() {
+                public void actionPerformed(ActionEvent ae) {
+                    btn_inicio.doClick(); // Simula el clic del botón
+                }
+            });
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -226,7 +238,7 @@ public class jf_material extends JFrame {
     private JMenuItem jmenuitem_editar_paciente;
     private JMenuItem jmenuitem_alta_paciente;
     private JMenuItem jmenuitem_baja_paciente;
-    private JButton btnNewButton;
+    private JButton btn_inicio;
     // End of variables declaration//GEN-END:variables
 
 }
