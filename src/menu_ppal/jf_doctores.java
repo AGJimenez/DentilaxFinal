@@ -194,14 +194,6 @@ public class jf_doctores extends javax.swing.JFrame {
 	        menu_inicio.setBorderPainted(false);
 	        
 	        JButton btn_inicio = new JButton("INICIO");
-	        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
-	                KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.ALT_DOWN_MASK), "clickButton");
-
-	            getRootPane().getActionMap().put("clickButton", new AbstractAction() {
-	                public void actionPerformed(ActionEvent ae) {
-	                    btn_inicio.doClick(); // Simula el clic del botón
-	                }
-	            });
 	        btn_inicio.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	        btn_inicio.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
@@ -501,6 +493,16 @@ public class jf_doctores extends javax.swing.JFrame {
 	            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 	            .addComponent(jp_menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 	        );
+			
+			//Alt + S para ir al inicio
+	        getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
+	                KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.ALT_DOWN_MASK), "clickButton");
+
+	            getRootPane().getActionMap().put("clickButton", new AbstractAction() {
+	                public void actionPerformed(ActionEvent ae) {
+	                    btn_inicio.doClick(); // Simula el clic del botón
+	                }
+	            });
 
 	        pack();
 	    }// </editor-fold>//GEN-END:initComponents
