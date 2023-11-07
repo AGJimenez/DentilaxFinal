@@ -264,9 +264,6 @@ public class jd_buscar_consulta_ver_cita extends JDialog {
 		this.txt_especialidad.setText(txt_especialidad);;
 	}
 
-	public JTextField getTxt_telefono() {
-		return txt_telefono;
-	}
 
 	public void setTxt_telefono(String txt_telefono) {
 		this.txt_telefono.setText(txt_telefono);;

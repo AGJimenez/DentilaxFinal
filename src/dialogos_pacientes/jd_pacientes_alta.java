@@ -9,13 +9,19 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import dentilax_bdd.ConectorDB_mysql;
+
 import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.Cursor;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JRadioButton;
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -23,6 +29,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.sql.SQLException;
+import java.util.Enumeration;
 import java.awt.Toolkit;
 import javax.swing.JTextArea;
 
@@ -381,6 +389,44 @@ public class jd_pacientes_alta extends JDialog {
 			btn_anadir.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					//sql
+					String nombre = txt_nombre.getText().toString();
+					String apellidos = txt_apellidos.getText().toString();
+					String dni = txt_dni.getText().toString();
+					String nacimiento = txt_nacimiento.getText().toString();
+					String telefono = txt_telefono.getText().toString();
+					String correo = txt_correo.getText().toString();
+					String seguro = txt_seguro.getText().toString();
+					String estado = "alta";
+					String direccion = txt_direccion.getText().toString();
+					String observacion = txt_observaciones.getText().toString();
+					String genero="";
+					String btn_seleccionado = getSelectedButton(btn_group_genero);
+		            if (btn_seleccionado != null) {
+		                if (btn_seleccionado.equals("Varón")) {
+		                    // Realizar alguna acción si se selecciona "Varón"
+		                    System.out.println("Varón seleccionado");
+		                    genero = "Varón";
+		                } else if (btn_seleccionado.equals("Mujer")) {
+		                    // Realizar alguna acción si se selecciona "Mujer"
+		                    System.out.println("Mujer seleccionada");
+		                    genero = "Mujer";
+		                } else if (btn_seleccionado.equals("Otro")) {
+		                    // Realizar alguna acción si se selecciona "Otro"
+		                    System.out.println("Otro seleccionado");
+		                    genero = "Otro";
+		                }
+		            }//acaba el primer if
+
+		            ConectorDB_mysql bdd = new ConectorDB_mysql();
+		            try {
+						bdd.insertar_paciente(dni, nombre, apellidos, nacimiento, genero, estado, telefono, correo, direccion, seguro, observacion);				
+						dispose();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+						
+					}
+					dispose();
 				}
 			});
 			btn_anadir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -407,5 +453,16 @@ public class jd_pacientes_alta extends JDialog {
 			contentPanel.add(btn_cancelar);
 			btn_cancelar.setActionCommand("Cancel");
 		}
+		
+	}
+	public String getSelectedButton(ButtonGroup buttonGroup) {
+	    for (Enumeration<AbstractButton> botones = buttonGroup.getElements(); botones.hasMoreElements();) {
+	        AbstractButton button = botones.nextElement();
+
+	        if (button.isSelected()) {
+	            return button.getText(); // O devuelve cualquier otra propiedad que necesites
+	        }
+	    }
+	    return null; // O devuelve un valor predeterminado si no hay ningún botón seleccionado
 	}
 }

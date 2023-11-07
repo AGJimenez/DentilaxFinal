@@ -150,6 +150,8 @@ public class jd_buscar_doctor_baja_encontrado extends JDialog {
 				JButton btn_baja = new JButton("DAR DE BAJA");
 				btn_baja.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						//sql
+						dispose();
 					}
 				});
 				btn_baja.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

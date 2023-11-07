@@ -451,6 +451,33 @@ public void insertar_doctor(String dni, String apellidos, String nombre, String 
 	}
 }
 
+public void insertar_paciente(String dni, String apellidos, String nombre, String nacimiento, String telefono, String correo, String direccion, String seguro,
+		String observacion, String genero, String estado) throws SQLException{
+	
+	try {//inserto paciente 
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "INSERT INTO pacientes (DNI_paciente, Nombre, Apellidos, Nacimiento, Genero, Estado, Telefono, Correo, Direccion, Seguro, Observacion) " +
+            "VALUES ('" + dni + "', '" + nombre + "', '" + apellidos + "', '" + nacimiento + "', '" + genero + "', '" + estado + "', '" + telefono + "', '" + correo + "', '" + direccion + "', '" + seguro + "', '" + observacion + "')";
+
+		int fila = statement.executeUpdate(query);
+		
+		// Verificar si la inserción se realizó con éxito
+		if (fila > 0) {
+			System.out.println("Inserción exitosa.");
+			JOptionPane.showMessageDialog(null, "Paciente añadido con éxito");
+		} else {
+			System.out.println("La inserción no tuvo éxito.");
+			
+		}
+		
+	}
+	catch(SQLException ex) {
+		JOptionPane.showMessageDialog(null, "Error en la inserción de doctor, comprueba los campos.");
+		ex.printStackTrace();
+	}
+}
+
 public void editar_paciente(String dni, String apellidos, String nombre, String nacimiento, String telefono, String correo, String seguro, String direccion,
 		String observacion, String genero) throws SQLException {
 

@@ -147,6 +147,7 @@ public class jd_buscar_paciente_baja_encontrado extends JDialog {
 				JButton btn_baja = new JButton("DAR DE BAJA");
 				btn_baja.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						
 						dispose();
 					
 					}

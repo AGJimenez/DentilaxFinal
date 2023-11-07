@@ -116,7 +116,7 @@ public class jd_anadir_especialidad extends JDialog {
 						
 						
 						//SQL 
-						
+						dispose();
 					}
 				});
 				btn_anadir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
