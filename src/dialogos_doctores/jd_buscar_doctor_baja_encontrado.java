@@ -151,6 +151,13 @@ public class jd_buscar_doctor_baja_encontrado extends JDialog {
 				btn_baja.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						//sql
+						dentilax_bdd.ConectorDB_mysql consulta = new dentilax_bdd.ConectorDB_mysql();
+						try {
+							consulta.baja_doctor(txt_dni.getText().toString());
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 						dispose();
 					}
 				});
