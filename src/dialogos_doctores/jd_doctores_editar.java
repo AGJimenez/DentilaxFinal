@@ -308,7 +308,7 @@ public class jd_doctores_editar extends JDialog {
 		            ConectorDB_mysql bdd = new ConectorDB_mysql();
 		            try {
 						bdd.editar_doctor(dni, apellidos, nombre, nacimiento, telefono, correo, especialidad, direccion, salario, genero);
-						
+						dispose();
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
