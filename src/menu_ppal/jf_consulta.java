@@ -7,22 +7,28 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.AbstractAction;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
+import javax.swing.Timer;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 import java.awt.Font;
 import javax.swing.JMenuItem;
 import java.awt.Dimension;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 
 public class jf_consulta extends JFrame {
 
@@ -53,16 +59,65 @@ public class jf_consulta extends JFrame {
 
         jp_menu = new fondos.Fondo();
         btn_buscar_cita = new javax.swing.JButton();
+        btn_buscar_cita.setOpaque(false);
+        btn_buscar_cita.setBorder(null);
+        btn_buscar_cita.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btn_buscar_cita.setContentAreaFilled(false);
+        btn_buscar_cita.setBounds(68, 590, 188, 41);
+        btn_buscar_cita.setIcon(new ImageIcon(jf_consulta.class.getResource("/iconos_submenus/btn_buscarCita_admin.png")));
         btn_buscar_cita.setBorderPainted(false);
         btn_buscar_cita.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         	}
         });
         btn_nueva_cita = new javax.swing.JButton();
+        btn_nueva_cita.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dialogos_consultas.jd_nueva_consulta nuevaConsulta = new dialogos_consultas.jd_nueva_consulta();
+        		nuevaConsulta.setVisible(true);
+        		
+        	}
+        });
+        btn_nueva_cita.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btn_nueva_cita.setBorder(null);
+        btn_nueva_cita.setContentAreaFilled(false);
+        btn_nueva_cita.setIcon(new ImageIcon(jf_consulta.class.getResource("/iconos_submenus/btn_nuevaCita.png")));
+        btn_nueva_cita.setOpaque(false);
+        btn_nueva_cita.setBounds(1209, 590, 188, 41);
         btn_nueva_cita.setBorderPainted(false);
         btn_historial = new javax.swing.JButton();
+        btn_historial.setBorder(null);
+        btn_historial.setContentAreaFilled(false);
+        btn_historial.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btn_historial.setOpaque(false);
+        btn_historial.setIcon(new ImageIcon(jf_consulta.class.getResource("/iconos_submenus/btn_citaHistorial_admin.png")));
+        btn_historial.setBounds(401, 590, 188, 41);
         btn_historial.setBorderPainted(false);
+        
+       JLabel lbl_fecha = new JLabel("");
+        lbl_fecha.setBackground(Color.WHITE);
+        lbl_fecha.setFont(new Font("Barlow", Font.PLAIN, 25));
+        lbl_fecha.setBounds(1184, 642, 240, 23);
+        jp_menu.add(lbl_fecha);
+        
+        Timer timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            	 Date fechaActual = new Date();
+                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+                 String fechaHoraFormateada = formato.format(fechaActual);
+                 lbl_fecha.setText(fechaHoraFormateada);
+            }
+        });
+        timer.start();
+        
         btn_eliminar_cita = new javax.swing.JButton();
+        btn_eliminar_cita.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btn_eliminar_cita.setBorder(null);
+        btn_eliminar_cita.setContentAreaFilled(false);
+        btn_eliminar_cita.setIcon(new ImageIcon(jf_consulta.class.getResource("/iconos_submenus/btn_eliminarCita.png")));
+        btn_eliminar_cita.setOpaque(false);
+        btn_eliminar_cita.setBounds(891, 590, 188, 41);
         btn_eliminar_cita.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dialogos_consultas.jd_buscar_consulta_eliminar ventana = new dialogos_consultas.jd_buscar_consulta_eliminar();
@@ -70,7 +125,6 @@ public class jf_consulta extends JFrame {
         	}
         });
         btn_eliminar_cita.setBorderPainted(false);
-        btn_eliminar_cita.setText("ELIMINAR CITA");
         menu_inicio = new javax.swing.JMenuBar();
         jmenu_paciente = new javax.swing.JMenu();
         jmenu_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -88,39 +142,6 @@ public class jf_consulta extends JFrame {
         jmenu_ayuda.setFont(new Font("Arial", Font.PLAIN, 12));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        btn_buscar_cita.setText("BUSCAR CITA");
-
-        btn_nueva_cita.setText("NUEVA CITA");
-
-        btn_historial.setText("HISTORIAL");
-
-        javax.swing.GroupLayout jp_menuLayout = new javax.swing.GroupLayout(jp_menu);
-        jp_menuLayout.setHorizontalGroup(
-        	jp_menuLayout.createParallelGroup(Alignment.LEADING)
-        		.addGroup(jp_menuLayout.createSequentialGroup()
-        			.addGap(68)
-        			.addComponent(btn_buscar_cita, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-        			.addGap(187)
-        			.addComponent(btn_historial, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-        			.addPreferredGap(ComponentPlacement.RELATED, 239, Short.MAX_VALUE)
-        			.addComponent(btn_eliminar_cita, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-        			.addGap(172)
-        			.addComponent(btn_nueva_cita, GroupLayout.PREFERRED_SIZE, 146, GroupLayout.PREFERRED_SIZE)
-        			.addGap(79))
-        );
-        jp_menuLayout.setVerticalGroup(
-        	jp_menuLayout.createParallelGroup(Alignment.TRAILING)
-        		.addGroup(jp_menuLayout.createSequentialGroup()
-        			.addContainerGap(596, Short.MAX_VALUE)
-        			.addGroup(jp_menuLayout.createParallelGroup(Alignment.BASELINE)
-        				.addComponent(btn_buscar_cita, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(btn_nueva_cita, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(btn_eliminar_cita, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-        				.addComponent(btn_historial, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
-        			.addGap(44))
-        );
-        jp_menu.setLayout(jp_menuLayout);
 
         menu_inicio.setBackground(new java.awt.Color(32, 160, 216));
         menu_inicio.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -403,6 +424,11 @@ public class jf_consulta extends JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jp_menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+        jp_menu.setLayout(null);
+        jp_menu.add(btn_buscar_cita);
+        jp_menu.add(btn_historial);
+        jp_menu.add(btn_eliminar_cita);
+        jp_menu.add(btn_nueva_cita);
 		
 		//Alt + S para ir al inicio
         getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
