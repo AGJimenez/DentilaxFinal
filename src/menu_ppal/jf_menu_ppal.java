@@ -35,6 +35,11 @@ import java.awt.event.InputEvent;
 import java.awt.event.KeyAdapter;
 
 import login.jf_login;
+import javax.swing.JPopupMenu;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JMenu;
 
 /**
  *
@@ -472,6 +477,33 @@ public class jf_menu_ppal extends javax.swing.JFrame {
             .addComponent(jp_menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jp_menu.setLayout(null);
+        
+        JPopupMenu popupMenu = new JPopupMenu();
+        addPopup(jp_menu, popupMenu);
+        
+        JMenu mnNewMenu = new JMenu("INICIO");
+        popupMenu.add(mnNewMenu);
+        
+        JMenu mnNewMenu_1 = new JMenu("PACIENTES");
+        popupMenu.add(mnNewMenu_1);
+        
+        JMenu mnNewMenu_2 = new JMenu("DOCTORES");
+        popupMenu.add(mnNewMenu_2);
+        
+        JMenu mnNewMenu_3 = new JMenu("MATERIAL");
+        popupMenu.add(mnNewMenu_3);
+        
+        JMenu mnNewMenu_4 = new JMenu("CONSULTAS");
+        popupMenu.add(mnNewMenu_4);
+        
+        JMenu mnNewMenu_5 = new JMenu("FACTURACIÓN");
+        popupMenu.add(mnNewMenu_5);
+        
+        JMenu mnNewMenu_6 = new JMenu("AJUSTES");
+        popupMenu.add(mnNewMenu_6);
+        
+        JMenu mnNewMenu_7 = new JMenu("AYUDA");
+        popupMenu.add(mnNewMenu_7);
         jp_menu.add(btn_facturacion);
         jp_menu.add(btn_pacientes);
         jp_menu.add(btn_material);
@@ -594,4 +626,21 @@ public class jf_menu_ppal extends javax.swing.JFrame {
     private JMenuItem mntmNewMenuItem;
     private JButton btn_inicio;
     private JLabel lbl_fecha;
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
+	}
 }
