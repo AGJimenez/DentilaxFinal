@@ -14,18 +14,23 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import com.toedter.calendar.JCalendar;
 import javax.swing.border.BevelBorder;
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 
 public class jd_nueva_consulta extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txt_fecha;
+	dentilax_bdd.ConectorDB_mysql consultasDB = new dentilax_bdd.ConectorDB_mysql();
 	private JTextField txt_hora;
-
+	JComboBox cb_paciente = new JComboBox();
+	JComboBox cb_doctor = new JComboBox();
+	JComboBox cb_especialidad = new JComboBox();
 	/**
 	 * Launch the application.
 	 */
@@ -34,6 +39,7 @@ public class jd_nueva_consulta extends JDialog {
 			jd_nueva_consulta dialog = new jd_nueva_consulta();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
+			 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -43,6 +49,15 @@ public class jd_nueva_consulta extends JDialog {
 	 * Create the dialog.
 	 */
 	public jd_nueva_consulta() {
+		try {
+			//CON ESTO MOSTRAMOS LOS COMBO BOX
+			consultasDB.mostarCbCitasPac(this);
+			consultasDB.mostarCbCitasDr(this);
+			consultasDB.mostarCbCitasEsp(this);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		setUndecorated(true);
 		setBounds(100, 100, 1100, 600);
 		getContentPane().setLayout(new BorderLayout());
@@ -89,37 +104,40 @@ public class jd_nueva_consulta extends JDialog {
 			}
 		}
 		
-		JComboBox cb_paciente = new JComboBox();
+		
 		cb_paciente.setFont(new Font("Arial", Font.PLAIN, 14));
 		cb_paciente.setBackground(new Color(191, 231, 249));
-		cb_paciente.setBounds(247, 63, 248, 37);
+		cb_paciente.setBounds(248, 91, 248, 37);
 		contentPanel.add(cb_paciente);
 		
-		JComboBox cb_doctor = new JComboBox();
+	
 		cb_doctor.setFont(new Font("Arial", Font.PLAIN, 14));
 		cb_doctor.setBackground(new Color(191, 231, 249));
-		cb_doctor.setBounds(247, 125, 248, 37);
+		cb_doctor.setBounds(248, 153, 248, 37);
 		contentPanel.add(cb_doctor);
 		
-		JComboBox cb_especialidad = new JComboBox();
+	
 		cb_especialidad.setFont(new Font("Arial", Font.PLAIN, 14));
 		cb_especialidad.setBackground(new Color(191, 231, 249));
-		cb_especialidad.setBounds(247, 186, 248, 37);
+		cb_especialidad.setBounds(248, 214, 248, 37);
 		contentPanel.add(cb_especialidad);
 		
 		JLabel lbl_paciente = new JLabel("PACIENTE");
+		lbl_paciente.setForeground(new Color(32, 160, 216));
 		lbl_paciente.setFont(new Font("Barlow", Font.BOLD, 20));
-		lbl_paciente.setBounds(60, 60, 142, 40);
+		lbl_paciente.setBounds(61, 88, 142, 40);
 		contentPanel.add(lbl_paciente);
 		
 		JLabel lbl_doctor = new JLabel("DOCTOR");
+		lbl_doctor.setForeground(new Color(32, 160, 216));
 		lbl_doctor.setFont(new Font("Barlow", Font.BOLD, 20));
-		lbl_doctor.setBounds(60, 122, 79, 40);
+		lbl_doctor.setBounds(61, 150, 79, 40);
 		contentPanel.add(lbl_doctor);
 		
 		JLabel lbl_especialidad = new JLabel("ESPECIALIDAD");
+		lbl_especialidad.setForeground(new Color(32, 160, 216));
 		lbl_especialidad.setFont(new Font("Barlow", Font.BOLD, 20));
-		lbl_especialidad.setBounds(60, 183, 142, 40);
+		lbl_especialidad.setBounds(61, 211, 142, 40);
 		contentPanel.add(lbl_especialidad);
 		
 		JButton btn_hora9 = new JButton("10:00");
@@ -149,7 +167,7 @@ public class jd_nueva_consulta extends JDialog {
 		calendar.getYearChooser().getSpinner().setFont(new Font("Arial", Font.PLAIN, 14));
 		calendar.getYearChooser().getSpinner().setBackground(Color.WHITE);
 		calendar.getDayChooser().getDayPanel().setBackground(new Color(255, 255, 255));
-		calendar.setBounds(60, 269, 438, 211);
+		calendar.setBounds(61, 297, 438, 211);
 		contentPanel.add(calendar);
 		
 		JButton btn_hora10 = new JButton("11:00");
@@ -263,11 +281,13 @@ public class jd_nueva_consulta extends JDialog {
 		contentPanel.add(btn_hora20);
 		
 		JLabel lbl_hora = new JLabel("HORA");
+		lbl_hora.setForeground(new Color(32, 160, 216));
 		lbl_hora.setFont(new Font("Barlow", Font.BOLD, 20));
 		lbl_hora.setBounds(773, 63, 142, 40);
 		contentPanel.add(lbl_hora);
 		
 		JLabel lbl_seleccion = new JLabel("FECHA Y HORA:");
+		lbl_seleccion.setForeground(new Color(32, 160, 216));
 		lbl_seleccion.setFont(new Font("Barlow", Font.BOLD, 20));
 		lbl_seleccion.setBounds(559, 440, 142, 40);
 		contentPanel.add(lbl_seleccion);
@@ -281,6 +301,11 @@ public class jd_nueva_consulta extends JDialog {
 		contentPanel.add(txt_fecha);
 		txt_fecha.setColumns(10);
 		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon(jd_nueva_consulta.class.getResource("/iconos_menus/fondo (1).png")));
+		lblNewLabel.setBounds(0, 0, 1100, 600);
+		contentPanel.add(lblNewLabel);
+		
 		txt_hora = new JTextField();
 		txt_hora.setFont(new Font("Arial", Font.BOLD, 14));
 		txt_hora.setEditable(false);
@@ -290,4 +315,27 @@ public class jd_nueva_consulta extends JDialog {
 		txt_hora.setBounds(925, 443, 120, 37);
 		contentPanel.add(txt_hora);
 	}
+	public JComboBox<String> getCb_paciente() {
+        return cb_paciente;
+    }
+
+	 public void setCb_paciente(String items) {
+		 cb_paciente.addItem(items); 
+	    }
+	 
+	 public JComboBox<String> getCb_especialidad() {
+	        return cb_especialidad;
+	    }
+
+		 public void setCb_especialidad(String items) {
+			 cb_especialidad.addItem(items); 
+		    }
+		 
+		 public JComboBox<String> getCb_doctor() {
+		        return cb_doctor;
+		    }
+
+			 public void setCb_doctor(String items) {
+				 cb_doctor.addItem(items); 
+			    }
 }

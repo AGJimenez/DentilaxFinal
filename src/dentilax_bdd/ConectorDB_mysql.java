@@ -8,12 +8,15 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
+import dialogos_consultas.jd_nueva_consulta;
+
 
 public class ConectorDB_mysql {
 
 	private static final String CONTROLADOR = "com.mysql.jdbc.Driver";
 	private static final String URL = "jdbc:mysql://localhost:3306/dentilax";
 	private static final String USUARIO = "root";
+	String tablaNombre;
 	private static final String CLAVE = "1234";
 	ResultSet resultado = null;
 	Connection conect = null;
@@ -735,9 +738,70 @@ public void insertar_consulta(String DNI_doctor, String fecha, String especialid
 		ex.printStackTrace();
 	}
 	
-	
-	
-	
+
+}
+
+public void mostarCbCitasPac(jd_nueva_consulta datos) throws SQLException {
+    // Consulta para ver el nombre de las tablas
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SELECT Nombre FROM pacientes";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+            tablaNombre = rs.getString(1);
+            datos.setCb_paciente(tablaNombre);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+
+public void mostarCbCitasDr(jd_nueva_consulta datos) throws SQLException {
+    // Consulta para ver el nombre de las tablas
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SELECT Nombre FROM doctores";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+            tablaNombre = rs.getString(1);
+            datos.setCb_doctor(tablaNombre);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+
+public void mostarCbCitasEsp(jd_nueva_consulta datos) throws SQLException {
+    // Consulta para ver el nombre de las tablas
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SELECT Nombre_especialidad FROM especialidades";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+            tablaNombre = rs.getString(1);
+            datos.setCb_especialidad(tablaNombre);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
 }
 
 }
