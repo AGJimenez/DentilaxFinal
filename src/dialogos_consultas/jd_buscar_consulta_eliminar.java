@@ -9,6 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import dialogos_pacientes.jd_buscar_paciente_baja_encontrado;
+
 import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -31,7 +34,7 @@ public class jd_buscar_consulta_eliminar extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txt_IntroduceDni;
+	private JTextField txt_IntroduceID;
 	
 	/**
 	 * Launch the application.
@@ -69,33 +72,37 @@ public class jd_buscar_consulta_eliminar extends JDialog {
 			contentPanel.add(lbl_buscar_consulta_eliminar);
 		}
 		{
-			txt_IntroduceDni = new JTextField();
-			txt_IntroduceDni.addFocusListener(new FocusAdapter() {
+			txt_IntroduceID = new JTextField();
+			txt_IntroduceID.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
-						txt_IntroduceDni.setText("");
+					if (txt_IntroduceID.getText().equals("Introduce ID cita")) {
+						txt_IntroduceID.setText("");
+	                }
 				}
 				@Override
 				public void focusLost(FocusEvent e) {
-						txt_IntroduceDni.setText("Introduce DNI");
+					if (txt_IntroduceID.getText().isEmpty()) {
+						txt_IntroduceID.setText("Introduce ID cita");
+	                }
 				}
 			});
-			txt_IntroduceDni.setOpaque(false);
-			txt_IntroduceDni.setText("Introduce ID cita");
-			txt_IntroduceDni.setHorizontalAlignment(SwingConstants.LEFT);
-			txt_IntroduceDni.setFont(new Font("Arial", Font.PLAIN, 17));
-			txt_IntroduceDni.setColumns(10);
-			txt_IntroduceDni.setBorder(null);
-			txt_IntroduceDni.setBackground(new Color(0, 128, 192));
-			txt_IntroduceDni.setBounds(110, 140, 382, 44);
-			contentPanel.add(txt_IntroduceDni);
+			txt_IntroduceID.setOpaque(false);
+			txt_IntroduceID.setText("Introduce ID cita");
+			txt_IntroduceID.setHorizontalAlignment(SwingConstants.LEFT);
+			txt_IntroduceID.setFont(new Font("Arial", Font.PLAIN, 17));
+			txt_IntroduceID.setColumns(10);
+			txt_IntroduceID.setBorder(null);
+			txt_IntroduceID.setBackground(new Color(0, 128, 192));
+			txt_IntroduceID.setBounds(110, 140, 382, 44);
+			contentPanel.add(txt_IntroduceID);
 		}
 		{
-			JLabel lbl_dni = new JLabel("DNI");
-			lbl_dni.setForeground(new Color(0, 128, 192));
-			lbl_dni.setFont(new Font("Barlow", Font.BOLD, 22));
-			lbl_dni.setBounds(59, 140, 38, 44);
-			contentPanel.add(lbl_dni);
+			JLabel lbl_id = new JLabel("ID");
+			lbl_id.setForeground(new Color(0, 128, 192));
+			lbl_id.setFont(new Font("Barlow", Font.BOLD, 22));
+			lbl_id.setBounds(59, 140, 38, 44);
+			contentPanel.add(lbl_id);
 		}
 		{
 			JPanel panel = new JPanel();
@@ -120,9 +127,16 @@ public class jd_buscar_consulta_eliminar extends JDialog {
 				JButton btn_buscar = new JButton("BUSCAR");
 				btn_buscar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						dentilax_bdd.ConectorDB_mysql consulta = new dentilax_bdd.ConectorDB_mysql();
 						dispose();
-						jd_buscar_consulta_encontrada ventana = new jd_buscar_consulta_encontrada();
-						ventana.setVisible(true);
+						try {
+							consulta.consulta_cita_eliminar(txt_IntroduceID.getText().toString());
+							dialogos_consultas.jd_buscar_consulta_eliminar_encontrada ventana = new dialogos_consultas.jd_buscar_consulta_eliminar_encontrada();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
 					}
 				});
 				btn_buscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -153,6 +167,9 @@ public class jd_buscar_consulta_eliminar extends JDialog {
 			}
 		}
 	}
-	
+
+	public JTextField getTxt_IntroduceID() {
+		return txt_IntroduceID;
+	}
 
 }

@@ -2,6 +2,7 @@ package dentilax_bdd;
 import java.awt.event.ItemEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -714,6 +715,61 @@ public void insertar_dr_usuario(String dni, String estado, String contrasena) {
 	}
 	
 }
+
+public String consulta_cita_eliminar(String id) throws SQLException{
+	
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "SELECT citas.ID_cita, citas.Fecha, doctores.Nombre, pacientes.Nombre FROM citas JOIN doctores ON citas.DNI_doctor = doctores.DNI_doctor JOIN pacientes ON citas.DNI_paciente = pacientes.DNI_paciente WHERE citas.ID_cita = '" + id +"'";
+		ResultSet resultSet = statement.executeQuery(query);
+		
+        if (resultSet.next()) {
+            // Resultado encontrado
+            System.out.println("Resultado encontrado");
+            dialogos_consultas.jd_buscar_consulta_eliminar_encontrada ventana = new dialogos_consultas.jd_buscar_consulta_eliminar_encontrada();
+            String ID = resultSet.getString("citas.ID_cita");
+            String FechaSql = resultSet.getString("citas.Fecha");
+            String DoctorSql = resultSet.getString("doctores.Nombre");
+            String PacienteSql = resultSet.getString("pacientes.Nombre");
+            ventana.setTxt_fecha(FechaSql);
+            ventana.setTxt_doctor(DoctorSql);
+            ventana.setTxt_paciente(PacienteSql);
+            ventana.setLbl_id(ID);
+            
+            ventana.setVisible(true);
+            
+            
+            
+        } else {
+            // Acceso denegado
+            System.out.println("No se ha encontrado nada");
+            JOptionPane.showMessageDialog(null, "Error, no se ha encontrado nada");
+        }
+		
+		
+	}
+	catch(SQLException ex) {
+		
+	}
+	return id;
+	
+}
+
+public void consulta_eliminar_cita(String id) throws SQLException{
+	String query = "DELETE FROM citas WHERE ID_cita = ?";
+	
+	try (Connection conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		PreparedStatement pstmt = conect.prepareStatement(query)){
+		pstmt.setString(1, id);
+		pstmt.executeUpdate();
+		System.out.println("Cita eliminada");
+	}
+	catch(SQLException ex) {
+		System.out.println("Error en eliminar la cita");
+	}
+}
+
 
 public void agendar_cita(String DNI_doctor, String fecha, String especialidad, String observaciones, String DNI_paciente, String hora ) {
 	dialogos_consultas.jd_nueva_consulta obtenerDatos = new dialogos_consultas.jd_nueva_consulta();

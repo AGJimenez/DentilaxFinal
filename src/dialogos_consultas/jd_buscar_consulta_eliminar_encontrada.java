@@ -27,20 +27,21 @@ import java.sql.SQLException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class jd_buscar_consulta_encontrada extends JDialog {
+public class jd_buscar_consulta_eliminar_encontrada extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txt_dni;
-	private JTextField txt_nombre;
-	private JTextField txt_apellidos;
+	private JTextField txt_fecha;
+	private JTextField txt_doctor;
+	private JTextField txt_paciente;
+	private JTextField lbl_id;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			jd_buscar_consulta_encontrada dialog = new jd_buscar_consulta_encontrada();
+			jd_buscar_consulta_eliminar_encontrada dialog = new jd_buscar_consulta_eliminar_encontrada();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -51,7 +52,7 @@ public class jd_buscar_consulta_encontrada extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public jd_buscar_consulta_encontrada() {
+	public jd_buscar_consulta_eliminar_encontrada() {
 		setPreferredSize(new Dimension(554, 343));
 		setModal(true);
 		setResizable(false);
@@ -103,42 +104,61 @@ public class jd_buscar_consulta_encontrada extends JDialog {
 			contentPanel.add(lbl_paciente);
 		}
 		{
-			txt_dni = new JTextField();
-			txt_dni.setEditable(false);
-			txt_dni.setBorder(null);
-			txt_dni.setBackground(new Color(191, 231, 249));
-			txt_dni.setFont(new Font("Arial", Font.PLAIN, 14));
-			txt_dni.setHorizontalAlignment(SwingConstants.CENTER);
-			txt_dni.setText("77981983t");
+			txt_fecha = new JTextField();
+			txt_fecha.setEditable(false);
+			txt_fecha.setBorder(null);
+			txt_fecha.setBackground(new Color(191, 231, 249));
+			txt_fecha.setFont(new Font("Arial", Font.PLAIN, 14));
+			txt_fecha.setHorizontalAlignment(SwingConstants.CENTER);
 			
-			txt_dni.setBounds(21, 177, 83, 34);
-			contentPanel.add(txt_dni);
-			txt_dni.setColumns(10);
+			txt_fecha.setBounds(21, 177, 83, 34);
+			contentPanel.add(txt_fecha);
+			txt_fecha.setColumns(10);
 		}
 		{
-			txt_nombre = new JTextField();
-			txt_nombre.setEditable(false);
-			txt_nombre.setBorder(null);
-			txt_nombre.setBackground(new Color(191, 231, 249));
-			txt_nombre.setFont(new Font("Arial", Font.PLAIN, 14));
-			txt_nombre.setText("Alejandro Alfredo");
-			txt_nombre.setHorizontalAlignment(SwingConstants.CENTER);
-			txt_nombre.setBounds(124, 177, 146, 34);
-			contentPanel.add(txt_nombre);
-			txt_nombre.setColumns(10);
+			txt_doctor = new JTextField();
+			txt_doctor.setEditable(false);
+			txt_doctor.setBorder(null);
+			txt_doctor.setBackground(new Color(191, 231, 249));
+			txt_doctor.setFont(new Font("Arial", Font.PLAIN, 14));
+			txt_doctor.setHorizontalAlignment(SwingConstants.CENTER);
+			txt_doctor.setBounds(124, 177, 146, 34);
+			contentPanel.add(txt_doctor);
+			txt_doctor.setColumns(10);
 		}
 		{
-			txt_apellidos = new JTextField();
-			txt_apellidos.setEditable(false);
-			txt_apellidos.setHorizontalAlignment(SwingConstants.CENTER);
-			txt_apellidos.setBorder(null);
-			txt_apellidos.setBackground(new Color(191, 231, 249));
-			txt_apellidos.setFont(new Font("Arial", Font.PLAIN, 14));
-			txt_apellidos.setText("Fernandez de la Rosa Ximenez");
-			txt_apellidos.setBounds(291, 177, 225, 34);
-			contentPanel.add(txt_apellidos);
-			txt_apellidos.setColumns(10);
+			txt_paciente = new JTextField();
+			txt_paciente.setEditable(false);
+			txt_paciente.setHorizontalAlignment(SwingConstants.CENTER);
+			txt_paciente.setBorder(null);
+			txt_paciente.setBackground(new Color(191, 231, 249));
+			txt_paciente.setFont(new Font("Arial", Font.PLAIN, 14));
+			txt_paciente.setBounds(291, 177, 225, 34);
+			contentPanel.add(txt_paciente);
+			txt_paciente.setColumns(10);
 		}
+		
+		lbl_id = new JTextField();
+		lbl_id.setHorizontalAlignment(SwingConstants.CENTER);
+		lbl_id.setFont(new Font("Arial", Font.PLAIN, 14));
+		lbl_id.setEditable(false);
+		lbl_id.setColumns(10);
+		lbl_id.setBorder(null);
+		lbl_id.setBackground(new Color(191, 231, 249));
+		lbl_id.setBounds(408, 35, 40, 34);
+		contentPanel.add(lbl_id);
+		
+		JLabel lbl_paciente = new JLabel("ID");
+		lbl_paciente.setForeground(new Color(0, 128, 192));
+		lbl_paciente.setFont(new Font("Barlow", Font.BOLD, 22));
+		lbl_paciente.setBounds(350, 24, 48, 44);
+		contentPanel.add(lbl_paciente);
+		
+		JSeparator separator = new JSeparator();
+		separator.setForeground(new Color(0, 128, 192));
+		separator.setBackground(new Color(0, 128, 192));
+		separator.setBounds(350, 59, 40, 8);
+		contentPanel.add(separator);
 		
 		{
 			JPanel buttonPane = new JPanel();
@@ -150,22 +170,6 @@ public class jd_buscar_consulta_encontrada extends JDialog {
 				JButton btn_ver_cita = new JButton("VER CITA");
 				btn_ver_cita.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						//SQL consulta para sacar la ficha
-						
-						/*ConectorDB_mysql conector = new ConectorDB_mysql();
-						
-						try {
-							conector.consulta_doctor_ficha(getTxt_dni().getText().toString());
-							dispose();
-							jd_buscar_consulta_ver_cita ventana = new jd_buscar_consulta_ver_cita();
-							
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}*/
-						dispose();
-						jd_buscar_consulta_ver_cita ventana = new jd_buscar_consulta_ver_cita();
-						ventana.setVisible(true);
 					}
 				});
 				btn_ver_cita.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -199,13 +203,19 @@ public class jd_buscar_consulta_encontrada extends JDialog {
 			btn_eliminar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btn_eliminar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
-					jd_buscar_consulta_ver_cita ventana = new jd_buscar_consulta_ver_cita();
-					ventana.setVisible(true);
-					
-					
-					
-					
+					dentilax_bdd.ConectorDB_mysql consulta_baja = new dentilax_bdd.ConectorDB_mysql();
+					jd_buscar_consulta_eliminar ventana = new jd_buscar_consulta_eliminar();
+					String datos = getLbl_id().getText().toString();
+					System.out.println(datos);
+					try {
+						consulta_baja.consulta_eliminar_cita(datos);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+										
+					dispose();
+				
 				}
 			});
 			btn_eliminar.setForeground(Color.WHITE);
@@ -218,30 +228,35 @@ public class jd_buscar_consulta_encontrada extends JDialog {
 		}
 	}
 
-	public JTextField getTxt_dni() {
-		return txt_dni;
+	public JTextField getTxt_fecha() {
+		return txt_fecha;
 	}
 
-	public void setTxt_dni(String dniSql) {
-	    this.txt_dni.setText(dniSql);
+	public void setTxt_fecha(String FechaSql) {
+		this.txt_fecha.setText(FechaSql);
 	}
 
-
-	public JTextField getTxt_nombre() {
-		return txt_nombre;
+	public JTextField getTxt_doctor() {
+		return txt_doctor;
 	}
 
-	public void setTxt_nombre(String nombreSql) {
-		this.txt_nombre.setText(nombreSql);;
+	public void setTxt_doctor(String DoctorSql) {
+		this.txt_doctor.setText(DoctorSql);
 	}
 
-	public JTextField getTxt_apellidos() {
-		return txt_apellidos;
+	public JTextField getTxt_paciente() {
+		return txt_paciente;
 	}
 
-	public void setTxt_apellidos(String apellidosSql) {
-		this.txt_apellidos.setText(apellidosSql);
+	public void setTxt_paciente(String PacienteSql) {
+		this.txt_paciente.setText(PacienteSql);
 	}
 
-	
+	public JTextField getLbl_id() {
+		return lbl_id;
+	}
+
+	public void setLbl_id(String ID) {
+		this.lbl_id.setText(ID);;
+	}
 }
