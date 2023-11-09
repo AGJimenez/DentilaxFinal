@@ -720,13 +720,13 @@ public void agendar_cita(String DNI_doctor, String fecha, String especialidad, S
 	DNI_doctor = obtenerDatos.getCb_doctor().getSelectedItem().toString();
 	DNI_paciente = obtenerDatos.getCb_paciente().getSelectedItem().toString();
 	especialidad = obtenerDatos.getCb_especialidad().getSelectedItem().toString();
-	hora = obtenerDatos.getTxt_hora().getText().toString();
-	fecha = obtenerDatos.getTxt_fecha().getText().toString();
+	hora = obtenerDatos.getTxt_hora().getText();
+	fecha = obtenerDatos.getTxt_fecha().getText();
 	try {
 		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 		statement = conect.createStatement();
 		String query = "INSERT INTO citas (DNI_doctor, Fecha, Especialidad, Observaciones, DNI_paciente, hora) " +
-            "VALUES ('" + DNI_doctor + "', '" + fecha + "', '" + hora +"', '"  + especialidad + "', '" + observaciones + "', '" + DNI_paciente + "')";
+            "VALUES ('" + DNI_doctor + "', '" + fecha + "', '" + especialidad +"', '"  + " " + "', '" + DNI_paciente + "', '" + hora + "')";
 
 		int fila = statement.executeUpdate(query);
 		
@@ -736,6 +736,8 @@ public void agendar_cita(String DNI_doctor, String fecha, String especialidad, S
 		} else {
 			System.out.println("La inserción no tuvo éxito.");
 		}
+		
+		System.out.print(DNI_doctor);
 		
 	}
 	catch(SQLException ex) {

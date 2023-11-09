@@ -14,6 +14,9 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -26,7 +29,21 @@ import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 
 public class jd_nueva_consulta extends JDialog {
-
+	JButton okButton;
+	JButton btn_hora9;
+	JButton btn_hora10;
+	JButton btn_hora11;
+	JButton btn_hora12;
+	JButton btn_hora13;
+	JButton btn_hora14;
+	JButton btn_hora15;
+	JButton btn_hora16;
+	JButton btn_hora17;
+	JButton btn_hora18;
+	JButton btn_hora19;
+	JButton btn_hora20;
+	JButton btn_hora21;
+	
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txt_fecha;
@@ -87,7 +104,9 @@ public class jd_nueva_consulta extends JDialog {
 			contentPanel.add(buttonPane);
 			buttonPane.setLayout(null);
 			{
-				JButton okButton = new JButton("CONFIRMAR");
+				okButton = new JButton("CONFIRMAR");
+				
+				
 				okButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				okButton.setForeground(Color.WHITE);
 				okButton.setFont(new Font("Barlow", Font.BOLD, 20));
@@ -154,7 +173,7 @@ public class jd_nueva_consulta extends JDialog {
 		lbl_especialidad.setBounds(61, 211, 142, 40);
 		contentPanel.add(lbl_especialidad);
 		
-		JButton btn_hora9 = new JButton("10:00");
+		btn_hora9 = new JButton("10:00");
 		btn_hora9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -193,7 +212,7 @@ public class jd_nueva_consulta extends JDialog {
 		
 		
 		
-		JButton btn_hora10 = new JButton("11:00");
+		btn_hora10 = new JButton("11:00");
 		btn_hora10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_hora.setText("11:00");
@@ -208,7 +227,7 @@ public class jd_nueva_consulta extends JDialog {
 		btn_hora10.setBounds(742, 137, 120, 37);
 		contentPanel.add(btn_hora10);
 		
-		JButton btn_hora11 = new JButton("12:00");
+		btn_hora11 = new JButton("12:00");
 		btn_hora11.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_hora.setText("12:00");
@@ -223,7 +242,7 @@ public class jd_nueva_consulta extends JDialog {
 		btn_hora11.setBounds(925, 137, 120, 37);
 		contentPanel.add(btn_hora11);
 		
-		JButton btn_hora12 = new JButton("13:00");
+		btn_hora12 = new JButton("13:00");
 		btn_hora12.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_hora.setText("13:00");
@@ -238,7 +257,7 @@ public class jd_nueva_consulta extends JDialog {
 		btn_hora12.setBounds(559, 199, 120, 37);
 		contentPanel.add(btn_hora12);
 		
-		JButton btn_hora13 = new JButton("14:00");
+		btn_hora13 = new JButton("14:00");
 		btn_hora13.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_hora.setText("14:00");
@@ -253,7 +272,7 @@ public class jd_nueva_consulta extends JDialog {
 		btn_hora13.setBounds(742, 200, 120, 37);
 		contentPanel.add(btn_hora13);
 		
-		JButton btn_hora14 = new JButton("15:00");
+		btn_hora14 = new JButton("15:00");
 		btn_hora14.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_hora.setText("15:00");
@@ -268,7 +287,7 @@ public class jd_nueva_consulta extends JDialog {
 		btn_hora14.setBounds(925, 200, 120, 37);
 		contentPanel.add(btn_hora14);
 		
-		JButton btn_hora15 = new JButton("16:00");
+		btn_hora15 = new JButton("16:00");
 		btn_hora15.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_hora.setText("16:00");
@@ -283,7 +302,7 @@ public class jd_nueva_consulta extends JDialog {
 		btn_hora15.setBounds(559, 261, 120, 37);
 		contentPanel.add(btn_hora15);
 		
-		JButton btn_hora16 = new JButton("17:00");
+		btn_hora16 = new JButton("17:00");
 		btn_hora16.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_hora.setText("17:00");
@@ -298,7 +317,7 @@ public class jd_nueva_consulta extends JDialog {
 		btn_hora16.setBounds(742, 262, 120, 37);
 		contentPanel.add(btn_hora16);
 		
-		JButton btn_hora17 = new JButton("18:00");
+		btn_hora17 = new JButton("18:00");
 		btn_hora17.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_hora.setText("18:00");
@@ -313,7 +332,7 @@ public class jd_nueva_consulta extends JDialog {
 		btn_hora17.setBounds(925, 262, 120, 37);
 		contentPanel.add(btn_hora17);
 		
-		JButton btn_hora18 = new JButton("19:00");
+		btn_hora18 = new JButton("19:00");
 		btn_hora18.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_hora.setText("19:00");
@@ -328,7 +347,7 @@ public class jd_nueva_consulta extends JDialog {
 		btn_hora18.setBounds(559, 322, 120, 37);
 		contentPanel.add(btn_hora18);
 		
-		JButton btn_hora19 = new JButton("20:00");
+		btn_hora19 = new JButton("20:00");
 		btn_hora19.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_hora.setText("20:00");
@@ -343,7 +362,7 @@ public class jd_nueva_consulta extends JDialog {
 		btn_hora19.setBounds(742, 323, 120, 37);
 		contentPanel.add(btn_hora19);
 		
-		JButton btn_hora20 = new JButton("21:00");
+		btn_hora20 = new JButton("21:00");
 		btn_hora20.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_hora.setText("21:00");
@@ -379,9 +398,29 @@ public class jd_nueva_consulta extends JDialog {
 		contentPanel.add(txt_fecha);
 		txt_fecha.setColumns(10);
 		
-	//	Date fechaSeleccionada = calendar.getCalendar().getSelectedDate();
-	    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-	//    txt_fecha.setText(sdf.format(fechaSeleccionada));
+	/*	String dia = calendar.getDayChooser().toString();
+		String mes = calendar.getMonthChooser().toString();
+		String anio = calendar.getYearChooser().toString();
+		
+		String fecha = dia+mes+anio;
+		txt_fecha.setText(fecha);
+		*/
+		
+	/*	calendar.getDayChooser().addPropertyChangeListener(new PropertyChangeListener() {
+		    @Override
+		  
+			public void propertyChange(PropertyChangeEvent evt) {
+				// TODO Auto-generated method stub
+				if (evt.getPropertyName().equals("selectedDate")) {
+		            Date selectedDate = (Date) evt.getNewValue();
+		            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		            txt_fecha.setText(sdf.format(selectedDate));
+		        }
+			}
+		});*/
+		
+		// Obtener la fecha seleccionada
+		
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(jd_nueva_consulta.class.getResource("/iconos_menus/fondo (1).png")));
@@ -391,10 +430,47 @@ public class jd_nueva_consulta extends JDialog {
 		String pacienteSeleccionado = cb_paciente.getSelectedItem().toString();
 		String doctorSeleccionado = cb_doctor.getSelectedItem().toString();
 		String especialidadteSeleccionado = cb_especialidad.getSelectedItem().toString();
+		
+		selecionarFecha(calendar);
+	        
+	    }//llave clase
+
+	private void selecionarFecha(JCalendar calendar) {
+		Date fechaSeleccionada = calendar.getDate();
+		// Crear un objeto SimpleDateFormat con el formato dd-mm-yyyy
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		// Formatear la fecha seleccionada
+		String fechaFormateada = sdf.format(fechaSeleccionada);
+		
+		txt_fecha.setText(fechaFormateada);
+
+		
+	        calendar.getDayChooser().addPropertyChangeListener(
+	                new java.beans.PropertyChangeListener() {
+
+	                    @Override
+	                    public void propertyChange(java.beans.PropertyChangeEvent evt) {
+	                        if (evt.getPropertyName().compareTo("day") == 0) {
+	                            SimpleDateFormat formatoDeFecha = new SimpleDateFormat("dd/MM/yyyy");
+	                            txt_fecha.setText(formatoDeFecha.format(calendar.getDate()));
+	                        }
+	                    }
+	                });
+	        
+	        okButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					
+					dentilax_bdd.ConectorDB_mysql conect = new dentilax_bdd.ConectorDB_mysql();
+					conect.agendar_cita(cb_doctor.getSelectedItem().toString(), txt_fecha.getText().toString(), 
+							cb_especialidad.getSelectedItem().toString(), " ",cb_paciente.getSelectedItem().toString(), txt_hora.getText().toString());
+							
+					
+					
+				}
+			});
+	        
+	        
 	}
-	
-	
-	
 	
 	public JTextField getTxt_fecha() {
 		return txt_fecha;
