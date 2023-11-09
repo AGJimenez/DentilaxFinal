@@ -689,18 +689,62 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         popupMenu.add(mnNewMenu_1);
         
         mntmNewMenuItem_2 = new JMenuItem("Menu Paciente");
+        mntmNewMenuItem_2.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+				jf_pacientes ventana = new jf_pacientes();
+				ventana.setVisible(true);
+			}
+		});
         mnNewMenu_1.add(mntmNewMenuItem_2);
         
         mntmNewMenuItem_1 = new JMenuItem("Buscar paciente");
+        mntmNewMenuItem_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+            		dispose();
+            		jf_pacientes ventana = new jf_pacientes();
+            		dialogos_pacientes.jd_buscar_paciente ventana_buscar = new dialogos_pacientes.jd_buscar_paciente();
+            		ventana.setVisible(true);
+            		ventana_buscar.setVisible(true);
+            	}
+            });
+        	
         mnNewMenu_1.add(mntmNewMenuItem_1);
         
         mntmNewMenuItem_3 = new JMenuItem("Editar paciente");
+        mntmNewMenuItem_3.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_pacientes ventana = new jf_pacientes();
+        		dialogos_pacientes.jd_buscar_paciente_editar ventana_buscar = new dialogos_pacientes.jd_buscar_paciente_editar();
+        		ventana.setVisible(true);
+        		ventana_buscar.setVisible(true);
+        	}
+        });
         mnNewMenu_1.add(mntmNewMenuItem_3);
         
         mntmNewMenuItem_4 = new JMenuItem("Dar de baja");
+        mntmNewMenuItem_4.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+				jf_pacientes ventana = new jf_pacientes();
+				dialogos_pacientes.jd_buscar_paciente_baja ventana_buscar = new dialogos_pacientes.jd_buscar_paciente_baja();
+				ventana.setVisible(true);
+				ventana_buscar.setVisible(true);
+			}
+		});
         mnNewMenu_1.add(mntmNewMenuItem_4);
         
         mntmNewMenuItem_6 = new JMenuItem("Dar de alta");
+        mntmNewMenuItem_6.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+				jf_pacientes ventana = new jf_pacientes();
+				dialogos_pacientes.jd_pacientes_alta ventana_alta = new dialogos_pacientes.jd_pacientes_alta();
+				ventana.setVisible(true);
+				ventana_alta.setVisible(true);
+			}
+		});
         mnNewMenu_1.add(mntmNewMenuItem_6);
         
         JMenu mnNewMenu_2 = new JMenu("DOCTORES");

@@ -634,18 +634,61 @@ public class jf_pacientes extends JFrame {
 		addPopup(jp_menu, popupMenu);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Menu paciente");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				jf_pacientes ventana = new jf_pacientes();
+				ventana.setVisible(true);
+			}
+		});
 		popupMenu.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Buscar paciente");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+        		jf_pacientes ventana = new jf_pacientes();
+        		dialogos_pacientes.jd_buscar_paciente ventana_buscar = new dialogos_pacientes.jd_buscar_paciente();
+        		ventana.setVisible(true);
+        		ventana_buscar.setVisible(true);
+        	}
+        });
 		popupMenu.add(mntmNewMenuItem_1);
 		
 		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Editar paciente");
+		mntmNewMenuItem_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+        		jf_pacientes ventana = new jf_pacientes();
+        		dialogos_pacientes.jd_buscar_paciente_editar ventana_buscar = new dialogos_pacientes.jd_buscar_paciente_editar();
+        		ventana.setVisible(true);
+        		ventana_buscar.setVisible(true);
+        	}
+        });
 		popupMenu.add(mntmNewMenuItem_2);
 		
 		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Dar de baja");
+		mntmNewMenuItem_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				jf_pacientes ventana = new jf_pacientes();
+				dialogos_pacientes.jd_buscar_paciente_baja ventana_buscar = new dialogos_pacientes.jd_buscar_paciente_baja();
+				ventana.setVisible(true);
+				ventana_buscar.setVisible(true);
+			}
+		});
 		popupMenu.add(mntmNewMenuItem_3);
 		
 		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Dar de alta");
+		mntmNewMenuItem_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				jf_pacientes ventana = new jf_pacientes();
+				dialogos_pacientes.jd_pacientes_alta ventana_alta = new dialogos_pacientes.jd_pacientes_alta();
+				ventana.setVisible(true);
+				ventana_alta.setVisible(true);
+			}
+		});
 		popupMenu.add(mntmNewMenuItem_4);
 		gl_jp_menu.setHorizontalGroup(
 			gl_jp_menu.createParallelGroup(Alignment.LEADING)
