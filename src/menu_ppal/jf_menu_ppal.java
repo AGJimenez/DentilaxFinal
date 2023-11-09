@@ -688,23 +688,110 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         JMenu mnNewMenu_1 = new JMenu("PACIENTES");
         popupMenu.add(mnNewMenu_1);
         
+        mntmNewMenuItem_2 = new JMenuItem("Menu Paciente");
+        mnNewMenu_1.add(mntmNewMenuItem_2);
+        
+        mntmNewMenuItem_1 = new JMenuItem("Buscar paciente");
+        mnNewMenu_1.add(mntmNewMenuItem_1);
+        
+        mntmNewMenuItem_3 = new JMenuItem("Editar paciente");
+        mnNewMenu_1.add(mntmNewMenuItem_3);
+        
+        mntmNewMenuItem_4 = new JMenuItem("Dar de baja");
+        mnNewMenu_1.add(mntmNewMenuItem_4);
+        
+        mntmNewMenuItem_6 = new JMenuItem("Dar de alta");
+        mnNewMenu_1.add(mntmNewMenuItem_6);
+        
         JMenu mnNewMenu_2 = new JMenu("DOCTORES");
         popupMenu.add(mnNewMenu_2);
+        
+        mntmNewMenuItem_7 = new JMenuItem("Menu doctor");
+        mnNewMenu_2.add(mntmNewMenuItem_7);
+        
+        mntmNewMenuItem_10 = new JMenuItem("Buscar doctor");
+        mnNewMenu_2.add(mntmNewMenuItem_10);
+        
+        mntmNewMenuItem_8 = new JMenuItem("Especialidad");
+        mnNewMenu_2.add(mntmNewMenuItem_8);
+        
+        mntmNewMenuItem_13 = new JMenuItem("Editar doctor");
+        mnNewMenu_2.add(mntmNewMenuItem_13);
+        
+        mntmNewMenuItem_12 = new JMenuItem("Dar de baja");
+        mnNewMenu_2.add(mntmNewMenuItem_12);
+        
+        mntmNewMenuItem_11 = new JMenuItem("Dar de alta");
+        mnNewMenu_2.add(mntmNewMenuItem_11);
         
         JMenu mnNewMenu_3 = new JMenu("MATERIAL");
         popupMenu.add(mnNewMenu_3);
         
+        mntmNewMenuItem_9 = new JMenuItem("Menu material");
+        mnNewMenu_3.add(mntmNewMenuItem_9);
+        
+        mntmNewMenuItem_17 = new JMenuItem("Buscar pedido");
+        mnNewMenu_3.add(mntmNewMenuItem_17);
+        
+        mntmNewMenuItem_15 = new JMenuItem("Proveedores");
+        mnNewMenu_3.add(mntmNewMenuItem_15);
+        
+        mntmNewMenuItem_14 = new JMenuItem("Cancelar pedido");
+        mnNewMenu_3.add(mntmNewMenuItem_14);
+        
+        mntmNewMenuItem_20 = new JMenuItem("Nuevo pedido");
+        mnNewMenu_3.add(mntmNewMenuItem_20);
+        
+        mntmNewMenuItem_21 = new JMenuItem("Inventario");
+        mnNewMenu_3.add(mntmNewMenuItem_21);
+        
+        mntmNewMenuItem_22 = new JMenuItem("Solicitudes");
+        mnNewMenu_3.add(mntmNewMenuItem_22);
+        
         JMenu mnNewMenu_4 = new JMenu("CONSULTAS");
         popupMenu.add(mnNewMenu_4);
         
+        mntmNewMenuItem_19 = new JMenuItem("Menu consulta");
+        mnNewMenu_4.add(mntmNewMenuItem_19);
+        
+        mntmNewMenuItem_16 = new JMenuItem("Buscar cita");
+        mnNewMenu_4.add(mntmNewMenuItem_16);
+        
+        mntmNewMenuItem_26 = new JMenuItem("Historial");
+        mnNewMenu_4.add(mntmNewMenuItem_26);
+        
+        mntmNewMenuItem_24 = new JMenuItem("Eliminar cita");
+        mnNewMenu_4.add(mntmNewMenuItem_24);
+        
+        mntmNewMenuItem_25 = new JMenuItem("Nueva cita");
+        mnNewMenu_4.add(mntmNewMenuItem_25);
+        
         JMenu mnNewMenu_5 = new JMenu("FACTURACIÓN");
         popupMenu.add(mnNewMenu_5);
+        
+        mntmNewMenuItem_5 = new JMenuItem("Menu facturacion");
+        mnNewMenu_5.add(mntmNewMenuItem_5);
+        
+        mntmNewMenuItem_18 = new JMenuItem("Buscar factura");
+        mnNewMenu_5.add(mntmNewMenuItem_18);
+        
+        mntmNewMenuItem_27 = new JMenuItem("Historial de pago");
+        mnNewMenu_5.add(mntmNewMenuItem_27);
+        
+        mntmNewMenuItem_28 = new JMenuItem("Balance de gastos");
+        mnNewMenu_5.add(mntmNewMenuItem_28);
+        
+        mntmNewMenuItem_29 = new JMenuItem("Nueva factura");
+        mnNewMenu_5.add(mntmNewMenuItem_29);
         
         JMenu mnNewMenu_6 = new JMenu("AJUSTES");
         popupMenu.add(mnNewMenu_6);
         
         JMenu mnNewMenu_7 = new JMenu("AYUDA");
         popupMenu.add(mnNewMenu_7);
+        
+        mntmNewMenuItem_23 = new JMenuItem("New menu item");
+        mnNewMenu_7.add(mntmNewMenuItem_23);
         jp_menu.add(btn_facturacion);
         jp_menu.add(btn_pacientes);
         jp_menu.add(btn_material);
@@ -827,6 +914,35 @@ public class jf_menu_ppal extends javax.swing.JFrame {
     private JMenuItem mntmNewMenuItem;
     private JButton btn_inicio;
     private JLabel lbl_fecha;
+    private JMenuItem mntmNewMenuItem_1;
+    private JMenuItem mntmNewMenuItem_2;
+    private JMenuItem mntmNewMenuItem_3;
+    private JMenuItem mntmNewMenuItem_4;
+    private JMenuItem mntmNewMenuItem_5;
+    private JMenuItem mntmNewMenuItem_6;
+    private JMenuItem mntmNewMenuItem_7;
+    private JMenuItem mntmNewMenuItem_8;
+    private JMenuItem mntmNewMenuItem_9;
+    private JMenuItem mntmNewMenuItem_10;
+    private JMenuItem mntmNewMenuItem_11;
+    private JMenuItem mntmNewMenuItem_12;
+    private JMenuItem mntmNewMenuItem_13;
+    private JMenuItem mntmNewMenuItem_14;
+    private JMenuItem mntmNewMenuItem_15;
+    private JMenuItem mntmNewMenuItem_16;
+    private JMenuItem mntmNewMenuItem_17;
+    private JMenuItem mntmNewMenuItem_18;
+    private JMenuItem mntmNewMenuItem_19;
+    private JMenuItem mntmNewMenuItem_20;
+    private JMenuItem mntmNewMenuItem_21;
+    private JMenuItem mntmNewMenuItem_22;
+    private JMenuItem mntmNewMenuItem_24;
+    private JMenuItem mntmNewMenuItem_25;
+    private JMenuItem mntmNewMenuItem_23;
+    private JMenuItem mntmNewMenuItem_26;
+    private JMenuItem mntmNewMenuItem_27;
+    private JMenuItem mntmNewMenuItem_28;
+    private JMenuItem mntmNewMenuItem_29;
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
