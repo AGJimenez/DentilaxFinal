@@ -305,7 +305,6 @@ public String consulta_doctor_eliminar(String dni) throws SQLException{
             String dniSql = resultSet.getString("DNI_doctor");
             String nombreSql = resultSet.getString("Nombre");
             String apellidosSql = resultSet.getString("Apellidos");
-           // System.out.println(dniSql);
             ventana.setTxt_dni(dniSql);
             ventana.setTxt_nombre(nombreSql);
             ventana.setTxt_apellidos(apellidosSql);
@@ -716,13 +715,18 @@ public void insertar_dr_usuario(String dni, String estado, String contrasena) {
 	
 }
 
-public void insertar_consulta(String DNI_doctor, String fecha, String especialidad, String observaciones, String DNI_paciente ) {
-	
+public void agendar_cita(String DNI_doctor, String fecha, String especialidad, String observaciones, String DNI_paciente, String hora ) {
+	dialogos_consultas.jd_nueva_consulta obtenerDatos = new dialogos_consultas.jd_nueva_consulta();
+	DNI_doctor = obtenerDatos.getCb_doctor().getSelectedItem().toString();
+	DNI_paciente = obtenerDatos.getCb_paciente().getSelectedItem().toString();
+	especialidad = obtenerDatos.getCb_especialidad().getSelectedItem().toString();
+	hora = obtenerDatos.getTxt_hora().getText().toString();
+	fecha = obtenerDatos.getTxt_fecha().getText().toString();
 	try {
 		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 		statement = conect.createStatement();
-		String query = "INSERT INTO citas (DNI_doctor, Fecha, Especialidad, Observaciones, DNI_paciente) " +
-            "VALUES ('" + DNI_doctor + "', '" + fecha + "', '" + "', '" + especialidad + "', '" + observaciones + "', '" + DNI_paciente + "')";
+		String query = "INSERT INTO citas (DNI_doctor, Fecha, Especialidad, Observaciones, DNI_paciente, hora) " +
+            "VALUES ('" + DNI_doctor + "', '" + fecha + "', '" + hora +"', '"  + especialidad + "', '" + observaciones + "', '" + DNI_paciente + "')";
 
 		int fila = statement.executeUpdate(query);
 		
@@ -746,7 +750,7 @@ public void mostarCbCitasPac(jd_nueva_consulta datos) throws SQLException {
 	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
     statement = conect.createStatement();
     try {
-        String sql = "SELECT Nombre FROM pacientes";
+        String sql = "SELECT DNI_paciente FROM pacientes";
         ResultSet rs = statement.executeQuery(sql);
 
         // Extraer datos del result set
@@ -767,7 +771,7 @@ public void mostarCbCitasDr(jd_nueva_consulta datos) throws SQLException {
 	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
     statement = conect.createStatement();
     try {
-        String sql = "SELECT Nombre FROM doctores";
+        String sql = "SELECT DNI_doctor FROM doctores";
         ResultSet rs = statement.executeQuery(sql);
 
         // Extraer datos del result set
@@ -788,7 +792,7 @@ public void mostarCbCitasEsp(jd_nueva_consulta datos) throws SQLException {
 	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
     statement = conect.createStatement();
     try {
-        String sql = "SELECT Nombre_especialidad FROM especialidades";
+        String sql = "SELECT Nombre FROM especialidad";
         ResultSet rs = statement.executeQuery(sql);
 
         // Extraer datos del result set

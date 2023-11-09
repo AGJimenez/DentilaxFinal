@@ -15,11 +15,15 @@ import javax.swing.JLabel;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.awt.event.ActionEvent;
 import com.toedter.calendar.JCalendar;
 import javax.swing.border.BevelBorder;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 public class jd_nueva_consulta extends JDialog {
 
@@ -66,6 +70,16 @@ public class jd_nueva_consulta extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		setLocationRelativeTo(this);
+		
+		txt_hora = new JTextField();
+		txt_hora.setHorizontalAlignment(SwingConstants.CENTER);
+		txt_hora.setFont(new Font("Arial", Font.BOLD, 14));
+		txt_hora.setEditable(false);
+		txt_hora.setBorder(null);
+		txt_hora.setBackground(new Color(191, 231, 249));
+		txt_hora.setColumns(10);
+		txt_hora.setBounds(925, 416, 120, 37);
+		contentPanel.add(txt_hora);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(Color.WHITE);
@@ -141,6 +155,12 @@ public class jd_nueva_consulta extends JDialog {
 		contentPanel.add(lbl_especialidad);
 		
 		JButton btn_hora9 = new JButton("10:00");
+		btn_hora9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				txt_hora.setText("10:00");
+			}
+		});
 		btn_hora9.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btn_hora9.setBorderPainted(false);
 		btn_hora9.setBorder(null);
@@ -170,7 +190,15 @@ public class jd_nueva_consulta extends JDialog {
 		calendar.setBounds(61, 297, 438, 211);
 		contentPanel.add(calendar);
 		
+		
+		
+		
 		JButton btn_hora10 = new JButton("11:00");
+		btn_hora10.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txt_hora.setText("11:00");
+			}
+		});
 		btn_hora10.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btn_hora10.setBorderPainted(false);
 		btn_hora10.setBorder(null);
@@ -181,6 +209,11 @@ public class jd_nueva_consulta extends JDialog {
 		contentPanel.add(btn_hora10);
 		
 		JButton btn_hora11 = new JButton("12:00");
+		btn_hora11.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txt_hora.setText("12:00");
+			}
+		});
 		btn_hora11.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btn_hora11.setBorderPainted(false);
 		btn_hora11.setBorder(null);
@@ -191,93 +224,138 @@ public class jd_nueva_consulta extends JDialog {
 		contentPanel.add(btn_hora11);
 		
 		JButton btn_hora12 = new JButton("13:00");
+		btn_hora12.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txt_hora.setText("13:00");
+			}
+		});
 		btn_hora12.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btn_hora12.setBorderPainted(false);
 		btn_hora12.setBorder(null);
 		btn_hora12.setFont(new Font("Barlow", Font.BOLD, 20));
 		btn_hora12.setForeground(Color.WHITE);
 		btn_hora12.setBackground(new Color(32, 160, 216));
-		btn_hora12.setBounds(559, 219, 120, 37);
+		btn_hora12.setBounds(559, 199, 120, 37);
 		contentPanel.add(btn_hora12);
 		
 		JButton btn_hora13 = new JButton("14:00");
+		btn_hora13.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txt_hora.setText("14:00");
+			}
+		});
 		btn_hora13.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btn_hora13.setBorderPainted(false);
 		btn_hora13.setBorder(null);
 		btn_hora13.setFont(new Font("Barlow", Font.BOLD, 20));
 		btn_hora13.setForeground(Color.WHITE);
 		btn_hora13.setBackground(new Color(32, 160, 216));
-		btn_hora13.setBounds(742, 220, 120, 37);
+		btn_hora13.setBounds(742, 200, 120, 37);
 		contentPanel.add(btn_hora13);
 		
 		JButton btn_hora14 = new JButton("15:00");
+		btn_hora14.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txt_hora.setText("15:00");
+			}
+		});
 		btn_hora14.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btn_hora14.setBorderPainted(false);
 		btn_hora14.setBorder(null);
 		btn_hora14.setFont(new Font("Barlow", Font.BOLD, 20));
 		btn_hora14.setForeground(Color.WHITE);
 		btn_hora14.setBackground(new Color(32, 160, 216));
-		btn_hora14.setBounds(925, 220, 120, 37);
+		btn_hora14.setBounds(925, 200, 120, 37);
 		contentPanel.add(btn_hora14);
 		
 		JButton btn_hora15 = new JButton("16:00");
+		btn_hora15.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txt_hora.setText("16:00");
+			}
+		});
 		btn_hora15.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btn_hora15.setBorderPainted(false);
 		btn_hora15.setBorder(null);
 		btn_hora15.setFont(new Font("Barlow", Font.BOLD, 20));
 		btn_hora15.setForeground(Color.WHITE);
 		btn_hora15.setBackground(new Color(32, 160, 216));
-		btn_hora15.setBounds(559, 301, 120, 37);
+		btn_hora15.setBounds(559, 261, 120, 37);
 		contentPanel.add(btn_hora15);
 		
 		JButton btn_hora16 = new JButton("17:00");
+		btn_hora16.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txt_hora.setText("17:00");
+			}
+		});
 		btn_hora16.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btn_hora16.setBorderPainted(false);
 		btn_hora16.setBorder(null);
 		btn_hora16.setFont(new Font("Barlow", Font.BOLD, 20));
 		btn_hora16.setForeground(Color.WHITE);
 		btn_hora16.setBackground(new Color(32, 160, 216));
-		btn_hora16.setBounds(742, 302, 120, 37);
+		btn_hora16.setBounds(742, 262, 120, 37);
 		contentPanel.add(btn_hora16);
 		
 		JButton btn_hora17 = new JButton("18:00");
+		btn_hora17.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txt_hora.setText("18:00");
+			}
+		});
 		btn_hora17.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btn_hora17.setBorderPainted(false);
 		btn_hora17.setBorder(null);
 		btn_hora17.setFont(new Font("Barlow", Font.BOLD, 20));
 		btn_hora17.setForeground(Color.WHITE);
 		btn_hora17.setBackground(new Color(32, 160, 216));
-		btn_hora17.setBounds(925, 302, 120, 37);
+		btn_hora17.setBounds(925, 262, 120, 37);
 		contentPanel.add(btn_hora17);
 		
 		JButton btn_hora18 = new JButton("19:00");
+		btn_hora18.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txt_hora.setText("19:00");
+			}
+		});
 		btn_hora18.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btn_hora18.setBorderPainted(false);
 		btn_hora18.setBorder(null);
 		btn_hora18.setFont(new Font("Barlow", Font.BOLD, 20));
 		btn_hora18.setForeground(Color.WHITE);
 		btn_hora18.setBackground(new Color(32, 160, 216));
-		btn_hora18.setBounds(559, 385, 120, 37);
+		btn_hora18.setBounds(559, 322, 120, 37);
 		contentPanel.add(btn_hora18);
 		
 		JButton btn_hora19 = new JButton("20:00");
+		btn_hora19.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txt_hora.setText("20:00");
+			}
+		});
 		btn_hora19.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btn_hora19.setBorderPainted(false);
 		btn_hora19.setBorder(null);
 		btn_hora19.setFont(new Font("Barlow", Font.BOLD, 20));
 		btn_hora19.setForeground(Color.WHITE);
 		btn_hora19.setBackground(new Color(32, 160, 216));
-		btn_hora19.setBounds(742, 386, 120, 37);
+		btn_hora19.setBounds(742, 323, 120, 37);
 		contentPanel.add(btn_hora19);
 		
-		JButton btn_hora20 = new JButton("HORA");
+		JButton btn_hora20 = new JButton("21:00");
+		btn_hora20.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txt_hora.setText("21:00");
+			}
+		});
 		btn_hora20.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btn_hora20.setBorderPainted(false);
 		btn_hora20.setBorder(null);
 		btn_hora20.setFont(new Font("Barlow", Font.BOLD, 20));
 		btn_hora20.setForeground(Color.WHITE);
 		btn_hora20.setBackground(new Color(32, 160, 216));
-		btn_hora20.setBounds(925, 386, 120, 37);
+		btn_hora20.setBounds(925, 323, 120, 37);
 		contentPanel.add(btn_hora20);
 		
 		JLabel lbl_hora = new JLabel("HORA");
@@ -289,32 +367,51 @@ public class jd_nueva_consulta extends JDialog {
 		JLabel lbl_seleccion = new JLabel("FECHA Y HORA:");
 		lbl_seleccion.setForeground(new Color(32, 160, 216));
 		lbl_seleccion.setFont(new Font("Barlow", Font.BOLD, 20));
-		lbl_seleccion.setBounds(559, 440, 142, 40);
+		lbl_seleccion.setBounds(559, 413, 142, 40);
 		contentPanel.add(lbl_seleccion);
 		
 		txt_fecha = new JTextField();
-		txt_fecha.setFont(new Font("Arial", Font.BOLD, 14));
 		txt_fecha.setEditable(false);
+		txt_fecha.setFont(new Font("Arial", Font.BOLD, 14));
 		txt_fecha.setBorder(null);
 		txt_fecha.setBackground(new Color(191, 231, 249));
-		txt_fecha.setBounds(742, 443, 120, 37);
+		txt_fecha.setBounds(742, 416, 120, 37);
 		contentPanel.add(txt_fecha);
 		txt_fecha.setColumns(10);
+		
+	//	Date fechaSeleccionada = calendar.getCalendar().getSelectedDate();
+	    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	//    txt_fecha.setText(sdf.format(fechaSeleccionada));
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(jd_nueva_consulta.class.getResource("/iconos_menus/fondo (1).png")));
 		lblNewLabel.setBounds(0, 0, 1100, 600);
 		contentPanel.add(lblNewLabel);
 		
-		txt_hora = new JTextField();
-		txt_hora.setFont(new Font("Arial", Font.BOLD, 14));
-		txt_hora.setEditable(false);
-		txt_hora.setBorder(null);
-		txt_hora.setBackground(new Color(191, 231, 249));
-		txt_hora.setColumns(10);
-		txt_hora.setBounds(925, 443, 120, 37);
-		contentPanel.add(txt_hora);
+		String pacienteSeleccionado = cb_paciente.getSelectedItem().toString();
+		String doctorSeleccionado = cb_doctor.getSelectedItem().toString();
+		String especialidadteSeleccionado = cb_especialidad.getSelectedItem().toString();
 	}
+	
+	
+	
+	
+	public JTextField getTxt_fecha() {
+		return txt_fecha;
+	}
+
+	public void setTxt_fecha(JTextField txt_fecha) {
+		this.txt_fecha = txt_fecha;
+	}
+
+	public JTextField getTxt_hora() {
+		return txt_hora;
+	}
+
+	public void setTxt_hora(JTextField txt_hora) {
+		this.txt_hora = txt_hora;
+	}
+
 	public JComboBox<String> getCb_paciente() {
         return cb_paciente;
     }
@@ -338,4 +435,5 @@ public class jd_nueva_consulta extends JDialog {
 			 public void setCb_doctor(String items) {
 				 cb_doctor.addItem(items); 
 			    }
+			 
 }
