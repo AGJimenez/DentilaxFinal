@@ -14,7 +14,7 @@ import dialogos_consultas.jd_nueva_consulta;
 public class ConectorDB_mysql {
 
 	private static final String CONTROLADOR = "com.mysql.jdbc.Driver";
-	private static final String URL = "jdbc:mysql://localhost:3306/dentilax";
+	private static final String URL = "jdbc:mysql://localhost:3306/dentilax?useSSL=false";
 	private static final String USUARIO = "root";
 	String tablaNombre;
 	private static final String CLAVE = "1234";

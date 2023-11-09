@@ -3,8 +3,10 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.swing.AbstractAction;
@@ -36,6 +38,7 @@ public class jf_facturacion extends JFrame {
 	 * Launch the application.
 	 */
 	fondos.Fondo fondo = new fondos.Fondo();
+	ArrayList<Integer> combo;
     public jf_facturacion() {
     	setIconImage(Toolkit.getDefaultToolkit().getImage(jf_facturacion.class.getResource("/iconos_menus/dentilaxIcono.png")));
     	setTitle("Gestión de facturación");
@@ -156,6 +159,188 @@ public class jf_facturacion extends JFrame {
         menu_inicio.add(jMenu8);
 
         setJMenuBar(menu_inicio);
+        
+        combo = new ArrayList<>();
+        btn_inicio.setFocusable(true);
+        btn_inicio.addKeyListener(new KeyAdapter() {
+        	@Override
+        	public void keyPressed(KeyEvent e) {
+        		combo.add(e.getKeyCode());
+        		if(combo.size()>1) {
+        			
+        			//---ShortCuts para pacientes---
+        			if(combo.contains(KeyEvent.VK_1)&&combo.contains(KeyEvent.VK_P)&&combo.contains(16)) {
+        				dispose();
+        				jf_pacientes ventana = new jf_pacientes();
+        				dialogos_pacientes.jd_buscar_paciente ventana_buscar = new dialogos_pacientes.jd_buscar_paciente();
+        				ventana.setVisible(true);
+        				ventana_buscar.setVisible(true);
+        			}
+        			if(combo.contains(KeyEvent.VK_2)&&combo.contains(KeyEvent.VK_P)&&combo.contains(16)) {
+        				dispose();
+        				jf_pacientes ventana = new jf_pacientes();
+        				dialogos_pacientes.jd_buscar_paciente_editar ventana_buscar = new dialogos_pacientes.jd_buscar_paciente_editar();
+        				ventana.setVisible(true);
+        				ventana_buscar.setVisible(true);
+        			}
+        			if(combo.contains(KeyEvent.VK_3)&&combo.contains(KeyEvent.VK_P)&&combo.contains(16)) {
+        				dispose();
+        				jf_pacientes ventana = new jf_pacientes();
+        				dialogos_pacientes.jd_buscar_paciente_baja ventana_buscar = new dialogos_pacientes.jd_buscar_paciente_baja();
+        				ventana.setVisible(true);
+        				ventana_buscar.setVisible(true);
+        			}
+        			if(combo.contains(KeyEvent.VK_4)&&combo.contains(KeyEvent.VK_P)&&combo.contains(16)) {
+        				dispose();
+        				jf_pacientes ventana = new jf_pacientes();
+        				dialogos_pacientes.jd_pacientes_alta ventana_alta = new dialogos_pacientes.jd_pacientes_alta();
+        				ventana.setVisible(true);
+        				ventana_alta.setVisible(true);
+        			}
+        			
+        			//---ShortCuts para doctores---
+        			if(combo.contains(KeyEvent.VK_1)&&combo.contains(KeyEvent.VK_D)&&combo.contains(16)) {
+        				dispose();
+        				jf_doctores ventana = new jf_doctores();
+        				dialogos_doctores.jd_buscar_dr ventana_buscar = new dialogos_doctores.jd_buscar_dr();
+        				ventana.setVisible(true);
+        				ventana_buscar.setVisible(true);
+        			}
+        			if(combo.contains(KeyEvent.VK_2)&&combo.contains(KeyEvent.VK_D)&&combo.contains(16)) {
+        				dispose();
+        				jf_doctores ventana = new jf_doctores();
+        				dialogos_doctores.jd_especialidades ventana_buscar = new dialogos_doctores.jd_especialidades();
+        				ventana.setVisible(true);
+        				ventana_buscar.setVisible(true);
+        			}
+        			if(combo.contains(KeyEvent.VK_3)&&combo.contains(KeyEvent.VK_D)&&combo.contains(16)) {
+        				dispose();
+        				jf_doctores ventana = new jf_doctores();
+        				dialogos_doctores.jd_buscar_doctor_editar ventana_buscar = new dialogos_doctores.jd_buscar_doctor_editar();
+        				ventana.setVisible(true);
+        				ventana_buscar.setVisible(true);
+        			}
+        			if(combo.contains(KeyEvent.VK_4)&&combo.contains(KeyEvent.VK_D)&&combo.contains(16)) {
+        				dispose();
+        				jf_doctores ventana = new jf_doctores();
+        				dialogos_doctores.jd_buscar_doctor_baja ventana_buscar = new dialogos_doctores.jd_buscar_doctor_baja();
+        				ventana.setVisible(true);
+        				ventana_buscar.setVisible(true);
+        			}
+        			if(combo.contains(KeyEvent.VK_5)&&combo.contains(KeyEvent.VK_D)&&combo.contains(16)) {
+        				dispose();
+        				jf_doctores ventana = new jf_doctores();
+        				dialogos_doctores.jd_doctores_alta ventana_alta = new dialogos_doctores.jd_doctores_alta();
+        				ventana.setVisible(true);
+        				ventana_alta.setVisible(true);
+        			}
+        			
+        			//---ShortCuts para material---
+        			if(combo.contains(KeyEvent.VK_1)&&combo.contains(KeyEvent.VK_M)&&combo.contains(16)) {
+        				dispose();
+        				jf_material ventana = new jf_material();
+        				//dialogos_material.jd_ ventana_buscar = new dialogos_material.jd_();
+        				ventana.setVisible(true);
+        				//ventana_buscar.setVisible(true);
+        			}
+        			if(combo.contains(KeyEvent.VK_2)&&combo.contains(KeyEvent.VK_M)&&combo.contains(16)) {
+        				dispose();
+        				jf_material ventana = new jf_material();
+        				//dialogos_material.jd_ ventana_buscar = new dialogos_material.jd_();
+        				ventana.setVisible(true);
+        				//ventana_buscar.setVisible(true);
+        			}
+        			if(combo.contains(KeyEvent.VK_3)&&combo.contains(KeyEvent.VK_M)&&combo.contains(16)) {
+        				dispose();
+        				jf_material ventana = new jf_material();
+        				//dialogos_material.jd_buscar ventana_buscar = new dialogos_material.jd_buscar();
+        				ventana.setVisible(true);
+        				//ventana_buscar.setVisible(true);
+        			}
+        			if(combo.contains(KeyEvent.VK_4)&&combo.contains(KeyEvent.VK_M)&&combo.contains(16)) {
+        				dispose();
+        				jf_material ventana = new jf_material();
+        				//dialogos_material.jd_buscar ventana_buscar = new dialogos_material.jd_buscar();
+        				ventana.setVisible(true);
+        				//ventana_buscar.setVisible(true);
+        			}
+        			if(combo.contains(KeyEvent.VK_5)&&combo.contains(KeyEvent.VK_M)&&combo.contains(16)) {
+        				dispose();
+        				jf_material ventana = new jf_material();
+        				//dialogos_material.jd_ ventana_buscar = new dialogos_material.jd_();
+        				ventana.setVisible(true);
+        				//ventana_buscar.setVisible(true);
+        			}
+        			if(combo.contains(KeyEvent.VK_6)&&combo.contains(KeyEvent.VK_M)&&combo.contains(16)) {
+        				dispose();
+        				jf_material ventana = new jf_material();
+        				//dialogos_material.jd_ ventana_buscar = new dialogos_material.jd_();
+        				ventana.setVisible(true);
+        				//ventana_buscar.setVisible(true);
+        			}
+        			
+        			//---ShortCuts para consultas---
+        			if(combo.contains(KeyEvent.VK_1)&&combo.contains(KeyEvent.VK_C)&&combo.contains(16)) {
+        				dispose();
+        				jf_consulta ventana = new jf_consulta();
+        				//dialogos_consultas.jd_buscar ventana_buscar = new dialogos_consultas.jd_buscar();
+        				ventana.setVisible(true);
+        				//ventana_buscar.setVisible(true);
+        			}
+        			if(combo.contains(KeyEvent.VK_2)&&combo.contains(KeyEvent.VK_C)&&combo.contains(16)) {
+        				dispose();
+        				jf_consulta ventana = new jf_consulta();
+        				//dialogos_consultas.jd_buscar ventana_buscar = new dialogos_consultas.jd_buscar_paciente_editar();
+        				ventana.setVisible(true);
+        				//ventana_buscar.setVisible(true);
+        			}
+        			if(combo.contains(KeyEvent.VK_3)&&combo.contains(KeyEvent.VK_C)&&combo.contains(16)) {
+        				dispose();
+        				jf_consulta ventana = new jf_consulta();
+        				dialogos_consultas.jd_buscar_consulta_eliminar ventana_buscar = new dialogos_consultas.jd_buscar_consulta_eliminar();
+        				ventana.setVisible(true);
+        				ventana_buscar.setVisible(true);
+        			}
+        			if(combo.contains(KeyEvent.VK_4)&&combo.contains(KeyEvent.VK_C)&&combo.contains(16)) {
+        				dispose();
+        				jf_consulta ventana = new jf_consulta();
+        				dialogos_consultas.jd_nueva_consulta ventana_nueva = new dialogos_consultas.jd_nueva_consulta();
+        				ventana.setVisible(true);
+        				ventana_nueva.setVisible(true);
+        			}
+        			
+        			//---ShortCuts para facturacion---
+        			if(combo.contains(KeyEvent.VK_1)&&combo.contains(KeyEvent.VK_F)&&combo.contains(16)) {
+        				dispose();
+        				jf_facturacion ventana = new jf_facturacion();
+        				dialogos_facturas.jd_buscar_factura ventana_buscar = new dialogos_facturas.jd_buscar_factura();
+        				ventana.setVisible(true);
+        				ventana_buscar.setVisible(true);
+        			}
+        			if(combo.contains(KeyEvent.VK_2)&&combo.contains(KeyEvent.VK_F)&&combo.contains(16)) {
+        				dispose();
+        				jf_facturacion ventana = new jf_facturacion();
+        				//dialogos_facturacion.jd_buscar ventana_buscar = new dialogos_facturacion.jd_buscar();
+        				ventana.setVisible(true);
+        				//ventana_buscar.setVisible(true);
+        			}
+        			if(combo.contains(KeyEvent.VK_3)&&combo.contains(KeyEvent.VK_F)&&combo.contains(16)) {
+        				dispose();
+        				jf_facturacion ventana = new jf_facturacion();
+        				//dialogos_facturacion.jd_buscar ventana_buscar = new dialogos_facturacion.jd_buscar();
+        				ventana.setVisible(true);
+        				//ventana_buscar.setVisible(true);
+        			}
+        			if(combo.contains(KeyEvent.VK_4)&&combo.contains(KeyEvent.VK_F)&&combo.contains(16)) {
+        				dispose();
+        				jf_facturacion ventana = new jf_facturacion();
+        				dialogos_facturas.jd_nueva_factura ventana_nueva = new dialogos_facturas.jd_nueva_factura();
+        				ventana.setVisible(true);
+        				ventana_nueva.setVisible(true);
+        			}
+        		}
+        	}
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
