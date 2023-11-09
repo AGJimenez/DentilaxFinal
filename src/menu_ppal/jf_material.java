@@ -375,6 +375,13 @@ public class jf_material extends JFrame {
         addPopup(jp_menu, popupMenu);
         
         mntmNewMenuItem_1 = new JMenuItem("Menu material");
+        mntmNewMenuItem_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_material ventana = new jf_material();
+        		ventana.setVisible(true);
+        	}
+        });
         popupMenu.add(mntmNewMenuItem_1);
         
         mntmNewMenuItem = new JMenuItem("Buscar pedido");

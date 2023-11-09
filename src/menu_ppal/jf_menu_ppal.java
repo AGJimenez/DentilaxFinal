@@ -824,6 +824,13 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         popupMenu.add(mnNewMenu_3);
         
         mntmNewMenuItem_9 = new JMenuItem("Menu material");
+        mntmNewMenuItem_9.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_material ventana = new jf_material();
+        		ventana.setVisible(true);
+        	}
+        });
         mnNewMenu_3.add(mntmNewMenuItem_9);
         
         mntmNewMenuItem_17 = new JMenuItem("Buscar pedido");
@@ -848,6 +855,13 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         popupMenu.add(mnNewMenu_4);
         
         mntmNewMenuItem_19 = new JMenuItem("Menu consulta");
+        mntmNewMenuItem_19.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_consulta ventana = new jf_consulta();
+        		ventana.setVisible(true);
+        	}
+        });
         mnNewMenu_4.add(mntmNewMenuItem_19);
         
         mntmNewMenuItem_16 = new JMenuItem("Buscar cita");
@@ -866,9 +880,25 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         popupMenu.add(mnNewMenu_5);
         
         mntmNewMenuItem_5 = new JMenuItem("Menu facturacion");
+        mntmNewMenuItem_5.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_facturacion ventana = new jf_facturacion();
+        		ventana.setVisible(true);
+        	}
+        });
         mnNewMenu_5.add(mntmNewMenuItem_5);
         
         mntmNewMenuItem_18 = new JMenuItem("Buscar factura");
+        mntmNewMenuItem_18.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_facturacion ventana = new jf_facturacion();
+        		dialogos_facturas.jd_buscar_factura ventana_buscar = new dialogos_facturas.jd_buscar_factura();
+        		ventana.setVisible(true);
+        		ventana_buscar.setVisible(true);
+        	}
+        });
         mnNewMenu_5.add(mntmNewMenuItem_18);
         
         mntmNewMenuItem_27 = new JMenuItem("Historial de pago");
@@ -878,6 +908,15 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         mnNewMenu_5.add(mntmNewMenuItem_28);
         
         mntmNewMenuItem_29 = new JMenuItem("Nueva factura");
+        mntmNewMenuItem_29.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_facturacion ventana = new jf_facturacion();
+        		dialogos_facturas.jd_nueva_factura ventana_nueva = new dialogos_facturas.jd_nueva_factura();
+        		ventana.setVisible(true);
+        		ventana_nueva.setVisible(true);
+        	}
+        });
         mnNewMenu_5.add(mntmNewMenuItem_29);
         
         JMenu mnNewMenu_6 = new JMenu("AJUSTES");

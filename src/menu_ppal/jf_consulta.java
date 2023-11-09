@@ -93,6 +93,10 @@ public class jf_consulta extends JFrame {
         btn_nueva_cita.setBounds(1209, 590, 188, 41);
         btn_nueva_cita.setBorderPainted(false);
         btn_historial = new javax.swing.JButton();
+        btn_historial.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
         btn_historial.setBorder(null);
         btn_historial.setContentAreaFilled(false);
         btn_historial.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -105,6 +109,13 @@ public class jf_consulta extends JFrame {
        addPopup(jp_menu, popupMenu);
        
        mntmNewMenuItem = new JMenuItem("Menu consulta");
+       mntmNewMenuItem.addActionListener(new ActionListener() {
+       	public void actionPerformed(ActionEvent e) {
+       		dispose();
+    		jf_consulta ventana = new jf_consulta();
+    		ventana.setVisible(true);
+       	}
+       });
        popupMenu.add(mntmNewMenuItem);
        
        mntmNewMenuItem_1 = new JMenuItem("Buscar cita");
