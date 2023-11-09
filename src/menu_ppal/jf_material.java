@@ -22,6 +22,10 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyAdapter;
+import javax.swing.JPopupMenu;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class jf_material extends JFrame {
 
@@ -366,6 +370,30 @@ public class jf_material extends JFrame {
             .addComponent(jp_menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jp_menu.setLayout(null);
+        
+        popupMenu = new JPopupMenu();
+        addPopup(jp_menu, popupMenu);
+        
+        mntmNewMenuItem_1 = new JMenuItem("Menu material");
+        popupMenu.add(mntmNewMenuItem_1);
+        
+        mntmNewMenuItem = new JMenuItem("Buscar pedido");
+        popupMenu.add(mntmNewMenuItem);
+        
+        mntmNewMenuItem_3 = new JMenuItem("Proveedores");
+        popupMenu.add(mntmNewMenuItem_3);
+        
+        mntmNewMenuItem_4 = new JMenuItem("Cancelar pedido");
+        popupMenu.add(mntmNewMenuItem_4);
+        
+        mntmNewMenuItem_5 = new JMenuItem("Nuevo pedido");
+        popupMenu.add(mntmNewMenuItem_5);
+        
+        mntmNewMenuItem_2 = new JMenuItem("Inventario");
+        popupMenu.add(mntmNewMenuItem_2);
+        
+        mntmNewMenuItem_6 = new JMenuItem("Solicitudes");
+        popupMenu.add(mntmNewMenuItem_6);
         jp_menu.add(btn_inventario);
         jp_menu.add(btn_solicitudes);
         jp_menu.add(btn_buscar_pedido);
@@ -424,6 +452,31 @@ public class jf_material extends JFrame {
     private JMenuItem jmenuitem_alta_paciente;
     private JMenuItem jmenuitem_baja_paciente;
     private JButton btn_inicio;
+    private JPopupMenu popupMenu;
+    private JMenuItem mntmNewMenuItem;
+    private JMenuItem mntmNewMenuItem_1;
+    private JMenuItem mntmNewMenuItem_2;
+    private JMenuItem mntmNewMenuItem_3;
+    private JMenuItem mntmNewMenuItem_4;
+    private JMenuItem mntmNewMenuItem_5;
+    private JMenuItem mntmNewMenuItem_6;
     // End of variables declaration//GEN-END:variables
 
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
+	}
 }

@@ -36,6 +36,10 @@ import javax.swing.KeyStroke;
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyAdapter;
+import javax.swing.JPopupMenu;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class jf_doctores extends javax.swing.JFrame {
 
@@ -58,6 +62,27 @@ public class jf_doctores extends javax.swing.JFrame {
 	        initComponents();
 	        this.setLocationRelativeTo(jp_menu);
 	        jp_menu.setLayout(null);
+	        
+	        JPopupMenu popupMenu = new JPopupMenu();
+	        addPopup(jp_menu, popupMenu);
+	        
+	        JMenuItem mntmNewMenuItem = new JMenuItem("Menu doctor");
+	        popupMenu.add(mntmNewMenuItem);
+	        
+	        JMenuItem mntmNewMenuItem_1 = new JMenuItem("Buscar doctor");
+	        popupMenu.add(mntmNewMenuItem_1);
+	        
+	        JMenuItem mntmNewMenuItem_2 = new JMenuItem("Especialidad");
+	        popupMenu.add(mntmNewMenuItem_2);
+	        
+	        JMenuItem mntmNewMenuItem_3 = new JMenuItem("Editar doctor");
+	        popupMenu.add(mntmNewMenuItem_3);
+	        
+	        JMenuItem mntmNewMenuItem_4 = new JMenuItem("Dar de baja");
+	        popupMenu.add(mntmNewMenuItem_4);
+	        
+	        JMenuItem mntmNewMenuItem_5 = new JMenuItem("Dar de alta");
+	        popupMenu.add(mntmNewMenuItem_5);
 	        jp_menu.add(btn_buscar_doctor);
 	        jp_menu.add(btn_especialidades);
 	        jp_menu.add(btn_baja_doctores);
@@ -748,4 +773,21 @@ public class jf_doctores extends javax.swing.JFrame {
 	    private JMenuItem jmenuitem_balance_gastos;
 	    private JLabel lbl_fecha;
 	    private JMenuItem jmenuitem_editar_doctor;
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
+	}
 	}

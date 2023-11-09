@@ -31,6 +31,10 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import javax.swing.JPopupMenu;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class jf_consulta extends JFrame {
 
@@ -96,6 +100,24 @@ public class jf_consulta extends JFrame {
         btn_historial.setIcon(new ImageIcon(jf_consulta.class.getResource("/iconos_submenus/btn_citaHistorial_admin.png")));
         btn_historial.setBounds(401, 590, 188, 41);
         btn_historial.setBorderPainted(false);
+       
+       popupMenu = new JPopupMenu();
+       addPopup(jp_menu, popupMenu);
+       
+       mntmNewMenuItem = new JMenuItem("Menu consulta");
+       popupMenu.add(mntmNewMenuItem);
+       
+       mntmNewMenuItem_1 = new JMenuItem("Buscar cita");
+       popupMenu.add(mntmNewMenuItem_1);
+       
+       mntmNewMenuItem_2 = new JMenuItem("Historial");
+       popupMenu.add(mntmNewMenuItem_2);
+       
+       mntmNewMenuItem_3 = new JMenuItem("Eliminar cita");
+       popupMenu.add(mntmNewMenuItem_3);
+       
+       mntmNewMenuItem_4 = new JMenuItem("Nueva cita");
+       popupMenu.add(mntmNewMenuItem_4);
         
        JLabel lbl_fecha = new JLabel("");
         lbl_fecha.setBackground(Color.WHITE);
@@ -689,6 +711,29 @@ public class jf_consulta extends JFrame {
     private JMenuItem jmenuitem_balance_gastos;
     private JMenuItem jmenuitem_buscar_factura;
     private JMenuItem jmenuitem_historial_pago;
+    private JPopupMenu popupMenu;
+    private JMenuItem mntmNewMenuItem;
+    private JMenuItem mntmNewMenuItem_1;
+    private JMenuItem mntmNewMenuItem_2;
+    private JMenuItem mntmNewMenuItem_3;
+    private JMenuItem mntmNewMenuItem_4;
     // End of variables declaration//GEN-END:variables
 
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
+	}
 }

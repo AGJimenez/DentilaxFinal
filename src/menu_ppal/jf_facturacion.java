@@ -28,6 +28,10 @@ import java.awt.Cursor;
 import javax.swing.JLabel;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
+import javax.swing.JPopupMenu;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class jf_facturacion extends JFrame {
 
@@ -353,6 +357,24 @@ public class jf_facturacion extends JFrame {
             .addComponent(jp_menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jp_menu.setLayout(null);
+        
+        popupMenu = new JPopupMenu();
+        addPopup(jp_menu, popupMenu);
+        
+        mntmNewMenuItem = new JMenuItem("Menu facturacion");
+        popupMenu.add(mntmNewMenuItem);
+        
+        mntmNewMenuItem_1 = new JMenuItem("Buscar factura");
+        popupMenu.add(mntmNewMenuItem_1);
+        
+        mntmNewMenuItem_2 = new JMenuItem("Historial de pago");
+        popupMenu.add(mntmNewMenuItem_2);
+        
+        mntmNewMenuItem_3 = new JMenuItem("Balance de gastos");
+        popupMenu.add(mntmNewMenuItem_3);
+        
+        mntmNewMenuItem_4 = new JMenuItem("Nueva factura");
+        popupMenu.add(mntmNewMenuItem_4);
         jp_menu.add(btn_buscar_factura);
         jp_menu.add(btn_historial_pago);
         jp_menu.add(btn_balance_gastos);
@@ -422,6 +444,29 @@ public class jf_facturacion extends JFrame {
     private JButton btn_balance_gastos;
     private JButton btn_inicio;
     private JLabel lbl_fecha;
+    private JPopupMenu popupMenu;
+    private JMenuItem mntmNewMenuItem;
+    private JMenuItem mntmNewMenuItem_1;
+    private JMenuItem mntmNewMenuItem_2;
+    private JMenuItem mntmNewMenuItem_3;
+    private JMenuItem mntmNewMenuItem_4;
     // End of variables declaration//GEN-END:variables
 
+	private static void addPopup(Component component, final JPopupMenu popup) {
+		component.addMouseListener(new MouseAdapter() {
+			public void mousePressed(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			public void mouseReleased(MouseEvent e) {
+				if (e.isPopupTrigger()) {
+					showMenu(e);
+				}
+			}
+			private void showMenu(MouseEvent e) {
+				popup.show(e.getComponent(), e.getX(), e.getY());
+			}
+		});
+	}
 }
