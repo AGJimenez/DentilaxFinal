@@ -67,21 +67,73 @@ public class jf_doctores extends javax.swing.JFrame {
 	        addPopup(jp_menu, popupMenu);
 	        
 	        JMenuItem mntmNewMenuItem = new JMenuItem("Menu doctor");
+	        mntmNewMenuItem.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		dispose();
+	        		jf_doctores ventana = new jf_doctores();
+	        		ventana.setVisible(true);
+	        	}
+	        });
 	        popupMenu.add(mntmNewMenuItem);
 	        
 	        JMenuItem mntmNewMenuItem_1 = new JMenuItem("Buscar doctor");
+	        mntmNewMenuItem_1.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		dispose();
+					jf_doctores ventana = new jf_doctores();
+					dialogos_doctores.jd_buscar_dr ventana_buscar = new dialogos_doctores.jd_buscar_dr();
+					ventana.setVisible(true);
+					ventana_buscar.setVisible(true);
+	        	}
+	        });
 	        popupMenu.add(mntmNewMenuItem_1);
 	        
 	        JMenuItem mntmNewMenuItem_2 = new JMenuItem("Especialidad");
+	        mntmNewMenuItem_2.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		dispose();
+	        		jf_doctores ventana = new jf_doctores();
+	        		dialogos_doctores.jd_especialidades ventana_especialidad = new dialogos_doctores.jd_especialidades();
+	        		ventana.setVisible(true);
+	        		ventana_especialidad.setVisible(true);
+	        	}
+	        });
 	        popupMenu.add(mntmNewMenuItem_2);
 	        
 	        JMenuItem mntmNewMenuItem_3 = new JMenuItem("Editar doctor");
+	        mntmNewMenuItem_3.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		dispose();
+	        		jf_doctores ventana = new jf_doctores();
+	        		dialogos_doctores.jd_buscar_doctor_editar ventana_buscar = new dialogos_doctores.jd_buscar_doctor_editar();
+	        		ventana.setVisible(true);
+	        		ventana_buscar.setVisible(true);
+	        	}
+	        });
 	        popupMenu.add(mntmNewMenuItem_3);
 	        
 	        JMenuItem mntmNewMenuItem_4 = new JMenuItem("Dar de baja");
+	        mntmNewMenuItem_4.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		dispose();
+	        		jf_doctores ventana = new jf_doctores();
+	        		dialogos_doctores.jd_buscar_doctor_baja ventana_baja = new dialogos_doctores.jd_buscar_doctor_baja();
+	        		ventana.setVisible(true);
+	        		ventana_baja.setVisible(true);
+	        	}
+	        });
 	        popupMenu.add(mntmNewMenuItem_4);
 	        
 	        JMenuItem mntmNewMenuItem_5 = new JMenuItem("Dar de alta");
+	        mntmNewMenuItem_5.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		dispose();
+	        		jf_doctores ventana = new jf_doctores();
+	        		dialogos_doctores.jd_doctores_alta ventana_alta = new dialogos_doctores.jd_doctores_alta();
+	        		ventana.setVisible(true);
+	        		ventana_alta.setVisible(true);
+	        	}
+	        });
 	        popupMenu.add(mntmNewMenuItem_5);
 	        jp_menu.add(btn_buscar_doctor);
 	        jp_menu.add(btn_especialidades);
