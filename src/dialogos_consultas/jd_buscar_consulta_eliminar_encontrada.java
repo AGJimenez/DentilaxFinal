@@ -17,6 +17,8 @@ import java.awt.Color;
 import java.awt.Cursor;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -170,6 +172,17 @@ public class jd_buscar_consulta_eliminar_encontrada extends JDialog {
 				JButton btn_ver_cita = new JButton("VER CITA");
 				btn_ver_cita.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
+						dentilax_bdd.ConectorDB_mysql consulta_ficha = new dentilax_bdd.ConectorDB_mysql();
+						String datos = getLbl_id().getText().toString();
+						System.out.println(datos);
+						try {
+							consulta_ficha.consulta_eliminar_ficha(datos);
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}		
+						dispose();
+						
 					}
 				});
 				btn_ver_cita.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -208,6 +221,12 @@ public class jd_buscar_consulta_eliminar_encontrada extends JDialog {
 					String datos = getLbl_id().getText().toString();
 					System.out.println(datos);
 					try {
+						int eliminar = JOptionPane.showConfirmDialog(btn_eliminar, "¿Desea eliminar la cita?");
+						if(eliminar==0) {
+							System.out.println("hola");
+						}else {
+							System.out.println("adios");
+						}
 						consulta_baja.consulta_eliminar_cita(datos);
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block

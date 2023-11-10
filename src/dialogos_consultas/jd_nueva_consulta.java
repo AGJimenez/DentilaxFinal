@@ -539,8 +539,11 @@ public class jd_nueva_consulta extends JDialog {
 			}
 			 
 }
+<<<<<<< HEAD
+=======
 
 
 
 
 
+>>>>>>> 6f53c8279718e35e64051d9ada039de8a8f8fe18

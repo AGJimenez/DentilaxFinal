@@ -24,24 +24,24 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 
-public class jd_buscar_consulta_ver_cita extends JDialog {
+public class jd_buscar_consulta_eliminar_ficha extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txt_dni;
 	private JTextField txt_nombre;
 	private JTextField txt_apellidos;
-	private JTextField txt_salario;
+	private JTextField txt_doctor;
 	private JTextField txt_especialidad;
-	private JTextArea txt_telefono;
-	private JTextField textField;
+	private JTextField txt_fecha;
+	private JTextArea txt_observaciones;
+	private JTextField txt_hora;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
 		try {
-			jd_buscar_consulta_ver_cita dialog = new jd_buscar_consulta_ver_cita();
+			jd_buscar_consulta_eliminar_ficha dialog = new jd_buscar_consulta_eliminar_ficha();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -52,7 +52,7 @@ public class jd_buscar_consulta_ver_cita extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public jd_buscar_consulta_ver_cita() {
+	public jd_buscar_consulta_eliminar_ficha() {
 		setModal(true);
 		setPreferredSize(new Dimension(545, 554));
 		setResizable(false);
@@ -97,40 +97,37 @@ public class jd_buscar_consulta_ver_cita extends JDialog {
 			contentPanel.add(lbl_doctor);
 		}
 		{
-			txt_dni = new JTextField();
-			txt_dni.setEditable(false);
-			txt_dni.setBorder(null);
-			txt_dni.setBackground(new Color(191, 231, 249));
-			txt_dni.setFont(new Font("Arial", Font.PLAIN, 14));
-			txt_dni.setHorizontalAlignment(SwingConstants.CENTER);
-			txt_dni.setText("Alejandro");
-			txt_dni.setBounds(223, 99, 226, 34);
-			contentPanel.add(txt_dni);
-			txt_dni.setColumns(10);
-		}
-		{
 			txt_nombre = new JTextField();
 			txt_nombre.setEditable(false);
 			txt_nombre.setBorder(null);
 			txt_nombre.setBackground(new Color(191, 231, 249));
 			txt_nombre.setFont(new Font("Arial", Font.PLAIN, 14));
-			txt_nombre.setText("Apellido Apellido");
 			txt_nombre.setHorizontalAlignment(SwingConstants.CENTER);
-			txt_nombre.setBounds(223, 154, 226, 34);
+			txt_nombre.setBounds(223, 99, 226, 34);
 			contentPanel.add(txt_nombre);
 			txt_nombre.setColumns(10);
 		}
 		{
 			txt_apellidos = new JTextField();
 			txt_apellidos.setEditable(false);
-			txt_apellidos.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_apellidos.setBorder(null);
 			txt_apellidos.setBackground(new Color(191, 231, 249));
 			txt_apellidos.setFont(new Font("Arial", Font.PLAIN, 14));
-			txt_apellidos.setText("Sergio");
-			txt_apellidos.setBounds(224, 209, 225, 34);
+			txt_apellidos.setHorizontalAlignment(SwingConstants.CENTER);
+			txt_apellidos.setBounds(223, 154, 226, 34);
 			contentPanel.add(txt_apellidos);
 			txt_apellidos.setColumns(10);
+		}
+		{
+			txt_doctor = new JTextField();
+			txt_doctor.setEditable(false);
+			txt_doctor.setHorizontalAlignment(SwingConstants.CENTER);
+			txt_doctor.setBorder(null);
+			txt_doctor.setBackground(new Color(191, 231, 249));
+			txt_doctor.setFont(new Font("Arial", Font.PLAIN, 14));
+			txt_doctor.setBounds(224, 209, 225, 34);
+			contentPanel.add(txt_doctor);
+			txt_doctor.setColumns(10);
 		}
 		{
 			JLabel lbl_especialidad = new JLabel("ESPECIALIDAD");
@@ -140,16 +137,15 @@ public class jd_buscar_consulta_ver_cita extends JDialog {
 			contentPanel.add(lbl_especialidad);
 		}
 		{
-			txt_salario = new JTextField();
-			txt_salario.setText("Odontologia");
-			txt_salario.setHorizontalAlignment(SwingConstants.CENTER);
-			txt_salario.setFont(new Font("Arial", Font.PLAIN, 14));
-			txt_salario.setEditable(false);
-			txt_salario.setColumns(10);
-			txt_salario.setBorder(null);
-			txt_salario.setBackground(new Color(191, 231, 249));
-			txt_salario.setBounds(223, 263, 225, 34);
-			contentPanel.add(txt_salario);
+			txt_especialidad = new JTextField();
+			txt_especialidad.setHorizontalAlignment(SwingConstants.CENTER);
+			txt_especialidad.setFont(new Font("Arial", Font.PLAIN, 14));
+			txt_especialidad.setEditable(false);
+			txt_especialidad.setColumns(10);
+			txt_especialidad.setBorder(null);
+			txt_especialidad.setBackground(new Color(191, 231, 249));
+			txt_especialidad.setBounds(223, 263, 225, 34);
+			contentPanel.add(txt_especialidad);
 		}
 		{
 			JLabel lbl_fecha_hora = new JLabel("FECHA/HORA");
@@ -159,16 +155,15 @@ public class jd_buscar_consulta_ver_cita extends JDialog {
 			contentPanel.add(lbl_fecha_hora);
 		}
 		{
-			txt_especialidad = new JTextField();
-			txt_especialidad.setText("2004-01-15");
-			txt_especialidad.setHorizontalAlignment(SwingConstants.CENTER);
-			txt_especialidad.setFont(new Font("Arial", Font.PLAIN, 14));
-			txt_especialidad.setEditable(false);
-			txt_especialidad.setColumns(10);
-			txt_especialidad.setBorder(null);
-			txt_especialidad.setBackground(new Color(191, 231, 249));
-			txt_especialidad.setBounds(223, 317, 225, 34);
-			contentPanel.add(txt_especialidad);
+			txt_fecha = new JTextField();
+			txt_fecha.setHorizontalAlignment(SwingConstants.CENTER);
+			txt_fecha.setFont(new Font("Arial", Font.PLAIN, 14));
+			txt_fecha.setEditable(false);
+			txt_fecha.setColumns(10);
+			txt_fecha.setBorder(null);
+			txt_fecha.setBackground(new Color(191, 231, 249));
+			txt_fecha.setBounds(223, 317, 225, 34);
+			contentPanel.add(txt_fecha);
 		}
 		{
 			JLabel lbl_observaciones = new JLabel("OBSERVACIONES");
@@ -178,27 +173,25 @@ public class jd_buscar_consulta_ver_cita extends JDialog {
 			contentPanel.add(lbl_observaciones);
 		}
 		{
-			txt_telefono = new JTextArea();
-			txt_telefono.setText("2 meses de tratamiento");
-			txt_telefono.setFont(new Font("Arial", Font.PLAIN, 14));
-			txt_telefono.setEditable(false);
-			txt_telefono.setColumns(10);
-			txt_telefono.setBorder(null);
-			txt_telefono.setBackground(new Color(191, 231, 249));
-			txt_telefono.setBounds(223, 374, 375, 76);
-			contentPanel.add(txt_telefono);
+			txt_observaciones = new JTextArea();
+			txt_observaciones.setFont(new Font("Arial", Font.PLAIN, 14));
+			txt_observaciones.setEditable(false);
+			txt_observaciones.setColumns(10);
+			txt_observaciones.setBorder(null);
+			txt_observaciones.setBackground(new Color(191, 231, 249));
+			txt_observaciones.setBounds(223, 374, 375, 76);
+			contentPanel.add(txt_observaciones);
 		}
 		
-		textField = new JTextField();
-		textField.setText("16:04");
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setFont(new Font("Arial", Font.PLAIN, 14));
-		textField.setEditable(false);
-		textField.setColumns(10);
-		textField.setBorder(null);
-		textField.setBackground(new Color(191, 231, 249));
-		textField.setBounds(473, 317, 85, 34);
-		contentPanel.add(textField);
+		txt_hora = new JTextField();
+		txt_hora.setHorizontalAlignment(SwingConstants.CENTER);
+		txt_hora.setFont(new Font("Arial", Font.PLAIN, 14));
+		txt_hora.setEditable(false);
+		txt_hora.setColumns(10);
+		txt_hora.setBorder(null);
+		txt_hora.setBackground(new Color(191, 231, 249));
+		txt_hora.setBounds(473, 317, 85, 34);
+		contentPanel.add(txt_hora);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(Color.WHITE);
@@ -224,48 +217,59 @@ public class jd_buscar_consulta_ver_cita extends JDialog {
 		}
 	}
 
-	public JTextField getTxt_dni() {
-		return txt_dni;
-	}
-
-	public void setTxt_dni(String txt_dni) {
-		this.txt_dni.setText(txt_dni);;
-	}
-
 	public JTextField getTxt_nombre() {
 		return txt_nombre;
 	}
 
-	public void setTxt_nombre(String txt_nombre) {
-		this.txt_nombre.setText(txt_nombre);;
+	public void setTxt_nombre(String NombreSql) {
+		this.txt_nombre.setText(NombreSql);;
 	}
 
 	public JTextField getTxt_apellidos() {
 		return txt_apellidos;
 	}
 
-	public void setTxt_apellidos(String txt_apellidos) {
-		this.txt_apellidos.setText(txt_apellidos);;
+	public void setTxt_apellidos(String ApellidosSql) {
+		this.txt_apellidos.setText(ApellidosSql);;
 	}
 
-	public JTextField getTxt_salario() {
-		return txt_salario;
+	public JTextField getTxt_doctor() {
+		return txt_doctor;
 	}
 
-	public void setTxt_salario(String txt_salario) {
-		this.txt_salario.setText(txt_salario);;
+	public void setTxt_doctor(String DoctorSql) {
+		this.txt_doctor.setText(DoctorSql);;
 	}
 
 	public JTextField getTxt_especialidad() {
 		return txt_especialidad;
 	}
 
-	public void setTxt_especialidad(String txt_especialidad) {
-		this.txt_especialidad.setText(txt_especialidad);;
+	public void setTxt_especialidad(String EspecialidadSql) {
+		this.txt_especialidad.setText(EspecialidadSql);;
 	}
 
+	public JTextField getTxt_fecha() {
+		return txt_fecha;
+	}
 
-	public void setTxt_telefono(String txt_telefono) {
-		this.txt_telefono.setText(txt_telefono);;
+	public void setTxt_fecha(String FechaSql) {
+		this.txt_fecha.setText(FechaSql);;
+	}
+
+	public JTextArea getTxt_observaciones() {
+		return txt_observaciones;
+	}
+
+	public void setTxt_observaciones(String ObservacionesSql) {
+		this.txt_observaciones.setText(ObservacionesSql);
+	}
+
+	public JTextField getTxt_hora() {
+		return txt_hora;
+	}
+
+	public void setTxt_hora(String HoraSql) {
+		this.txt_hora.setText(HoraSql);;
 	}
 }

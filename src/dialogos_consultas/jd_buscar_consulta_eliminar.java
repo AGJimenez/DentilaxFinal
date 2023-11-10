@@ -130,7 +130,7 @@ public class jd_buscar_consulta_eliminar extends JDialog {
 						dentilax_bdd.ConectorDB_mysql consulta = new dentilax_bdd.ConectorDB_mysql();
 						dispose();
 						try {
-							consulta.consulta_cita_eliminar(txt_IntroduceID.getText().toString());
+							consulta.consulta_cita_eliminar_encontrar(txt_IntroduceID.getText().toString());
 							dialogos_consultas.jd_buscar_consulta_eliminar_encontrada ventana = new dialogos_consultas.jd_buscar_consulta_eliminar_encontrada();
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
