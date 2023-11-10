@@ -22,6 +22,7 @@ public class ConectorDB_mysql {
 	ResultSet resultado = null;
 	Connection conect = null;
 	Statement statement;
+	
 
 
 	static {
@@ -772,12 +773,7 @@ public void consulta_eliminar_cita(String id) throws SQLException{
 
 
 public void agendar_cita(String DNI_doctor, String fecha, String especialidad, String observaciones, String DNI_paciente, String hora ) {
-	dialogos_consultas.jd_nueva_consulta obtenerDatos = new dialogos_consultas.jd_nueva_consulta();
-	DNI_doctor = obtenerDatos.getCb_doctor().getSelectedItem().toString();
-	DNI_paciente = obtenerDatos.getCb_paciente().getSelectedItem().toString();
-	especialidad = obtenerDatos.getCb_especialidad().getSelectedItem().toString();
-	hora = obtenerDatos.getTxt_hora().getText();
-	fecha = obtenerDatos.getTxt_fecha().getText();
+	
 	try {
 		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 		statement = conect.createStatement();
@@ -793,7 +789,13 @@ public void agendar_cita(String DNI_doctor, String fecha, String especialidad, S
 			System.out.println("La inserción no tuvo éxito.");
 		}
 		
-		System.out.print(DNI_doctor);
+		System.out.println("Valores antes de la inserción:");
+	    System.out.println("DNI_doctor: " + DNI_doctor);
+	    System.out.println("fecha: " + fecha);
+	    System.out.println("especialidad: " + especialidad);
+	    System.out.println("observaciones: " + observaciones);
+	    System.out.println("DNI_paciente: " + DNI_paciente);
+	    System.out.println("hora: " + hora);
 		
 	}
 	catch(SQLException ex) {
