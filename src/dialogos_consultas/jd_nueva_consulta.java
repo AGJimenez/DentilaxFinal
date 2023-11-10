@@ -513,8 +513,3 @@ public class jd_nueva_consulta extends JDialog {
 			    }
 			 
 }
-
-
-
-
-/* Crear una variable global con String hora e igualarlo en cada boton, de forma que al hacer clic se almacene, a la consulta le paso eso luego

@@ -716,7 +716,7 @@ public void insertar_dr_usuario(String dni, String estado, String contrasena) {
 	
 }
 
-public String consulta_cita_eliminar(String id) throws SQLException{
+public String consulta_cita_eliminar_encontrar(String id) throws SQLException{
 	
 	try {
 		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
@@ -768,6 +768,52 @@ public void consulta_eliminar_cita(String id) throws SQLException{
 	catch(SQLException ex) {
 		System.out.println("Error en eliminar la cita");
 	}
+}
+
+public String consulta_eliminar_ficha(String ID) throws SQLException{
+	
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "SELECT pacientes.Nombre, pacientes.Apellidos, doctores.Nombre, citas.Especialidad, citas.Fecha, citas.Hora, citas.Observaciones FROM citas JOIN pacientes ON pacientes.DNI_paciente = citas.DNI_paciente JOIN doctores ON doctores.DNI_doctor = citas.DNI_doctor WHERE ID_cita = '" + ID +"'";
+        ResultSet resultSet = statement.executeQuery(query);
+		
+        if (resultSet.next()) {
+            // Resultado encontrado
+            System.out.println("Resultado encontrado");
+            dialogos_consultas.jd_buscar_consulta_eliminar_ficha ventana = new dialogos_consultas.jd_buscar_consulta_eliminar_ficha();
+            String NombreSql = resultSet.getString("pacientes.Nombre");
+            String ApellidosSql = resultSet.getString("pacientes.Apellidos");
+            String DoctorSql = resultSet.getString("doctores.Nombre");
+            String EspecialidadSql = resultSet.getString("citas.Especialidad");
+            String FechaSql = resultSet.getString("citas.Fecha");
+            String HoraSql = resultSet.getString("citas.Hora");
+            String ObservacionesSql = resultSet.getString("citas.Observaciones");
+           // System.out.println(dniSql);
+            ventana.setTxt_nombre(NombreSql);
+            ventana.setTxt_apellidos(ApellidosSql);
+            ventana.setTxt_doctor(DoctorSql);
+            ventana.setTxt_especialidad(EspecialidadSql);
+            ventana.setTxt_fecha(FechaSql);
+            ventana.setTxt_hora(HoraSql);
+            ventana.setTxt_observaciones(ObservacionesSql);
+            
+            ventana.setVisible(true);
+            
+            
+        } else {
+            // Acceso denegado
+            System.out.println("No se ha encontrado nada");
+            JOptionPane.showMessageDialog(null, "Error, no se ha encontrado nada");
+        }
+		
+		
+	}
+	catch(SQLException ex) {
+		
+	}
+	return ID;
+	
 }
 
 
