@@ -263,7 +263,7 @@ public String consulta_buscar_cita(String dni, String fecha) throws SQLException
 	try {
 		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 		statement = conect.createStatement();
-		String query =  "SELECT citas.ID_cita, citas.Fecha, doctores.Nombre, pacientes.Nombre FROM citas JOIN doctores ON citas.DNI_doctor = doctores.DNI_doctor JOIN pacientes ON citas.DNI_paciente = pacientes.DNI_paciente WHERE citas.DNI_paciente = '" + dni +"'";
+		String query =  "SELECT citas.ID_cita, citas.Fecha, doctores.Nombre, pacientes.Nombre FROM citas JOIN doctores ON citas.DNI_doctor = doctores.DNI_doctor JOIN pacientes ON citas.DNI_paciente = pacientes.DNI_paciente WHERE citas.DNI_paciente = '" + dni +"' AND citas.Fecha = '"+ fecha+ "'";
         ResultSet resultSet = statement.executeQuery(query);
 		
         if (resultSet.next()) {
@@ -927,7 +927,7 @@ public String consulta_ver_ficha(String ID) throws SQLException{
         if (resultSet.next()) {
             // Resultado encontrado
             System.out.println("Resultado encontrado");
-            dialogos_consultas.jd_buscar_consulta_eliminar_ficha ventana = new dialogos_consultas.jd_buscar_consulta_eliminar_ficha();
+            dialogos_consultas.jd_buscar_consulta_ver_ficha ventana = new dialogos_consultas.jd_buscar_consulta_ver_ficha();
             String NombreSql = resultSet.getString("pacientes.Nombre");
             String ApellidosSql = resultSet.getString("pacientes.Apellidos");
             String DoctorSql = resultSet.getString("doctores.Nombre");
