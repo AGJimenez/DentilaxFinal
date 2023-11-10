@@ -540,3 +540,12 @@ public class jd_nueva_consulta extends JDialog {
 			 
 }
 
+<<<<<<< Updated upstream
+=======
+
+
+
+
+
+
+>>>>>>> Stashed changes

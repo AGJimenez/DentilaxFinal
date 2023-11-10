@@ -764,6 +764,11 @@ public void insertar_especialidad(String especialidad) {
 	
 }
 
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
 public String consulta_cita_eliminar_encontrar(String id) throws SQLException{
 
 	

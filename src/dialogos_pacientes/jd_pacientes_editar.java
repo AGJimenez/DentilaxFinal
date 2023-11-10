@@ -302,6 +302,7 @@ public class jd_pacientes_editar extends JDialog {
 		            ConectorDB_mysql bdd = new ConectorDB_mysql();
 		            try {
 						bdd.editar_paciente(dni, apellidos, nombre, nacimiento, telefono, correo, seguro, direccion, observacion, genero);
+						JOptionPane.showMessageDialog(btn_modificar, "Paciente modificado con éxito");
 						dispose();
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
