@@ -11,16 +11,20 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import dialogos_consultas.jd_buscar_consulta_eliminar;
+
 import java.awt.Dimension;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.AbstractListModel;
 import javax.swing.ListSelectionModel;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Cursor;
@@ -110,7 +114,7 @@ public class jd_especialidades extends JDialog {
 				btn_anadir.setFont(new Font("Barlow", Font.BOLD, 20));
 				btn_anadir.setForeground(new Color(255, 255, 255));
 				btn_anadir.setBackground(new Color(32, 160, 216));
-				btn_anadir.setBounds(38, 11, 153, 43);
+				btn_anadir.setBounds(10, 11, 153, 43);
 				btn_anadir.setActionCommand("OK");
 				buttonPane.add(btn_anadir);
 				
@@ -127,10 +131,48 @@ public class jd_especialidades extends JDialog {
 				btn_salir.setFont(new Font("Barlow", Font.BOLD, 20));
 				btn_salir.setForeground(new Color(255, 255, 255));
 				btn_salir.setBackground(new Color(32, 160, 216));
-				btn_salir.setBounds(339, 11, 153, 43);
+				btn_salir.setBounds(360, 11, 153, 43);
 				btn_salir.setActionCommand("Cancel");
 				buttonPane.add(btn_salir);
 			}
+			
+			JButton btn_eliminar = new JButton("ELIMINAR");
+			btn_eliminar.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					dentilax_bdd.ConectorDB_mysql consulta_baja = new dentilax_bdd.ConectorDB_mysql();
+					try {
+						int eliminar = JOptionPane.showOptionDialog(
+								   getContentPane(),
+								   "¿Desea eliminar la especialidad?", 
+								   "Eliminar especialidad",
+								   JOptionPane.YES_NO_OPTION,
+								   JOptionPane.QUESTION_MESSAGE,
+								   null,
+								   new Object[] { "Eliminar", "Cancelar"},
+								   "opcion 1"); 	
+						if(eliminar==0) {
+							consulta_baja.eliminar_especialidad(jl_listaEspecialidades.getSelectedValue());
+							JOptionPane.showMessageDialog(null, "Especialidad eliminada");
+						}else {
+							System.out.println("Especialidad no eliminada");
+						}
+						
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+										
+					dispose();
+				
+				}
+			});
+			btn_eliminar.setForeground(Color.WHITE);
+			btn_eliminar.setFont(new Font("Barlow", Font.BOLD, 20));
+			btn_eliminar.setBorderPainted(false);
+			btn_eliminar.setBackground(new Color(32, 160, 216));
+			btn_eliminar.setActionCommand("OK");
+			btn_eliminar.setBounds(185, 11, 153, 43);
+			buttonPane.add(btn_eliminar);
 		}
 		
 	}
