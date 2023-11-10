@@ -12,6 +12,8 @@ import java.awt.Font;
 import java.awt.Cursor;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -481,6 +483,7 @@ public class jd_nueva_consulta extends JDialog {
 	                                    horaSeleccionada);
 	               
 	            	System.out.println(horaSeleccionada);
+	            	JOptionPane.showMessageDialog(null, "Cita insertada");
 	            
 	                
 	            }
@@ -539,13 +542,3 @@ public class jd_nueva_consulta extends JDialog {
 			}
 			 
 }
-
-<<<<<<< Updated upstream
-=======
-
-
-
-
-
-
->>>>>>> Stashed changes
