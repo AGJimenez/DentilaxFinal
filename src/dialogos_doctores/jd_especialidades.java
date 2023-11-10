@@ -21,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.AbstractListModel;
 import javax.swing.ListSelectionModel;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Cursor;
 import java.awt.Toolkit;
@@ -78,16 +79,9 @@ public class jd_especialidades extends JDialog {
 		sp_panelScroll.setBounds(10, 79, 503, 411);
 		contentPanel.add(sp_panelScroll);
 		
-		 jl_listaEspecialidades = new JList<String>();
-		 jl_listaEspecialidades.setModel(new AbstractListModel() {
-		 	String[] values = new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-		 	public int getSize() {
-		 		return values.length;
-		 	}
-		 	public Object getElementAt(int index) {
-		 		return values[index];
-		 	}
-		 });
+		jl_listaEspecialidades = new JList<String>();
+		cargarDatosEspecialidades();
+		
 		jl_listaEspecialidades.setFont(new Font("Arial", Font.BOLD, 16));
 		jl_listaEspecialidades.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		jl_listaEspecialidades.setSelectionForeground(Color.BLACK);
@@ -140,6 +134,18 @@ public class jd_especialidades extends JDialog {
 		}
 		
 	}
+	
+	private void cargarDatosEspecialidades() {
+        dentilax_bdd.ConectorDB_mysql conectorDB = new dentilax_bdd.ConectorDB_mysql();
+        List<String> especialidades = conectorDB.cargarEspecialidades();
+
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        for (String especialidad : especialidades) {
+            listModel.addElement(especialidad);
+        }
+
+        jl_listaEspecialidades.setModel(listModel);
+    }
 	
 	public JList<String> getJlist() {
 		return jl_listaEspecialidades;

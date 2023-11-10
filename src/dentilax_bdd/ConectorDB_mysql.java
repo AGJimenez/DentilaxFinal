@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -90,11 +92,12 @@ public String consulta_paciente_editar(String dni) throws SQLException{
             if (resultSet.next()) {
                 // Resultado encontrado
                 System.out.println("Resultado encontrado");
-        //        jd_doctores_editar ventana = new jd_doctores_editar();
+                dialogos_pacientes.jd_pacientes_editar ventana = new  dialogos_pacientes.jd_pacientes_editar();
                 String dniSql = resultSet.getString("DNI_paciente");
                 String nombreSql = resultSet.getString("Nombre");
                 String apellidosSql = resultSet.getString("Apellidos");
-               // System.out.println(dniSql);                                     
+               // System.out.println(dniSql);      
+                ventana.setVisible(true);
                 
             } else {
                 // Acceso denegado
@@ -107,6 +110,7 @@ public String consulta_paciente_editar(String dni) throws SQLException{
 		catch(SQLException ex) {
 			
 		}
+		
 		return dni;
 		
 	}
@@ -450,6 +454,25 @@ public String consulta_paciente_ficha(String dni) throws SQLException{
 	
 }
 
+public List<String> cargarEspecialidades() {
+    List<String> especialidades = new ArrayList<>();
+
+    try (Connection connection = DriverManager.getConnection(URL, USUARIO, CLAVE)) {
+        String sql = "SELECT Nombre FROM especialidad";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    especialidades.add(resultSet.getString("Nombre"));
+                }
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return especialidades;
+}
+
 public String consulta_doctor_cargar(String dni) throws SQLException{
 	
 	try {
@@ -700,6 +723,30 @@ public void insertar_dr_usuario(String dni, String estado, String contrasena) {
 		statement = conect.createStatement();
 		String query = "INSERT INTO usuario (DNI_usuario, Rol, Contraseña) " +
             "VALUES ('" + dni + "', '" + "Doctor" + "', '" + contrasena + "')";
+
+		int fila = statement.executeUpdate(query);
+		
+		// Verificar si la inserción se realizó con éxito
+		if (fila > 0) {
+			System.out.println("Inserción exitosa.");
+		} else {
+			System.out.println("La inserción no tuvo éxito.");
+		}
+		
+	}
+	catch(SQLException ex) {
+		ex.printStackTrace();
+	}
+	
+}
+
+public void insertar_especialidad(String especialidad) {
+	
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "INSERT INTO especialidad (Nombre) " +
+            "VALUES ('" + especialidad + "')";
 
 		int fila = statement.executeUpdate(query);
 		

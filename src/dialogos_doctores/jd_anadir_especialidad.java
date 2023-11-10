@@ -13,6 +13,8 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -69,17 +71,17 @@ public class jd_anadir_especialidad extends JDialog {
 		txt_especialidad.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if (txt_especialidad.getText().equals("Introduce especialidad")) {
+				if(txt_especialidad.getText().equals("Introduce especialidad")) {
 					txt_especialidad.setText("");
-					txt_especialidad.setForeground(Color.BLACK);
-                }
+				}
+				txt_especialidad.setForeground(Color.BLACK);
+                
 			}
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (txt_especialidad.getText().isEmpty()) {
-					txt_especialidad.setForeground(new Color(0, 128, 192));
 					txt_especialidad.setText("Introduce especialidad");
-                }
+				}
 			}
 		});
 		txt_especialidad.setOpaque(false);
@@ -113,8 +115,9 @@ public class jd_anadir_especialidad extends JDialog {
 				JButton btn_anadir = new JButton("AÑADIR");
 				btn_anadir.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
-						
+						dentilax_bdd.ConectorDB_mysql consulta = new dentilax_bdd.ConectorDB_mysql();
+						consulta.insertar_especialidad(txt_especialidad.getText().toString());
+						JOptionPane.showMessageDialog(btn_anadir, "Especialidad "+txt_especialidad.getText().toString()+" añadida con éxito");
 						//SQL 
 						dispose();
 					}
