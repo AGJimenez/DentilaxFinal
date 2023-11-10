@@ -53,7 +53,7 @@ public class jd_buscar_cita extends JDialog {
 	 */
 	public jd_buscar_cita() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_buscar_cita.class.getResource("/iconos_menus/dentilaxIcono.png")));
-		setTitle("Buscar paciente");
+		setTitle("Buscar cita");
 		setPreferredSize(new Dimension(554, 343));
 		setModal(true);
 		setResizable(false);
@@ -77,13 +77,11 @@ public class jd_buscar_cita extends JDialog {
 				public void focusGained(FocusEvent e) {
 					if (txt_IntroduceDni.getText().equals("Introduce DNI")) {
 						txt_IntroduceDni.setText("");
-						txt_IntroduceDni.setForeground(Color.BLACK);
 	                }
 				}
 				@Override
 				public void focusLost(FocusEvent e) {
 					if (txt_IntroduceDni.getText().isEmpty()) {
-						txt_IntroduceDni.setForeground(new Color(0, 128, 192));
 						txt_IntroduceDni.setText("Introduce DNI");
 	                }
 				}
@@ -126,6 +124,20 @@ public class jd_buscar_cita extends JDialog {
 		contentPanel.add(lbl_dni);
 		
 		txtIntroduceFecha = new JTextField();
+		txtIntroduceFecha.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				if (txtIntroduceFecha.getText().equals("Introduce Fecha")) {
+					txtIntroduceFecha.setText("");
+                }
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txtIntroduceFecha.getText().isEmpty()) {
+					txtIntroduceFecha.setText("Introduce Fecha");
+                }
+			}
+		});
 		txtIntroduceFecha.setText("Introduce Fecha");
 		txtIntroduceFecha.setOpaque(false);
 		txtIntroduceFecha.setHorizontalAlignment(SwingConstants.LEFT);
@@ -151,17 +163,16 @@ public class jd_buscar_cita extends JDialog {
 				JButton btn_buscar = new JButton("BUSCAR");
 				btn_buscar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						//SQL si lo encuentra, abre ventana:
-						ConectorDB_mysql consulta= new ConectorDB_mysql();
-						String dni = txt_IntroduceDni.getText().toString();	
+						dentilax_bdd.ConectorDB_mysql consulta= new dentilax_bdd.ConectorDB_mysql();
 						dispose();
 						try {
-							consulta.consulta_paciente_ficha1(dni);
+							consulta.consulta_buscar_cita(txt_IntroduceDni.getText().toString(), txtIntroduceFecha.getText().toString());
 							
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
+						
 						
 						//si no if no encontrado
 					}
@@ -194,4 +205,21 @@ public class jd_buscar_cita extends JDialog {
 			}
 		}
 	}
+
+	public JTextField getTxt_IntroduceDni() {
+		return txt_IntroduceDni;
+	}
+
+	public void setTxt_IntroduceDni(String txt_IntroduceDni) {
+		this.txt_IntroduceDni.setText(txt_IntroduceDni);
+	}
+
+	public JTextField getTxtIntroduceFecha() {
+		return txtIntroduceFecha;
+	}
+
+	public void setTxtIntroduceFecha(String txtIntroduceFecha) {
+		this.txtIntroduceFecha.setText(txtIntroduceFecha);
+	}
+	
 }

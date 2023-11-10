@@ -218,31 +218,34 @@ public class jd_buscar_consulta_encontrada extends JDialog {
 		return txt_fecha;
 	}
 
-	public void setTxt_fecha(String FechaSql) {
-		this.txt_fecha.setText(FechaSql);
+	public void setTxt_fecha(String txt_fecha) {
+		this.txt_fecha.setText(txt_fecha);
 	}
 
 	public JTextField getTxt_doctor() {
 		return txt_doctor;
 	}
 
-	public void setTxt_doctor(String DoctorSql) {
-		this.txt_doctor.setText(DoctorSql);
+	public void setTxt_doctor(String txt_doctor) {
+		this.txt_doctor.setText(txt_doctor);
 	}
 
 	public JTextField getTxt_paciente() {
 		return txt_paciente;
 	}
 
-	public void setTxt_paciente(String PacienteSql) {
-		this.txt_paciente.setText(PacienteSql);
+	public void setTxt_paciente(String txt_paciente) {
+		this.txt_paciente.setText(txt_paciente);
 	}
 
 	public JTextField getLbl_id() {
 		return lbl_id;
 	}
 
-	public void setLbl_id(String ID) {
-		this.lbl_id.setText(ID);;
+	public void setLbl_id(String lbl_id) {
+		this.lbl_id.setText(lbl_id);
 	}
+
+	
+	
 }
