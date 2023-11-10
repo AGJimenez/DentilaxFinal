@@ -30,6 +30,7 @@ import javax.swing.SwingConstants;
 
 public class jd_nueva_consulta extends JDialog {
 	JButton okButton;
+	String horaSeleccionada;
 	JButton btn_hora9;
 	JButton btn_hora10;
 	JButton btn_hora11;
@@ -178,6 +179,7 @@ public class jd_nueva_consulta extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				
 				txt_hora.setText("10:00");
+				setHoraSeleccionada("10:00");
 			}
 		});
 		btn_hora9.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -216,6 +218,7 @@ public class jd_nueva_consulta extends JDialog {
 		btn_hora10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_hora.setText("11:00");
+				horaSeleccionada = "11:00";
 			}
 		});
 		btn_hora10.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -231,6 +234,7 @@ public class jd_nueva_consulta extends JDialog {
 		btn_hora11.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_hora.setText("12:00");
+				horaSeleccionada = "12:00";
 			}
 		});
 		btn_hora11.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -246,6 +250,7 @@ public class jd_nueva_consulta extends JDialog {
 		btn_hora12.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_hora.setText("13:00");
+				horaSeleccionada = "13:00";
 			}
 		});
 		btn_hora12.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -261,6 +266,7 @@ public class jd_nueva_consulta extends JDialog {
 		btn_hora13.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_hora.setText("14:00");
+				horaSeleccionada = "14:00";
 			}
 		});
 		btn_hora13.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -276,6 +282,7 @@ public class jd_nueva_consulta extends JDialog {
 		btn_hora14.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_hora.setText("15:00");
+				horaSeleccionada = "15:00";
 			}
 		});
 		btn_hora14.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -291,6 +298,7 @@ public class jd_nueva_consulta extends JDialog {
 		btn_hora15.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_hora.setText("16:00");
+				horaSeleccionada = "16:00";
 			}
 		});
 		btn_hora15.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -306,6 +314,7 @@ public class jd_nueva_consulta extends JDialog {
 		btn_hora16.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_hora.setText("17:00");
+				horaSeleccionada = "17:00";
 			}
 		});
 		btn_hora16.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -321,6 +330,7 @@ public class jd_nueva_consulta extends JDialog {
 		btn_hora17.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_hora.setText("18:00");
+				horaSeleccionada = "18:00";
 			}
 		});
 		btn_hora17.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -336,6 +346,7 @@ public class jd_nueva_consulta extends JDialog {
 		btn_hora18.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_hora.setText("19:00");
+				horaSeleccionada = "19:00";
 			}
 		});
 		btn_hora18.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -351,6 +362,7 @@ public class jd_nueva_consulta extends JDialog {
 		btn_hora19.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_hora.setText("20:00");
+				horaSeleccionada = "20:00";
 			}
 		});
 		btn_hora19.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -366,6 +378,7 @@ public class jd_nueva_consulta extends JDialog {
 		btn_hora20.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				txt_hora.setText("21:00");
+				horaSeleccionada = "21:00";
 			}
 		});
 		btn_hora20.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -458,16 +471,21 @@ public class jd_nueva_consulta extends JDialog {
 	                });
 	        
 	        okButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					
-					dentilax_bdd.ConectorDB_mysql conect = new dentilax_bdd.ConectorDB_mysql();
-					conect.agendar_cita(cb_doctor.getSelectedItem().toString(), txt_fecha.getText().toString(), 
-							cb_especialidad.getSelectedItem().toString(), " ",cb_paciente.getSelectedItem().toString(), txt_hora.getText().toString());
-							
-					
-					
-				}
-			});
+	            public void actionPerformed(ActionEvent e) {
+	                dentilax_bdd.ConectorDB_mysql conect = new dentilax_bdd.ConectorDB_mysql();
+	                conect.agendar_cita(cb_doctor.getSelectedItem().toString(),
+	                                    txt_fecha.getText().toString(),
+	                                    cb_especialidad.getSelectedItem().toString(),
+	                                    " ",
+	                                    cb_paciente.getSelectedItem().toString(),
+	                                    horaSeleccionada);
+	               
+	            	System.out.println(horaSeleccionada);
+	            
+	                
+	            }
+	        });
+
 	        
 	        
 	}
@@ -511,5 +529,21 @@ public class jd_nueva_consulta extends JDialog {
 			 public void setCb_doctor(String items) {
 				 cb_doctor.addItem(items); 
 			    }
+
+			public String getHoraSeleccionada() {
+				return horaSeleccionada;
+			}
+
+			public void setHoraSeleccionada(String horaSeleccionada) {
+				this.horaSeleccionada = horaSeleccionada;
+			}
 			 
 }
+<<<<<<< HEAD
+=======
+
+
+
+
+
+>>>>>>> 6f53c8279718e35e64051d9ada039de8a8f8fe18
