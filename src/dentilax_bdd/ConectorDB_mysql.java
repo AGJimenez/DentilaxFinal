@@ -740,7 +740,6 @@ public void insertar_dr_usuario(String dni, String estado, String contrasena) {
 	
 }
 
-<<<<<<< HEAD
 public void insertar_especialidad(String especialidad) {
 	
 	try {
@@ -765,10 +764,8 @@ public void insertar_especialidad(String especialidad) {
 	
 }
 
-public String consulta_cita_eliminar(String id) throws SQLException{
-=======
 public String consulta_cita_eliminar_encontrar(String id) throws SQLException{
->>>>>>> d9fa9e57340ae3ca631823b2b7e06c557e8525d8
+
 	
 	try {
 		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);

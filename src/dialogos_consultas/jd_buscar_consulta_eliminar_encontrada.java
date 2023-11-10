@@ -221,13 +221,22 @@ public class jd_buscar_consulta_eliminar_encontrada extends JDialog {
 					String datos = getLbl_id().getText().toString();
 					System.out.println(datos);
 					try {
-						int eliminar = JOptionPane.showConfirmDialog(btn_eliminar, "¿Desea eliminar la cita?");
+						int eliminar = JOptionPane.showOptionDialog(
+								   getContentPane(),
+								   "¿Desea eliminar la cita?", 
+								   "Eliminar cita",
+								   JOptionPane.YES_NO_OPTION,
+								   JOptionPane.QUESTION_MESSAGE,
+								   null,
+								   new Object[] { "Eliminar", "Cancelar"},
+								   "opcion 1"); 	
 						if(eliminar==0) {
-							System.out.println("hola");
+							consulta_baja.consulta_eliminar_cita(datos);
+							JOptionPane.showMessageDialog(null, "Cita eliminada");
 						}else {
-							System.out.println("adios");
+							System.out.println("Cita no eliminada");
 						}
-						consulta_baja.consulta_eliminar_cita(datos);
+						
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
