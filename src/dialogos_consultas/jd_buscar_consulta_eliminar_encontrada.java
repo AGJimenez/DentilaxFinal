@@ -217,7 +217,6 @@ public class jd_buscar_consulta_eliminar_encontrada extends JDialog {
 			btn_eliminar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					dentilax_bdd.ConectorDB_mysql consulta_baja = new dentilax_bdd.ConectorDB_mysql();
-					jd_buscar_consulta_eliminar ventana = new jd_buscar_consulta_eliminar();
 					String datos = getLbl_id().getText().toString();
 					System.out.println(datos);
 					try {

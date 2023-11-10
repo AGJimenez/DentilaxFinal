@@ -764,6 +764,20 @@ public void insertar_especialidad(String especialidad) {
 	
 }
 
+public void eliminar_especialidad(String especialidad) throws SQLException{
+	String query = "DELETE FROM especialidad WHERE Nombre = ?";
+	
+	try (Connection conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		PreparedStatement pstmt = conect.prepareStatement(query)){
+		pstmt.setString(1, especialidad);
+		pstmt.executeUpdate();
+		System.out.println("Especialidad eliminada");
+	}
+	catch(SQLException ex) {
+		System.out.println("Error en eliminar la especialidad");
+	}
+}
+
 public String consulta_cita_eliminar_encontrar(String id) throws SQLException{
 
 	
