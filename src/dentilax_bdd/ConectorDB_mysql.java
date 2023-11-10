@@ -563,7 +563,7 @@ public void baja_doctor(String dni) throws SQLException {
 
         // Crear la consulta
         String query = "UPDATE doctores " +
-                "SET Estado = '" + "baja" + "'" +
+                "SET Estado = '" + "Baja" + "'" +
                 "WHERE DNI_doctor = '" + dni + "'";
 
         // Ejecutar la consulta

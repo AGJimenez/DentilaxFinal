@@ -73,11 +73,17 @@ public class jd_buscar_doctor_baja extends JDialog {
 			txt_IntroduceDni.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
+					if (txt_IntroduceDni.getText().equals("Introduce DNI")) {
 						txt_IntroduceDni.setText("");
+						txt_IntroduceDni.setForeground(Color.BLACK);
+	                }
 				}
 				@Override
 				public void focusLost(FocusEvent e) {
+					if (txt_IntroduceDni.getText().isEmpty()) {
+						txt_IntroduceDni.setForeground(new Color(0, 128, 192));
 						txt_IntroduceDni.setText("Introduce DNI");
+	                }
 				}
 			});
 			txt_IntroduceDni.setOpaque(false);
@@ -123,6 +129,7 @@ public class jd_buscar_doctor_baja extends JDialog {
 						dentilax_bdd.ConectorDB_mysql consulta = new dentilax_bdd.ConectorDB_mysql();
 						try {
 							consulta.consulta_doctor_eliminar(txt_IntroduceDni.getText().toString());
+							
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
