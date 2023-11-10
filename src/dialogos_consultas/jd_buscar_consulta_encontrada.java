@@ -29,7 +29,7 @@ import java.sql.SQLException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class jd_buscar_consulta_eliminar_encontrada extends JDialog {
+public class jd_buscar_consulta_encontrada extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
@@ -43,7 +43,7 @@ public class jd_buscar_consulta_eliminar_encontrada extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			jd_buscar_consulta_eliminar_encontrada dialog = new jd_buscar_consulta_eliminar_encontrada();
+			jd_buscar_consulta_encontrada dialog = new jd_buscar_consulta_encontrada();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -54,7 +54,7 @@ public class jd_buscar_consulta_eliminar_encontrada extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public jd_buscar_consulta_eliminar_encontrada() {
+	public jd_buscar_consulta_encontrada() {
 		setPreferredSize(new Dimension(554, 343));
 		setModal(true);
 		setResizable(false);
@@ -176,7 +176,7 @@ public class jd_buscar_consulta_eliminar_encontrada extends JDialog {
 						String datos = getLbl_id().getText().toString();
 						System.out.println(datos);
 						try {
-							consulta_ficha.consulta_eliminar_ficha(datos);
+							consulta_ficha.consulta_ver_ficha(datos);
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -211,48 +211,6 @@ public class jd_buscar_consulta_eliminar_encontrada extends JDialog {
 				btn_salir.setActionCommand("Cancel");
 				buttonPane.add(btn_salir);
 			}
-			
-			JButton btn_eliminar = new JButton("VER FICHA");
-			btn_eliminar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btn_eliminar.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					dentilax_bdd.ConectorDB_mysql consulta_baja = new dentilax_bdd.ConectorDB_mysql();
-					jd_buscar_consulta_eliminar ventana = new jd_buscar_consulta_eliminar();
-					String datos = getLbl_id().getText().toString();
-					System.out.println(datos);
-					try {
-						int eliminar = JOptionPane.showOptionDialog(
-								   getContentPane(),
-								   "¿Desea eliminar la cita?", 
-								   "Eliminar cita",
-								   JOptionPane.YES_NO_OPTION,
-								   JOptionPane.QUESTION_MESSAGE,
-								   null,
-								   new Object[] { "Eliminar", "Cancelar"},
-								   "opcion 1"); 	
-						if(eliminar==0) {
-							consulta_baja.consulta_eliminar_cita(datos);
-							JOptionPane.showMessageDialog(null, "Cita eliminada");
-						}else {
-							System.out.println("Cita no eliminada");
-						}
-						
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-										
-					dispose();
-				
-				}
-			});
-			btn_eliminar.setForeground(Color.WHITE);
-			btn_eliminar.setFont(new Font("Barlow", Font.BOLD, 20));
-			btn_eliminar.setBorderPainted(false);
-			btn_eliminar.setBackground(new Color(32, 160, 216));
-			btn_eliminar.setActionCommand("OK");
-			btn_eliminar.setBounds(194, 0, 153, 43);
-			buttonPane.add(btn_eliminar);
 		}
 	}
 

@@ -75,6 +75,8 @@ public class jf_consulta extends JFrame {
         btn_buscar_cita.setBorderPainted(false);
         btn_buscar_cita.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		dialogos_consultas.jd_buscar_cita ventana = new dialogos_consultas.jd_buscar_cita();
+				ventana.setVisible(true);
         	}
         });
         btn_nueva_cita = new javax.swing.JButton();
