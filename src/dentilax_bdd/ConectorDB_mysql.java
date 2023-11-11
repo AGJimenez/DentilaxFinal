@@ -1038,6 +1038,36 @@ public void mostarCbCitasDr(jd_nueva_consulta datos) throws SQLException {
     }
 }
 
+public List<String> getEspecialidades() throws SQLException {
+    List<String> especialidades = new ArrayList<>();
+
+
+    conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        // Establecer conexión a la base de datos
+       
+
+        // Consulta SQL para obtener las especialidades
+        String query = "SELECT Nombre FROM especialidad";
+        statement = conect.prepareStatement(query);
+        ResultSet resultSet = statement.executeQuery(query);
+
+        // Recorrer los resultados y agregar las especialidades a la lista
+        while (resultSet.next()) {
+            String especialidad = resultSet.getString("nombre");
+            especialidades.add(especialidad);
+        }
+    }
+finally {
+	
+}
+         
+    
+
+    return especialidades;
+}
+
 public void mostarCbCitasEsp(jd_nueva_consulta datos) throws SQLException {
     // Consulta para ver el nombre de las tablas
 	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);

@@ -6,6 +6,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -47,7 +48,7 @@ public class jd_doctores_alta extends JDialog {
 	private JTextField txt_nacimiento;
 	private JTextField txt_correo;
 	private JTextField txt_direccion;
-
+	private JComboBox<String> comboBoxEspecialidad;
 	/**
 	 * Launch the application.
 	 */
@@ -213,30 +214,20 @@ public class jd_doctores_alta extends JDialog {
 			contentPanel.add(lbl_especialidad);
 		}
 		{
-			txt_especialidad = new JTextField();
-			txt_especialidad.addFocusListener(new FocusAdapter() {
-				@Override
-				public void focusGained(FocusEvent e) {
-					if(txt_especialidad.getText().equals("Introduce la especialidad")) {
-						txt_especialidad.setText("");
-					}
-				}
-				@Override
-				public void focusLost(FocusEvent e) {
-					if (txt_especialidad.getText().isEmpty()) {
-						txt_especialidad.setText("Introduce la especialidad");
-					}
-					
-				}
-			});
-			txt_especialidad.setText("Introduce la especialidad");
-			txt_especialidad.setHorizontalAlignment(SwingConstants.CENTER);
-			txt_especialidad.setFont(new Font("Arial", Font.PLAIN, 14));
-			txt_especialidad.setColumns(10);
-			txt_especialidad.setBorder(null);
-			txt_especialidad.setBackground(new Color(191, 231, 249));
-			txt_especialidad.setBounds(387, 249, 218, 40);
-			contentPanel.add(txt_especialidad);
+			 comboBoxEspecialidad = new JComboBox<>();
+			    comboBoxEspecialidad.setBounds(387, 249, 218, 40);
+			    contentPanel.add(comboBoxEspecialidad);
+			    ConectorDB_mysql bdd = new ConectorDB_mysql();
+			    try {
+			        // Asumiendo que getEspecialidades devuelve una lista de String con las especialidades
+			        java.util.List<String> especialidades = bdd.getEspecialidades();
+			        for (String especialidad : especialidades) {
+			            comboBoxEspecialidad.addItem(especialidad);
+			        }
+			    } catch (SQLException e) {
+			        e.printStackTrace();
+			    }
+			    
 		}
 		{
 			JLabel lbl_salario = new JLabel("SALARIO");

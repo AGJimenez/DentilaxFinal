@@ -7,7 +7,7 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="imagenes"/>
-	<classpathentry kind="lib" path="C:/Users/Medac/Downloads/mysql-connector-java-5.1.47/mysql-connector-java-5.1.47.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Medac/Downloads/lib/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/alexg/Downloads/mysql-connector-java-5.1.47/mysql-connector-java-5.1.47.jar"/>
+	<classpathentry kind="lib" path="C:/Users/alexg/Downloads/lib/jcalendar-1.4.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
