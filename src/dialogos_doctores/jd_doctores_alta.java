@@ -405,7 +405,7 @@ public class jd_doctores_alta extends JDialog {
 					String nacimiento = txt_nacimiento.getText().toString();
 					String telefono = txt_telefono.getText().toString();
 					String correo = txt_correo.getText().toString();
-					String especialidad = txt_especialidad.getText().toString();
+					String especialidad = comboBoxEspecialidad.getSelectedItem().toString();
 					String estado = "alta";
 					String direccion = txt_direccion.getText().toString();
 					String salario = txt_salario.getText().toString();
