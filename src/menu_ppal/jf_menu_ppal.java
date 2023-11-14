@@ -424,8 +424,11 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         jmenuitem_historial = new JMenuItem("Historial");
         jmenuitem_historial.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		dialogos_consultas.jd_historial_cita ventana = new dialogos_consultas.jd_historial_cita();
+        		dispose();
+        		jf_consulta ventana = new jf_consulta();
+        		dialogos_consultas.jd_historial_cita ventana_historial = new dialogos_consultas.jd_historial_cita();
         		ventana.setVisible(true);
+        		ventana_historial.setVisible(true);
         	}
         });
         jmenuitem_historial.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -628,10 +631,10 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         			}
         			if(combo.contains(KeyEvent.VK_2)&&combo.contains(KeyEvent.VK_C)&&combo.contains(16)) {
         				dispose();
-        				jf_consulta ventana = new jf_consulta();
-        				//dialogos_consultas.jd_buscar_cita ventana_buscar = new dialogos_consultas.jd_buscar_cita();
-        				ventana.setVisible(true);
-        				//ventana_buscar.setVisible(true);
+                		jf_consulta ventana = new jf_consulta();
+                		dialogos_consultas.jd_historial_cita ventana_historial = new dialogos_consultas.jd_historial_cita();
+                		ventana.setVisible(true);
+                		ventana_historial.setVisible(true);
         			}
         			if(combo.contains(KeyEvent.VK_3)&&combo.contains(KeyEvent.VK_C)&&combo.contains(16)) {
         				dispose();
