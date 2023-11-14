@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 
 import dialogos_consultas.jd_nueva_consulta;
 
@@ -92,12 +93,9 @@ public String consulta_paciente_editar(String dni) throws SQLException{
             if (resultSet.next()) {
                 // Resultado encontrado
                 System.out.println("Resultado encontrado");
-                dialogos_pacientes.jd_pacientes_editar ventana = new  dialogos_pacientes.jd_pacientes_editar();
                 String dniSql = resultSet.getString("DNI_paciente");
                 String nombreSql = resultSet.getString("Nombre");
                 String apellidosSql = resultSet.getString("Apellidos");
-               // System.out.println(dniSql);      
-                ventana.setVisible(true);
                 
             } else {
                 // Acceso denegado
@@ -128,42 +126,27 @@ public String consulta_paciente_cargar(String dni) throws SQLException{
             System.out.println("Resultado encontrado");
             dialogos_pacientes.jd_pacientes_editar ventana = new dialogos_pacientes.jd_pacientes_editar();
             String dniSql = resultSet.getString("DNI_paciente");
-            String nombreSql = resultSet.getString("Nombre");
             String apellidosSql = resultSet.getString("Apellidos");
+            String nombreSql = resultSet.getString("Nombre");
             String nacimiento = resultSet.getString("Nacimiento");
+            String seguro = resultSet.getString("Seguro");
+            String estado = resultSet.getString("Estado");
             String genero = resultSet.getString("Genero");
+            String observaciones = resultSet.getString("Observaciones");
             String telefono = resultSet.getString("Telefono");
             String correo = resultSet.getString("Correo");
             String direccion = resultSet.getString("Direccion");
-            String seguro = resultSet.getString("Seguro");
-            String observacion = resultSet.getString("Observacion");   
-            
-           
            // System.out.println(dniSql);
             ventana.setTxt_dni(dniSql);
-            ventana.setTxt_nombre(nombreSql);
             ventana.setTxt_apellidos(apellidosSql);
+            ventana.setTxt_nombre(nombreSql);
             ventana.setTxt_nacimiento(nacimiento);
-            // ventana.setTxt_genero(genero);
+            ventana.setTxt_seguro(seguro);
+            //ventana.setTxt_genero(genero);
+            ventana.setTxt_observaciones(observaciones);
             ventana.setTxt_telefono(telefono);
             ventana.setTxt_correo(correo);
             ventana.setTxt_direccion(direccion);
-            ventana.setTxt_seguro(seguro);
-            ventana.setTxt_observaciones(observacion);
-            switch(genero) {
-            //Sacar el genero de esta clase y pasarsela a la otra
-            case "Varón":
-            	
-            	ventana.getBtn_group_genero().setSelected(null, true);
-            	break;
-            case "Mujer":
-            	
-            	break;
-            case "Otro":
-            	break;
-            	
-            }
-            System.out.println(genero);
             ventana.setVisible(true);
             
             
@@ -621,13 +604,13 @@ public void baja_doctor(String dni) throws SQLException {
 }
 
 public void insertar_paciente(String dni, String apellidos, String nombre, String nacimiento, String telefono, String correo, String direccion, String seguro,
-		String observacion, String genero, String estado) throws SQLException{
+		String observaciones, String genero, String estado) throws SQLException{
 	
 	try {//inserto paciente 
 		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 		statement = conect.createStatement();
-		String query = "INSERT INTO pacientes (DNI_paciente, Nombre, Apellidos, Nacimiento, Genero, Estado, Telefono, Correo, Direccion, Seguro, Observacion) " +
-            "VALUES ('" + dni + "', '" + nombre + "', '" + apellidos + "', '" + nacimiento + "', '" + genero + "', '" + estado + "', '" + telefono + "', '" + correo + "', '" + direccion + "', '" + seguro + "', '" + observacion + "')";
+		String query = "INSERT INTO pacientes (DNI_paciente, Nombre, Apellidos, Nacimiento, Genero, Estado, Telefono, Correo, Direccion, Seguro, Observaciones) " +
+            "VALUES ('" + dni + "', '" + nombre + "', '" + apellidos + "', '" + nacimiento + "', '" + genero + "', '" + estado + "', '" + telefono + "', '" + correo + "', '" + direccion + "', '" + seguro + "', '" + observaciones + "')";
 
 		int fila = statement.executeUpdate(query);
 		
@@ -642,7 +625,7 @@ public void insertar_paciente(String dni, String apellidos, String nombre, Strin
 		
 	}
 	catch(SQLException ex) {
-		JOptionPane.showMessageDialog(null, "Error en la inserción de doctor, comprueba los campos.");
+		JOptionPane.showMessageDialog(null, "Error en la inserción de paciente, comprueba los campos.");
 		ex.printStackTrace();
 	}
 }

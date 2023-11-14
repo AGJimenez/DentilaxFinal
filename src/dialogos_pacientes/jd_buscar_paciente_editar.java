@@ -133,7 +133,7 @@ public class jd_buscar_paciente_editar extends JDialog {
 			            	String dni = txt_IntroduceDni.getText().toString();			            	
 							consulta.consulta_paciente_editar(dni);
 							consulta.consulta_paciente_cargar(dni);
-							//String consulta_paciente_cargar = ; dejadme esto para yo luego trabajar en lo del radio button
+							
 			}
 							
 							

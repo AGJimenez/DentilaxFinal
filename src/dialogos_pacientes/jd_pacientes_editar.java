@@ -39,6 +39,8 @@ public class jd_pacientes_editar extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private final ButtonGroup btn_group_genero = new ButtonGroup();
+	
+	
 	private JTextField txt_nombre;
 	private JTextField txt_dni;
 	private JTextField txt_telefono;
@@ -91,14 +93,15 @@ public class jd_pacientes_editar extends JDialog {
 			contentPanel.add(panel);
 			panel.setLayout(null);
 			
-			JRadioButton btn_genero_varon = new JRadioButton("Varón");
+			 JRadioButton btn_genero_varon = new JRadioButton("Varón");
 			btn_group_genero.add(btn_genero_varon);
 			btn_genero_varon.setOpaque(false);
 			btn_genero_varon.setFont(new Font("Arial", Font.PLAIN, 14));
 			btn_genero_varon.setBounds(24, 24, 71, 23);
 			panel.add(btn_genero_varon);
 			
-			JRadioButton btn_genero_mujer = new JRadioButton("Mujer");
+			
+			 JRadioButton btn_genero_mujer = new JRadioButton("Mujer");
 			btn_group_genero.add(btn_genero_mujer);
 			btn_genero_mujer.setOpaque(false);
 			btn_genero_mujer.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -263,6 +266,8 @@ public class jd_pacientes_editar extends JDialog {
 			panel_foto.setBounds(54, 263, 116, 116);
 			contentPanel.add(panel_foto);
 		}
+		
+		
 		{
 			JButton btn_modificar = new JButton("MODIFICAR");
 			btn_modificar.setBounds(708, 455, 153, 43);

@@ -242,6 +242,20 @@ public class jd_pacientes_alta extends JDialog {
 		}
 		{
 			txt_observaciones = new JTextArea();
+			txt_observaciones.addFocusListener(new FocusAdapter() {
+				@Override
+				public void focusGained(FocusEvent e) {
+					if(txt_observaciones.getText().equals("Introduce la observacion")) {
+						txt_observaciones.setText("");
+					}
+				}
+				@Override
+				public void focusLost(FocusEvent e) {
+					if(txt_observaciones.getText().equals("")) {
+						txt_observaciones.setText("Introduce la observacion");
+					}
+				}
+			});
 			txt_observaciones.setText("Introduce la observacion");
 			txt_observaciones.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_observaciones.setColumns(10);
@@ -398,7 +412,7 @@ public class jd_pacientes_alta extends JDialog {
 					String seguro = txt_seguro.getText().toString();
 					String estado = "alta";
 					String direccion = txt_direccion.getText().toString();
-					String observacion = txt_observaciones.getText().toString();
+					String observaciones = txt_observaciones.getText().toString();
 					String genero="";
 					String btn_seleccionado = getSelectedButton(btn_group_genero);
 		            if (btn_seleccionado != null) {
@@ -419,7 +433,7 @@ public class jd_pacientes_alta extends JDialog {
 
 		            ConectorDB_mysql bdd = new ConectorDB_mysql();
 		            try {
-						bdd.insertar_paciente(dni, nombre, apellidos, nacimiento, genero, estado, telefono, correo, direccion, seguro, observacion);				
+						bdd.insertar_paciente(dni, nombre, apellidos, nacimiento, genero, estado, telefono, correo, direccion, seguro, observaciones);				
 						dispose();
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
