@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import java.awt.Cursor;
@@ -25,6 +27,7 @@ public class jd_historial_cita extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtIntroduceTexto;
 	private JTable table;
+	private DefaultTableModel model;
 
 	/**
 	 * Launch the application.
@@ -97,30 +100,37 @@ public class jd_historial_cita extends JDialog {
 		contentPanel.add(scrollPane);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-			},
-			new String[] {
-				"New column", "New column", "New column"
-			}
-		));
+		 model=new DefaultTableModel();
+	
+			table.setModel(model);
+			model.addColumn("Fecha");
+			model.addColumn("Tipo");
+			model.addColumn("Paciente");
+		    
+		 
 		scrollPane.setColumnHeaderView(table);
+	}
+	
+
+		
+	public void llenarTabla(List<jd_historial_cita> historialCitas) {
+        // Nos aseguramos de que la lista no sea Null
+        if (historialCitas != null) {
+            // Limpiamos el modelo de la tabla antes de agregar nuevos datos
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            model.setRowCount(0);
+
+            for (jd_historial_cita historial : historialCitas) {
+                Object[] fila = new Object[3];
+              //  fila[0] = historial.getFecha();
+              //  fila[1] = historial.getEspecialidad();  //  un método getEspecialidad en tu clase Historial
+              //  fila[2] = historial.getDNI_paciente();  //  un método getDNI_paciente en tu clase Historial
+
+                model.addRow(fila);
+            }
+        }
+    }
+	
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setPreferredSize(new Dimension(30, 80));
@@ -164,4 +174,4 @@ public class jd_historial_cita extends JDialog {
 			}
 		}
 	}
-}
+

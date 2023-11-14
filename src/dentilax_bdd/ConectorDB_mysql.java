@@ -12,6 +12,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
+import dialogos_consultas.jd_historial_cita;
 import dialogos_consultas.jd_nueva_consulta;
 
 
@@ -383,6 +384,47 @@ public String consulta_doctor_eliminar(String dni) throws SQLException{
 		return dni;
 		
 	}
+	
+	public List<jd_historial_cita> obtenerInfoCitas() {
+	    List<jd_historial_cita> historiales = new ArrayList<>();
+
+	    try {
+	        conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+	        statement = conect.createStatement();
+	        String query = "SELECT Fecha, Especialidad, DNI_paciente FROM citas";
+	        ResultSet resultSet = statement.executeQuery(query);
+
+	        while (resultSet.next()) {
+	            String fecha = resultSet.getString("Fecha");
+	            String especialidad = resultSet.getString("Especialidad");
+	            String dniPaciente = resultSet.getString("DNI_paciente");
+
+	            jd_historial_cita historial = new jd_historial_cita();
+	          //  historial.setFecha(fecha);
+	          //  historial.setEspecialidad(especialidad);
+	          //  historial.setDNI_paciente(dniPaciente);
+
+	            historiales.add(historial);
+	        }
+
+	    } catch (SQLException ex) {
+	        ex.printStackTrace();  // 
+	    } finally {
+	        // Aqui vamos a cerrar recursos (statement y conexión) en el bloque finally
+	        try {
+	            if (statement != null) {
+	                statement.close();
+	            }
+	            if (conect != null) {
+	                conect.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    return historiales;
+	}	
 	
 public String consulta_doctor_ficha(String dni) throws SQLException{
 		
