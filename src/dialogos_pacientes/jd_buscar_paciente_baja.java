@@ -26,6 +26,8 @@ import java.sql.SQLException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class jd_buscar_paciente_baja extends JDialog {
 
@@ -70,6 +72,21 @@ public class jd_buscar_paciente_baja extends JDialog {
 		}
 		{
 			txt_IntroduceDni = new JTextField();
+			txt_IntroduceDni.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyPressed(KeyEvent e) {
+					if(e.getKeyCode()==KeyEvent.VK_ENTER){
+						dentilax_bdd.ConectorDB_mysql consulta = new dentilax_bdd.ConectorDB_mysql();
+						try {
+							consulta.consulta_paciente_eliminar(txt_IntroduceDni.getText().toString());
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						dispose();
+					}
+				}
+			});
 			txt_IntroduceDni.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
@@ -132,7 +149,6 @@ public class jd_buscar_paciente_baja extends JDialog {
 							e1.printStackTrace();
 						}
 						dispose();
-						jd_buscar_paciente_baja_encontrado ventana = new jd_buscar_paciente_baja_encontrado();
 						
 					}
 				});

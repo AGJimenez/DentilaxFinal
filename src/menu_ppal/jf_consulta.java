@@ -97,6 +97,8 @@ public class jf_consulta extends JFrame {
         btn_historial = new javax.swing.JButton();
         btn_historial.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		dialogos_consultas.jd_historial_cita ventana = new dialogos_consultas.jd_historial_cita();
+        		ventana.setVisible(true);
         	}
         });
         btn_historial.setBorder(null);

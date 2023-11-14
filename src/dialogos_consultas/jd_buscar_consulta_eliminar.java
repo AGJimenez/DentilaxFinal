@@ -29,6 +29,8 @@ import java.sql.SQLException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class jd_buscar_consulta_eliminar extends JDialog {
 
@@ -73,6 +75,22 @@ public class jd_buscar_consulta_eliminar extends JDialog {
 		}
 		{
 			txt_IntroduceID = new JTextField();
+			txt_IntroduceID.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyPressed(KeyEvent e) {
+					if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+						dentilax_bdd.ConectorDB_mysql consulta = new dentilax_bdd.ConectorDB_mysql();
+						dispose();
+						try {
+							consulta.consulta_cita_eliminar_encontrar(txt_IntroduceID.getText().toString());
+							dialogos_consultas.jd_buscar_consulta_eliminar_encontrada ventana = new dialogos_consultas.jd_buscar_consulta_eliminar_encontrada();
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				}
+			});
 			txt_IntroduceID.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
