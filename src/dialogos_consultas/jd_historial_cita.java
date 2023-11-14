@@ -113,24 +113,39 @@ public class jd_historial_cita extends JDialog {
 	
 
 		
-	public void llenarTabla(List<jd_historial_cita> historialCitas) {
-        // Nos aseguramos de que la lista no sea Null
-        if (historialCitas != null) {
-            // Limpiamos el modelo de la tabla antes de agregar nuevos datos
-            DefaultTableModel model = (DefaultTableModel) table.getModel();
-            model.setRowCount(0);
+	   public void llenarTabla(List<jd_historial_cita> historialCitas) {
+	        // Nos aseguramos de que la lista no sea Null
+	        if (historialCitas != null) {
+	            // Limpiamos el modelo de la tabla antes de agregar nuevos datos
+	            DefaultTableModel model = (DefaultTableModel) table.getModel();
+	            model.setRowCount(0);
 
-            for (jd_historial_cita historial : historialCitas) {
-                Object[] fila = new Object[3];
-              //  fila[0] = historial.getFecha();
-              //  fila[1] = historial.getEspecialidad();  //  un método getEspecialidad en tu clase Historial
-              //  fila[2] = historial.getDNI_paciente();  //  un método getDNI_paciente en tu clase Historial
+	            for (jd_historial_cita historial : historialCitas) {
+	                Object[] fila = new Object[3];
+	                fila[0] = historial.getFecha();
+	                fila[1] = historial.getEspecialidad();
+	                fila[2] = historial.getDNI_paciente();
 
-                model.addRow(fila);
-            }
-        }
-    }
+	                model.addRow(fila);
+	            }
+	        }
+	    }
 	
+		private Object getEspecialidad() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+		private Object getDNI_paciente() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+		private Object getFecha() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setPreferredSize(new Dimension(30, 80));
