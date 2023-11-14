@@ -253,6 +253,12 @@ public class jf_login extends javax.swing.JFrame {
         cb_recordar.setBorder(null);
         cb_recordar.setBounds(63, 291, 105, 37);
         btn_recuperar_pass = new javax.swing.JButton();
+        btn_recuperar_pass.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		Recuperar_contrasena rc = new Recuperar_contrasena();
+        		rc.setVisible(true);
+        	}
+        });
         btn_recuperar_pass.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_recuperar_pass.setOpaque(false);
         btn_recuperar_pass.setBorder(new LineBorder(new Color(32, 160, 216), 1, true));

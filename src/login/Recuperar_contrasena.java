@@ -28,6 +28,12 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Toolkit;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
+import java.awt.Cursor;
 
 public class Recuperar_contrasena extends JDialog {
 
@@ -80,49 +86,74 @@ public class Recuperar_contrasena extends JDialog {
 	 * Create the dialog.
 	 */
 	public Recuperar_contrasena() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(Recuperar_contrasena.class.getResource("/iconos_submenus/resetIcon.png")));
+		setTitle("Recuperar contraseña");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
+		contentPanel.setBackground(new Color(255, 255, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
+		setLocationRelativeTo(this);
+		
+		JSeparator separator = new JSeparator();
+		separator.setBackground(new Color(0, 128, 192));
+		separator.setBounds(71, 125, 294, 8);
+		contentPanel.add(separator);
 		{
 			JPanel buttonPane = new JPanel();
-			buttonPane.setBounds(0, 216, 434, 46);
+			buttonPane.setBackground(Color.WHITE);
+			buttonPane.setBounds(0, 197, 434, 65);
 			contentPanel.add(buttonPane);
 			buttonPane.setLayout(null);
 			{
-				JButton okButton = new JButton("OK");
+				JButton okButton = new JButton("ENVIAR CORREO");
+				okButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				okButton.setForeground(new Color(255, 255, 255));
+				okButton.setFont(new Font("Barlow", Font.BOLD, 17));
+				okButton.setBorder(null);
+				okButton.setBackground(new Color(32, 160, 216));
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						createEmail();
 						sendEmail();
 					}
 				});
-				okButton.setBounds(10, 11, 93, 23);
+				okButton.setBounds(30, 1, 153, 43);
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
 			}
 			{
-				JButton cancelButton = new JButton("Cancel");
+				JButton cancelButton = new JButton("CANCELAR");
+				cancelButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				cancelButton.setForeground(new Color(255, 255, 255));
+				cancelButton.setFont(new Font("Barlow", Font.BOLD, 17));
+				cancelButton.setBorder(null);
+				cancelButton.setBackground(new Color(32, 160, 216));
 				cancelButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dispose();
 					}
 				});
-				cancelButton.setBounds(331, 11, 93, 23);
+				cancelButton.setBounds(251, 1, 153, 43);
 				cancelButton.setActionCommand("Cancel");
 				buttonPane.add(cancelButton);
 			}
 		}
 		
 		txt_correo = new JTextField();
+		txt_correo.setOpaque(false);
+		txt_correo.setBorder(null);
+		txt_correo.setFont(new Font("Arial", Font.PLAIN, 14));
+		txt_correo.setHorizontalAlignment(SwingConstants.CENTER);
 		txt_correo.setBounds(32, 98, 370, 35);
 		contentPanel.add(txt_correo);
 		txt_correo.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("Introduce correo electrónico para recuperar tu contraseña");
-		lblNewLabel.setBounds(32, 63, 370, 14);
+		JLabel lblNewLabel = new JLabel("Introduce correo de recuperación");
+		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 14));
+		lblNewLabel.setBounds(98, 73, 370, 14);
 		contentPanel.add(lblNewLabel);
 	}
 	
@@ -196,5 +227,4 @@ public class Recuperar_contrasena extends JDialog {
 	            Logger.getLogger(Recuperar_contrasena.class.getName()).log(Level.SEVERE, null, ex);
 	        }
 	    }
-	
 }
