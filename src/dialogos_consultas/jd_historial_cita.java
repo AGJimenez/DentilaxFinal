@@ -15,19 +15,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import java.awt.Cursor;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
 
 public class jd_historial_cita extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtIntroduceTexto;
-	private JTextField txtIntroduceApellidos;
-	private JTextField txtIntroduceDni;
-	private JTextField txtIntroduceDireccion;
-	private JTextField txtIntroduceTelefono;
-	private JTextField txtIntroduceFecha;
-	private JTextField txtIntroducePagado;
-	private JTextField txtIntroducePorPagar;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -57,40 +54,22 @@ public class jd_historial_cita extends JDialog {
 		contentPanel.setLayout(null);
 		setLocationRelativeTo(this);
 		
-		JLabel lblApellidos = new JLabel("TIPO");
-		lblApellidos.setForeground(new Color(0, 128, 192));
-		lblApellidos.setFont(new Font("Barlow", Font.BOLD, 20));
-		lblApellidos.setBounds(236, 115, 114, 24);
-		contentPanel.add(lblApellidos);
-		
 		JLabel lblDni = new JLabel("PACIENTES");
 		lblDni.setForeground(new Color(0, 128, 192));
 		lblDni.setFont(new Font("Barlow", Font.BOLD, 20));
 		lblDni.setBounds(569, 118, 103, 18);
 		contentPanel.add(lblDni);
+		
+		JLabel lblApellidos = new JLabel("TIPO");
+		lblApellidos.setForeground(new Color(0, 128, 192));
+		lblApellidos.setFont(new Font("Barlow", Font.BOLD, 20));
+		lblApellidos.setBounds(236, 115, 114, 24);
+		contentPanel.add(lblApellidos);
 		JLabel lblNombre = new JLabel("FECHA");
 		lblNombre.setForeground(new Color(0, 128, 192));
 		lblNombre.setFont(new Font("Barlow", Font.BOLD, 20));
 		lblNombre.setBounds(25, 112, 114, 31);
 		contentPanel.add(lblNombre);
-		
-		JLabel lblFecha = new JLabel("FECHA");
-		lblFecha.setForeground(new Color(0, 128, 192));
-		lblFecha.setFont(new Font("Barlow", Font.BOLD, 20));
-		lblFecha.setBounds(80, 432, 114, 37);
-		contentPanel.add(lblFecha);
-		
-		JLabel lblPagado = new JLabel("PAGADO");
-		lblPagado.setForeground(new Color(0, 128, 192));
-		lblPagado.setFont(new Font("Barlow", Font.BOLD, 20));
-		lblPagado.setBounds(80, 511, 114, 24);
-		contentPanel.add(lblPagado);
-		
-		JLabel lblPorPagar = new JLabel("POR PAGAR");
-		lblPorPagar.setForeground(new Color(0, 128, 192));
-		lblPorPagar.setFont(new Font("Barlow", Font.BOLD, 20));
-		lblPorPagar.setBounds(80, 567, 114, 31);
-		contentPanel.add(lblPorPagar);
 		
 		txtIntroduceTexto = new JTextField();
 		txtIntroduceTexto.setEditable(false);
@@ -100,69 +79,6 @@ public class jd_historial_cita extends JDialog {
 		txtIntroduceTexto.setBounds(12, 104, 1142, 40);
 		contentPanel.add(txtIntroduceTexto);
 		txtIntroduceTexto.setColumns(10);
-		
-		txtIntroduceApellidos = new JTextField();
-		txtIntroduceApellidos.setEditable(false);
-		txtIntroduceApellidos.setBackground(new Color(191, 231, 249));
-		txtIntroduceApellidos.setFont(new Font("Arial", Font.PLAIN, 14));
-		txtIntroduceApellidos.setText(" ");
-		txtIntroduceApellidos.setBounds(12, 167, 1142, 40);
-		contentPanel.add(txtIntroduceApellidos);
-		txtIntroduceApellidos.setColumns(10);
-		
-		txtIntroduceDni = new JTextField();
-		txtIntroduceDni.setEditable(false);
-		txtIntroduceDni.setBackground(new Color(191, 231, 249));
-		txtIntroduceDni.setText(" ");
-		txtIntroduceDni.setFont(new Font("Arial", Font.PLAIN, 14));
-		txtIntroduceDni.setBounds(10, 232, 1144, 40);
-		contentPanel.add(txtIntroduceDni);
-		txtIntroduceDni.setColumns(10);
-		
-		txtIntroduceDireccion = new JTextField();
-		txtIntroduceDireccion.setEditable(false);
-		txtIntroduceDireccion.setBackground(new Color(191, 231, 249));
-		txtIntroduceDireccion.setText(" ");
-		txtIntroduceDireccion.setFont(new Font("Arial", Font.PLAIN, 14));
-		txtIntroduceDireccion.setBounds(12, 294, 1142, 40);
-		contentPanel.add(txtIntroduceDireccion);
-		txtIntroduceDireccion.setColumns(10);
-		
-		txtIntroduceTelefono = new JTextField();
-		txtIntroduceTelefono.setEditable(false);
-		txtIntroduceTelefono.setBackground(new Color(191, 231, 249));
-		txtIntroduceTelefono.setText(" ");
-		txtIntroduceTelefono.setFont(new Font("Arial", Font.PLAIN, 14));
-		txtIntroduceTelefono.setBounds(12, 361, 1142, 40);
-		contentPanel.add(txtIntroduceTelefono);
-		txtIntroduceTelefono.setColumns(10);
-		
-		txtIntroduceFecha = new JTextField();
-		txtIntroduceFecha.setEditable(false);
-		txtIntroduceFecha.setBackground(new Color(191, 231, 249));
-		txtIntroduceFecha.setText(" ");
-		txtIntroduceFecha.setFont(new Font("Arial", Font.PLAIN, 14));
-		txtIntroduceFecha.setBounds(236, 429, 264, 40);
-		contentPanel.add(txtIntroduceFecha);
-		txtIntroduceFecha.setColumns(10);
-		
-		txtIntroducePagado = new JTextField();
-		txtIntroducePagado.setEditable(false);
-		txtIntroducePagado.setBackground(new Color(191, 231, 249));
-		txtIntroducePagado.setText(" ");
-		txtIntroducePagado.setFont(new Font("Arial", Font.PLAIN, 14));
-		txtIntroducePagado.setBounds(236, 495, 264, 40);
-		contentPanel.add(txtIntroducePagado);
-		txtIntroducePagado.setColumns(10);
-		
-		txtIntroducePorPagar = new JTextField();
-		txtIntroducePorPagar.setEditable(false);
-		txtIntroducePorPagar.setBackground(new Color(191, 231, 249));
-		txtIntroducePorPagar.setText(" ");
-		txtIntroducePorPagar.setFont(new Font("Arial", Font.PLAIN, 14));
-		txtIntroducePorPagar.setBounds(236, 558, 264, 40);
-		contentPanel.add(txtIntroducePorPagar);
-		txtIntroducePorPagar.setColumns(10);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(191, 231, 249));
@@ -175,6 +91,36 @@ public class jd_historial_cita extends JDialog {
 		lblDentilax.setBounds(37, 11, 308, 24);
 		panel.add(lblDentilax);
 		lblDentilax.setFont(new Font("Barlow", Font.BOLD, 20));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(12, 147, 674, 265);
+		contentPanel.add(scrollPane);
+		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+			},
+			new String[] {
+				"New column", "New column", "New column"
+			}
+		));
+		scrollPane.setColumnHeaderView(table);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setPreferredSize(new Dimension(30, 80));
