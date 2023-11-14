@@ -29,6 +29,8 @@ import java.sql.SQLException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class jd_buscar_dr extends JDialog {
 
@@ -73,6 +75,25 @@ public class jd_buscar_dr extends JDialog {
 		}
 		{
 			txt_IntroduceDni = new JTextField();
+			txt_IntroduceDni.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyPressed(KeyEvent e) {
+					if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+						dispose();
+						ConectorDB_mysql consulta = new ConectorDB_mysql();
+						try {
+			            	String dni = txt_IntroduceDni.getText().toString();			            	
+							String comprobar = consulta.consulta_doctor(dni);
+							}
+						 catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							JOptionPane error = new JOptionPane();
+							error.showMessageDialog(error, "Error en el login");
+							e1.printStackTrace();
+						}
+					}
+				}
+			});
 			txt_IntroduceDni.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
@@ -135,18 +156,13 @@ public class jd_buscar_dr extends JDialog {
 						try {
 			            	String dni = txt_IntroduceDni.getText().toString();			            	
 							String comprobar = consulta.consulta_doctor(dni);
-							
-			}
-							
-							
+							}
 						 catch (SQLException e1) {
 							// TODO Auto-generated catch block
 							JOptionPane error = new JOptionPane();
 							error.showMessageDialog(error, "Error en el login");
 							e1.printStackTrace();
-							
 						}
-						
 					}
 				});
 				btn_buscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

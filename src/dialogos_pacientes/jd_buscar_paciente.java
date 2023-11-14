@@ -27,6 +27,8 @@ import java.sql.SQLException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class jd_buscar_paciente extends JDialog {
 
@@ -71,6 +73,7 @@ public class jd_buscar_paciente extends JDialog {
 		}
 		{
 			txt_IntroduceDni = new JTextField();
+			
 			txt_IntroduceDni.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
@@ -95,6 +98,7 @@ public class jd_buscar_paciente extends JDialog {
 			txt_IntroduceDni.setBorder(null);
 			txt_IntroduceDni.setBackground(new Color(0, 128, 192));
 			txt_IntroduceDni.setBounds(110, 140, 382, 44);
+			txt_IntroduceDni.setFocusable(true);
 			contentPanel.add(txt_IntroduceDni);
 		}
 		{
@@ -142,6 +146,23 @@ public class jd_buscar_paciente extends JDialog {
 						//si no if no encontrado
 					}
 				});
+				txt_IntroduceDni.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyPressed(KeyEvent e) {
+						if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+							ConectorDB_mysql consulta= new ConectorDB_mysql();
+							String dni = txt_IntroduceDni.getText().toString();	
+							dispose();
+							try {
+								consulta.consulta_paciente(dni);
+								
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+					}
+				});
 				btn_buscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				btn_buscar.setBorderPainted(false);
 				btn_buscar.setFont(new Font("Barlow", Font.BOLD, 20));
@@ -169,6 +190,7 @@ public class jd_buscar_paciente extends JDialog {
 				buttonPane.add(btn_cancelar);
 			}
 		}
+		
 	}
 
 }

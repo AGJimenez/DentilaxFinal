@@ -409,10 +409,28 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         jmenu_consulta.add(jmenuitem_menu_consulta);
         
         jmenuitem_buscar_cita = new JMenuItem("Buscar cita");
+        jmenuitem_buscar_cita.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_consulta ventana = new jf_consulta();
+        		dialogos_consultas.jd_buscar_cita ventana_buscar = new dialogos_consultas.jd_buscar_cita();
+        		ventana.setVisible(true);
+        		ventana_buscar.setVisible(true);
+        	}
+        });
         jmenuitem_buscar_cita.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_consulta.add(jmenuitem_buscar_cita);
         
         jmenuitem_historial = new JMenuItem("Historial");
+        jmenuitem_historial.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_consulta ventana = new jf_consulta();
+        		dialogos_consultas.jd_historial_cita ventana_historial = new dialogos_consultas.jd_historial_cita();
+        		ventana.setVisible(true);
+        		ventana_historial.setVisible(true);
+        	}
+        });
         jmenuitem_historial.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_consulta.add(jmenuitem_historial);
         
@@ -606,17 +624,17 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         			//---ShortCuts para consultas---
         			if(combo.contains(KeyEvent.VK_1)&&combo.contains(KeyEvent.VK_C)&&combo.contains(16)) {
         				dispose();
-        				jf_consulta ventana = new jf_consulta();
-        				//dialogos_consultas.jd_buscar ventana_buscar = new dialogos_consultas.jd_buscar();
-        				ventana.setVisible(true);
-        				//ventana_buscar.setVisible(true);
+                		jf_consulta ventana = new jf_consulta();
+                		dialogos_consultas.jd_buscar_cita ventana_buscar = new dialogos_consultas.jd_buscar_cita();
+                		ventana.setVisible(true);
+                		ventana_buscar.setVisible(true);
         			}
         			if(combo.contains(KeyEvent.VK_2)&&combo.contains(KeyEvent.VK_C)&&combo.contains(16)) {
         				dispose();
-        				jf_consulta ventana = new jf_consulta();
-        				//dialogos_consultas.jd_buscar ventana_buscar = new dialogos_consultas.jd_buscar_paciente_editar();
-        				ventana.setVisible(true);
-        				//ventana_buscar.setVisible(true);
+                		jf_consulta ventana = new jf_consulta();
+                		dialogos_consultas.jd_historial_cita ventana_historial = new dialogos_consultas.jd_historial_cita();
+                		ventana.setVisible(true);
+                		ventana_historial.setVisible(true);
         			}
         			if(combo.contains(KeyEvent.VK_3)&&combo.contains(KeyEvent.VK_C)&&combo.contains(16)) {
         				dispose();

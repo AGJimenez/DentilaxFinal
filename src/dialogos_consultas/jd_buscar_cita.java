@@ -27,6 +27,8 @@ import java.sql.SQLException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class jd_buscar_cita extends JDialog {
 
@@ -147,6 +149,29 @@ public class jd_buscar_cita extends JDialog {
 		txtIntroduceFecha.setBackground(new Color(0, 128, 192));
 		txtIntroduceFecha.setBounds(100, 176, 382, 44);
 		contentPanel.add(txtIntroduceFecha);
+		txt_IntroduceDni.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+					txtIntroduceFecha.requestFocus();
+				}
+			}
+		});
+		txtIntroduceFecha.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+					dentilax_bdd.ConectorDB_mysql consulta= new dentilax_bdd.ConectorDB_mysql();
+					dispose();
+					try {
+						consulta.consulta_buscar_cita(txt_IntroduceDni.getText().toString(), txtIntroduceFecha.getText().toString());
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
+		});
 		
 		JSeparator separator = new JSeparator();
 		separator.setForeground(new Color(0, 128, 192));
@@ -167,14 +192,10 @@ public class jd_buscar_cita extends JDialog {
 						dispose();
 						try {
 							consulta.consulta_buscar_cita(txt_IntroduceDni.getText().toString(), txtIntroduceFecha.getText().toString());
-							
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
-						
-						
-						//si no if no encontrado
 					}
 				});
 				btn_buscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

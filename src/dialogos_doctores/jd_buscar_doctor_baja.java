@@ -26,6 +26,8 @@ import java.sql.SQLException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class jd_buscar_doctor_baja extends JDialog {
 
@@ -70,19 +72,33 @@ public class jd_buscar_doctor_baja extends JDialog {
 		}
 		{
 			txt_IntroduceDni = new JTextField();
+			txt_IntroduceDni.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyPressed(KeyEvent e) {
+					if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+						dentilax_bdd.ConectorDB_mysql consulta = new dentilax_bdd.ConectorDB_mysql();
+						try {
+							consulta.consulta_doctor_eliminar(txt_IntroduceDni.getText().toString());
+							
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						dispose();
+					}
+				}
+			});
 			txt_IntroduceDni.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
-					if (txt_IntroduceDni.getText().equals("Introduce DNI")) {
+					if (txt_IntroduceDni.getText().equals("Introduce DNI doctor")) {
 						txt_IntroduceDni.setText("");
-						txt_IntroduceDni.setForeground(Color.BLACK);
 	                }
 				}
 				@Override
 				public void focusLost(FocusEvent e) {
-					if (txt_IntroduceDni.getText().isEmpty()) {
-						txt_IntroduceDni.setForeground(new Color(0, 128, 192));
-						txt_IntroduceDni.setText("Introduce DNI");
+					if (txt_IntroduceDni.getText().equals("")) {
+						txt_IntroduceDni.setText("Introduce DNI doctor");
 	                }
 				}
 			});
@@ -135,8 +151,6 @@ public class jd_buscar_doctor_baja extends JDialog {
 							e1.printStackTrace();
 						}
 						dispose();
-						
-						
 					}
 				});
 				btn_buscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

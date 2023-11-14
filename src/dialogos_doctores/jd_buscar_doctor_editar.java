@@ -28,6 +28,8 @@ import java.awt.event.FocusEvent;
 import java.sql.SQLException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class jd_buscar_doctor_editar extends JDialog {
 
@@ -70,6 +72,24 @@ public class jd_buscar_doctor_editar extends JDialog {
 		}
 		{
 			txt_IntroduceDni = new JTextField();
+			txt_IntroduceDni.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyPressed(KeyEvent e) {
+					if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+						dispose();
+						ConectorDB_mysql consulta = new ConectorDB_mysql();
+						try {
+			            	String dni = txt_IntroduceDni.getText().toString();			            	
+							consulta.consulta_doctor_editar(dni);
+							consulta.consulta_doctor_cargar(dni);
+							}
+						 catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				}
+			});
 			txt_IntroduceDni.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
@@ -130,14 +150,10 @@ public class jd_buscar_doctor_editar extends JDialog {
 			            	String dni = txt_IntroduceDni.getText().toString();			            	
 							consulta.consulta_doctor_editar(dni);
 							consulta.consulta_doctor_cargar(dni);
-			}
-							
-							
+							}
 						 catch (SQLException e1) {
 							// TODO Auto-generated catch block
-							
 							e1.printStackTrace();
-							
 						}
 					}
 				});
