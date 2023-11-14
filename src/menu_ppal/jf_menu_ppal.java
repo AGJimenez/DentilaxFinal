@@ -422,6 +422,12 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         jmenu_consulta.add(jmenuitem_buscar_cita);
         
         jmenuitem_historial = new JMenuItem("Historial");
+        jmenuitem_historial.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dialogos_consultas.jd_historial_cita ventana = new dialogos_consultas.jd_historial_cita();
+        		ventana.setVisible(true);
+        	}
+        });
         jmenuitem_historial.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_consulta.add(jmenuitem_historial);
         

@@ -492,6 +492,12 @@ public class jf_doctores extends javax.swing.JFrame {
 	        jMenu5.add(jmenuitem_menu_consulta);
 	        
 	        JMenuItem jmenuitem_buscar_cita = new JMenuItem("Buscar cita");
+	        jmenuitem_buscar_cita.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		dialogos_consultas.jd_historial_cita ventana = new dialogos_consultas.jd_historial_cita();
+	        		ventana.setVisible(true);
+	        	}
+	        });
 	        jmenuitem_buscar_cita.setFont(new Font("Arial", Font.PLAIN, 12));
 	        jMenu5.add(jmenuitem_buscar_cita);
 	        
