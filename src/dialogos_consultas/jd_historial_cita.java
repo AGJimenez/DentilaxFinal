@@ -49,44 +49,44 @@ public class jd_historial_cita extends JDialog {
 		setTitle("Historial");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_historial_cita.class.getResource("/iconos_menus/dentilaxIcono.png")));
 		setResizable(false);
-		setBounds(100, 100, 1198, 531);
+		setBounds(100, 100, 711, 462);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(255, 255, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(null);
 		setLocationRelativeTo(this);
+		contentPanel.setLayout(null);
 		
 		JLabel lblDni = new JLabel("PACIENTES");
+		lblDni.setBounds(569, 118, 103, 18);
 		lblDni.setForeground(new Color(0, 128, 192));
 		lblDni.setFont(new Font("Barlow", Font.BOLD, 20));
-		lblDni.setBounds(569, 118, 103, 18);
 		contentPanel.add(lblDni);
 		
 		JLabel lblApellidos = new JLabel("TIPO");
+		lblApellidos.setBounds(236, 115, 114, 24);
 		lblApellidos.setForeground(new Color(0, 128, 192));
 		lblApellidos.setFont(new Font("Barlow", Font.BOLD, 20));
-		lblApellidos.setBounds(236, 115, 114, 24);
 		contentPanel.add(lblApellidos);
 		JLabel lblNombre = new JLabel("FECHA");
+		lblNombre.setBounds(25, 112, 114, 31);
 		lblNombre.setForeground(new Color(0, 128, 192));
 		lblNombre.setFont(new Font("Barlow", Font.BOLD, 20));
-		lblNombre.setBounds(25, 112, 114, 31);
 		contentPanel.add(lblNombre);
 		
 		txtIntroduceTexto = new JTextField();
+		txtIntroduceTexto.setBounds(12, 104, 674, 40);
 		txtIntroduceTexto.setEditable(false);
 		txtIntroduceTexto.setBackground(new Color(191, 231, 249));
 		txtIntroduceTexto.setFont(new Font("Arial", Font.PLAIN, 14));
 		txtIntroduceTexto.setText(" ");
-		txtIntroduceTexto.setBounds(12, 104, 1142, 40);
 		contentPanel.add(txtIntroduceTexto);
 		txtIntroduceTexto.setColumns(10);
 		
 		JPanel panel = new JPanel();
+		panel.setBounds(0, 37, 652, 50);
 		panel.setBackground(new Color(191, 231, 249));
 		panel.setForeground(new Color(191, 231, 249));
-		panel.setBounds(0, 37, 652, 50);
 		contentPanel.add(panel);
 		panel.setLayout(null);
 		
@@ -147,46 +147,6 @@ public class jd_historial_cita extends JDialog {
 	}
 
 		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setPreferredSize(new Dimension(30, 80));
-			buttonPane.setSize(new Dimension(20, 20));
-			buttonPane.setBackground(new Color(255, 255, 255));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			buttonPane.setLayout(null);
-			{
-				JButton btn_imprimir = new JButton("CONFIRMAR");
-				btn_imprimir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-				btn_imprimir.setForeground(Color.WHITE);
-				btn_imprimir.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-					}
-				});
-				btn_imprimir.setBorderPainted(false);
-				btn_imprimir.setBorder(null);
-				btn_imprimir.setBackground(new Color(32, 160, 216));
-				btn_imprimir.setBounds(673, 11, 153, 43);
-				btn_imprimir.setFont(new Font("Barlow", Font.BOLD, 20));
-				btn_imprimir.setActionCommand("OK");
-				buttonPane.add(btn_imprimir);
-				getRootPane().setDefaultButton(btn_imprimir);
-			}
-			{
-				JButton btn_salir = new JButton("CANCELAR");
-				btn_salir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-				btn_salir.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent e) {
-						dispose();
-					}
-				});
-				btn_salir.setForeground(Color.WHITE);
-				btn_salir.setBorderPainted(false);
-				btn_salir.setBorder(null);
-				btn_salir.setBackground(new Color(32, 160, 216));
-				btn_salir.setBounds(990, 11, 153, 43);
-				btn_salir.setFont(new Font("Barlow", Font.BOLD, 20));
-				btn_salir.setActionCommand("Cancel");
-				buttonPane.add(btn_salir);
-			}
 		}
 	}
 
