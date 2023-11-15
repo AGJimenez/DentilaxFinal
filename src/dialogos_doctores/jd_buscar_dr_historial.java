@@ -21,12 +21,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Cursor;
 import javax.swing.ListSelectionModel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class jd_buscar_dr_historial extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txt_nombre_dr;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -54,12 +57,12 @@ public class jd_buscar_dr_historial extends JDialog {
 		contentPanel.setPreferredSize(new Dimension(1198, 531));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(null);
 		setLocationRelativeTo(contentPanel);
+		contentPanel.setLayout(null);
 		{
 			JPanel panel = new JPanel();
-			panel.setBackground(new Color(191, 231, 249));
 			panel.setBounds(0, 32, 473, 54);
+			panel.setBackground(new Color(191, 231, 249));
 			contentPanel.add(panel);
 			panel.setLayout(null);
 			{
@@ -84,26 +87,29 @@ public class jd_buscar_dr_historial extends JDialog {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(51, 150, 733, 251);
 		contentPanel.add(scrollPane);
-		
-		JList jl_historial_dr = new JList();
-		jl_historial_dr.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		jl_historial_dr.setSelectionBackground(new Color(191, 231, 249));
-		jl_historial_dr.setFont(new Font("Arial", Font.BOLD, 16));
-		jl_historial_dr.setBackground(new Color(255, 255, 255));
-		jl_historial_dr.setModel(new AbstractListModel() {
-			String[] values = new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16"};
-			public int getSize() {
-				return values.length;
-			}
-			public Object getElementAt(int index) {
-				return values[index];
-			}
-		});
-		scrollPane.setViewportView(jl_historial_dr);
+		{
+			table = new JTable();
+			table.setModel(new DefaultTableModel(
+				new Object[][] {
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+				},
+				new String[] {
+					"New column", "New column", "New column"
+				}
+			));
+			scrollPane.setViewportView(table);
+		}
 		{
 			JPanel panel_contened = new JPanel();
-			panel_contened.setBackground(new Color(32, 160, 216));
 			panel_contened.setBounds(51, 97, 733, 43);
+			panel_contened.setBackground(new Color(32, 160, 216));
 			contentPanel.add(panel_contened);
 			panel_contened.setLayout(null);
 			{
@@ -133,9 +139,9 @@ public class jd_buscar_dr_historial extends JDialog {
 			buttonPane.setBackground(Color.WHITE);
 			buttonPane.setPreferredSize(new Dimension(10, 60));
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			buttonPane.setLayout(null);
 			{
 				JButton btn_salir = new JButton("SALIR");
+				btn_salir.setBounds(633, 0, 153, 43);
 				btn_salir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 				btn_salir.setBorder(null);
 				btn_salir.addActionListener(new ActionListener() {
@@ -143,11 +149,11 @@ public class jd_buscar_dr_historial extends JDialog {
 						dispose();
 					}
 				});
+				buttonPane.setLayout(null);
 				btn_salir.setBorderPainted(false);
 				btn_salir.setFont(new Font("Barlow", Font.BOLD, 20));
 				btn_salir.setForeground(new Color(255, 255, 255));
 				btn_salir.setBackground(new Color(32, 160, 216));
-				btn_salir.setBounds(633, 0, 153, 43);
 				btn_salir.setActionCommand("Cancel");
 				buttonPane.add(btn_salir);
 			}
