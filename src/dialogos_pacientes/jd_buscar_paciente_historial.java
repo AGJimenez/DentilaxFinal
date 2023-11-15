@@ -18,6 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.AbstractListModel;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Cursor;
 import javax.swing.ListSelectionModel;
@@ -25,12 +26,18 @@ import java.awt.Toolkit;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import Modelo.Doctor;
+import Modelo.Paciente;
+import dentilax_bdd.ConectorDB_mysql;
+
 public class jd_buscar_paciente_historial extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txt_nombre_dr;
-	private JTable table;
+	private static JTable table;
+	private static DefaultTableModel model;
+	
 
 	/**
 	 * Launch the application.
@@ -87,26 +94,9 @@ public class jd_buscar_paciente_historial extends JDialog {
 			}
 		}
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(51, 150, 733, 251);
-		contentPanel.add(scrollPane);
-		{
-			table = new JTable();
-			table.setModel(new DefaultTableModel(
-				new Object[][] {
-					{null, null, null},
-					{null, null, null},
-					{null, null, null},
-					{null, null, null},
-					{null, null, null},
-					{null, null, null},
-					{null, null, null},
-				},
-				new String[] {
-					"New column", "New column", "New column"
-				}
-			));
-			scrollPane.setViewportView(table);
+	
+		
+	
 		}
 		{
 			JPanel panel_contened = new JPanel();
@@ -159,6 +149,77 @@ public class jd_buscar_paciente_historial extends JDialog {
 				btn_salir.setActionCommand("Cancel");
 				buttonPane.add(btn_salir);
 			}
+			
+			JScrollPane scrollPane = new JScrollPane();
+	        scrollPane.setBounds(12, 147, 674, 265);
+	        contentPanel.add(scrollPane);
+
+	         table = new JTable();
+	         model=new DefaultTableModel();
+
+	            table.setModel(new DefaultTableModel(
+	                new Object[][] {
+	                    {null, null, null},
+	                    {null, null, null},
+	                    {null, null, null},
+	                    {null, null, null},
+	                    {null, null, null},
+	                    {null, null, null},
+	                    {null, null, null},
+	                    {null, null, null},
+	                    {null, null, null},
+	                    {null, null, null},
+	                    {null, null, null},
+	                    {null, null, null},
+	                    {null, null, null},
+	                    {null, null, null},
+	                    {null, null, null},
+	                },
+	                new String[] {
+	                    "Nombre", "Seguro", "DNI"
+	                }
+	            ));
+	            model.addColumn("Nombre");
+	            model.addColumn("Seguro");
+	            model.addColumn("DNI");
+
+
+	        scrollPane.setColumnHeaderView(table);
+			
+			
+			
+			ConectorDB_mysql conection = new ConectorDB_mysql();
+			conection.conectar();
+			
+			//System.out.println(conection.obtenerInfoPaciente().toString());
+			llenarTabla(conection.obtenerInfoPaciente() );
+			
+			
 		}
+		public static DefaultTableModel llenarTabla(List<Paciente> historialPaciente) {
+	        // Nos aseguramos de que la lista no sea Null
+			
+			// System.out.println(historialCitas.toString());
+	        if (historialPaciente != null) {
+	            // Limpiamos el modelo de la tabla antes de agregar nuevos datos
+	            DefaultTableModel model = (DefaultTableModel) table.getModel();
+	            model.setRowCount(0);
+
+	            for (Paciente historial : historialPaciente) {
+	                Object[] fila = new Object[3];
+	                fila[0] = historial.getNombre();
+	                fila[1] = historial.getSeguro();
+	                fila[2] = historial.getDNI_paciente();
+
+	             //   model.setRowCount(model.getRowCount()+1);
+	                model.addRow(fila);
+	            }
+
+
+	        }
+	  
+
+	        return model;
+	    }	
 	}
-}
+

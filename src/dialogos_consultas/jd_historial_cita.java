@@ -21,6 +21,7 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
+import Modelo.Cita;
 import dentilax_bdd.ConectorDB_mysql;
 
 public class jd_historial_cita extends JDialog {
@@ -45,7 +46,6 @@ public class jd_historial_cita extends JDialog {
 			//lista que viene de conectorDB
 
 				
-				System.out.println(new ConectorDB_mysql().obtenerInfoCitas().toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -147,39 +147,39 @@ public class jd_historial_cita extends JDialog {
 			ConectorDB_mysql conection = new ConectorDB_mysql();
 			conection.conectar();
 			
-			System.out.println("DUCK HOL");
+			//System.out.println(conection.obtenerInfoCitas().toString());
 			llenarTabla(conection.obtenerInfoCitas() );
-			System.out.println(conection.obtenerInfoCitas().toString());
 			
 	}
 	
 
 		
-	   public static DefaultTableModel llenarTabla(List<jd_historial_cita> historialCitas) {
-	        // Nos aseguramos de que la lista no sea Null
-	        if (historialCitas != null) {
-	            // Limpiamos el modelo de la tabla antes de agregar nuevos datos
-	            DefaultTableModel model = (DefaultTableModel) table.getModel();
-	            model.setRowCount(0);
-	            
-	            for (jd_historial_cita historial : historialCitas) {
-	                Object[] fila = new Object[3];
-	                fila[0] = historial.getFecha();
-	                fila[1] = historial.getEspecialidad();
-	                fila[2] = historial.getDNI_paciente();
-	                
-	             //   model.setRowCount(model.getRowCount()+1);
-	                model.addRow(fila);
-	            }
-	            
-	         
-	        }
-	        System.out.println("ETST DUCK");
-	        
-	        
-	        
-	        return model;
-	    }
+	public static DefaultTableModel llenarTabla(List<Cita> historialCitas) {
+        // Nos aseguramos de que la lista no sea Null
+		
+		// System.out.println(historialCitas.toString());
+        if (historialCitas != null) {
+            // Limpiamos el modelo de la tabla antes de agregar nuevos datos
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            model.setRowCount(0);
+
+            for (Cita historial : historialCitas) {
+                Object[] fila = new Object[3];
+                fila[0] = historial.getFecha();
+                fila[1] = historial.getEspecialidad();
+                fila[2] = historial.getDniPaciente();
+
+             //   model.setRowCount(model.getRowCount()+1);
+                model.addRow(fila);
+            }
+
+
+        }
+  
+
+
+        return model;
+    }
 	
 		private Object getEspecialidad() {
 		// TODO Auto-generated method stub

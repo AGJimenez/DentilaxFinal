@@ -101,8 +101,8 @@ public class jf_consulta extends JFrame {
         btn_historial.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	
-               //HISYTORIAL 
-            	System.out.println("daqswdasd");
+               //HISTORIAL 
+            	System.out.println("prueba básica sout");
              
             	new jd_historial_cita().setVisible(true);
                 

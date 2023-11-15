@@ -12,6 +12,9 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
+import Modelo.Cita;
+import Modelo.Doctor;
+import Modelo.Paciente;
 import dialogos_consultas.jd_historial_cita;
 import dialogos_consultas.jd_nueva_consulta;
 
@@ -39,10 +42,10 @@ public class ConectorDB_mysql {
 	}
 	
 	public Connection conectar() {
-		Connection conexion = null;
+	
 		
 		try {
-			conexion = DriverManager.getConnection(URL, USUARIO, CLAVE);
+			conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 			System.out.println("Conexión OK");
 			 statement = conect.createStatement();
 			
@@ -52,7 +55,7 @@ public class ConectorDB_mysql {
 			e.printStackTrace();
 		}
 		
-		return conexion;
+		return conect;
 	}
 	public String consulta_login(String user, String pass) throws SQLException
 	{
@@ -385,46 +388,119 @@ public String consulta_doctor_eliminar(String dni) throws SQLException{
 		
 	}
 	
-	public List<jd_historial_cita> obtenerInfoCitas() {
-	    List<jd_historial_cita> historiales = new ArrayList<>();
+	public List<Cita> obtenerInfoCitas() {
+        List<Cita> historiales = new ArrayList<>();
 
-	    try {
-	        conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
-	        statement = conect.createStatement();
-	        String query = "SELECT Fecha, Especialidad, DNI_paciente FROM citas";
-	        ResultSet resultSet = statement.executeQuery(query);
+        try {
+            conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+            statement = conect.createStatement();
+            String query = "SELECT Fecha, Especialidad, DNI_paciente FROM citas";
+            ResultSet resultSet = statement.executeQuery(query);
 
-	        while (resultSet.next()) {
-	            String fecha = resultSet.getString("Fecha");
-	            String especialidad = resultSet.getString("Especialidad");
-	            String dniPaciente = resultSet.getString("DNI_paciente");
+            while (resultSet.next()) {
+                String fecha = resultSet.getString("Fecha");
+                String especialidad = resultSet.getString("Especialidad");
+                String dniPaciente = resultSet.getString("DNI_paciente");
 
-	           // jd_historial_cita historial = new jd_historial_cita();
-	          //  historial.setFecha(fecha);
-	          //  historial.setEspecialidad(especialidad);
-	          //  historial.setDNI_paciente(dniPaciente);
+               Cita historial = new Cita(fecha,especialidad,dniPaciente);
 
-	        //    historiales.add(historial);
-	        }
+                historiales.add(historial);
+            }
 
-	    } catch (SQLException ex) {
-	        ex.printStackTrace();  // 
-	    } finally {
-	        // Aqui vamos a cerrar recursos (statement y conexión) en el bloque finally
-	        try {
-	            if (statement != null) {
-	                statement.close();
-	            }
-	            if (conect != null) {
-	                conect.close();
-	            }
-	        } catch (SQLException e) {
-	            e.printStackTrace();
-	        }
-	    }
+        } catch (SQLException ex) {
+            ex.printStackTrace();  // 
+        } finally {
+            // Aqui vamos a cerrar recursos (statement y conexión) en el bloque finally
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                if (conect != null) {
+                    conect.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
 
-	    return historiales;
-	}	
+        return historiales;
+    }
+	
+	public List<Doctor> obtenerInfoDoctor() {
+        List<Doctor> historiales = new ArrayList<>();
+
+        try {
+            conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+            statement = conect.createStatement();
+            String query = "SELECT Nombre, Especialidad, DNI_doctor FROM doctores";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                String nombre = resultSet.getString("Nombre");
+                String especialidad = resultSet.getString("Especialidad");
+                String dniDoctor = resultSet.getString("DNI_doctor");
+
+               Doctor historial = new Doctor(nombre,especialidad,dniDoctor);
+
+                historiales.add(historial);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();  // 
+        } finally {
+            // Aqui vamos a cerrar recursos (statement y conexión) en el bloque finally
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                if (conect != null) {
+                    conect.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return historiales;
+    }
+	
+	public List<Paciente> obtenerInfoPaciente() {
+        List<Paciente> historiales = new ArrayList<>();
+
+        try {
+            conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+            statement = conect.createStatement();
+            String query = "SELECT Nombre, Seguro, DNI_paciente FROM pacientes";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                String nombre = resultSet.getString("Nombre");
+                String seguro = resultSet.getString("Seguro");
+                String dniPaciente = resultSet.getString("DNI_paciente");
+
+               Paciente historial = new Paciente(nombre,seguro,dniPaciente);
+
+                historiales.add(historial);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();  // 
+        } finally {
+            // Aqui vamos a cerrar recursos (statement y conexión) en el bloque finally
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                if (conect != null) {
+                    conect.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return historiales;
+    }
 	
 public String consulta_doctor_ficha(String dni) throws SQLException{
 		
