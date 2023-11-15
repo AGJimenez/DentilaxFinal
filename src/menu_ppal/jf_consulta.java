@@ -24,6 +24,9 @@ import javax.swing.Timer;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
+
+import dialogos_consultas.jd_historial_cita;
+
 import java.awt.Font;
 import javax.swing.JMenuItem;
 import java.awt.Dimension;
@@ -98,10 +101,10 @@ public class jf_consulta extends JFrame {
         btn_historial.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	
-               
-                dialogos_consultas.jd_historial_cita ventana = new dialogos_consultas.jd_historial_cita();
-                ventana.setVisible(true);
-                
+               //HISYTORIAL 
+            	System.out.println("daqswdasd");
+             
+            	new jd_historial_cita().setVisible(true);
                 
                 
         	}

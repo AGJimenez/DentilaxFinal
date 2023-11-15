@@ -21,14 +21,16 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
+import dentilax_bdd.ConectorDB_mysql;
+
 public class jd_historial_cita extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txtIntroduceTexto;
-	private JTable table;
-	private DefaultTableModel model;
-	private JTable table_1;
+	private static JTable table ;
+	private static DefaultTableModel model;
+	private ConectorDB_mysql db = new ConectorDB_mysql();
 
 	/**
 	 * Launch the application.
@@ -38,6 +40,12 @@ public class jd_historial_cita extends JDialog {
 			jd_historial_cita dialog = new jd_historial_cita();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
+	
+			//aqui tienes que obtener la lista
+			//lista que viene de conectorDB
+
+				
+				System.out.println(new ConectorDB_mysql().obtenerInfoCitas().toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -47,6 +55,8 @@ public class jd_historial_cita extends JDialog {
 	 * Create the dialog.
 	 */
 	public jd_historial_cita() {
+
+			
 		setTitle("Historial");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_historial_cita.class.getResource("/iconos_menus/dentilaxIcono.png")));
 		setResizable(false);
@@ -103,43 +113,49 @@ public class jd_historial_cita extends JDialog {
 		table = new JTable();
 		 model=new DefaultTableModel();
 	
-			table.setModel(model);
+			table.setModel(new DefaultTableModel(
+				new Object[][] {
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+					{null, null, null},
+				},
+				new String[] {
+					"Fecha", "Tipo", "Paciente"
+				}
+			));
 			model.addColumn("Fecha");
 			model.addColumn("Tipo");
 			model.addColumn("Paciente");
 		    
 		 
 		scrollPane.setColumnHeaderView(table);
+
+	
 		
-		table_1 = new JTable();
-		table_1.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-				{null, null, null},
-			},
-			new String[] {
-				"New column", "New column", "New column"
-			}
-		));
-		scrollPane.setViewportView(table_1);
+			ConectorDB_mysql conection = new ConectorDB_mysql();
+			conection.conectar();
+			
+			System.out.println("DUCK HOL");
+			llenarTabla(conection.obtenerInfoCitas() );
+			System.out.println(conection.obtenerInfoCitas().toString());
+			
 	}
 	
 
 		
-	   public DefaultTableModel llenarTabla(List<jd_historial_cita> historialCitas) {
+	   public static DefaultTableModel llenarTabla(List<jd_historial_cita> historialCitas) {
 	        // Nos aseguramos de que la lista no sea Null
 	        if (historialCitas != null) {
 	            // Limpiamos el modelo de la tabla antes de agregar nuevos datos
@@ -152,10 +168,13 @@ public class jd_historial_cita extends JDialog {
 	                fila[1] = historial.getEspecialidad();
 	                fila[2] = historial.getDNI_paciente();
 	                
-	                model.setRowCount(model.getRowCount()+1);
+	             //   model.setRowCount(model.getRowCount()+1);
 	                model.addRow(fila);
 	            }
+	            
+	         
 	        }
+	        System.out.println("ETST DUCK");
 	        
 	        
 	        

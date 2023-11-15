@@ -399,12 +399,12 @@ public String consulta_doctor_eliminar(String dni) throws SQLException{
 	            String especialidad = resultSet.getString("Especialidad");
 	            String dniPaciente = resultSet.getString("DNI_paciente");
 
-	            jd_historial_cita historial = new jd_historial_cita();
+	           // jd_historial_cita historial = new jd_historial_cita();
 	          //  historial.setFecha(fecha);
 	          //  historial.setEspecialidad(especialidad);
 	          //  historial.setDNI_paciente(dniPaciente);
 
-	            historiales.add(historial);
+	        //    historiales.add(historial);
 	        }
 
 	    } catch (SQLException ex) {
