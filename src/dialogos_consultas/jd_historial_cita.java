@@ -28,6 +28,7 @@ public class jd_historial_cita extends JDialog {
 	private JTextField txtIntroduceTexto;
 	private JTable table;
 	private DefaultTableModel model;
+	private JTable table_1;
 
 	/**
 	 * Launch the application.
@@ -109,26 +110,56 @@ public class jd_historial_cita extends JDialog {
 		    
 		 
 		scrollPane.setColumnHeaderView(table);
+		
+		table_1 = new JTable();
+		table_1.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+				{null, null, null},
+			},
+			new String[] {
+				"New column", "New column", "New column"
+			}
+		));
+		scrollPane.setViewportView(table_1);
 	}
 	
 
 		
-	   public void llenarTabla(List<jd_historial_cita> historialCitas) {
+	   public DefaultTableModel llenarTabla(List<jd_historial_cita> historialCitas) {
 	        // Nos aseguramos de que la lista no sea Null
 	        if (historialCitas != null) {
 	            // Limpiamos el modelo de la tabla antes de agregar nuevos datos
 	            DefaultTableModel model = (DefaultTableModel) table.getModel();
 	            model.setRowCount(0);
-
+	            
 	            for (jd_historial_cita historial : historialCitas) {
 	                Object[] fila = new Object[3];
 	                fila[0] = historial.getFecha();
 	                fila[1] = historial.getEspecialidad();
 	                fila[2] = historial.getDNI_paciente();
-
+	                
+	                model.setRowCount(model.getRowCount()+1);
 	                model.addRow(fila);
 	            }
 	        }
+	        
+	        
+	        
+	        return model;
 	    }
 	
 		private Object getEspecialidad() {
