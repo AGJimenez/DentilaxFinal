@@ -160,11 +160,11 @@ public class jf_doctores extends javax.swing.JFrame {
 	        btn_editar_dr.setBorder(null);
 	        jp_menu.add(btn_editar_dr);
 	        
-	        lbl_fecha = new JLabel("");
-	        lbl_fecha.setBackground(Color.WHITE);
-	        lbl_fecha.setFont(new Font("Barlow", Font.PLAIN, 25));
-	        lbl_fecha.setBounds(1184, 642, 240, 23);
-	        jp_menu.add(lbl_fecha);
+	        fecha = new JLabel("");
+	        fecha.setBackground(Color.WHITE);
+	        fecha.setFont(new Font("Barlow", Font.PLAIN, 25));
+	        fecha.setBounds(1184, 642, 240, 23);
+	        jp_menu.add(fecha);
 	        
 	        Timer timer = new Timer(1000, new ActionListener() {
 	            @Override
@@ -172,7 +172,7 @@ public class jf_doctores extends javax.swing.JFrame {
 	            	 Date fechaActual = new Date();
 	                 SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 	                 String fechaHoraFormateada = formato.format(fechaActual);
-	                 lbl_fecha.setText(fechaHoraFormateada);
+	                 fecha.setText(fechaHoraFormateada);
 	            }
 	        });
 	        timer.start();
@@ -841,7 +841,7 @@ public class jf_doctores extends javax.swing.JFrame {
 	    private JMenuItem jmenuitem_historial_pago;
 	    private JMenuItem jmenuitem_nueva_factura;
 	    private JMenuItem jmenuitem_balance_gastos;
-	    private JLabel lbl_fecha;
+	    private JLabel fecha;
 	    private JMenuItem jmenuitem_editar_doctor;
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {

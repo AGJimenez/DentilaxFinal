@@ -56,11 +56,11 @@ public class jf_menu_doctor extends javax.swing.JFrame {
         btn_buscar_paciente_dr.setBounds(433, 218, 282, 98);
         jp_menu.add(btn_buscar_paciente_dr);
         
-        lbl_fecha = new JLabel("");
-        lbl_fecha.setBackground(Color.WHITE);
-        lbl_fecha.setFont(new Font("Barlow", Font.PLAIN, 25));
-        lbl_fecha.setBounds(1184, 642, 240, 23);
-        jp_menu.add(lbl_fecha);
+        fecha = new JLabel("");
+        fecha.setBackground(Color.WHITE);
+        fecha.setFont(new Font("Barlow", Font.PLAIN, 25));
+        fecha.setBounds(1184, 642, 240, 23);
+        jp_menu.add(fecha);
         
         Timer timer = new Timer(1000, new ActionListener() {
             @Override
@@ -68,7 +68,7 @@ public class jf_menu_doctor extends javax.swing.JFrame {
             	 Date fechaActual = new Date();
                  SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                  String fechaHoraFormateada = formato.format(fechaActual);
-                 lbl_fecha.setText(fechaHoraFormateada);
+                 fecha.setText(fechaHoraFormateada);
             }
         });
         timer.start();
@@ -188,5 +188,5 @@ public class jf_menu_doctor extends javax.swing.JFrame {
     private javax.swing.JMenuBar menu_inicio;
     private JMenu mn_ayuda;
     private JSeparator separator;
-    private JLabel lbl_fecha;
+    private JLabel fecha;
 }

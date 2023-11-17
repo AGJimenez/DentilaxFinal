@@ -447,12 +447,12 @@ public class jf_pacientes extends JFrame {
 		jp_menu.setBounds(0, 0, 1450, 726);
 		contentPane.add(jp_menu);
 		
-		JLabel lbl_fecha = new JLabel("");
+		JLabel fecha = new JLabel("");
 		
-        lbl_fecha.setBackground(Color.WHITE);
-        lbl_fecha.setFont(new Font("Barlow", Font.PLAIN, 25));
-        lbl_fecha.setBounds(1184, 642, 240, 23);
-        jp_menu.add(lbl_fecha);
+        fecha.setBackground(Color.WHITE);
+        fecha.setFont(new Font("Barlow", Font.PLAIN, 25));
+        fecha.setBounds(1184, 642, 240, 23);
+        jp_menu.add(fecha);
         
         combo = new ArrayList<>();
         btn_inicio.setFocusable(true);
@@ -642,7 +642,7 @@ public class jf_pacientes extends JFrame {
             	 Date fechaActual = new Date();
                  SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                  String fechaHoraFormateada = formato.format(fechaActual);
-                 lbl_fecha.setText(fechaHoraFormateada);
+                 fecha.setText(fechaHoraFormateada);
             }
         });
         timer.start();
@@ -712,14 +712,14 @@ public class jf_pacientes extends JFrame {
 			gl_jp_menu.createParallelGroup(Alignment.LEADING)
 				.addGroup(Alignment.TRAILING, gl_jp_menu.createSequentialGroup()
 					.addContainerGap(1373, Short.MAX_VALUE)
-					.addComponent(lbl_fecha)
+					.addComponent(fecha)
 					.addGap(31))
 		);
 		gl_jp_menu.setVerticalGroup(
 			gl_jp_menu.createParallelGroup(Alignment.LEADING)
 				.addGroup(Alignment.TRAILING, gl_jp_menu.createSequentialGroup()
 					.addContainerGap(666, Short.MAX_VALUE)
-					.addComponent(lbl_fecha)
+					.addComponent(fecha)
 					.addGap(46))
 		);
 		jp_menu.setLayout(gl_jp_menu);

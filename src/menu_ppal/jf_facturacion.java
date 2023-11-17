@@ -668,11 +668,11 @@ public class jf_facturacion extends JFrame {
         jp_menu.add(btn_balance_gastos);
         jp_menu.add(btn_nueva_factura);
         
-        lbl_fecha = new JLabel("");
-        lbl_fecha.setBackground(Color.WHITE);
-        lbl_fecha.setFont(new Font("Barlow", Font.PLAIN, 25));
-        lbl_fecha.setBounds(1184, 642, 240, 23);
-        jp_menu.add(lbl_fecha);
+        fecha = new JLabel("");
+        fecha.setBackground(Color.WHITE);
+        fecha.setFont(new Font("Barlow", Font.PLAIN, 25));
+        fecha.setBounds(1184, 642, 240, 23);
+        jp_menu.add(fecha);
         
         Timer timer = new Timer(1000, new ActionListener() {
             @Override
@@ -680,7 +680,7 @@ public class jf_facturacion extends JFrame {
             	 Date fechaActual = new Date();
                  SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
                  String fechaHoraFormateada = formato.format(fechaActual);
-                 lbl_fecha.setText(fechaHoraFormateada);
+                 fecha.setText(fechaHoraFormateada);
             }
         });
         timer.start();
@@ -731,7 +731,7 @@ public class jf_facturacion extends JFrame {
     private javax.swing.JMenuBar menu_inicio;
     private JButton btn_balance_gastos;
     private JButton btn_inicio;
-    private JLabel lbl_fecha;
+    private JLabel fecha;
     private JPopupMenu popupMenu;
     private JMenuItem mntmNewMenuItem;
     private JMenuItem mntmNewMenuItem_1;
