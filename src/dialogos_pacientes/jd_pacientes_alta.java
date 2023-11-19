@@ -403,17 +403,17 @@ public class jd_pacientes_alta extends JDialog {
 			btn_anadir.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					//sql
-					String nombre = txt_nombre.getText().toString();
-					String apellidos = txt_apellidos.getText().toString();
 					String dni = txt_dni.getText().toString();
+					String apellidos = txt_apellidos.getText().toString();
+					String nombre = txt_nombre.getText().toString();
 					String nacimiento = txt_nacimiento.getText().toString();
-					String telefono = txt_telefono.getText().toString();
-					String correo = txt_correo.getText().toString();
 					String seguro = txt_seguro.getText().toString();
 					String estado = "alta";
-					String direccion = txt_direccion.getText().toString();
-					String observaciones = txt_observaciones.getText().toString();
 					String genero="";
+					String observaciones = txt_observaciones.getText().toString();
+					String telefono = txt_telefono.getText().toString();
+					String correo = txt_correo.getText().toString();
+					String direccion = txt_direccion.getText().toString();
 					String btn_seleccionado = getSelectedButton(btn_group_genero);
 		            if (btn_seleccionado != null) {
 		                if (btn_seleccionado.equals("Varón")) {
@@ -433,7 +433,7 @@ public class jd_pacientes_alta extends JDialog {
 
 		            ConectorDB_mysql bdd = new ConectorDB_mysql();
 		            try {
-						bdd.insertar_paciente(dni, nombre, apellidos, nacimiento, genero, estado, telefono, correo, direccion, seguro, observaciones);				
+						bdd.insertar_paciente(dni, apellidos, nombre, nacimiento, seguro, estado, genero, observaciones, telefono, correo, direccion);				
 						dispose();
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block

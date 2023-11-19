@@ -721,8 +721,8 @@ public void baja_doctor(String dni) throws SQLException {
     }
 }
 
-public void insertar_paciente(String dni, String apellidos, String nombre, String nacimiento, String telefono, String correo, String direccion, String seguro,
-		String observaciones, String genero, String estado) throws SQLException{
+public void insertar_paciente(String dni, String apellidos, String nombre, String nacimiento, String seguro, String estado, String genero, String observaciones,
+		String telefono, String correo, String direccion) throws SQLException{
 	
 	try {//inserto paciente 
 		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
