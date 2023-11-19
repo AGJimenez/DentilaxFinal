@@ -727,8 +727,8 @@ public void insertar_paciente(String dni, String apellidos, String nombre, Strin
 	try {//inserto paciente 
 		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 		statement = conect.createStatement();
-		String query = "INSERT INTO pacientes (DNI_paciente, Nombre, Apellidos, Nacimiento, Genero, Estado, Telefono, Correo, Direccion, Seguro, Observaciones) " +
-            "VALUES ('" + dni + "', '" + nombre + "', '" + apellidos + "', '" + nacimiento + "', '" + genero + "', '" + estado + "', '" + telefono + "', '" + correo + "', '" + direccion + "', '" + seguro + "', '" + observaciones + "')";
+		String query = "INSERT INTO pacientes (DNI_paciente, Apellidos, Nombre, Nacimiento, Seguro, Estado, Genero, Observaciones, Telefono, Correo, Direccion) " +
+            "VALUES ('" + dni + "', '" + apellidos + "', '" + nombre + "', '" + nacimiento + "', '" + seguro + "', '" + estado + "', '" + genero + "', '" + observaciones + "', '" + telefono + "', '" + correo + "', '" + direccion + "')";
 
 		int fila = statement.executeUpdate(query);
 		
