@@ -518,10 +518,28 @@ public class jf_doctores extends javax.swing.JFrame {
 	        jMenu5.add(jmenuitem_historial);
 	        
 	        JMenuItem jmenuitem_eliminar_cita = new JMenuItem("Eliminar cita");
+	        jmenuitem_eliminar_cita.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		dispose();
+	        		jf_consulta ventana = new jf_consulta();
+	        		dialogos_consultas.jd_buscar_consulta_eliminar ventana_historial = new dialogos_consultas.jd_buscar_consulta_eliminar();
+	        		ventana.setVisible(true);
+	        		ventana_historial.setVisible(true);
+	        	}
+	        });
 	        jmenuitem_eliminar_cita.setFont(new Font("Arial", Font.PLAIN, 12));
 	        jMenu5.add(jmenuitem_eliminar_cita);
 	        
 	        JMenuItem jmenuitem_nueva_cita = new JMenuItem("Nueva cita");
+	        jmenuitem_nueva_cita.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		dispose();
+	        		jf_consulta ventana = new jf_consulta();
+	        		dialogos_consultas.jd_nueva_consulta ventana_historial = new dialogos_consultas.jd_nueva_consulta();
+	        		ventana.setVisible(true);
+	        		ventana_historial.setVisible(true);
+	        	}
+	        });
 	        jmenuitem_nueva_cita.setFont(new Font("Arial", Font.PLAIN, 12));
 	        jMenu5.add(jmenuitem_nueva_cita);
 
