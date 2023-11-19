@@ -281,37 +281,45 @@ public class jf_login extends javax.swing.JFrame {
         btn_entrar.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
                
-               try {//Si esto es correcto entrarás como administrador
-            	String user = jtf_user.getText().toString();
-            	String pass = jtf_user1.getText().toString();
-				String comprobar = sentencias.consulta_login(user, pass);
-				if (comprobar.equals("Admin")) {
-				
-					System.out.println("Estoy accediendo como administrador");
-				menu_ppal.jf_menu_ppal menu_admin = new menu_ppal.jf_menu_ppal();
-				menu_admin.setVisible(true);
-				dispose(); 
-}
-				else {
-                           //si no es el admin, entrará como doctor 
-					System.out.println("Estoy accediendo como doctor");
-					menu_ppal.jf_menu_doctor ventana = new menu_ppal.jf_menu_doctor();
-					ventana.setVisible(true);
-					dispose();
-}
-				
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				JOptionPane error = new JOptionPane();
-				error.showMessageDialog(error, "Error en el login");
-				e1.printStackTrace();
-				//si no consigue los datos va a dar error al logearte
-			}
-               catch(NullPointerException n) {
-            	   JOptionPane error = new JOptionPane();
-            	   error.showMessageDialog(error, "No hay datos, comprueba la conexión a la base de datos "
-            	   		+ "o en su defecto, que no haya campos vacíos y vuelve a intentarlo");
-               }
+        		 try {
+        	            String user = jtf_user.getText().toString();
+        	            String pass = jtf_user1.getText().toString();
+
+        	            // Validación de campos vacíos
+        	            if (user.isEmpty() || pass.isEmpty()) {
+        	                JOptionPane.showMessageDialog(null, "Por favor, completa todos los campos.");
+        	                return; // Sale del método si hay campos vacíos
+        	            }
+
+        	            // Intenta realizar la consulta a la base de datos
+        	            String comprobar = sentencias.consulta_login(user, pass);
+
+        	            if (comprobar != null) {
+        	                // Procesa el resultado de la consulta a la base de datos
+        	                if (comprobar.equals("Admin")) {
+        	                    System.out.println("Estoy accediendo como administrador");
+        	                    menu_ppal.jf_menu_ppal menu_admin = new menu_ppal.jf_menu_ppal();
+        	                    menu_admin.setVisible(true);
+        	                    dispose();
+        	                } else {
+        	                    System.out.println("Estoy accediendo como doctor");
+        	                    menu_ppal.jf_menu_doctor ventana = new menu_ppal.jf_menu_doctor();
+        	                    ventana.setVisible(true);
+        	                    dispose();
+        	                }
+        	            } else {
+        	                // No se encontró un usuario válido en la base de datos
+        	                JOptionPane.showMessageDialog(null, "Credenciales inválidas. Por favor, verifica tu usuario y contraseña.");
+        	            }
+        	        } catch (SQLException ex) {
+        	            // Manejo de errores de SQL (por ejemplo, base de datos desconectada)
+        	            JOptionPane.showMessageDialog(null, "Error en el login: " + ex.getMessage());
+        	            ex.printStackTrace();
+        	        } catch (NullPointerException n) {
+        	            // Manejo de otros errores (como nulos)
+        	            JOptionPane.showMessageDialog(null, "Error desconocido. Comprueba la conexión a la base de datos y vuelve a intentarlo.");
+        	            n.printStackTrace();
+        	        }
             }
                 
                 
