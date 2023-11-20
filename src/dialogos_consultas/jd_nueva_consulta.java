@@ -549,6 +549,9 @@ public class jd_nueva_consulta extends JDialog {
 	                    }
 	                });
 	        
+	        String splitted[] =  cb_paciente.getSelectedItem().toString().split(": ");
+	        String dniPac = splitted[1];
+	        		
 	        okButton.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
 	                dentilax_bdd.ConectorDB_mysql conect = new dentilax_bdd.ConectorDB_mysql();
@@ -556,7 +559,7 @@ public class jd_nueva_consulta extends JDialog {
 	                                    txt_fecha.getText().toString(),
 	                                    cb_especialidad.getSelectedItem().toString(),
 	                                    " ",
-	                                    cb_paciente.getSelectedItem().toString(),
+	                                    dniPac,
 	                                    horaSeleccionada);
 	               
 	            	System.out.println(horaSeleccionada);
