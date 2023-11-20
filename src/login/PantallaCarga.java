@@ -29,7 +29,7 @@ public class PantallaCarga extends JDialog {
         getContentPane().add(progressBar);
         
         JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon("C:\\Users\\alexg\\Downloads\\gifCarga.gif"));
+        lblNewLabel.setIcon(new ImageIcon(PantallaCarga.class.getResource("/iconos_submenus/gifCarga.gif")));
         lblNewLabel.setBounds(0, 0, 800, 450);
         getContentPane().add(lblNewLabel);
         setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
