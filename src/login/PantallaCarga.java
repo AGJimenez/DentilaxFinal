@@ -18,17 +18,22 @@ public class PantallaCarga extends JDialog {
         setIconImage(Toolkit.getDefaultToolkit().getImage(PantallaCarga.class.getResource("/iconos_menus/dentilaxIcono.png")));
         getContentPane().setLayout(null);
         progressBar = new JProgressBar(0, 100);
-        progressBar.setBounds(0, 61, 465, 41);
-        progressBar.setFont(new Font("Barlow", Font.PLAIN, 20));
+        progressBar.setForeground(Color.WHITE);
+        progressBar.setBackground(new Color(23, 74, 137));
+        progressBar.setOpaque(true);
+        progressBar.setBorderPainted(false);
         progressBar.setStringPainted(true);
+        progressBar.setBounds(163, 384, 466, 16);
+        progressBar.setFont(new Font("Barlow", Font.PLAIN, 12));
         
         getContentPane().add(progressBar);
         
-        JLabel lblNewLabel = new JLabel("Dentilax está cargando");
-        lblNewLabel.setBounds(10, 29, 150, 21);
+        JLabel lblNewLabel = new JLabel("");
+        lblNewLabel.setIcon(new ImageIcon("C:\\Users\\alexg\\Downloads\\gifCarga.gif"));
+        lblNewLabel.setBounds(0, 0, 800, 450);
         getContentPane().add(lblNewLabel);
         setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-        setSize(465, 102);
+        setSize(799, 445);
         setLocationRelativeTo(parent);
         
         // Simula el proceso de carga
