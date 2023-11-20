@@ -26,7 +26,7 @@ public class jd_buscar_paciente_historial extends JDialog {
 
     private static final long serialVersionUID = 1L;
     private final JPanel contentPanel = new JPanel();
-    private JTextField txt_nombre_dr;
+    private JTextField txt_nombre_paciente;
     private static JTable table;
     private static DefaultTableModel model;
 
@@ -36,7 +36,7 @@ public class jd_buscar_paciente_historial extends JDialog {
         setModal(true);
         setPreferredSize(new Dimension(1198, 531));
         setResizable(false);
-        setBounds(100, 100, 848, 531);
+        setBounds(100, 100, 709, 531);
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setBackground(Color.WHITE);
         contentPanel.setPreferredSize(new Dimension(1198, 531));
@@ -56,18 +56,18 @@ public class jd_buscar_paciente_historial extends JDialog {
         lbl_paciente.setBounds(10, 0, 105, 54);
         panel.add(lbl_paciente);
 
-        txt_nombre_dr = new JTextField();
-        txt_nombre_dr.setEditable(false);
-        txt_nombre_dr.setFont(new Font("Barlow", Font.PLAIN, 20));
-        txt_nombre_dr.setText("FELIPE DEL CERRO HERNANDEZ GOMEZ");
-        txt_nombre_dr.setBorder(null);
-        txt_nombre_dr.setOpaque(false);
-        txt_nombre_dr.setBounds(125, 0, 355, 54);
-        panel.add(txt_nombre_dr);
-        txt_nombre_dr.setColumns(10);
+        txt_nombre_paciente = new JTextField();
+        txt_nombre_paciente.setEditable(false);
+        txt_nombre_paciente.setFont(new Font("Barlow", Font.PLAIN, 20));
+        txt_nombre_paciente.setText(DNI_paciente);
+        txt_nombre_paciente.setBorder(null);
+        txt_nombre_paciente.setOpaque(false);
+        txt_nombre_paciente.setBounds(125, 0, 355, 54);
+        panel.add(txt_nombre_paciente);
+        txt_nombre_paciente.setColumns(10);
 
         JPanel panel_contened = new JPanel();
-        panel_contened.setBounds(51, 97, 733, 43);
+        panel_contened.setBounds(10, 97, 674, 43);
         panel_contened.setBackground(new Color(32, 160, 216));
         contentPanel.add(panel_contened);
         panel_contened.setLayout(null);
@@ -78,13 +78,13 @@ public class jd_buscar_paciente_historial extends JDialog {
         lbl_fecha.setBounds(10, 11, 96, 21);
         panel_contened.add(lbl_fecha);
 
-        JLabel lbl_tipo = new JLabel("TIPO");
+        JLabel lbl_tipo = new JLabel("TRATAMIENTO");
         lbl_tipo.setForeground(Color.WHITE);
         lbl_tipo.setFont(new Font("Barlow", Font.BOLD, 17));
-        lbl_tipo.setBounds(203, 11, 96, 21);
+        lbl_tipo.setBounds(203, 11, 149, 21);
         panel_contened.add(lbl_tipo);
 
-        JLabel lbl_tratamiento = new JLabel("TRATAMIENTO");
+        JLabel lbl_tratamiento = new JLabel("DOCTOR");
         lbl_tratamiento.setForeground(Color.WHITE);
         lbl_tratamiento.setFont(new Font("Barlow", Font.BOLD, 17));
         lbl_tratamiento.setBounds(462, 11, 110, 21);
@@ -108,12 +108,12 @@ public class jd_buscar_paciente_historial extends JDialog {
         btn_salir.setFont(new Font("Barlow", Font.BOLD, 20));
         btn_salir.setForeground(new Color(255, 255, 255));
         btn_salir.setBackground(new Color(32, 160, 216));
-        btn_salir.setBounds(633, 0, 153, 43);
+        btn_salir.setBounds(530, 0, 153, 43);
         btn_salir.setActionCommand("Cancel");
         buttonPane.add(btn_salir);
 
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(12, 147, 674, 265);
+        scrollPane.setBounds(12, 147, 671, 265);
         contentPanel.add(scrollPane);
 
         table = new JTable();
@@ -133,7 +133,11 @@ public class jd_buscar_paciente_historial extends JDialog {
     }
 
     public void llenarTabla(List<Paciente> historialPaciente) {
-        if (historialPaciente != null) {
+        if (historialPaciente != null && !historialPaciente.isEmpty()) {
+            model.setColumnCount(0); // Limpiar columnas existentes
+            Object[] columnNames = {"Fecha", "Tratamiento", "DNI_doctor"};
+            model.setColumnIdentifiers(columnNames); // Establecer nuevas columnas
+
             for (Paciente historial : historialPaciente) {
                 Object[] fila = new Object[3];
                 fila[0] = historial.getFecha();
