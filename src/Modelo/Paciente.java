@@ -2,42 +2,42 @@ package Modelo;
 
 public class Paciente {
 
-	private String nombre, seguro, DNI_paciente;
+	private String fecha, tratamiento, dni_dr;
 
-	public Paciente(String nombre, String seguro, String dNI_paciente) {
+	public Paciente(String fecha, String tratamiento, String dni_dr) {
 		super();
-		this.nombre = nombre;
-		this.seguro = seguro;
-		DNI_paciente = dNI_paciente;
+		this.fecha = fecha;
+		this.tratamiento = tratamiento;
+		this.dni_dr = dni_dr;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getFecha() {
+		return fecha;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
 	}
 
-	public String getSeguro() {
-		return seguro;
+	public String getTratamiento() {
+		return tratamiento;
 	}
 
-	public void setSeguro(String seguro) {
-		this.seguro = seguro;
+	public void setTratamiento(String tratamiento) {
+		this.tratamiento = tratamiento;
 	}
 
-	public String getDNI_paciente() {
-		return DNI_paciente;
+	public String getDni_dr() {
+		return dni_dr;
 	}
 
-	public void setDNI_paciente(String dNI_paciente) {
-		DNI_paciente = dNI_paciente;
+	public void setDni_dr(String dni_dr) {
+		this.dni_dr = dni_dr;
 	}
 
 	@Override
 	public String toString() {
-		return "Paciente [nombre=" + nombre + ", seguro=" + seguro + ", DNI_paciente=" + DNI_paciente + "]";
+		return "Paciente [fecha=" + fecha + ", tratamiento=" + tratamiento + ", dni_dr=" + dni_dr + "]";
 	}
 
 

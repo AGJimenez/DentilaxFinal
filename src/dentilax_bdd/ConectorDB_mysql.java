@@ -464,44 +464,37 @@ public String consulta_doctor_eliminar(String dni) throws SQLException{
         return historiales;
     }
 	
-	public List<Paciente> obtenerInfoPaciente() {
-        List<Paciente> historiales = new ArrayList<>();
+	public List<Paciente> obtenerInfoPaciente(String DNI_paciente) {
+	    List<Paciente> historiales = new ArrayList<>();
 
-        try {
-            conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
-            statement = conect.createStatement();
-            String query = "SELECT Nombre, Seguro, DNI_paciente FROM pacientes";
-            ResultSet resultSet = statement.executeQuery(query);
+	    try {
+	        conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+	        statement = conect.createStatement();
+	        String query = "SELECT Fecha, Especialidad, DNI_doctor FROM citas WHERE DNI_paciente = ?";
+	        
+	        PreparedStatement preparedStatement = conect.prepareStatement(query);
+	        preparedStatement.setString(1, DNI_paciente);
+	        ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()) {
-                String nombre = resultSet.getString("Nombre");
-                String seguro = resultSet.getString("Seguro");
-                String dniPaciente = resultSet.getString("DNI_paciente");
+	        while (resultSet.next()) {
+	            String fecha = resultSet.getString("Fecha");
+	            String esp = resultSet.getString("Especialidad");
+	            String dni = resultSet.getString("DNI_doctor");
 
-               Paciente historial = new Paciente(nombre,seguro,dniPaciente);
+	            Paciente historial = new Paciente(fecha, esp, dni);
+	            historiales.add(historial);
+	        }
 
-                historiales.add(historial);
-            }
+	    } catch (SQLException ex) {
+	        ex.printStackTrace();  
+	    } finally {
+	        // Cierre de recursos
+	    }
 
-        } catch (SQLException ex) {
-            ex.printStackTrace();  // 
-        } finally {
-            // Aqui vamos a cerrar recursos (statement y conexión) en el bloque finally
-            try {
-                if (statement != null) {
-                    statement.close();
-                }
-                if (conect != null) {
-                    conect.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
+	    return historiales;
+	}
 
-        return historiales;
-    }
-	
+
 public String consulta_doctor_ficha(String dni) throws SQLException{
 		
 		try {

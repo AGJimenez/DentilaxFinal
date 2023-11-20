@@ -35,7 +35,7 @@ public class jd_buscar_paciente_encontrado extends JDialog {
 	private JTextField txt_dni;
 	private JTextField txt_nombre;
 	private JTextField txt_apellidos;
-
+	private String dni;
 	/**
 	 * Launch the application.
 	 */
@@ -112,7 +112,6 @@ public class jd_buscar_paciente_encontrado extends JDialog {
 			txt_dni.setBackground(new Color(191, 231, 249));
 			txt_dni.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_dni.setHorizontalAlignment(SwingConstants.CENTER);
-			txt_dni.setText("77981983t");
 			txt_dni.setBounds(21, 177, 83, 34);
 			contentPanel.add(txt_dni);
 			txt_dni.setColumns(10);
@@ -123,7 +122,6 @@ public class jd_buscar_paciente_encontrado extends JDialog {
 			txt_nombre.setBorder(null);
 			txt_nombre.setBackground(new Color(191, 231, 249));
 			txt_nombre.setFont(new Font("Arial", Font.PLAIN, 14));
-			txt_nombre.setText("Alejandro Alfredo");
 			txt_nombre.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_nombre.setBounds(124, 177, 146, 34);
 			contentPanel.add(txt_nombre);
@@ -136,7 +134,6 @@ public class jd_buscar_paciente_encontrado extends JDialog {
 			txt_apellidos.setBorder(null);
 			txt_apellidos.setBackground(new Color(191, 231, 249));
 			txt_apellidos.setFont(new Font("Arial", Font.PLAIN, 14));
-			txt_apellidos.setText("Fernandez de la Rosa Ximenez");
 			txt_apellidos.setBounds(291, 177, 225, 34);
 			contentPanel.add(txt_apellidos);
 			txt_apellidos.setColumns(10);
@@ -195,8 +192,11 @@ public class jd_buscar_paciente_encontrado extends JDialog {
 			btn_historial.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btn_historial.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					dni = getTxt_dni().getText().toString();
+					
 					dispose();
-					jd_buscar_paciente_historial ventana = new jd_buscar_paciente_historial();
+					String dniPaciente = dni; // Aquí debes colocar el DNI del paciente que desees buscar
+					jd_buscar_paciente_historial ventana = new jd_buscar_paciente_historial(dniPaciente);
 					ventana.setVisible(true);
 					
 				}
@@ -234,4 +234,13 @@ public class jd_buscar_paciente_encontrado extends JDialog {
 	public void setTxt_apellidos(String txt_apellidos) {
 		this.txt_apellidos.setText(txt_apellidos);
 	}
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+	
 }
