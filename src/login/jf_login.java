@@ -82,11 +82,6 @@ public class jf_login extends javax.swing.JFrame {
         this.setContentPane(fondo);
         initComponents();
         panelFondo.setLayout(null);
-        
-        lblNewLabel_4 = new JLabel("");
-        lblNewLabel_4.setIcon(new ImageIcon("C:\\Users\\alexg\\Downloads\\7067c29f2c2336c23c827cfda44e7c61.gif"));
-        lblNewLabel_4.setBounds(0, 0, 1450, 750);
-        panelFondo.add(lblNewLabel_4);
         fondos.Panel p = new fondos.Panel("/Dentilax/imagenes/iconos_menus/panel_login.png");
         p.setBounds(0, 0, 0, 0);
         panelFondo.add(p);
@@ -367,18 +362,16 @@ public class jf_login extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-       
-        //</editor-fold>
+        PantallaCarga pantallaCarga = new PantallaCarga(null); // Puedes pasar this si estás en un contexto de JFrame
+        pantallaCarga.setVisible(true);
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                pantallaCarga.setVisible(false);
+                pantallaCarga.dispose();
                 new jf_login().setVisible(true);
+               
                 
                 
             }
@@ -402,5 +395,4 @@ public class jf_login extends javax.swing.JFrame {
     private JButton btnNewButton_1;
     private JLabel lbl_fecha;
     private JPasswordField jtf_user1;
-    private JLabel lblNewLabel_4;
 }
