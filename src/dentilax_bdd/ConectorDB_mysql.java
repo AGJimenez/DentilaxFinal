@@ -1102,14 +1102,18 @@ public void mostarCbCitasPac(jd_nueva_consulta datos) throws SQLException {
 	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
     statement = conect.createStatement();
     try {
-        String sql = "SELECT DNI_paciente FROM pacientes";
+        String sql = "SELECT Nombre, DNI_paciente FROM pacientes";
         ResultSet rs = statement.executeQuery(sql);
 
         // Extraer datos del result set
         while (rs.next()) {
-            // Obtener el nombre de la tabla
-            tablaNombre = rs.getString(1);
-            datos.setCb_paciente(tablaNombre);
+            // Obtener el nombre y el DNI de la tabla
+            String nombre = rs.getString("Nombre");
+            String dni = rs.getString("DNI_paciente");
+            
+            // Crear una cadena con el nombre y el DNI y agregarla al combo
+            String nombreYDNI = nombre + " con DNI: " + dni;
+            datos.setCb_paciente(nombreYDNI);
         }
     } finally {
         if (statement != null) {

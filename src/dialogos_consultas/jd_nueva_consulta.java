@@ -7,6 +7,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Cursor;
@@ -21,14 +24,20 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import com.toedter.calendar.JCalendar;
 import javax.swing.border.BevelBorder;
 import javax.swing.JTextField;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class jd_nueva_consulta extends JDialog {
 	JButton okButton;
@@ -52,6 +61,7 @@ public class jd_nueva_consulta extends JDialog {
 	private JTextField txt_fecha;
 	dentilax_bdd.ConectorDB_mysql consultasDB = new dentilax_bdd.ConectorDB_mysql();
 	private JTextField txt_hora;
+	private List<String> pacientesOriginales = new ArrayList<>();
 	JComboBox cb_paciente = new JComboBox();
 	JComboBox cb_doctor = new JComboBox();
 	JComboBox cb_especialidad = new JComboBox();
@@ -78,6 +88,7 @@ public class jd_nueva_consulta extends JDialog {
 			consultasDB.mostarCbCitasPac(this);
 			consultasDB.mostarCbCitasDr(this);
 			consultasDB.mostarCbCitasEsp(this);
+			guardarPacientesOriginales();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -91,6 +102,31 @@ public class jd_nueva_consulta extends JDialog {
 		contentPanel.setLayout(null);
 		setLocationRelativeTo(this);
 		
+		JLabel buscar_icono = new JLabel("");
+		buscar_icono.setIcon(new ImageIcon(jd_nueva_consulta.class.getResource("/iconos_submenus/search.png")));
+		buscar_icono.setBounds(559, 95, 32, 30);
+		contentPanel.add(buscar_icono);
+		
+		
+		JTextField searchField = new JTextField();
+		searchField.setHorizontalAlignment(SwingConstants.CENTER);
+		searchField.setFont(new Font("Arial", Font.PLAIN, 12));
+		searchField.setBorder(null);
+		searchField.setBackground(new Color(191, 231, 249));
+	    searchField.setBounds(559, 95, 120, 30);
+	    contentPanel.add(searchField);
+		
+		searchField.addFocusListener(new FocusAdapter() {
+			@Override
+			public void focusGained(FocusEvent e) {
+				buscar_icono.setVisible(false);
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				buscar_icono.setVisible(true);
+			}
+		});
+	    
 		txt_hora = new JTextField();
 		txt_hora.setHorizontalAlignment(SwingConstants.CENTER);
 		txt_hora.setFont(new Font("Arial", Font.BOLD, 14));
@@ -447,8 +483,49 @@ public class jd_nueva_consulta extends JDialog {
 		String especialidadteSeleccionado = cb_especialidad.getSelectedItem().toString();
 		
 		selecionarFecha(calendar);
+		
+		
+		
+		// Agregar un DocumentListener al JTextField para filtrar el JComboBox cb_paciente
+	    searchField.getDocument().addDocumentListener(new DocumentListener() {
+	        @Override
+	        public void insertUpdate(DocumentEvent e) {
+	            filterComboBox(searchField.getText());
+	        }
+
+	        @Override
+	        public void removeUpdate(DocumentEvent e) {
+	            filterComboBox(searchField.getText());
+	        }
+
+	        @Override
+	        public void changedUpdate(DocumentEvent e) {
+	            filterComboBox(searchField.getText());
+	        }
+	    });
+	}
+
+	 // Método para restaurar la lista original de pacientes y aplicar el filtro
+    private void filterComboBox(String searchText) {
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+        for (String paciente : pacientesOriginales) {
+            if (paciente.toLowerCase().contains(searchText.toLowerCase())) {
+                model.addElement(paciente);
+            }
+        }
+        cb_paciente.setModel(model);
+        cb_paciente.setPopupVisible(true);
+    
+
 	        
 	    }//llave clase
+	
+	 // Método para guardar los pacientes originales en la lista
+    private void guardarPacientesOriginales() {
+        for (int i = 0; i < cb_paciente.getItemCount(); i++) {
+            pacientesOriginales.add((String) cb_paciente.getItemAt(i));
+        }
+    }
 
 	private void selecionarFecha(JCalendar calendar) {
 		Date fechaSeleccionada = calendar.getDate();
@@ -492,6 +569,8 @@ public class jd_nueva_consulta extends JDialog {
 	        
 	        
 	}
+	
+	
 	
 	public JTextField getTxt_fecha() {
 		return txt_fecha;
@@ -540,5 +619,4 @@ public class jd_nueva_consulta extends JDialog {
 			public void setHoraSeleccionada(String horaSeleccionada) {
 				this.horaSeleccionada = horaSeleccionada;
 			}
-			 
 }

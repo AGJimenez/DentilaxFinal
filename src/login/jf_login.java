@@ -82,6 +82,11 @@ public class jf_login extends javax.swing.JFrame {
         this.setContentPane(fondo);
         initComponents();
         panelFondo.setLayout(null);
+        
+        lblNewLabel_4 = new JLabel("");
+        lblNewLabel_4.setIcon(new ImageIcon("C:\\Users\\alexg\\Downloads\\7067c29f2c2336c23c827cfda44e7c61.gif"));
+        lblNewLabel_4.setBounds(0, 0, 1450, 750);
+        panelFondo.add(lblNewLabel_4);
         fondos.Panel p = new fondos.Panel("/Dentilax/imagenes/iconos_menus/panel_login.png");
         p.setBounds(0, 0, 0, 0);
         panelFondo.add(p);
@@ -181,6 +186,10 @@ public class jf_login extends javax.swing.JFrame {
         lblNewLabel_3.setIcon(new ImageIcon(jf_login.class.getResource("/iconos_menus/dent.png")));
         lblNewLabel_3.setBounds(0, 84, 483, 545);
         panelFondo.add(lblNewLabel_3);
+        
+        JLabel label = new JLabel("New label");
+        label.setBounds(-23, 736, 1116, -676);
+        panelFondo.add(label);
         
         //aqui empieza el hilo para poder colocar la fecha y hora en nuestro programa:
         Timer timer = new Timer(1000, new ActionListener() {
@@ -393,4 +402,5 @@ public class jf_login extends javax.swing.JFrame {
     private JButton btnNewButton_1;
     private JLabel lbl_fecha;
     private JPasswordField jtf_user1;
+    private JLabel lblNewLabel_4;
 }
