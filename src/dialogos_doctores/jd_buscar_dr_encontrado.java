@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import dentilax_bdd.ConectorDB_mysql;
+import dialogos_pacientes.jd_buscar_paciente_historial;
 
 import java.awt.Dimension;
 import java.awt.Color;
@@ -34,6 +35,7 @@ public class jd_buscar_dr_encontrado extends JDialog {
 	private JTextField txt_dni;
 	private JTextField txt_nombre;
 	private JTextField txt_apellidos;
+	private String dni;
 
 	/**
 	 * Launch the application.
@@ -195,8 +197,10 @@ public class jd_buscar_dr_encontrado extends JDialog {
 			btn_historial.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btn_historial.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					dni = getTxt_dni().getText().toString();
+					String dniDr = dni; // Aquí debes colocar el DNI del paciente que desees buscar
 					dispose();
-					jd_buscar_dr_historial ventana = new jd_buscar_dr_historial();
+					jd_buscar_dr_historial ventana = new jd_buscar_dr_historial(dniDr);
 					ventana.setVisible(true);
 					
 					

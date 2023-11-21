@@ -2,21 +2,21 @@ package Modelo;
 
 public class Doctor {
 
-	private String nombre,especialidad,dniDoctor;
+	private String fecha,especialidad,dniPaciente;
 
-	public Doctor(String fecha, String especialidad, String dniDoctor) {
+	public Doctor(String fecha, String especialidad, String dniPaciente) {
 		super();
-		this.nombre = fecha;
+		this.fecha = fecha;
 		this.especialidad = especialidad;
-		this.dniDoctor = dniDoctor;
+		this.dniPaciente = dniPaciente;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getFecha() {
+		return fecha;
 	}
 
-	public void setNombre(String fecha) {
-		this.nombre = fecha;
+	public void setfecha(String fecha) {
+		this.fecha = fecha;
 	}
 
 	public String getEspecialidad() {
@@ -27,18 +27,18 @@ public class Doctor {
 		this.especialidad = especialidad;
 	}
 
-	public String getDniDoctor() {
-		return dniDoctor;
+	public String getDniPaciente() {
+		return dniPaciente;
 	}
 
-	public void setDniDoctor(String dniDoctor) {
-		this.dniDoctor = dniDoctor;
+	public void setDniPaciente(String dniPaciente) {
+		this.dniPaciente = dniPaciente;
 	}
 
 	@Override
 	public String toString() {
-		return "Doctor [nombre=" + nombre + ", especialidad=" + especialidad + ", dniDoctor=" + dniDoctor + "]";
+		return "Doctor [fecha=" + fecha + ", especialidad=" + especialidad + ", dniPaciente=" + dniPaciente + "]";
 	}
-	
+
 	
 }

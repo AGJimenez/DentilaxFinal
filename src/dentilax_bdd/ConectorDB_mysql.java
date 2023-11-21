@@ -426,22 +426,25 @@ public String consulta_doctor_eliminar(String dni) throws SQLException{
         return historiales;
     }
 	
-	public List<Doctor> obtenerInfoDoctor() {
+	
+	public List<Doctor> obtenerInfoDoctor(String DNI_doctor) {
         List<Doctor> historiales = new ArrayList<>();
 
         try {
             conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
             statement = conect.createStatement();
-            String query = "SELECT Nombre, Especialidad, DNI_doctor FROM doctores";
-            ResultSet resultSet = statement.executeQuery(query);
+            String query = "SELECT Fecha, Especialidad, DNI_paciente FROM citas WHERE DNI_doctor = ?";
+            
+            PreparedStatement preparedStatement = conect.prepareStatement(query);
+            preparedStatement.setString(1, DNI_doctor);
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                String nombre = resultSet.getString("Nombre");
+                String fecha = resultSet.getString("Fecha");
                 String especialidad = resultSet.getString("Especialidad");
-                String dniDoctor = resultSet.getString("DNI_doctor");
+                String dniPaciente = resultSet.getString("DNI_paciente");
 
-               Doctor historial = new Doctor(nombre,especialidad,dniDoctor);
-
+                Doctor historial = new Doctor(fecha, especialidad, dniPaciente);
                 historiales.add(historial);
             }
 
