@@ -41,7 +41,7 @@ public class PantallaCarga extends JDialog {
     }
     
     private void cargar() {
-        timer = new Timer(50, new ActionListener() {
+        timer = new Timer(30, new ActionListener() {
             int progress = 0;
             
             @Override

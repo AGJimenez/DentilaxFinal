@@ -89,6 +89,7 @@ public class jd_buscar_dr_historial extends JDialog {
 				txt_nombre_dr.setBounds(108, 0, 355, 54);
 				panel.add(txt_nombre_dr);
 				txt_nombre_dr.setColumns(10);
+				txt_nombre_dr.setText(DNI_doctor);
 			}
 		}
 		

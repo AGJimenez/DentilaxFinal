@@ -34,6 +34,8 @@ import java.awt.Toolkit;
 import javax.swing.JSeparator;
 import javax.swing.SwingConstants;
 import java.awt.Cursor;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Recuperar_contrasena extends JDialog {
 
