@@ -20,7 +20,7 @@ import dialogos_consultas.jd_nueva_consulta;
 
 
 public class ConectorDB_mysql {
-
+	private boolean citaCorrecta = false;
 	private static final String CONTROLADOR = "com.mysql.jdbc.Driver";
 	private static final String URL = "jdbc:mysql://localhost:3306/dentilax?useSSL=false";
 	private static final String USUARIO = "root";
@@ -1073,6 +1073,9 @@ public void agendar_cita(String DNI_doctor, String fecha, String especialidad, S
 		// Verificar si la inserción se realizó con éxito
 		if (fila > 0) {
 			System.out.println("Inserción exitosa.");
+			JOptionPane.showMessageDialog(null, "Cita insertada");
+			citaCorrecta = true;
+
 		} else {
 			System.out.println("La inserción no tuvo éxito.");
 		}
@@ -1087,12 +1090,21 @@ public void agendar_cita(String DNI_doctor, String fecha, String especialidad, S
 		
 	}
 	catch(SQLException ex) {
+		JOptionPane.showMessageDialog(null, "Error, cita duplicada", "Error en la inserción de cita", 0, null);
 		ex.printStackTrace();
 	}
 	
 
 }
 
+
+
+public boolean isCitaCorrecta() {
+	return citaCorrecta;
+}
+public void setCitaCorrecta(boolean citaCorrecta) {
+	this.citaCorrecta = citaCorrecta;
+}
 public void mostarCbCitasPac(jd_nueva_consulta datos) throws SQLException {
     // Consulta para ver el nombre de las tablas
 	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
@@ -1131,7 +1143,7 @@ public void mostarCbCitasDr(jd_nueva_consulta datos) throws SQLException {
             // Obtener el nombre de la tabla
         	String nombre = rs.getString("Nombre");
         	String dni = rs.getString("DNI_doctor");
-            tablaNombre = nombre+" con DNI "+dni;
+            tablaNombre = nombre+" con DNI: "+dni;
             datos.setCb_doctor(tablaNombre);
         }
     } finally {

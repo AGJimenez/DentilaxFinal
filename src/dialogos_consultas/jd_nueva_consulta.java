@@ -551,11 +551,13 @@ public class jd_nueva_consulta extends JDialog {
 	        
 	        String splitted[] =  cb_paciente.getSelectedItem().toString().split(": ");
 	        String dniPac = splitted[1];
-	        		
+	        
+	        String splitDr[] = cb_doctor.getSelectedItem().toString().split(": ");
+	        String dniDoc = splitDr[1];
 	        okButton.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
 	                dentilax_bdd.ConectorDB_mysql conect = new dentilax_bdd.ConectorDB_mysql();
-	                conect.agendar_cita(cb_doctor.getSelectedItem().toString(),
+	                conect.agendar_cita(dniDoc,
 	                                    txt_fecha.getText().toString(),
 	                                    cb_especialidad.getSelectedItem().toString(),
 	                                    " ",
@@ -563,9 +565,9 @@ public class jd_nueva_consulta extends JDialog {
 	                                    horaSeleccionada);
 	               
 	            	System.out.println(horaSeleccionada);
-	            	JOptionPane.showMessageDialog(null, "Cita insertada");
-	            
-	                
+	                if(conect.isCitaCorrecta()==true) {
+	                	dispose();
+	                }
 	            }
 	        });	        	 
 	}		
