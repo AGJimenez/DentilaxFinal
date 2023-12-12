@@ -567,13 +567,8 @@ public class jd_nueva_consulta extends JDialog {
 	            
 	                
 	            }
-	        });
-
-	        
-	        
-	}
-	
-	
+	        });	        	 
+	}		
 	
 	public JTextField getTxt_fecha() {
 		return txt_fecha;

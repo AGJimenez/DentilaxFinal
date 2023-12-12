@@ -1123,13 +1123,15 @@ public void mostarCbCitasDr(jd_nueva_consulta datos) throws SQLException {
 	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
     statement = conect.createStatement();
     try {
-        String sql = "SELECT DNI_doctor FROM doctores";
+        String sql = "SELECT Nombre, DNI_doctor FROM doctores";
         ResultSet rs = statement.executeQuery(sql);
 
         // Extraer datos del result set
         while (rs.next()) {
             // Obtener el nombre de la tabla
-            tablaNombre = rs.getString(1);
+        	String nombre = rs.getString("Nombre");
+        	String dni = rs.getString("DNI_doctor");
+            tablaNombre = nombre+" con DNI "+dni;
             datos.setCb_doctor(tablaNombre);
         }
     } finally {
