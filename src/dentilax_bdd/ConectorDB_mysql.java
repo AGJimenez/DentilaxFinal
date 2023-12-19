@@ -245,6 +245,46 @@ public String consulta_paciente(String dni) throws SQLException{
 		
 	}
 
+public String consulta_pedido(String id) throws SQLException{
+	
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "SELECT * FROM pedidos WHERE ID_pedidos = '" + id +"'";
+        ResultSet resultSet = statement.executeQuery(query);
+		
+        if (resultSet.next()) {
+            // Resultado encontrado
+            System.out.println("Resultado encontrado");
+            dialogos_materiales.jd_buscar_pedido_encontrado ventana = new dialogos_materiales.jd_buscar_pedido_encontrado();
+            String idSql = resultSet.getString("ID_pedidos");
+            String productoSql = resultSet.getString("Producto");
+            String cantidadSql = resultSet.getString("Cantidad");
+            String precioSql = resultSet.getString("Precio");
+            String fechaSql = resultSet.getString("Fecha");
+           // System.out.println(dniSql);
+            ventana.setTxt_dni(idSql);
+            ventana.setTxt_nombre(productoSql);
+            ventana.setTxt_apellidos(cantidadSql);
+            
+            ventana.setVisible(true);
+            
+            
+        } else {
+            // Acceso denegado
+            System.out.println("No se ha encontrado nada");
+            JOptionPane.showMessageDialog(null, "Error, no se ha encontrado nada");
+        }
+		
+		
+	}
+	catch(SQLException ex) {
+		
+	}
+	return dni;
+	
+}
+
 public String consulta_buscar_cita(String dni, String fecha) throws SQLException{
 	
 	try {
