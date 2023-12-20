@@ -93,7 +93,7 @@ public class jf_material extends JFrame {
         
         btn_inventario = new JButton();
         btn_inventario.setIcon(new ImageIcon(jf_material.class.getResource("/iconos_submenus/btn_inventario_admin.png")));
-        btn_inventario.setBounds(68, 561, 188, 41);
+        btn_inventario.setBounds(634, 620, 188, 41);
         btn_inventario.setContentAreaFilled(false);
         btn_inventario.setBorder(null);
         btn_inventario.setOpaque(false);
