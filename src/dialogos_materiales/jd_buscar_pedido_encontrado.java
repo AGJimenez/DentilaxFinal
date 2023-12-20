@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import dentilax_bdd.ConectorDB_mysql;
+import dialogos_pacientes.jd_buscar_paciente_ficha;
+import dialogos_pacientes.jd_buscar_paciente_historial;
 
 import java.awt.Dimension;
 import java.awt.Color;

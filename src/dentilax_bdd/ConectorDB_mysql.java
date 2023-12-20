@@ -281,7 +281,7 @@ public String consulta_pedido(String id) throws SQLException{
 	catch(SQLException ex) {
 		
 	}
-	return dni;
+	return id;
 	
 }
 

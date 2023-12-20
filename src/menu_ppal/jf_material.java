@@ -26,6 +26,7 @@ import javax.swing.JPopupMenu;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.ImageIcon;
 
 public class jf_material extends JFrame {
 
@@ -57,17 +58,20 @@ public class jf_material extends JFrame {
 
         jp_menu = new fondos.Fondo();
         btn_buscar_pedido = new javax.swing.JButton();
-        btn_buscar_pedido.setBounds(68, 620, 146, 23);
+        btn_buscar_pedido.setIcon(new ImageIcon(jf_material.class.getResource("/iconos_submenus/btn_buscarPedido_admin.png")));
+        btn_buscar_pedido.setBounds(68, 620, 188, 41);
         btn_buscar_pedido.setBorderPainted(false);
         btn_buscar_pedido.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         	}
         });
         btn_nuevo_pedido = new javax.swing.JButton();
-        btn_nuevo_pedido.setBounds(879, 620, 146, 23);
+        btn_nuevo_pedido.setIcon(new ImageIcon(jf_material.class.getResource("/iconos_submenus/btn_nuevoPedido_admin.png")));
+        btn_nuevo_pedido.setBounds(879, 620, 188, 41);
         btn_nuevo_pedido.setBorderPainted(false);
         btn_proveedores = new javax.swing.JButton();
-        btn_proveedores.setBounds(401, 620, 146, 23);
+        btn_proveedores.setIcon(new ImageIcon(jf_material.class.getResource("/iconos_submenus/btn_proveedores_admin.png")));
+        btn_proveedores.setBounds(401, 620, 188, 41);
         btn_proveedores.setBorderPainted(false);
         menu_inicio = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
@@ -86,25 +90,19 @@ public class jf_material extends JFrame {
         jMenu8.setFont(new Font("Arial", Font.PLAIN, 12));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        btn_buscar_pedido.setText("BUSCAR PEDIDO");
-
-        btn_nuevo_pedido.setText("NUEVO PEDIDO");
-
-        btn_proveedores.setText("PROVEEDORES");
         
         btn_inventario = new JButton();
-        btn_inventario.setBounds(68, 561, 146, 15);
+        btn_inventario.setIcon(new ImageIcon(jf_material.class.getResource("/iconos_submenus/btn_inventario_admin.png")));
+        btn_inventario.setBounds(68, 561, 188, 41);
         btn_inventario.setContentAreaFilled(false);
         btn_inventario.setBorder(null);
         btn_inventario.setOpaque(false);
         btn_inventario.setBorderPainted(false);
-        btn_inventario.setText("INVENTARIO");
         
         btn_solicitudes = new JButton();
-        btn_solicitudes.setBounds(1210, 620, 146, 23);
+        btn_solicitudes.setIcon(new ImageIcon(jf_material.class.getResource("/iconos_submenus/btn_solicitudes_admin.png")));
+        btn_solicitudes.setBounds(1210, 620, 188, 41);
         btn_solicitudes.setBorderPainted(false);
-        btn_solicitudes.setText("SOLICITUDES");
 
         menu_inicio.setBackground(new java.awt.Color(32, 160, 216));
         menu_inicio.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
