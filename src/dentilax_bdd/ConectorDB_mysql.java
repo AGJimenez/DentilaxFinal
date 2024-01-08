@@ -245,6 +245,47 @@ public String consulta_paciente(String dni) throws SQLException{
 		
 	}
 
+
+public String consulta_paciente_menudr(String dni) throws SQLException{
+	
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "SELECT * FROM pacientes WHERE DNI_paciente = '" + dni +"'";
+        ResultSet resultSet = statement.executeQuery(query);
+		
+        if (resultSet.next()) {
+            // Resultado encontrado
+            System.out.println("Resultado encontrado");
+            dialogos_pacientes.jd_buscar_paciente_encontrado_menudr ventana = new dialogos_pacientes.jd_buscar_paciente_encontrado_menudr();
+            String dniSql = resultSet.getString("DNI_paciente");
+            String nombreSql = resultSet.getString("Nombre");
+            String apellidosSql = resultSet.getString("Apellidos");
+           // System.out.println(dniSql);
+            ventana.setTxt_dni(dniSql);
+            ventana.setTxt_nombre(nombreSql);
+            ventana.setTxt_apellidos(apellidosSql);
+            
+            ventana.setVisible(true);
+            
+            
+        } else {
+            // Acceso denegado
+            System.out.println("No se ha encontrado nada");
+            JOptionPane.showMessageDialog(null, "Error, no se ha encontrado nada");
+        }
+		
+		
+	}
+	catch(SQLException ex) {
+		
+	}
+	return dni;
+	
+}
+
+
+
 public String consulta_pedido(String id) throws SQLException{
 	
 	try {

@@ -48,6 +48,12 @@ public class jf_menu_doctor extends javax.swing.JFrame {
         jp_menu.add(btn_ajustes);
         
         JButton btn_buscar_paciente_dr = new JButton();
+        btn_buscar_paciente_dr.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {  		
+        		dialogos_pacientes.jd_buscar_paciente_menudr ventana = new dialogos_pacientes.jd_buscar_paciente_menudr();
+				ventana.setVisible(true);      		
+        	}
+        });
         btn_buscar_paciente_dr.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_buscar_paciente_dr.setBorderPainted(false);
         btn_buscar_paciente_dr.setIcon(new ImageIcon(jf_menu_doctor.class.getResource("/iconos_menus/btn_buscarPaciente_dr.png")));
