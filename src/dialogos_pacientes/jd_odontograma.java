@@ -591,7 +591,7 @@ public class jd_odontograma extends JDialog {
 		
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\alexg\\Desktop\\fondoDental.png"));
+		lblNewLabel_1.setIcon(new ImageIcon(jd_odontograma.class.getResource("/imagenesOdontograma/fondoDental.png")));
 		lblNewLabel_1.setBounds(0, 0, 1184, 762);
 		getContentPane().add(lblNewLabel_1);
 
