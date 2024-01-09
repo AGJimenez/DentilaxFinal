@@ -984,7 +984,8 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
         		jf_login ventana = new jf_login();
-        		ventana.setVisible(true);        	}
+        		ventana.setVisible(true);        	
+        		}
         });
         btnNewButton_1.setFont(new Font("Barlow", Font.BOLD, 20));
         btnNewButton_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

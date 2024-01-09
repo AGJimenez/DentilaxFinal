@@ -22,10 +22,13 @@ import java.util.Date;
 import java.awt.Cursor;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.border.LineBorder;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
+
+import login.jf_login;
 
 /**
  *
@@ -67,6 +70,22 @@ public class jf_menu_doctor extends javax.swing.JFrame {
         fecha.setFont(new Font("Barlow", Font.PLAIN, 25));
         fecha.setBounds(1184, 642, 240, 23);
         jp_menu.add(fecha);
+        
+        btnNewButton = new JButton("SALIR");
+        btnNewButton.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_login ventana = new jf_login();
+        		ventana.setVisible(true);       
+        	}
+        });
+        btnNewButton.setIcon(new ImageIcon(jf_menu_doctor.class.getResource("/iconos_menus/image.png")));
+        btnNewButton.setForeground(new Color(0, 161, 219));
+        btnNewButton.setFont(new Font("Barlow", Font.BOLD, 20));
+        btnNewButton.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
+        btnNewButton.setBackground(Color.WHITE);
+        btnNewButton.setBounds(33, 600, 148, 66);
+        jp_menu.add(btnNewButton);
         
         Timer timer = new Timer(1000, new ActionListener() {
             @Override
@@ -195,4 +214,5 @@ public class jf_menu_doctor extends javax.swing.JFrame {
     private JMenu mn_ayuda;
     private JSeparator separator;
     private JLabel fecha;
+    private JButton btnNewButton;
 }

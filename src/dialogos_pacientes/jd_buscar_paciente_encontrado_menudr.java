@@ -140,15 +140,24 @@ public class jd_buscar_paciente_encontrado_menudr extends JDialog {
 			txt_apellidos.setColumns(10);
 		}
 		
-		JLabel lbl_odontograma = new JLabel("ODONTOGRAMA");
-		lbl_odontograma.setFont(new Font("Barlow", Font.PLAIN, 18));
-		lbl_odontograma.setBounds(308, 50, 144, 14);
-		contentPanel.add(lbl_odontograma);
-		
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.setIcon(new ImageIcon(jd_buscar_paciente_encontrado_menudr.class.getResource("/iconos_submenus/icono_odontograma.png")));
-		btnNewButton.setBounds(427, 65, 89, 23);
-		contentPanel.add(btnNewButton);
+		JButton btn_abrirOdontograma = new JButton("");
+		btn_abrirOdontograma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Abrimos odontrograma aqui
+				jd_odontograma ventana = new jd_odontograma();
+				ventana.setVisible(true);
+				dispose();
+			}
+		});
+		btn_abrirOdontograma.setFocusPainted(false);
+		btn_abrirOdontograma.setBorder(null);
+		btn_abrirOdontograma.setToolTipText("Pulsa para abrir el odontograma del paciente");
+		btn_abrirOdontograma.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btn_abrirOdontograma.setContentAreaFilled(false);
+		btn_abrirOdontograma.setBorderPainted(false);
+		btn_abrirOdontograma.setIcon(new ImageIcon(jd_buscar_paciente_encontrado_menudr.class.getResource("/iconos_submenus/icono_odontograma.png")));
+		btn_abrirOdontograma.setBounds(400, 27, 116, 73);
+		contentPanel.add(btn_abrirOdontograma);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(Color.WHITE);
