@@ -1285,6 +1285,109 @@ public void mostarCbCitasEsp(jd_nueva_consulta datos) throws SQLException {
     }
 }
 
+
+public void actualizarDatosOdontograma(int idDiente, boolean empaste, boolean extraccion, boolean endodoncia, boolean ortodoncia, boolean corona, boolean ausencia,
+        boolean implante, boolean caries, String observaciones) {
+    try {
+        conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+        
+        // Crear la sentencia de actualización
+        String query = "UPDATE dientes SET ";
+        
+        // Agregar los campos a actualizar basados en los checkboxes
+        if (empaste) {
+            query += "Empaste = 'si', ";
+        } else {
+            query += "Empaste = '', ";
+        }
+        
+        if (extraccion) {
+            query += "Extraccion = 'si', ";
+        } else {
+            query += "Extraccion = '', ";
+        }
+        
+        if (endodoncia) {
+            query += "Endodoncia = 'si', ";
+        } else {
+            query += "Endodoncia = '', ";
+        }
+        
+        if (ortodoncia) {
+            query += "Ortodoncia = 'si', ";
+        } else {
+            query += "Ortodoncia = '', ";
+        }
+        
+        if (corona) {
+            query += "Corona = 'si', ";
+        } else {
+            query += "Corona = '', ";
+        }
+        
+        if (ausencia) {
+            query += "Ausencia_dental = 'si', ";
+        } else {
+            query += "Ausencia_dental = '', ";
+        }
+        
+        if (implante) {
+            query += "Implante = 'si', ";
+        } else {
+            query += "Implante = '', ";
+        }
+        
+        if (caries) {
+            query += "Caries = 'si', ";
+        } else {
+            query += "Caries = '', ";
+        }
+        
+        // Agregar las observaciones (si está vacío se añade un espacio)
+        if (observaciones.isEmpty()) {
+            observaciones = " ";
+        }
+        query += "Observaciones = '" + observaciones + "', ";
+        
+        // Eliminar la última coma y espacio en blanco
+        query = query.substring(0, query.length() - 2);
+        
+        // Agregar la condición WHERE para el ID del diente
+        query += " WHERE id_diente = " + idDiente;
+
+        // Crear y ejecutar la sentencia de actualización
+        statement = conect.createStatement();
+        int fila = statement.executeUpdate(query);
+
+        // Verificar si la actualización se realizó con éxito
+        if (fila > 0) {
+            System.out.println("Actualización exitosa.");
+        } else {
+            System.out.println("La actualización no tuvo éxito o no se encontró el diente con el ID especificado.");
+        }
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+}
+
+public ResultSet obtenerDatosDiente(int id_diente) {
+    try {
+        Connection conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+        String query = "SELECT Empaste, Corona, Extraccion, Ausencia_dental, Caries, Implante, Endodoncia, Ortodoncia, Observaciones FROM dientes WHERE id_diente = ?";
+        PreparedStatement preparedStatement = conect.prepareStatement(query);
+        preparedStatement.setInt(1, id_diente);
+
+        ResultSet resultSet = preparedStatement.executeQuery();
+        return resultSet;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return null;
+    }
+}
+
+
+
 }
 
 	
