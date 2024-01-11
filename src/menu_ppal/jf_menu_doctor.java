@@ -30,6 +30,7 @@ import javax.swing.border.LineBorder;
  */
 
 import login.jf_login;
+import javax.swing.JPanel;
 
 /**
  *
@@ -40,6 +41,7 @@ public class jf_menu_doctor extends javax.swing.JFrame {
     /**
      * Creates new form jf_menu_ppal
      */
+	
     fondos.Fondo fondo = new fondos.Fondo();
     public jf_menu_doctor() {
     	setPreferredSize(new Dimension(1450, 750));
@@ -88,6 +90,22 @@ public class jf_menu_doctor extends javax.swing.JFrame {
         btnNewButton.setBounds(33, 600, 148, 66);
         jp_menu.add(btnNewButton);
         
+        panel = new JPanel();
+        panel.setBackground(new Color(191, 231, 249));
+        panel.setBounds(1079, 11, 345, 64);
+        jp_menu.add(panel);
+        panel.setLayout(null);
+        
+        lbl_dni_doctor = new JLabel("<dynamic>");
+        lbl_dni_doctor.setBounds(188, 11, 137, 42);
+        panel.add(lbl_dni_doctor);
+        lbl_dni_doctor.setFont(new Font("Barlow", Font.BOLD, 20));
+        
+        JLabel lbl_bienvenido = new JLabel("BIENVENIDO");
+        lbl_bienvenido.setFont(new Font("Barlow", Font.BOLD, 20));
+        lbl_bienvenido.setBounds(28, 11, 125, 42);
+        panel.add(lbl_bienvenido);
+        
         Timer timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -112,6 +130,13 @@ public class jf_menu_doctor extends javax.swing.JFrame {
         jp_menu = new fondos.Fondo();
         jp_menu.setPreferredSize(new Dimension(1450, 750));
         btn_solicitar = new javax.swing.JButton();
+        btn_solicitar.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dialogos_materiales.jd_pedido_menudr ventana = new dialogos_materiales.jd_pedido_menudr();
+        		ventana.setTxt_invisible(getLbl_dni_doctor().getText().toString());
+        		ventana.setVisible(true);
+        	}
+        });
         btn_solicitar.setOpaque(false);
         btn_solicitar.setBorderPainted(false);
         btn_solicitar.setContentAreaFilled(false);
@@ -202,7 +227,17 @@ public class jf_menu_doctor extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+
+	public JLabel getLbl_dni_doctor() {
+		return lbl_dni_doctor;
+	}
+
+	public void setLbl_dni_doctor(String lbl_dni_doctor) {
+		this.lbl_dni_doctor.setText(lbl_dni_doctor);;
+	}
+
+
+	// Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_ajustes;
     private javax.swing.JButton btn_nuevo_tratamiento;
     private javax.swing.JButton btn_solicitar;
@@ -216,4 +251,6 @@ public class jf_menu_doctor extends javax.swing.JFrame {
     private JSeparator separator;
     private JLabel fecha;
     private JButton btnNewButton;
+    private JPanel panel;
+    private JLabel lbl_dni_doctor;
 }

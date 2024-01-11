@@ -14,6 +14,7 @@ import javax.swing.JRadioButton;
 
 import Modelo.Cita;
 import Modelo.Doctor;
+import Modelo.Inventario;
 import Modelo.Paciente;
 import dialogos_consultas.jd_historial_cita;
 import dialogos_consultas.jd_nueva_consulta;
@@ -577,6 +578,44 @@ public String consulta_doctor_eliminar(String dni) throws SQLException{
 
 	    return historiales;
 	}
+	
+	public List<Inventario> obtenerInventario() {
+        List<Inventario> inventarios = new ArrayList<>();
+
+        try {
+            conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+            statement = conect.createStatement();
+            String query = "SELECT ID_producto, Nombre, Cantidad FROM inventario";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                String id = resultSet.getString("ID_producto");
+                String producto = resultSet.getString("Nombre");
+                String cantidad = resultSet.getString("Cantidad");
+
+                Inventario Inventario = new Inventario(id,producto,cantidad);
+
+                inventarios.add(Inventario);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();  // 
+        } finally {
+            // Aqui vamos a cerrar recursos (statement y conexión) en el bloque finally
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                if (conect != null) {
+                    conect.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return inventarios;
+    }
 
 
 public String consulta_doctor_ficha(String dni) throws SQLException{
@@ -962,6 +1001,30 @@ public void insertar_especialidad(String especialidad) {
 		statement = conect.createStatement();
 		String query = "INSERT INTO especialidad (Nombre) " +
             "VALUES ('" + especialidad + "')";
+
+		int fila = statement.executeUpdate(query);
+		
+		// Verificar si la inserción se realizó con éxito
+		if (fila > 0) {
+			System.out.println("Inserción exitosa.");
+		} else {
+			System.out.println("La inserción no tuvo éxito.");
+		}
+		
+	}
+	catch(SQLException ex) {
+		ex.printStackTrace();
+	}
+	
+}
+
+public void insertar_solicitud(String solicitud, String DNI_doctor, String cantidad) {
+	
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "INSERT INTO solicitudes (Nombre_producto, DNI_doctor, Cantidad) " +
+            "VALUES ('" + solicitud + "', '" + DNI_doctor + "', '" + cantidad + "')";
 
 		int fila = statement.executeUpdate(query);
 		

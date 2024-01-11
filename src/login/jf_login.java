@@ -308,6 +308,7 @@ public class jf_login extends javax.swing.JFrame {
         	                } else {
         	                    System.out.println("Estoy accediendo como doctor");
         	                    menu_ppal.jf_menu_doctor ventana = new menu_ppal.jf_menu_doctor();
+        	                    ventana.setLbl_dni_doctor(user);
         	                    ventana.setVisible(true);
         	                    dispose();
         	                }
