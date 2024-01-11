@@ -37,7 +37,6 @@ public class jd_buscar_paciente_encontrado_menudr extends JDialog {
 	private JTextField txt_nombre;
 	private JTextField txt_apellidos;
 	private String dni;
-	private String dniPasar = "";
 	/**
 	 * Launch the application.
 	 */
@@ -145,12 +144,10 @@ public class jd_buscar_paciente_encontrado_menudr extends JDialog {
 		btn_abrirOdontograma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//Abrimos odontrograma aqui
-				 
-				
-				 jd_odontograma ventana = new jd_odontograma();
-				
-				ventana.setVisible(true);
-				dispose();
+				System.out.println("getter de dnipasar "+getTxt_dni().getText().toString());
+				jd_odontograma ventana = new jd_odontograma(getTxt_dni().getText().toString());
+		    ventana.setVisible(true);
+			dispose();
 			}
 		});
 		btn_abrirOdontograma.setFocusPainted(false);
@@ -233,8 +230,7 @@ public class jd_buscar_paciente_encontrado_menudr extends JDialog {
 			btn_historial.setBounds(194, 0, 153, 43);
 			buttonPane.add(btn_historial);
 			
-			dniPasar = txt_dni.getText().toString();
-			System.out.println(dniPasar);
+			
 		}
 	}
 
@@ -243,14 +239,7 @@ public class jd_buscar_paciente_encontrado_menudr extends JDialog {
 	}
 	
 
-
-	public String getDniPasar() {
-		return dniPasar;
-	}
-
-	public void setDniPasar(String dniPasar) {
-		this.dniPasar = dniPasar;
-	}
+	
 
 	public void setTxt_dni(String txt_dni) {
 		this.txt_dni.setText(txt_dni);

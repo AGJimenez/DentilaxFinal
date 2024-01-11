@@ -1,4 +1,6 @@
 package dentilax_bdd;
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.event.ItemEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,15 +9,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
 import Modelo.Cita;
 import Modelo.Doctor;
 import Modelo.Inventario;
+import Modelo.Odontograma;
 import Modelo.Paciente;
 import dialogos_consultas.jd_historial_cita;
 import dialogos_consultas.jd_nueva_consulta;
@@ -617,6 +621,35 @@ public String consulta_doctor_eliminar(String dni) throws SQLException{
 
         return inventarios;
     }
+	
+	public List<Odontograma> obtenerOdontogramaPorDiente(int idDiente, int idPaciente) {
+	    List<Odontograma> dientes = new ArrayList<>();
+
+	    try (Connection connection = DriverManager.getConnection(URL, USUARIO, CLAVE);
+	         PreparedStatement preparedStatement = connection.prepareStatement("SELECT id_diente, observaciones, fecha FROM odontograma WHERE id_diente = ? AND id_paciente = ?");
+	    ) {
+	        preparedStatement.setInt(1, idDiente);
+	        preparedStatement.setInt(2, idPaciente);
+
+	        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+	            while (resultSet.next()) {
+	                int diente = resultSet.getInt("id_diente");
+	                String observaciones = resultSet.getString("observaciones");
+	                Date fecha = resultSet.getDate("fecha");
+
+	                Odontograma odontograma = new Odontograma(diente, observaciones, fecha);
+	                dientes.add(odontograma);
+	            }
+	        }
+
+	    } catch (SQLException ex) {
+	        // Manejar la excepción adecuadamente, puedes lanzar una nueva excepción personalizada o utilizar un sistema de registro
+	        ex.printStackTrace();
+	    }
+
+	    return dientes;
+	}
+
 
 
 public String consulta_doctor_ficha(String dni) throws SQLException{
@@ -1348,18 +1381,19 @@ public void mostarCbCitasEsp(jd_nueva_consulta datos) throws SQLException {
         }
     }
 }
-
-private int obtenerIdPacientePorDni(int DNI_paciente) {
-    int idPaciente = -1; // Valor predeterminado si no se encuentra el paciente
+int idPaciente;
+public int obtenerIdPacientePorDni(String DNI_paciente) {
+    idPaciente = -1; // Valor predeterminado si no se encuentra el paciente
 
     try {
+    	 conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
         // Crear la sentencia SQL para obtener el ID del paciente por DNI
         String query = "SELECT ID_paciente FROM pacientes WHERE DNI_paciente = ?";
         
         // Crear la instancia del PreparedStatement
         try (PreparedStatement preparedStatement = conect.prepareStatement(query)) {
             // Establecer el parámetro en el PreparedStatement
-            preparedStatement.setInt(1, DNI_paciente);
+            preparedStatement.setString(1, DNI_paciente);
 
             // Ejecutar la consulta
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -1378,27 +1412,27 @@ private int obtenerIdPacientePorDni(int DNI_paciente) {
 }
 
 
-public void insertarOdontograma(int idDiente, String observaciones, int idDniPaciente) {
+public void insertarOdontograma(int id_diente, String observaciones, int id_paciente) {
     try {
         conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 
         // Obtener el ID del diente a partir del DNI del paciente y el ID del diente
-        int idPaciente = obtenerIdPacientePorDni(idDniPaciente);
+        
 
         // Crear la sentencia de inserción
-        String query = "INSERT INTO odontograma (id_diente, observaciones, fecha, idPaciente) VALUES (?, ?, ?, ?)";
+        String query = "INSERT INTO odontograma (id_diente, observaciones, fecha, id_paciente) VALUES (?, ?, ?, ?)";
 
         // Crear la instancia del PreparedStatement
         try (PreparedStatement preparedStatement = conect.prepareStatement(query)) {
             // Establecer los parámetros en el PreparedStatement
-            preparedStatement.setInt(1, idDiente);
+            preparedStatement.setInt(1, id_diente);
             preparedStatement.setString(2, observaciones);
 
             // Obtener la fecha actual del sistema y convertirla a formato SQL DATE
             Date fechaActual = new Date(System.currentTimeMillis());
-            preparedStatement.setDate(3, (java.sql.Date) fechaActual);
+            preparedStatement.setDate(3, new java.sql.Date(fechaActual.getTime()));
 
-            preparedStatement.setInt(4, idPaciente);
+            preparedStatement.setInt(4, id_paciente);
 
             // Ejecutar la sentencia de inserción
             int fila = preparedStatement.executeUpdate();
@@ -1415,20 +1449,34 @@ public void insertarOdontograma(int idDiente, String observaciones, int idDniPac
         ex.printStackTrace();
     }
 }
+public List<Integer> mostrarDientes(int id_paciente) {
+    List<Integer> listaIdDientes = new ArrayList<>();
 
-public ResultSet obtenerDatosDiente(int id_diente) {
     try {
-        Connection conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
-        String query = "SELECT Empaste, Corona, Extraccion, Ausencia_dental, Caries, Implante, Endodoncia, Ortodoncia, Observaciones FROM dientes WHERE id_diente = ?";
-        PreparedStatement preparedStatement = conect.prepareStatement(query);
-        preparedStatement.setInt(1, id_diente);
+        conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+        // Crear la sentencia SQL para obtener los id_diente asociados a un id_paciente
+        String query = "SELECT id_diente FROM odontograma WHERE id_paciente = ?";
 
-        ResultSet resultSet = preparedStatement.executeQuery();
-        return resultSet;
-    } catch (SQLException e) {
-        e.printStackTrace();
-        return null;
+        // Crear la instancia del PreparedStatement
+        try (PreparedStatement preparedStatement = conect.prepareStatement(query)) {
+            // Establecer el parámetro en el PreparedStatement
+            preparedStatement.setInt(1, id_paciente);
+
+            // Ejecutar la consulta
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Iterar sobre los resultados y agregarlos a la lista
+            while (resultSet.next()) {
+                int idDiente = resultSet.getInt("id_diente");
+                listaIdDientes.add(idDiente);
+            }
+        }
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
     }
+
+    return listaIdDientes;
 }
 
 
