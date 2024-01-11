@@ -20,6 +20,7 @@ import java.awt.Cursor;
 import javax.swing.JCheckBox;
 import javax.swing.JTextArea;
 import javax.swing.DropMode;
+import javax.swing.JTextField;
 
 public class jd_odontograma extends JDialog {
 
@@ -79,6 +80,8 @@ public class jd_odontograma extends JDialog {
 	 * Create the dialog.
 	 */
 	public jd_odontograma() {
+		
+		
 		getContentPane().setBackground(new Color(255, 255, 255));
 		setTitle("Odontograma");
 		setModal(true);
@@ -98,82 +101,16 @@ public class jd_odontograma extends JDialog {
 		lb_diente.setBounds(250, 35, 149, 23);
 		panel.add(lb_diente);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_1.setBackground(Color.WHITE);
-		panel_1.setBounds(35, 118, 517, 142);
-		panel.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JCheckBox chb_empaste = new JCheckBox("Empaste");
-		chb_empaste.setBounds(22, 23, 149, 23);
-		panel_1.add(chb_empaste);
-		chb_empaste.setFont(new Font("Barlow Light", Font.PLAIN, 17));
-		chb_empaste.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		chb_empaste.setBackground(new Color(191, 231, 249));
-		
-		JCheckBox chb_ausencia = new JCheckBox("Ausencia dental");
-		chb_ausencia.setBounds(184, 23, 149, 23);
-		panel_1.add(chb_ausencia);
-		chb_ausencia.setFont(new Font("Barlow Light", Font.PLAIN, 17));
-		chb_ausencia.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		chb_ausencia.setBackground(new Color(191, 231, 249));
-		
-		JCheckBox chb_endo = new JCheckBox("Endodoncia");
-		chb_endo.setBounds(345, 23, 149, 23);
-		panel_1.add(chb_endo);
-		chb_endo.setFont(new Font("Barlow Light", Font.PLAIN, 17));
-		chb_endo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		chb_endo.setBackground(new Color(191, 231, 249));
-		
-		JCheckBox chb_corona = new JCheckBox("Corona");
-		chb_corona.setBounds(22, 61, 149, 23);
-		panel_1.add(chb_corona);
-		chb_corona.setFont(new Font("Barlow Light", Font.PLAIN, 17));
-		chb_corona.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		chb_corona.setBackground(new Color(191, 231, 249));
-		
-		JCheckBox chb_implante = new JCheckBox("Implante");
-		chb_implante.setBounds(184, 61, 149, 23);
-		panel_1.add(chb_implante);
-		chb_implante.setFont(new Font("Barlow Light", Font.PLAIN, 17));
-		chb_implante.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		chb_implante.setBackground(new Color(191, 231, 249));
-		
-		JCheckBox chb_ortodoncia = new JCheckBox("Ortodoncia");
-		chb_ortodoncia.setBounds(345, 61, 149, 23);
-		panel_1.add(chb_ortodoncia);
-		chb_ortodoncia.setFont(new Font("Barlow Light", Font.PLAIN, 17));
-		chb_ortodoncia.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		chb_ortodoncia.setBackground(new Color(191, 231, 249));
-		
-		JCheckBox chb_caries = new JCheckBox("Caries");
-		chb_caries.setBounds(184, 99, 149, 23);
-		panel_1.add(chb_caries);
-		chb_caries.setFont(new Font("Barlow Light", Font.PLAIN, 17));
-		chb_caries.setBackground(new Color(191, 231, 249));
-		
-		JCheckBox chb_extraccion = new JCheckBox("Extracción");
-		chb_extraccion.setBounds(22, 99, 149, 23);
-		panel_1.add(chb_extraccion);
-		chb_extraccion.setFont(new Font("Barlow Light", Font.PLAIN, 17));
-		chb_extraccion.setBackground(new Color(191, 231, 249));
-		
-		JLabel lblNewLabel_2 = new JLabel("Tratamientos");
-		lblNewLabel_2.setFont(new Font("Barlow Light", Font.PLAIN, 20));
-		lblNewLabel_2.setBounds(232, 84, 149, 23);
-		panel.add(lblNewLabel_2);
-		
 		JLabel lblNewLabel_2_1 = new JLabel("Observaciones");
 		lblNewLabel_2_1.setFont(new Font("Barlow Light", Font.PLAIN, 20));
-		lblNewLabel_2_1.setBounds(232, 291, 149, 23);
+		lblNewLabel_2_1.setBounds(218, 79, 149, 23);
 		panel.add(lblNewLabel_2_1);
 		
 		JTextArea ta_observaciones = new JTextArea();
 		ta_observaciones.setBorder(new LineBorder(new Color(0, 0, 0)));
 		ta_observaciones.setFont(new Font("Arial", Font.PLAIN, 16));
 		ta_observaciones.setLineWrap(true);
-		ta_observaciones.setBounds(35, 337, 517, 198);
+		ta_observaciones.setBounds(35, 113, 517, 198);
 		panel.add(ta_observaciones);
 		
 		JButton btn_salir = new JButton("SALIR");
@@ -190,6 +127,10 @@ public class jd_odontograma extends JDialog {
 		btn_salir.setBounds(399, 579, 153, 43);
 		panel.add(btn_salir);
 		
+		jd_buscar_paciente_encontrado_menudr prueba = new jd_buscar_paciente_encontrado_menudr();
+		String pasado = prueba.getDniPasar().toString();
+       // int dniPaciente = Integer.parseInt(pasado);
+        System.out.println(pasado);
 		
 		JButton btn_salir_1 = new JButton("CONFIRMAR");
 		btn_salir_1.addActionListener(new ActionListener() {
@@ -200,19 +141,10 @@ public class jd_odontograma extends JDialog {
 				String id_dienteString = id_spliteado[1];
 				int id_diente = Integer.parseInt(id_dienteString);
 				System.out.print(id_diente);
-				boolean seleccion_empaste = chb_empaste.isSelected();
-				boolean seleccion_extraccion = chb_extraccion.isSelected();
-				boolean seleccion_ortodoncia = chb_ortodoncia.isSelected();
-				boolean seleccion_endodoncia = chb_endo.isSelected();
-				boolean seleccion_corona = chb_corona.isSelected();
-				boolean seleccion_ausencia = chb_ausencia.isSelected();
-				boolean seleccion_implante = chb_implante.isSelected();
-				boolean seleccion_caries = chb_caries.isSelected();
 				String observaciones = ta_observaciones.getText().toString();
 				
 			dentilax_bdd.ConectorDB_mysql consulta = new dentilax_bdd.ConectorDB_mysql();
-			consulta.actualizarDatosOdontograma(id_diente, seleccion_empaste, seleccion_extraccion, seleccion_endodoncia, seleccion_ortodoncia, seleccion_corona, seleccion_ausencia,
-					seleccion_implante, seleccion_caries, observaciones);
+			//consulta.insertarOdontograma(id_diente, observaciones, dniPaciente);//le paso el dni para buscar la id
 				
 			}
 		});
@@ -229,7 +161,7 @@ public class jd_odontograma extends JDialog {
 		btn_45.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 45");
-				cargarDatosDiente(45, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
+				
 			}
 		});
 		btn_45.setFocusPainted(false);
@@ -243,7 +175,6 @@ public class jd_odontograma extends JDialog {
 		btn_34.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 34");
-				cargarDatosDiente(34, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_34.setFocusPainted(false);
@@ -257,7 +188,6 @@ public class jd_odontograma extends JDialog {
 		btn_31.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 31");
-				cargarDatosDiente(31, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_31.setFocusPainted(false);
@@ -271,7 +201,6 @@ public class jd_odontograma extends JDialog {
 		btn_42.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 42");
-				cargarDatosDiente(42, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_42.setHorizontalAlignment(SwingConstants.LEFT);
@@ -286,7 +215,6 @@ public class jd_odontograma extends JDialog {
 		btn_47.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 47");
-				cargarDatosDiente(47, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_47.setFocusPainted(false);
@@ -300,7 +228,6 @@ public class jd_odontograma extends JDialog {
 		btn_38.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 38");
-				cargarDatosDiente(38, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_38.setFocusPainted(false);
@@ -314,7 +241,6 @@ public class jd_odontograma extends JDialog {
 		btn_37.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 37");
-				cargarDatosDiente(37, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_37.setFocusPainted(false);
@@ -328,7 +254,6 @@ public class jd_odontograma extends JDialog {
 		btn_33.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 33");
-				cargarDatosDiente(33, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_33.setFocusPainted(false);
@@ -342,7 +267,6 @@ public class jd_odontograma extends JDialog {
 		btn_41.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 41");
-				cargarDatosDiente(41, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_41.setFocusPainted(false);
@@ -356,7 +280,6 @@ public class jd_odontograma extends JDialog {
 		btn_43.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 43");
-				cargarDatosDiente(43, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_43.setFocusPainted(false);
@@ -370,7 +293,6 @@ public class jd_odontograma extends JDialog {
 		btn_46.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 46");
-				cargarDatosDiente(46, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_46.setFocusPainted(false);
@@ -384,7 +306,6 @@ public class jd_odontograma extends JDialog {
 		btn_48.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 48");
-				 cargarDatosDiente(48, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_48.setFocusPainted(false);
@@ -398,7 +319,6 @@ public class jd_odontograma extends JDialog {
 		btn_36.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 36");
-				cargarDatosDiente(36, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_36.setFocusPainted(false);
@@ -412,7 +332,6 @@ public class jd_odontograma extends JDialog {
 		btn_35.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 35");
-				cargarDatosDiente(35, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_35.setFocusPainted(false);
@@ -426,7 +345,6 @@ public class jd_odontograma extends JDialog {
 		btn_44.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 44");
-				cargarDatosDiente(44, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_44.setFocusPainted(false);
@@ -440,7 +358,6 @@ public class jd_odontograma extends JDialog {
 		btn_32.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 32");
-				cargarDatosDiente(32, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_32.setFocusPainted(false);
@@ -454,7 +371,6 @@ public class jd_odontograma extends JDialog {
 		btn_18.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 18");
-				cargarDatosDiente(18, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_18.setFocusPainted(false);
@@ -468,7 +384,6 @@ public class jd_odontograma extends JDialog {
 		btn_13.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 13");
-				cargarDatosDiente(13, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_13.setFocusPainted(false);
@@ -482,7 +397,6 @@ public class jd_odontograma extends JDialog {
 		btn_15.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 15");
-				cargarDatosDiente(15, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_15.setFocusPainted(false);
@@ -496,7 +410,6 @@ public class jd_odontograma extends JDialog {
 		btn_16.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 16");
-				cargarDatosDiente(16, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_16.setFocusPainted(false);
@@ -510,7 +423,6 @@ public class jd_odontograma extends JDialog {
 		btn_11.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 11");
-				cargarDatosDiente(11, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_11.setFocusPainted(false);
@@ -524,7 +436,6 @@ public class jd_odontograma extends JDialog {
 		btn_14.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 14");
-				cargarDatosDiente(14, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_14.setFocusPainted(false);
@@ -538,7 +449,6 @@ public class jd_odontograma extends JDialog {
 		btn_17.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 17");
-				cargarDatosDiente(17, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_17.setFocusPainted(false);
@@ -552,7 +462,6 @@ public class jd_odontograma extends JDialog {
 		btn_12.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 12");
-				cargarDatosDiente(12, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_12.setFont(new Font("Tahoma", Font.PLAIN, 10));
@@ -568,7 +477,6 @@ public class jd_odontograma extends JDialog {
 		btn_22.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 22");
-				cargarDatosDiente(22, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_22.setFocusPainted(false);
@@ -582,7 +490,6 @@ public class jd_odontograma extends JDialog {
 		btn_28.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 28");
-				cargarDatosDiente(28, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_28.setFocusPainted(false);
@@ -596,7 +503,6 @@ public class jd_odontograma extends JDialog {
 		btn_23.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 23");
-				cargarDatosDiente(23, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_23.setFocusPainted(false);
@@ -610,7 +516,6 @@ public class jd_odontograma extends JDialog {
 		btn_24.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 24");
-				cargarDatosDiente(24, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_24.setFocusPainted(false);
@@ -624,7 +529,6 @@ public class jd_odontograma extends JDialog {
 		btn_27.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 27");
-				cargarDatosDiente(27, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_27.setFocusPainted(false);
@@ -638,7 +542,6 @@ public class jd_odontograma extends JDialog {
 		btn_25.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 25");
-				cargarDatosDiente(25, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_25.setFocusPainted(false);
@@ -652,7 +555,6 @@ public class jd_odontograma extends JDialog {
 		btn_26.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 26");
-				cargarDatosDiente(26, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_26.setFocusPainted(false);
@@ -666,7 +568,6 @@ public class jd_odontograma extends JDialog {
 		btn_21.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 21");
-				cargarDatosDiente(21, chb_empaste, chb_corona, chb_extraccion, chb_ausencia, chb_caries, chb_implante, chb_endo, chb_ortodoncia, ta_observaciones);
 			}
 		});
 		btn_21.setFocusPainted(false);
@@ -682,10 +583,10 @@ public class jd_odontograma extends JDialog {
 		getContentPane().add(lblNewLabel);
 		
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(jd_odontograma.class.getResource("/imagenesOdontograma/fondoDental.png")));
-		lblNewLabel_1.setBounds(0, 0, 1184, 762);
-		getContentPane().add(lblNewLabel_1);
+		JLabel lb = new JLabel("");
+		lb.setIcon(new ImageIcon(jd_odontograma.class.getResource("/imagenesOdontograma/fondoDental.png")));
+		lb.setBounds(0, 0, 1184, 762);
+		getContentPane().add(lb);
 
 		
 		

@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -1348,85 +1349,66 @@ public void mostarCbCitasEsp(jd_nueva_consulta datos) throws SQLException {
     }
 }
 
+private int obtenerIdPacientePorDni(int DNI_paciente) {
+    int idPaciente = -1; // Valor predeterminado si no se encuentra el paciente
 
-public void actualizarDatosOdontograma(int idDiente, boolean empaste, boolean extraccion, boolean endodoncia, boolean ortodoncia, boolean corona, boolean ausencia,
-        boolean implante, boolean caries, String observaciones) {
+    try {
+        // Crear la sentencia SQL para obtener el ID del paciente por DNI
+        String query = "SELECT ID_paciente FROM pacientes WHERE DNI_paciente = ?";
+        
+        // Crear la instancia del PreparedStatement
+        try (PreparedStatement preparedStatement = conect.prepareStatement(query)) {
+            // Establecer el parámetro en el PreparedStatement
+            preparedStatement.setInt(1, DNI_paciente);
+
+            // Ejecutar la consulta
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Verificar si se encontró el paciente
+            if (resultSet.next()) {
+                idPaciente = resultSet.getInt("ID_paciente");
+            }
+        }
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+
+    return idPaciente;
+}
+
+
+public void insertarOdontograma(int idDiente, String observaciones, int idDniPaciente) {
     try {
         conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
-        
-        // Crear la sentencia de actualización
-        String query = "UPDATE dientes SET ";
-        
-        // Agregar los campos a actualizar basados en los checkboxes
-        if (empaste) {
-            query += "Empaste = 'si', ";
-        } else {
-            query += "Empaste = '', ";
-        }
-        
-        if (extraccion) {
-            query += "Extraccion = 'si', ";
-        } else {
-            query += "Extraccion = '', ";
-        }
-        
-        if (endodoncia) {
-            query += "Endodoncia = 'si', ";
-        } else {
-            query += "Endodoncia = '', ";
-        }
-        
-        if (ortodoncia) {
-            query += "Ortodoncia = 'si', ";
-        } else {
-            query += "Ortodoncia = '', ";
-        }
-        
-        if (corona) {
-            query += "Corona = 'si', ";
-        } else {
-            query += "Corona = '', ";
-        }
-        
-        if (ausencia) {
-            query += "Ausencia_dental = 'si', ";
-        } else {
-            query += "Ausencia_dental = '', ";
-        }
-        
-        if (implante) {
-            query += "Implante = 'si', ";
-        } else {
-            query += "Implante = '', ";
-        }
-        
-        if (caries) {
-            query += "Caries = 'si', ";
-        } else {
-            query += "Caries = '', ";
-        }
-        
-        // Agregar las observaciones (si está vacío se añade un espacio)
-        if (observaciones.isEmpty()) {
-            observaciones = " ";
-        }
-        query += "Observaciones = '" + observaciones + "', ";
-        
-        // Eliminar la última coma y espacio en blanco
-        query = query.substring(0, query.length() - 2);
-        
-        // Agregar la condición WHERE para el ID del diente
-        query += " WHERE id_diente = " + idDiente;
 
-        // Crear y ejecutar la sentencia de actualización
-        statement = conect.createStatement();
-        int fila = statement.executeUpdate(query);
+        // Obtener el ID del diente a partir del DNI del paciente y el ID del diente
+        int idPaciente = obtenerIdPacientePorDni(idDniPaciente);
 
-        // Verificar si la actualización se realizó con éxito
-        if (fila > 0) {
-            System.out.println("Actualización exitosa.");
-        } else {
-            System.out.println("La actualización no tuvo éxito o no se encontró el diente con el ID especificado.");
+        // Crear la sentencia de inserción
+        String query = "INSERT INTO odontograma (id_diente, observaciones, fecha, idPaciente) VALUES (?, ?, ?, ?)";
+
+        // Crear la instancia del PreparedStatement
+        try (PreparedStatement preparedStatement = conect.prepareStatement(query)) {
+            // Establecer los parámetros en el PreparedStatement
+            preparedStatement.setInt(1, idDiente);
+            preparedStatement.setString(2, observaciones);
+
+            // Obtener la fecha actual del sistema y convertirla a formato SQL DATE
+            Date fechaActual = new Date(System.currentTimeMillis());
+            preparedStatement.setDate(3, (java.sql.Date) fechaActual);
+
+            preparedStatement.setInt(4, idPaciente);
+
+            // Ejecutar la sentencia de inserción
+            int fila = preparedStatement.executeUpdate();
+
+            // Verificar si la inserción se realizó con éxito
+            if (fila > 0) {
+                System.out.println("Inserción exitosa.");
+            } else {
+                System.out.println("La inserción no tuvo éxito.");
+            }
         }
 
     } catch (SQLException ex) {
