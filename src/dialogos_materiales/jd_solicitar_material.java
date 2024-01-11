@@ -9,6 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import dentilax_bdd.ConectorDB_mysql;
+
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -23,6 +26,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
 import java.awt.Toolkit;
 
 public class jd_solicitar_material extends JDialog {
@@ -130,6 +136,8 @@ public class jd_solicitar_material extends JDialog {
 				}
 			}
 		});
+		
+		
 		txt_cantidad.setText("Introduce cantidad");
 		txt_cantidad.setOpaque(false);
 		txt_cantidad.setHorizontalAlignment(SwingConstants.CENTER);
@@ -139,6 +147,19 @@ public class jd_solicitar_material extends JDialog {
 		txt_cantidad.setBackground((Color) null);
 		txt_cantidad.setBounds(321, 126, 164, 44);
 		contentPanel.add(txt_cantidad);
+		
+		txt_cantidad.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+				dentilax_bdd.ConectorDB_mysql consulta = new dentilax_bdd.ConectorDB_mysql();
+				consulta.insertar_solicitud(txt_producto.getText().toString(), getTxt_invisible_2().getText().toString(), txt_cantidad.getText().toString());
+				JOptionPane.showMessageDialog(null, "Producto "+txt_producto.getText().toString()+" solicitado con éxito");
+				//SQL 
+				dispose();
+				}
+			}
+		});
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setForeground(new Color(0, 128, 192));

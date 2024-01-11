@@ -74,6 +74,18 @@ public class jd_buscar_paciente_menudr extends JDialog {
 		{
 			txt_IntroduceDni = new JTextField();
 			
+			
+			txt_IntroduceDni.setOpaque(false);
+			txt_IntroduceDni.setText("Introduce DNI");
+			txt_IntroduceDni.setHorizontalAlignment(SwingConstants.LEFT);
+			txt_IntroduceDni.setFont(new Font("Arial", Font.PLAIN, 17));
+			txt_IntroduceDni.setColumns(10);
+			txt_IntroduceDni.setBorder(null);
+			txt_IntroduceDni.setBackground(new Color(0, 128, 192));
+			txt_IntroduceDni.setBounds(110, 140, 382, 44);
+			txt_IntroduceDni.setFocusable(true);
+			contentPanel.add(txt_IntroduceDni);
+			
 			txt_IntroduceDni.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
@@ -90,16 +102,7 @@ public class jd_buscar_paciente_menudr extends JDialog {
 	                }
 				}
 			});
-			txt_IntroduceDni.setOpaque(false);
-			txt_IntroduceDni.setText("Introduce DNI");
-			txt_IntroduceDni.setHorizontalAlignment(SwingConstants.LEFT);
-			txt_IntroduceDni.setFont(new Font("Arial", Font.PLAIN, 17));
-			txt_IntroduceDni.setColumns(10);
-			txt_IntroduceDni.setBorder(null);
-			txt_IntroduceDni.setBackground(new Color(0, 128, 192));
-			txt_IntroduceDni.setBounds(110, 140, 382, 44);
-			txt_IntroduceDni.setFocusable(true);
-			contentPanel.add(txt_IntroduceDni);
+			
 		}
 		{
 			JLabel lbl_dni = new JLabel("DNI");
