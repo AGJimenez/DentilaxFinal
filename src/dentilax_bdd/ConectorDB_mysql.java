@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.sql.Date;
 import java.util.List;
 
@@ -21,7 +22,9 @@ import Modelo.Doctor;
 import Modelo.Inventario;
 import Modelo.Odontograma;
 import Modelo.Paciente;
+import Modelo.Solicitud;
 import dialogos_consultas.jd_historial_cita;
+import dialogos_consultas.jd_mod_consulta;
 import dialogos_consultas.jd_nueva_consulta;
 
 
@@ -622,6 +625,88 @@ public String consulta_doctor_eliminar(String dni) throws SQLException{
         return inventarios;
     }
 	
+	public List<Solicitud> obtenerSolicitudes() {
+	    List<Solicitud> solicitudes = new ArrayList<>();
+
+	    try {
+	        conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+	        statement = conect.createStatement();
+	        String query = "SELECT ID_solicitud, Nombre_producto, DNI_doctor, Cantidad, Fecha, Estado FROM solicitudes";
+	        ResultSet resultSet = statement.executeQuery(query);
+
+	        while (resultSet.next()) {
+	            int id = resultSet.getInt("ID_solicitud");
+	            String nombreProducto = resultSet.getString("Nombre_producto");
+	            String dniDoctor = resultSet.getString("DNI_doctor");
+	            int cantidad = resultSet.getInt("Cantidad");
+	            Date fecha = resultSet.getDate("Fecha");
+	            String estado = resultSet.getString("Estado");
+
+	            Solicitud solicitud = new Solicitud(id, nombreProducto, dniDoctor, cantidad, fecha, estado);
+
+	            solicitudes.add(solicitud);
+	        }
+
+	    } catch (SQLException ex) {
+	        ex.printStackTrace();
+	    } finally {
+	        try {
+	            if (statement != null) {
+	                statement.close();
+	            }
+	            if (conect != null) {
+	                conect.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    return solicitudes;
+	}
+
+	public List<Solicitud> obtenerSolicitudesActivas() {
+	    List<Solicitud> solicitudesActivas = new ArrayList<>();
+
+	    try {
+	        conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+	        statement = conect.createStatement();
+	        String query = "SELECT * FROM solicitudes WHERE Estado = 'Activa'";
+	        ResultSet resultSet = statement.executeQuery(query);
+
+	        while (resultSet.next()) {
+	            int id = resultSet.getInt("ID_solicitud");
+	            String nombreProducto = resultSet.getString("Nombre_producto");
+	            String dniDoctor = resultSet.getString("DNI_doctor");
+	            int cantidad = resultSet.getInt("Cantidad");
+	            Date fecha = resultSet.getDate("Fecha");
+	            String estado = resultSet.getString("Estado");
+
+	            Solicitud solicitud = new Solicitud(id, nombreProducto, dniDoctor, cantidad, fecha, estado);
+
+	            solicitudesActivas.add(solicitud);
+	        }
+
+	    } catch (SQLException ex) {
+	        ex.printStackTrace();
+	    } finally {
+	        try {
+	            if (statement != null) {
+	                statement.close();
+	            }
+	            if (conect != null) {
+	                conect.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    return solicitudesActivas;
+	}
+
+	
+	
 	public List<Odontograma> obtenerOdontogramaPorDiente(int idDiente, int idPaciente) {
 	    List<Odontograma> dientes = new ArrayList<>();
 
@@ -823,6 +908,32 @@ public void insertar_doctor(String dni, String apellidos, String nombre, String 
 		statement = conect.createStatement();
 		String query = "INSERT INTO doctores (DNI_doctor, Nombre, Apellidos, Nacimiento, Genero, Estado, Telefono, Correo, Direccion, Salario, Especialidad) " +
             "VALUES ('" + dni + "', '" + nombre + "', '" + apellidos + "', '" + nacimiento + "', '" + genero + "', '" + estado + "', '" + telefono + "', '" + correo + "', '" + direccion + "', '" + salario + "', '" + especialidad + "')";
+
+		int fila = statement.executeUpdate(query);
+		
+		// Verificar si la inserción se realizó con éxito
+		if (fila > 0) {
+			System.out.println("Inserción exitosa.");
+			JOptionPane.showMessageDialog(null, "Doctor añadido con éxito");
+		} else {
+			System.out.println("La inserción no tuvo éxito.");
+			
+		}
+		
+	}
+	catch(SQLException ex) {
+		JOptionPane.showMessageDialog(null, "Error en la inserción de doctor, comprueba los campos.");
+		ex.printStackTrace();
+	}
+}
+
+public void insertar_pedido(String producto, int cantidad) throws SQLException{
+	
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "INSERT INTO pedidos (Producto, Cantidad, Precio, Fecha, id_proveedor) " +
+            "VALUES ('" + producto + "', '" + cantidad + "', '" +  precio + "', '" + fecha + "', '" + id_proveedor + "')";
 
 		int fila = statement.executeUpdate(query);
 		
@@ -1054,11 +1165,13 @@ public void insertar_especialidad(String especialidad) {
 
 public void insertar_solicitud(String solicitud, String DNI_doctor, String cantidad) {
 	
+	Date fechaDelMomento = new Date(Calendar.getInstance().getTime().getTime());
+	
 	try {
 		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 		statement = conect.createStatement();
-		String query = "INSERT INTO solicitudes (Nombre_producto, DNI_doctor, Cantidad) " +
-            "VALUES ('" + solicitud + "', '" + DNI_doctor + "', '" + cantidad + "')";
+		String query = "INSERT INTO solicitudes (Nombre_producto, DNI_doctor, Cantidad, Fecha, Estado) " +
+            "VALUES ('" + solicitud + "', '" + DNI_doctor + "', '" + cantidad + "', '" + fechaDelMomento + "', '"+ "Activa" + "')";
 
 		int fila = statement.executeUpdate(query);
 		
@@ -1131,17 +1244,59 @@ public String consulta_cita_eliminar_encontrar(String id) throws SQLException{
 	
 }
 
+public String consulta_cita_modificar_encontrar(String id) throws SQLException {
+    try {
+        conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+        statement = conect.createStatement();
+        String query = "SELECT citas.ID_cita, citas.Fecha, doctores.Nombre AS DoctorNombre, pacientes.Nombre AS PacienteNombre " +
+                "FROM citas " +
+                "JOIN doctores ON citas.DNI_doctor = doctores.DNI_doctor " +
+                "JOIN pacientes ON citas.DNI_paciente = pacientes.DNI_paciente " +
+                "WHERE citas.ID_cita = '" + id + "' AND citas.Fecha >= CURDATE()";
+
+        ResultSet resultSet = statement.executeQuery(query);
+
+        if (resultSet.next()) {
+            // Resultado encontrado
+            System.out.println("Resultado encontrado");
+            String ID = resultSet.getString("citas.ID_cita");
+            String fechaSql = resultSet.getString("citas.Fecha");
+            String doctorSql = resultSet.getString("DoctorNombre");
+            String pacienteSql = resultSet.getString("PacienteNombre");
+
+            // Continuar con la ventana de modificación
+            dialogos_consultas.jd_buscar_consulta_modificar_encontrada ventana = new dialogos_consultas.jd_buscar_consulta_modificar_encontrada();
+            ventana.setTxt_fecha(fechaSql);
+            ventana.setTxt_doctor(doctorSql);
+            ventana.setTxt_paciente(pacienteSql);
+            ventana.setLbl_id(ID);
+            ventana.setVisible(true);
+        } else {
+            // No se encontró nada o la cita es anterior al día presente
+            System.out.println("No se ha encontrado nada o la cita es anterior al día presente");
+            JOptionPane.showMessageDialog(null, "Error, no se ha encontrado nada o la cita es anterior al día presente");
+        }
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+    return id;
+}
+
+
 public void consulta_eliminar_cita(String id) throws SQLException{
-	String query = "DELETE FROM citas WHERE ID_cita = ?";
+	String query = "DELETE FROM citas WHERE ID_cita = ? AND fecha_cita > CURDATE()";
 	
 	try (Connection conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 		PreparedStatement pstmt = conect.prepareStatement(query)){
 		pstmt.setString(1, id);
-		pstmt.executeUpdate();
-		System.out.println("Cita eliminada");
+		int affectedRows = pstmt.executeUpdate();
+		if (affectedRows > 0) {
+            System.out.println("Cita eliminada");
+        }
 	}
 	catch(SQLException ex) {
 		System.out.println("Error en eliminar la cita");
+		JOptionPane.showMessageDialog(null, "La cita es anterior al día actual.", "Error", JOptionPane.ERROR_MESSAGE);
 	}
 }
 
@@ -1243,7 +1398,7 @@ public void agendar_cita(String DNI_doctor, String fecha, String especialidad, S
 	try {
 		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 		statement = conect.createStatement();
-		String query = "INSERT INTO citas (DNI_doctor, Fecha, Especialidad, Observaciones, DNI_paciente, hora) " +
+		String query = "INSERT INTO citas (DNI_doctor, Fecha, Especialidad, Observaciones, DNI_paciente, Hora) " +
             "VALUES ('" + DNI_doctor + "', '" + fecha + "', '" + especialidad +"', '"  + " " + "', '" + DNI_paciente + "', '" + hora + "')";
 
 		int fila = statement.executeUpdate(query);
@@ -1274,6 +1429,43 @@ public void agendar_cita(String DNI_doctor, String fecha, String especialidad, S
 	
 
 }
+
+public void modificarCita(int idCita, String DNI_doctor, String fecha, String especialidad, String observaciones, String DNI_paciente, String hora) {
+    try {
+        conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+        statement = conect.createStatement();
+
+        String query = "UPDATE citas SET DNI_doctor='" + DNI_doctor + "', Fecha='" + fecha + "', Especialidad='" + especialidad + "', "
+                + "Observaciones='" + observaciones + "', DNI_paciente='" + DNI_paciente + "', Hora='" + hora + "' "
+                + "WHERE ID_cita=" + idCita + " AND Fecha >= CURDATE()";
+
+        int fila = statement.executeUpdate(query);
+
+        // Verificar si la actualización se realizó con éxito
+        if (fila > 0) {
+            System.out.println("Actualización exitosa.");
+            JOptionPane.showMessageDialog(null, "Cita actualizada");
+            citaCorrecta = true;
+        } else {
+            System.out.println("La actualización no tuvo éxito o la cita es anterior al día presente.");
+            JOptionPane.showMessageDialog(null, "No se puede modificar una cita anterior al día presente", "Error en la modificación de cita", 0, null);
+        }
+
+        System.out.println("Valores antes de la actualización:");
+        System.out.println("idCita: " + idCita);
+        System.out.println("DNI_doctor: " + DNI_doctor);
+        System.out.println("fecha: " + fecha);
+        System.out.println("especialidad: " + especialidad);
+        System.out.println("observaciones: " + observaciones);
+        System.out.println("DNI_paciente: " + DNI_paciente);
+        System.out.println("hora: " + hora);
+
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "No puedes seleccionar una fecha anterior a la actual", "Error en la modificación de cita", 0, null);
+        ex.printStackTrace();
+    }
+}
+
 
 
 
@@ -1478,8 +1670,100 @@ public List<Integer> mostrarDientes(int id_paciente) {
 
     return listaIdDientes;
 }
+public void mostarCbCitasPac(jd_mod_consulta datos) throws SQLException {
+	// TODO Auto-generated method stub
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SELECT Nombre, DNI_paciente FROM pacientes";
+        ResultSet rs = statement.executeQuery(sql);
 
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre y el DNI de la tabla
+            String nombre = rs.getString("Nombre");
+            String dni = rs.getString("DNI_paciente");
+            
+            // Crear una cadena con el nombre y el DNI y agregarla al combo
+            String nombreYDNI = nombre + " con DNI: " + dni;
+            datos.setCb_paciente(nombreYDNI);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+public void mostarCbCitasDr(jd_mod_consulta datos) throws SQLException {
+	// TODO Auto-generated method stub
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SELECT Nombre, DNI_doctor FROM doctores";
+        ResultSet rs = statement.executeQuery(sql);
 
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+        	String nombre = rs.getString("Nombre");
+        	String dni = rs.getString("DNI_doctor");
+            tablaNombre = nombre+" con DNI: "+dni;
+            datos.setCb_doctor(tablaNombre);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+public void mostarCbCitasEsp(jd_mod_consulta datos) throws SQLException {
+	// TODO Auto-generated method stub
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SELECT Nombre FROM especialidad";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+            tablaNombre = rs.getString(1);
+            datos.setCb_especialidad(tablaNombre);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+
+public void actualizarEstadoSolicitud(int idSolicitud, String nuevoEstado) {
+    Connection conect = null;
+    PreparedStatement preparedStatement = null;
+
+    try {
+        conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+        String query = "UPDATE solicitudes SET Estado = ? WHERE ID_solicitud = ?";
+        preparedStatement = conect.prepareStatement(query);
+        preparedStatement.setString(1, nuevoEstado);
+        preparedStatement.setInt(2, idSolicitud);
+        preparedStatement.executeUpdate();
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    } finally {
+        // Cerrar recursos
+        try {
+            if (preparedStatement != null) {
+                preparedStatement.close();
+            }
+            if (conect != null) {
+                conect.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}
 
 }
 

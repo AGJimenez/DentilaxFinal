@@ -12,6 +12,9 @@ import javax.swing.JPanel;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
+
+import dialogos_materiales.jd_revisar_solicitud;
+
 import java.awt.Font;
 import javax.swing.JMenuItem;
 import java.awt.Dimension;
@@ -100,6 +103,15 @@ public class jf_material extends JFrame {
         btn_inventario.setBorderPainted(false);
         
         btn_solicitudes = new JButton();
+        btn_solicitudes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btn_solicitudes.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		jd_revisar_solicitud ventana = new jd_revisar_solicitud();
+        		ventana.setVisible(true);
+        		
+        	}
+        });
         btn_solicitudes.setIcon(new ImageIcon(jf_material.class.getResource("/iconos_submenus/btn_solicitudes_admin.png")));
         btn_solicitudes.setBounds(1210, 620, 188, 41);
         btn_solicitudes.setBorderPainted(false);

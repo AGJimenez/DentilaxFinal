@@ -29,7 +29,7 @@ import java.sql.SQLException;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class jd_buscar_consulta_eliminar_encontrada extends JDialog {
+public class jd_buscar_consulta_modificar_encontrada extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
@@ -43,7 +43,7 @@ public class jd_buscar_consulta_eliminar_encontrada extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			jd_buscar_consulta_eliminar_encontrada dialog = new jd_buscar_consulta_eliminar_encontrada();
+			jd_buscar_consulta_modificar_encontrada dialog = new jd_buscar_consulta_modificar_encontrada();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -54,7 +54,7 @@ public class jd_buscar_consulta_eliminar_encontrada extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public jd_buscar_consulta_eliminar_encontrada() {
+	public jd_buscar_consulta_modificar_encontrada() {
 		setPreferredSize(new Dimension(554, 343));
 		setModal(true);
 		setResizable(false);
@@ -212,44 +212,26 @@ public class jd_buscar_consulta_eliminar_encontrada extends JDialog {
 				buttonPane.add(btn_salir);
 			}
 			
-			JButton btn_eliminar = new JButton("ELIMINAR");
-			btn_eliminar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btn_eliminar.addActionListener(new ActionListener() {
+			JButton btn_modificar = new JButton("MODIFICAR");
+			btn_modificar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			btn_modificar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					dentilax_bdd.ConectorDB_mysql consulta_baja = new dentilax_bdd.ConectorDB_mysql();
-					String datos = getLbl_id().getText().toString();
-					System.out.println(datos);
-					try {
-						int eliminar = JOptionPane.showOptionDialog(
-								   getContentPane(),
-								   "¿Desea eliminar la cita?", 
-								   "Eliminar cita",
-								   JOptionPane.YES_NO_OPTION,
-								   JOptionPane.QUESTION_MESSAGE,
-								   null,
-								   new Object[] { "Eliminar", "Cancelar"},
-								   "opcion 1"); 	
-						if(eliminar==0) {
-							consulta_baja.consulta_eliminar_cita(datos);
-							
-						}
-						
-					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
+					jd_mod_consulta vent = new jd_mod_consulta(getLbl_id().getText().toString());
+					vent.setVisible(true);
+					
+					
 										
 					dispose();
 				
 				}
 			});
-			btn_eliminar.setForeground(Color.WHITE);
-			btn_eliminar.setFont(new Font("Barlow", Font.BOLD, 20));
-			btn_eliminar.setBorderPainted(false);
-			btn_eliminar.setBackground(new Color(32, 160, 216));
-			btn_eliminar.setActionCommand("OK");
-			btn_eliminar.setBounds(194, 0, 153, 43);
-			buttonPane.add(btn_eliminar);
+			btn_modificar.setForeground(Color.WHITE);
+			btn_modificar.setFont(new Font("Barlow", Font.BOLD, 20));
+			btn_modificar.setBorderPainted(false);
+			btn_modificar.setBackground(new Color(32, 160, 216));
+			btn_modificar.setActionCommand("OK");
+			btn_modificar.setBounds(194, 0, 153, 43);
+			buttonPane.add(btn_modificar);
 		}
 	}
 

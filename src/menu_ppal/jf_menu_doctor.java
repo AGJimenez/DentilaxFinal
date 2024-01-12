@@ -49,7 +49,6 @@ public class jf_menu_doctor extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(jp_menu);
         jp_menu.setLayout(null);
-        jp_menu.add(btn_nuevo_tratamiento);
         jp_menu.add(btn_solicitar);
         jp_menu.add(btn_ajustes);
         
@@ -86,7 +85,7 @@ public class jf_menu_doctor extends javax.swing.JFrame {
         btnNewButton.setForeground(new Color(0, 161, 219));
         btnNewButton.setFont(new Font("Barlow", Font.BOLD, 20));
         btnNewButton.setBorder(new LineBorder(new Color(0, 0, 0), 2, true));
-        btnNewButton.setBackground(Color.WHITE);
+        btnNewButton.setBackground(new Color(255, 255, 255));
         btnNewButton.setBounds(33, 600, 148, 66);
         jp_menu.add(btnNewButton);
         
@@ -141,7 +140,7 @@ public class jf_menu_doctor extends javax.swing.JFrame {
         btn_solicitar.setBorderPainted(false);
         btn_solicitar.setContentAreaFilled(false);
         btn_solicitar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        btn_solicitar.setBounds(440, 334, 275, 93);
+        btn_solicitar.setBounds(736, 218, 282, 98);
         btn_solicitar.setIcon(new ImageIcon(jf_menu_doctor.class.getResource("/iconos_menus/btn_pedidos_doctor.png")));
         btn_ajustes = new javax.swing.JButton();
         btn_ajustes.setOpaque(false);
@@ -149,18 +148,10 @@ public class jf_menu_doctor extends javax.swing.JFrame {
         btn_ajustes.setContentAreaFilled(false);
         btn_ajustes.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_ajustes.setIcon(new ImageIcon(jf_menu_doctor.class.getResource("/iconos_menus/btn_ajustes_admin.png")));
-        btn_ajustes.setBounds(733, 334, 282, 93);
-        btn_nuevo_tratamiento = new javax.swing.JButton();
-        btn_nuevo_tratamiento.setOpaque(false);
-        btn_nuevo_tratamiento.setBorderPainted(false);
-        btn_nuevo_tratamiento.setContentAreaFilled(false);
-        btn_nuevo_tratamiento.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        btn_nuevo_tratamiento.setBounds(733, 218, 282, 98);
-        btn_nuevo_tratamiento.setIcon(new ImageIcon(jf_menu_doctor.class.getResource("/iconos_menus/btn_nuevoTratamiento_dr.png")));
+        btn_ajustes.setBounds(433, 333, 282, 93);
         menu_inicio = new javax.swing.JMenuBar();
         
         mn_buscar = new javax.swing.JMenu();
-        mn_tratamiento = new javax.swing.JMenu();
         mn_solictar = new javax.swing.JMenu();
         mn_ajustes = new javax.swing.JMenu();
 
@@ -173,9 +164,6 @@ public class jf_menu_doctor extends javax.swing.JFrame {
         mn_buscar.setBackground(new java.awt.Color(32, 160, 216));
         mn_buscar.setText("BUSCAR PACIENTE");
         menu_inicio.add(mn_buscar);
-
-        mn_tratamiento.setText("NUEVO TRATAMIENTO");
-        menu_inicio.add(mn_tratamiento);
 
         mn_solictar.setText("SOLICITAR MATERIAL");
         menu_inicio.add(mn_solictar);
@@ -239,10 +227,8 @@ public class jf_menu_doctor extends javax.swing.JFrame {
 
 	// Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_ajustes;
-    private javax.swing.JButton btn_nuevo_tratamiento;
     private javax.swing.JButton btn_solicitar;
     private javax.swing.JMenu mn_buscar;
-    private javax.swing.JMenu mn_tratamiento;
     private javax.swing.JMenu mn_solictar;
     private javax.swing.JMenu mn_ajustes;
     private javax.swing.JPanel jp_menu;

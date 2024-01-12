@@ -25,6 +25,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
+import dialogos_consultas.jd_buscar_consulta_editar;
 import dialogos_consultas.jd_historial_cita;
 
 import java.awt.Font;
@@ -165,7 +166,7 @@ public class jf_consulta extends JFrame {
         btn_eliminar_cita.setContentAreaFilled(false);
         btn_eliminar_cita.setIcon(new ImageIcon(jf_consulta.class.getResource("/iconos_submenus/btn_eliminarCita.png")));
         btn_eliminar_cita.setOpaque(false);
-        btn_eliminar_cita.setBounds(891, 590, 188, 41);
+        btn_eliminar_cita.setBounds(684, 590, 188, 41);
         btn_eliminar_cita.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dialogos_consultas.jd_buscar_consulta_eliminar ventana = new dialogos_consultas.jd_buscar_consulta_eliminar();
@@ -682,6 +683,22 @@ public class jf_consulta extends JFrame {
         jp_menu.add(btn_historial);
         jp_menu.add(btn_eliminar_cita);
         jp_menu.add(btn_nueva_cita);
+        
+        JButton btn_mod_cita = new JButton();
+        btn_mod_cita.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		jd_buscar_consulta_editar vent = new jd_buscar_consulta_editar();
+        		vent.setVisible(true); 		
+        		
+        	}
+        });
+        btn_mod_cita.setIcon(new ImageIcon(jf_consulta.class.getResource("/iconos_submenus/modcitaicono.png")));
+        btn_mod_cita.setOpaque(false);
+        btn_mod_cita.setContentAreaFilled(false);
+        btn_mod_cita.setBorderPainted(false);
+        btn_mod_cita.setBorder(null);
+        btn_mod_cita.setBounds(940, 590, 188, 41);
+        jp_menu.add(btn_mod_cita);
 		
 		//Alt + S para ir al inicio
         getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
