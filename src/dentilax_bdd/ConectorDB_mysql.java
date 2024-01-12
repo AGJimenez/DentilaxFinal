@@ -1215,7 +1215,8 @@ public String consulta_cita_eliminar_encontrar(String id) throws SQLException{
 	try {
 		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 		statement = conect.createStatement();
-		String query = "SELECT citas.ID_cita, citas.Fecha, doctores.Nombre, pacientes.Nombre FROM citas JOIN doctores ON citas.DNI_doctor = doctores.DNI_doctor JOIN pacientes ON citas.DNI_paciente = pacientes.DNI_paciente WHERE citas.ID_cita = '" + id + "'AND citas.Fecha >= CURDATE()";
+		String query = "SELECT citas.ID_cita, citas.Fecha, doctores.Nombre, pacientes.Nombre FROM citas JOIN doctores ON citas.DNI_doctor = doctores.DNI_doctor "
+				+ "JOIN pacientes ON citas.DNI_paciente = pacientes.DNI_paciente WHERE citas.ID_cita = '" + id + "'AND citas.Fecha >= CURDATE()";
 		ResultSet resultSet = statement.executeQuery(query);
 		
         if (resultSet.next()) {
