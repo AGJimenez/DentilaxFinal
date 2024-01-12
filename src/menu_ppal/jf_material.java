@@ -14,6 +14,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import dialogos_materiales.jd_inventario;
+import dialogos_materiales.jd_proveedores;
 import dialogos_materiales.jd_revisar_solicitud;
 
 import java.awt.Font;
@@ -74,6 +75,12 @@ public class jf_material extends JFrame {
         btn_nuevo_pedido.setBounds(879, 620, 188, 41);
         btn_nuevo_pedido.setBorderPainted(false);
         btn_proveedores = new javax.swing.JButton();
+        btn_proveedores.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		jd_proveedores ventana = new jd_proveedores();
+        		ventana.setVisible(true);
+        	}
+        });
         btn_proveedores.setIcon(new ImageIcon(jf_material.class.getResource("/iconos_submenus/btn_proveedores_admin.png")));
         btn_proveedores.setBounds(401, 620, 188, 41);
         btn_proveedores.setBorderPainted(false);

@@ -24,6 +24,7 @@ import Modelo.Doctor;
 import Modelo.Inventario;
 import Modelo.Odontograma;
 import Modelo.Paciente;
+import Modelo.Proveedores;
 import Modelo.Solicitud;
 import dialogos_consultas.jd_historial_cita;
 import dialogos_consultas.jd_mod_consulta;
@@ -1789,7 +1790,33 @@ public void actualizarEstadoSolicitud(int idSolicitud, String nuevoEstado) {
         }
     }
 }
+public List<Proveedores> obtenerProveedores() {
+	   List<Proveedores> proveedores = new ArrayList<>();
 
+       try {
+           conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+           statement = conect.createStatement();
+           String query = "SELECT ID_proveedor, Proveedor, Precio_producto FROM proveedores";
+           ResultSet resultSet = statement.executeQuery(query);
+
+           while (resultSet.next()) {
+               int id = resultSet.getInt("ID_proveedor");
+               String producto = resultSet.getString("Proveedor");
+               int cantidad = resultSet.getInt("Precio_producto");
+
+               Proveedores Proveedores = new Proveedores(id,producto,cantidad);
+
+               proveedores.add(Proveedores);
+           }
+
+       } catch (SQLException ex) {
+           ex.printStackTrace();
+	// TODO Auto-generated method stub
+	return proveedores;
+}
+	return proveedores;
+
+}
 }
 
 	

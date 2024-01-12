@@ -22,9 +22,10 @@ import javax.swing.table.DefaultTableModel;
 import Modelo.Cita;
 import Modelo.Inventario;
 import Modelo.Paciente;
+import Modelo.Proveedores;
 import dentilax_bdd.ConectorDB_mysql;
 
-public class jd_inventario extends JDialog {
+public class jd_proveedores extends JDialog {
 
     private static final long serialVersionUID = 1L;
     private final JPanel contentPanel = new JPanel();
@@ -32,9 +33,9 @@ public class jd_inventario extends JDialog {
     private static DefaultTableModel model;
     private JTextField txt_invisible;
 
-    public jd_inventario() {
-        setTitle("Inventario");
-        setIconImage(Toolkit.getDefaultToolkit().getImage(jd_inventario.class.getResource("/iconos_menus/dentilaxIcono.png")));
+    public jd_proveedores() {
+        setTitle("Proveedores");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(jd_proveedores.class.getResource("/iconos_menus/dentilaxIcono.png")));
         setModal(true);
         setPreferredSize(new Dimension(1198, 531));
         setResizable(false);
@@ -53,19 +54,19 @@ public class jd_inventario extends JDialog {
         contentPanel.add(panel_contened);
         panel_contened.setLayout(null);
 
-        JLabel lbl_ID = new JLabel("ID");
+        JLabel lbl_ID = new JLabel("ID_PROVEEDOR");
         lbl_ID.setForeground(Color.WHITE);
         lbl_ID.setFont(new Font("Barlow", Font.BOLD, 17));
         lbl_ID.setBounds(10, 11, 96, 21);
         panel_contened.add(lbl_ID);
 
-        JLabel lbl_producto = new JLabel("PRODUCTO");
+        JLabel lbl_producto = new JLabel("PROVEEDOR");
         lbl_producto.setForeground(Color.WHITE);
         lbl_producto.setFont(new Font("Barlow", Font.BOLD, 17));
         lbl_producto.setBounds(257, 11, 110, 21);
         panel_contened.add(lbl_producto);
 
-        JLabel lbl_cantidad = new JLabel("CANTIDAD");
+        JLabel lbl_cantidad = new JLabel("PRECIO_PRODUCTO");
         lbl_cantidad.setForeground(Color.WHITE);
         lbl_cantidad.setFont(new Font("Barlow", Font.BOLD, 17));
         lbl_cantidad.setBounds(480, 11, 110, 21);
@@ -122,9 +123,9 @@ public class jd_inventario extends JDialog {
                 	}
                 ));
 		 model=new DefaultTableModel();
-			model.addColumn("ID");
-			model.addColumn("Producto");
-			model.addColumn("Cantidad");
+			model.addColumn("Id_proveedor");
+			model.addColumn("Proveedor");
+			model.addColumn("Precio_producto");
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
@@ -150,47 +151,40 @@ public class jd_inventario extends JDialog {
 			ConectorDB_mysql conection = new ConectorDB_mysql();
 			conection.conectar();
 			
-			//System.out.println(conection.obtenerInfoCitas().toString());
-			llenarTabla(conection.obtenerInventario() );
+			//System.out.println(conection.obtenerInfoProveedores().toString());
+			llenarTabla(conection.obtenerProveedores() );
 			
 	}
 	
 
 		
-	public static DefaultTableModel llenarTabla(List<Inventario> inventario) {
+	public static DefaultTableModel llenarTabla(List<Proveedores> proveedores) {
        // Nos aseguramos de que la lista no sea Null
 		
 		// System.out.println(historialCitas.toString());
-       if (inventario != null) {
+       if (proveedores != null) {
            // Limpiamos el modelo de la tabla antes de agregar nuevos datos
            DefaultTableModel model = (DefaultTableModel) table.getModel();
            model.setRowCount(0);
 
-           for (Inventario productos : inventario) {
+           for (Proveedores info : proveedores) {
                Object[] fila = new Object[3];
-               fila[0] = productos.getId();
-               fila[1] = productos.getProducto();
-               fila[2] = productos.getCantidad();
+               fila[0] = info.getId_proveedor();
+               fila[1] = info.getProveedor();
+               fila[2] = info.getPrecio_producto();
 
             //   model.setRowCount(model.getRowCount()+1);
                model.addRow(fila);
            }
-
-
        }
  
-
-
        return model;
     }
-
 
 
 	public JTextField getTxt_invisible() {
 		return txt_invisible;
 	}
-
-
 
 	public void setTxt_invisible(String txt_invisible) {
 		this.txt_invisible.setText(txt_invisible);
