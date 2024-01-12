@@ -13,6 +13,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
+import dialogos_materiales.jd_inventario;
 import dialogos_materiales.jd_revisar_solicitud;
 
 import java.awt.Font;
@@ -95,6 +96,12 @@ public class jf_material extends JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         
         btn_inventario = new JButton();
+        btn_inventario.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+           		jd_inventario ventana = new jd_inventario();
+        		ventana.setVisible(true);
+        	}
+        });
         btn_inventario.setIcon(new ImageIcon(jf_material.class.getResource("/iconos_submenus/btn_inventario_admin.png")));
         btn_inventario.setBounds(634, 620, 188, 41);
         btn_inventario.setContentAreaFilled(false);

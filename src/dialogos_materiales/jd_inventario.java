@@ -93,25 +93,6 @@ public class jd_inventario extends JDialog {
                 btn_salir.setBackground(new Color(32, 160, 216));
                 btn_salir.setActionCommand("Cancel");
                 
-                JButton btn_solicitar = new JButton("SOLICITAR");
-                btn_solicitar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-                btn_solicitar.addActionListener(new ActionListener() {
-                	public void actionPerformed(ActionEvent e) {
-                		dispose();
-                		dialogos_materiales.jd_solicitar_material ventana = new dialogos_materiales.jd_solicitar_material();
-                		ventana.setTxt_invisible_2(getTxt_invisible().getText().toString());
-                		ventana.setVisible(true);
-                	}
-                });
-                btn_solicitar.setForeground(Color.WHITE);
-                btn_solicitar.setFont(new Font("Barlow", Font.BOLD, 20));
-                btn_solicitar.setBorderPainted(false);
-                btn_solicitar.setBorder(null);
-                btn_solicitar.setBackground(new Color(32, 160, 216));
-                btn_solicitar.setActionCommand("Cancel");
-                btn_solicitar.setBounds(37, 0, 153, 43);
-                buttonPane.add(btn_solicitar);
-
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setBounds(12, 150, 671, 247);
         contentPanel.add(scrollPane);
