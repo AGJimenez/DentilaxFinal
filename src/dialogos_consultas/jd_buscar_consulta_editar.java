@@ -82,8 +82,8 @@ public class jd_buscar_consulta_editar extends JDialog {
 						dentilax_bdd.ConectorDB_mysql consulta = new dentilax_bdd.ConectorDB_mysql();
 						dispose();
 						try {
-							consulta.consulta_cita_eliminar_encontrar(txt_IntroduceID.getText().toString());
-							dialogos_consultas.jd_buscar_consulta_eliminar_encontrada ventana = new dialogos_consultas.jd_buscar_consulta_eliminar_encontrada();
+							consulta.consulta_cita_modificar_encontrar(txt_IntroduceID.getText().toString());
+							dialogos_consultas.jd_buscar_consulta_modificar_encontrada ventana = new dialogos_consultas.jd_buscar_consulta_modificar_encontrada();
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();

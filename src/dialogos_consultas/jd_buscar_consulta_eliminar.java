@@ -150,6 +150,7 @@ public class jd_buscar_consulta_eliminar extends JDialog {
 						try {
 							consulta.consulta_cita_eliminar_encontrar(txt_IntroduceID.getText().toString());
 							dialogos_consultas.jd_buscar_consulta_eliminar_encontrada ventana = new dialogos_consultas.jd_buscar_consulta_eliminar_encontrada();
+							dispose();
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();

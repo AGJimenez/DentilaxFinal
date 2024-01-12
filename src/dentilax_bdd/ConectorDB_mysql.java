@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.sql.Date;
@@ -926,10 +928,14 @@ public void insertar_doctor(String dni, String apellidos, String nombre, String 
 		ex.printStackTrace();
 	}
 }
-
+/*
 public void insertar_pedido(String producto, int cantidad) throws SQLException{
 	
+	COGEMOS EL ID DE PROVEEDOR TABLA PROVEEDORES, Y EL PRECIO DE LA MISMA.
+	LUEGO EN TABLA PEDIDOS, INSERTAMOS.
+	
 	try {
+	
 		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 		statement = conect.createStatement();
 		String query = "INSERT INTO pedidos (Producto, Cantidad, Precio, Fecha, id_proveedor) " +
@@ -952,7 +958,7 @@ public void insertar_pedido(String producto, int cantidad) throws SQLException{
 		ex.printStackTrace();
 	}
 }
-
+*/
 public void baja_doctor(String dni) throws SQLException {
 
     try {
@@ -1209,7 +1215,7 @@ public String consulta_cita_eliminar_encontrar(String id) throws SQLException{
 	try {
 		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 		statement = conect.createStatement();
-		String query = "SELECT citas.ID_cita, citas.Fecha, doctores.Nombre, pacientes.Nombre FROM citas JOIN doctores ON citas.DNI_doctor = doctores.DNI_doctor JOIN pacientes ON citas.DNI_paciente = pacientes.DNI_paciente WHERE citas.ID_cita = '" + id +"'";
+		String query = "SELECT citas.ID_cita, citas.Fecha, doctores.Nombre, pacientes.Nombre FROM citas JOIN doctores ON citas.DNI_doctor = doctores.DNI_doctor JOIN pacientes ON citas.DNI_paciente = pacientes.DNI_paciente WHERE citas.ID_cita = '" + id + "'AND citas.Fecha >= CURDATE()";
 		ResultSet resultSet = statement.executeQuery(query);
 		
         if (resultSet.next()) {
@@ -1232,7 +1238,7 @@ public String consulta_cita_eliminar_encontrar(String id) throws SQLException{
         } else {
             // Acceso denegado
             System.out.println("No se ha encontrado nada");
-            JOptionPane.showMessageDialog(null, "Error, no se ha encontrado nada");
+            JOptionPane.showMessageDialog(null, "Error, no se ha encontrado nada o la cita es anterior al día presente");
         }
 		
 		
@@ -1284,7 +1290,7 @@ public String consulta_cita_modificar_encontrar(String id) throws SQLException {
 
 
 public void consulta_eliminar_cita(String id) throws SQLException{
-	String query = "DELETE FROM citas WHERE ID_cita = ? AND fecha_cita > CURDATE()";
+	String query = "DELETE FROM citas WHERE ID_cita = ? AND Fecha > CURDATE()";
 	
 	try (Connection conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 		PreparedStatement pstmt = conect.prepareStatement(query)){
@@ -1393,41 +1399,54 @@ public String consulta_ver_ficha(String ID) throws SQLException{
 }
 
 
-public void agendar_cita(String DNI_doctor, String fecha, String especialidad, String observaciones, String DNI_paciente, String hora ) {
-	
-	try {
-		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
-		statement = conect.createStatement();
-		String query = "INSERT INTO citas (DNI_doctor, Fecha, Especialidad, Observaciones, DNI_paciente, Hora) " +
-            "VALUES ('" + DNI_doctor + "', '" + fecha + "', '" + especialidad +"', '"  + " " + "', '" + DNI_paciente + "', '" + hora + "')";
+private static final String FORMATO_FECHA = "yyyy/MM/dd";
 
-		int fila = statement.executeUpdate(query);
-		
-		// Verificar si la inserción se realizó con éxito
-		if (fila > 0) {
-			System.out.println("Inserción exitosa.");
-			JOptionPane.showMessageDialog(null, "Cita insertada");
-			citaCorrecta = true;
+public void agendar_cita(String DNI_doctor, String fecha, String especialidad, String observaciones, String DNI_paciente, String hora) {
 
-		} else {
-			System.out.println("La inserción no tuvo éxito.");
-		}
-		
-		System.out.println("Valores antes de la inserción:");
-	    System.out.println("DNI_doctor: " + DNI_doctor);
-	    System.out.println("fecha: " + fecha);
-	    System.out.println("especialidad: " + especialidad);
-	    System.out.println("observaciones: " + observaciones);
-	    System.out.println("DNI_paciente: " + DNI_paciente);
-	    System.out.println("hora: " + hora);
-		
-	}
-	catch(SQLException ex) {
-		JOptionPane.showMessageDialog(null, "Error, cita duplicada", "Error en la inserción de cita", 0, null);
-		ex.printStackTrace();
-	}
-	
+    try {
+        conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+        statement = conect.createStatement();
 
+        // Convertir el string de fecha al formato deseado
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        java.util.Date utilDate = sdf.parse(fecha);
+        long time = utilDate.getTime();
+        java.sql.Date sqlDate = new java.sql.Date(time);
+
+        String query = "INSERT INTO citas (DNI_doctor, Fecha, Especialidad, Observaciones, DNI_paciente, Hora) " +
+                "VALUES ('" + DNI_doctor + "', '" + sqlDate + "', '" + especialidad + "', '" + observaciones + "', '" + DNI_paciente + "', '" + hora + "')";
+
+        int fila = statement.executeUpdate(query);
+
+        // Verificar si la inserción se realizó con éxito
+        if (fila > 0) {
+            System.out.println("Inserción exitosa.");
+        } else {
+            System.out.println("La inserción no tuvo éxito.");
+        }
+
+        System.out.println("Valores antes de la inserción:");
+        System.out.println("DNI_doctor: " + DNI_doctor);
+        System.out.println("fecha: " + fecha);
+        System.out.println("especialidad: " + especialidad);
+        System.out.println("observaciones: " + observaciones);
+        System.out.println("DNI_paciente: " + DNI_paciente);
+        System.out.println("hora: " + hora);
+
+    } catch (SQLException | ParseException ex) {
+        ex.printStackTrace();
+    } finally {
+        try {
+            if (statement != null) {
+                statement.close();
+            }
+            if (conect != null) {
+                conect.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 public void modificarCita(int idCita, String DNI_doctor, String fecha, String especialidad, String observaciones, String DNI_paciente, String hora) {
@@ -1435,9 +1454,14 @@ public void modificarCita(int idCita, String DNI_doctor, String fecha, String es
         conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
         statement = conect.createStatement();
 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        java.util.Date utilDate = sdf.parse(fecha);
+        long time = utilDate.getTime();
+        java.sql.Date sqlDate = new java.sql.Date(time);
+        
         String query = "UPDATE citas SET DNI_doctor='" + DNI_doctor + "', Fecha='" + fecha + "', Especialidad='" + especialidad + "', "
                 + "Observaciones='" + observaciones + "', DNI_paciente='" + DNI_paciente + "', Hora='" + hora + "' "
-                + "WHERE ID_cita=" + idCita + " AND Fecha >= CURDATE()";
+                + "WHERE ID_cita=" + idCita+ "')";
 
         int fila = statement.executeUpdate(query);
 
@@ -1460,7 +1484,7 @@ public void modificarCita(int idCita, String DNI_doctor, String fecha, String es
         System.out.println("DNI_paciente: " + DNI_paciente);
         System.out.println("hora: " + hora);
 
-    } catch (SQLException ex) {
+    } catch (SQLException | ParseException ex) {
         JOptionPane.showMessageDialog(null, "No puedes seleccionar una fecha anterior a la actual", "Error en la modificación de cita", 0, null);
         ex.printStackTrace();
     }
