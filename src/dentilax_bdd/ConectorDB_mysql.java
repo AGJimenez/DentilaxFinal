@@ -25,11 +25,13 @@ import Modelo.Doctor;
 import Modelo.Inventario;
 import Modelo.Odontograma;
 import Modelo.Paciente;
+import Modelo.Pedido;
 import Modelo.Proveedores;
 import Modelo.Solicitud;
 import dialogos_consultas.jd_historial_cita;
 import dialogos_consultas.jd_mod_consulta;
 import dialogos_consultas.jd_nueva_consulta;
+import dialogos_materiales.jd_hacer_pedido;
 
 
 public class ConectorDB_mysql {
@@ -299,12 +301,12 @@ public String consulta_paciente_menudr(String dni) throws SQLException{
 
 
 
-public String consulta_pedido(String id) throws SQLException{
-	
+public String consulta_pedido(int id) throws SQLException{
+	String id_string=String.valueOf(id);
 	try {
 		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 		statement = conect.createStatement();
-		String query = "SELECT pedidos.ID_pedidos, pedidos.Producto, pedidos.Cantidad, pedidos.Precio, pedidos.Fecha, pedidos.id_proveedor, proveedores.Proveedor FROM pedidos JOIN proveedores ON proveedores.ID_proveedor = pedidos.id_proveedor WHERE pedidos.ID_pedidos = '" + id +"'";
+		String query = "SELECT pedidos.ID_pedidos, pedidos.Producto, pedidos.Cantidad, pedidos.Precio, pedidos.Fecha, pedidos.id_proveedor, proveedores.Proveedor FROM pedidos JOIN proveedores ON proveedores.ID_proveedor = pedidos.id_proveedor WHERE pedidos.ID_pedidos = '" + id_string +"'";
         ResultSet resultSet = statement.executeQuery(query);
 		
         if (resultSet.next()) {
@@ -337,7 +339,7 @@ public String consulta_pedido(String id) throws SQLException{
 	catch(SQLException ex) {
 		
 	}
-	return id;
+	return id_string;
 	
 }
 
@@ -709,6 +711,41 @@ public String consulta_doctor_eliminar(String dni) throws SQLException{
 	    }
 
 	    return solicitudesActivas;
+	}
+	
+	public List<Pedido> obtener_pedidos(LocalDate date) {
+	    List<Pedido> pedidos = new ArrayList<>();
+
+	    try {
+	        conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+	        statement = conect.createStatement();
+	        String query = "SELECT ID_pedidos, Producto, Fecha FROM pedidos WHERE Fecha = '"+date+"'";
+	        ResultSet resultSet = statement.executeQuery(query);
+
+	        while (resultSet.next()) {
+	            int id = resultSet.getInt("ID_pedidos");
+	            String nombreProducto = resultSet.getString("Producto");
+	            Date fecha = resultSet.getDate("Fecha");
+	            Pedido pedido = new Pedido(id, nombreProducto, fecha);
+	            pedidos.add(pedido);
+	        }
+
+	    } catch (SQLException ex) {
+	        ex.printStackTrace();
+	    } finally {
+	        try {
+	            if (statement != null) {
+	                statement.close();
+	            }
+	            if (conect != null) {
+	                conect.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    return pedidos;
 	}
 
 	
@@ -1593,6 +1630,27 @@ public void mostarCbCitasDr(jd_nueva_consulta datos) throws SQLException {
         	String dni = rs.getString("DNI_doctor");
             tablaNombre = nombre+" con DNI: "+dni;
             datos.setCb_doctor(tablaNombre);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+
+public void mostarCbInventario(jd_hacer_pedido datos) throws SQLException {
+    // Consulta para ver el nombre de las tablas
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SELECT Nombre FROM inventario";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre y el DNI de la tabla
+            String nombre = rs.getString("Nombre");
+            datos.setCb_inventario(nombre);
         }
     } finally {
         if (statement != null) {

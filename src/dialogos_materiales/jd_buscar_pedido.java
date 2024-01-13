@@ -9,7 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
+import Modelo.Pedido;
 import dentilax_bdd.ConectorDB_mysql;
 
 import java.awt.Dimension;
@@ -24,6 +26,8 @@ import javax.swing.JSeparator;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.List;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
@@ -34,7 +38,7 @@ public class jd_buscar_pedido extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txt_IntroduceId;
+	private JTextField txt_IntroduceFecha;
 
 	/**
 	 * Launch the application.
@@ -72,41 +76,41 @@ public class jd_buscar_pedido extends JDialog {
 			contentPanel.add(lbl_buscar_pedido);
 		}
 		{
-			txt_IntroduceId = new JTextField();
+			txt_IntroduceFecha = new JTextField();
 			
-			txt_IntroduceId.addFocusListener(new FocusAdapter() {
+			txt_IntroduceFecha.addFocusListener(new FocusAdapter() {
 				@Override
 				public void focusGained(FocusEvent e) {
-					if (txt_IntroduceId.getText().equals("Introduce ID del pedido")) {
-						txt_IntroduceId.setText("");
-						txt_IntroduceId.setForeground(Color.BLACK);
+					if (txt_IntroduceFecha.getText().equals("Introduce fecha del pedido")) {
+						txt_IntroduceFecha.setText("");
+						txt_IntroduceFecha.setForeground(Color.BLACK);
 	                }
 				}
 				@Override
 				public void focusLost(FocusEvent e) {
-					if (txt_IntroduceId.getText().isEmpty()) {
-						txt_IntroduceId.setForeground(new Color(0, 128, 192));
-						txt_IntroduceId.setText("Introduce ID del pedido");
+					if (txt_IntroduceFecha.getText().isEmpty()) {
+						txt_IntroduceFecha.setForeground(new Color(0, 128, 192));
+						txt_IntroduceFecha.setText("Introduce fecha del pedido");
 	                }
 				}
 			});
-			txt_IntroduceId.setOpaque(false);
-			txt_IntroduceId.setText("Introduce ID del pedido");
-			txt_IntroduceId.setHorizontalAlignment(SwingConstants.LEFT);
-			txt_IntroduceId.setFont(new Font("Arial", Font.PLAIN, 17));
-			txt_IntroduceId.setColumns(10);
-			txt_IntroduceId.setBorder(null);
-			txt_IntroduceId.setBackground(new Color(0, 128, 192));
-			txt_IntroduceId.setBounds(110, 140, 382, 44);
-			txt_IntroduceId.setFocusable(true);
-			contentPanel.add(txt_IntroduceId);
+			txt_IntroduceFecha.setOpaque(false);
+			txt_IntroduceFecha.setText("Introduce fecha del pedido");
+			txt_IntroduceFecha.setHorizontalAlignment(SwingConstants.LEFT);
+			txt_IntroduceFecha.setFont(new Font("Arial", Font.PLAIN, 17));
+			txt_IntroduceFecha.setColumns(10);
+			txt_IntroduceFecha.setBorder(null);
+			txt_IntroduceFecha.setBackground(new Color(0, 128, 192));
+			txt_IntroduceFecha.setBounds(110, 140, 382, 44);
+			txt_IntroduceFecha.setFocusable(true);
+			contentPanel.add(txt_IntroduceFecha);
 		}
 		{
-			JLabel lbl_id = new JLabel("ID");
-			lbl_id.setForeground(new Color(0, 128, 192));
-			lbl_id.setFont(new Font("Barlow", Font.BOLD, 22));
-			lbl_id.setBounds(59, 140, 38, 44);
-			contentPanel.add(lbl_id);
+			JLabel lbl_fecha = new JLabel("Fecha");
+			lbl_fecha.setForeground(new Color(0, 128, 192));
+			lbl_fecha.setFont(new Font("Barlow", Font.BOLD, 22));
+			lbl_fecha.setBounds(26, 140, 71, 44);
+			contentPanel.add(lbl_fecha);
 		}
 		{
 			JPanel panel = new JPanel();
@@ -133,33 +137,29 @@ public class jd_buscar_pedido extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						//SQL si lo encuentra, abre ventana:
 						ConectorDB_mysql consulta= new ConectorDB_mysql();
-						String id = txt_IntroduceId.getText().toString();	
+						String fecha = txt_IntroduceFecha.getText().toString();
+						LocalDate date = LocalDate.parse(fecha);
+						consulta.conectar();
 						dispose();
-						try {
-							consulta.consulta_pedido(id);
-							
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+						jd_buscar_pedidos_encontrados ventana = new jd_buscar_pedidos_encontrados();
+						ventana.llenarTabla(consulta.obtener_pedidos(date));
+						ventana.setVisible(true);
 						
 						//si no if no encontrado
 					}
 				});
-				txt_IntroduceId.addKeyListener(new KeyAdapter() {
+				txt_IntroduceFecha.addKeyListener(new KeyAdapter() {
 					@Override
 					public void keyPressed(KeyEvent e) {
 						if(e.getKeyCode()==KeyEvent.VK_ENTER) {
 							ConectorDB_mysql consulta= new ConectorDB_mysql();
-							String id = txt_IntroduceId.getText().toString();	
+							String fecha = txt_IntroduceFecha.getText().toString();
+							LocalDate date = LocalDate.parse(fecha);
+							consulta.conectar();
+							jd_buscar_pedidos_encontrados ventana = new jd_buscar_pedidos_encontrados();
+							ventana.llenarTabla(consulta.obtener_pedidos(date));
+							ventana.setVisible(true);
 							dispose();
-							try {
-								consulta.consulta_pedido(id);
-								
-							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
 						}
 					}
 				});
@@ -192,5 +192,4 @@ public class jd_buscar_pedido extends JDialog {
 		}
 		
 	}
-
 }

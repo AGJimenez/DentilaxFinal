@@ -5,6 +5,7 @@ package dialogos_materiales;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -29,15 +30,20 @@ import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.Toolkit;
+import javax.swing.JComboBox;
 
 public class jd_hacer_pedido extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txt_producto;
 	private JTextField txt_cantidad;
 	private JTextField txt_invisible_2;
+	dentilax_bdd.ConectorDB_mysql consultasDB = new dentilax_bdd.ConectorDB_mysql();
+	private List<String> inventario = new ArrayList<>();
+	JComboBox cb_inventario = new JComboBox();
 
 	/**
 	 * Launch the application.
@@ -56,6 +62,12 @@ public class jd_hacer_pedido extends JDialog {
 	 * Create the dialog.
 	 */
 	public jd_hacer_pedido() {
+		try {
+			consultasDB.mostarCbInventario(this);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		setTitle("Nuevo pedido");
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_hacer_pedido.class.getResource("/iconos_menus/dentilaxIcono.png")));
@@ -71,36 +83,8 @@ public class jd_hacer_pedido extends JDialog {
 		JSeparator separator = new JSeparator();
 		separator.setBackground(new Color(0, 128, 192));
 		separator.setForeground(new Color(0, 128, 192));
-		separator.setBounds(25, 162, 237, 8);
+		separator.setBounds(12, 162, 252, 8);
 		contentPanel.add(separator);
-		
-		
-		txt_producto = new JTextField();
-		txt_producto.addFocusListener(new FocusAdapter() {
-			@Override
-			public void focusGained(FocusEvent e) {
-				if(txt_producto.getText().equals("Introduce producto")) {
-					txt_producto.setText("");
-				}
-				txt_producto.setForeground(Color.BLACK);
-                
-			}
-			@Override
-			public void focusLost(FocusEvent e) {
-				if (txt_producto.getText().isEmpty()) {
-					txt_producto.setText("Introduce producto");
-				}
-			}
-		});
-		txt_producto.setOpaque(false);
-		txt_producto.setHorizontalAlignment(SwingConstants.CENTER);
-		txt_producto.setText("Introduce producto");
-		txt_producto.setBorder(null);
-		txt_producto.setFont(new Font("Arial", Font.PLAIN, 17));
-		txt_producto.setBounds(10, 126, 263, 44);
-		txt_producto.setBackground(null);
-		contentPanel.add(txt_producto);
-		txt_producto.setColumns(10);
 		
 		JPanel panel_contened = new JPanel();
 		panel_contened.setLayout(null);
@@ -153,8 +137,11 @@ public class jd_hacer_pedido extends JDialog {
 			public void keyPressed(KeyEvent e) {
 				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
 				dentilax_bdd.ConectorDB_mysql consulta = new dentilax_bdd.ConectorDB_mysql();
-				consulta.insertar_solicitud(txt_producto.getText().toString(), getTxt_invisible_2().getText().toString(), txt_cantidad.getText().toString());
-				JOptionPane.showMessageDialog(null, "Producto "+txt_producto.getText().toString()+" solicitado con éxito");
+
+		        String splitted[] =  cb_inventario.getSelectedItem().toString().split(": ");
+		        String producto = splitted[1];
+				consulta.insertar_solicitud(producto, getTxt_invisible_2().getText().toString(), txt_cantidad.getText().toString());
+				JOptionPane.showMessageDialog(null, "Producto "+producto+" solicitado con éxito");
 				//SQL 
 				dispose();
 				}
@@ -174,6 +161,12 @@ public class jd_hacer_pedido extends JDialog {
 		txt_invisible_2.setBounds(25, 11, 0, 0);
 		contentPanel.add(txt_invisible_2);
 		txt_invisible_2.setColumns(10);
+		
+		cb_inventario.setFont(new Font("Arial", Font.PLAIN, 14));
+		cb_inventario.setBackground(new Color(191, 231, 249));
+		cb_inventario.setBounds(14, 120, 248, 37);
+		contentPanel.add(cb_inventario);
+		
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setPreferredSize(new Dimension(10, 60));
@@ -185,9 +178,11 @@ public class jd_hacer_pedido extends JDialog {
 				btn_anadir.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						dentilax_bdd.ConectorDB_mysql consulta = new dentilax_bdd.ConectorDB_mysql();
+
+				        String producto =  cb_inventario.getSelectedItem().toString();
 						int cantidad = Integer.parseInt(txt_cantidad.getText().toString());
 						try {
-							consulta.insertar_pedido(txt_producto.getText().toString(),  cantidad);
+							consulta.insertar_pedido(producto,  cantidad);
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -222,8 +217,12 @@ public class jd_hacer_pedido extends JDialog {
 				btn_cancelar.setBounds(355, 0, 153, 43);
 				btn_cancelar.setActionCommand("Cancel");
 				buttonPane.add(btn_cancelar);
+				
 			}
+			
 		}
+		
+		
 	}
 
 	public JTextField getTxt_invisible_2() {
@@ -233,4 +232,12 @@ public class jd_hacer_pedido extends JDialog {
 	public void setTxt_invisible_2(String txt_invisible) {
 		this.txt_invisible_2.setText(txt_invisible);
 	}
+	
+	public JComboBox<String> getCb_inventario() {
+        return cb_inventario;
+    }
+
+	 public void setCb_inventario(String items) {
+		 cb_inventario.addItem(items); 
+	    }
 }

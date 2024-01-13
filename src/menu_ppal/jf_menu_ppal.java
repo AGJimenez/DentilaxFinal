@@ -26,6 +26,9 @@ import java.awt.event.FocusEvent;
 import java.awt.Color;
 import java.awt.Toolkit;
 import javax.swing.border.LineBorder;
+
+import dialogos_materiales.jd_hacer_pedido;
+
 import javax.swing.KeyStroke;
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
@@ -383,6 +386,15 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         jmenu_material.add(jmenuitem_cancelar);
         
         jmenuitem_nuevo_pedido = new JMenuItem("Nuevo pedido");
+        jmenuitem_nuevo_pedido.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		menu_ppal.jf_material ventana = new menu_ppal.jf_material();
+        		dialogos_materiales.jd_hacer_pedido pedido = new dialogos_materiales.jd_hacer_pedido();
+        		ventana.setVisible(true);
+        		pedido.setVisible(true);
+        	}
+        });
         jmenuitem_nuevo_pedido.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_material.add(jmenuitem_nuevo_pedido);
         
