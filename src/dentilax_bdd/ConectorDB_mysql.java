@@ -304,23 +304,25 @@ public String consulta_pedido(String id) throws SQLException{
 	try {
 		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 		statement = conect.createStatement();
-		String query = "SELECT * FROM pedidos WHERE ID_pedidos = '" + id +"'";
+		String query = "SELECT pedidos.ID_pedidos, pedidos.Producto, pedidos.Cantidad, pedidos.Precio, pedidos.Fecha, pedidos.id_proveedor, proveedores.Proveedor FROM pedidos JOIN proveedores ON proveedores.ID_proveedor = pedidos.id_proveedor WHERE pedidos.ID_pedidos = '" + id +"'";
         ResultSet resultSet = statement.executeQuery(query);
 		
         if (resultSet.next()) {
             // Resultado encontrado
             System.out.println("Resultado encontrado");
-            dialogos_materiales.jd_buscar_pedido_encontrado ventana = new dialogos_materiales.jd_buscar_pedido_encontrado();
-            String idSql = resultSet.getString("ID_pedidos");
-            String productoSql = resultSet.getString("Producto");
-            String cantidadSql = resultSet.getString("Cantidad");
-            String precioSql = resultSet.getString("Precio");
-            String fechaSql = resultSet.getString("Fecha");
-           // System.out.println(dniSql);
-            ventana.setTxt_dni(idSql);
-            ventana.setTxt_nombre(productoSql);
-            ventana.setTxt_apellidos(cantidadSql);
-            
+            dialogos_materiales.jd_buscar_pedido_ficha ventana = new dialogos_materiales.jd_buscar_pedido_ficha();
+            String idSql = resultSet.getString("pedidos.ID_pedidos");
+            String productoSql = resultSet.getString("pedidos.Producto");
+            String cantidadSql = resultSet.getString("pedidos.Cantidad");
+            String precioSql = resultSet.getString("pedidos.Precio");
+            String fechaSql = resultSet.getString("pedidos.Fecha");
+            String proveedorSql = resultSet.getString("proveedores.Proveedor");
+            ventana.setTxt_id(idSql);
+            ventana.setTxt_producto(productoSql);
+            ventana.setTxt_cantidad(cantidadSql);
+            ventana.setTxt_precio(precioSql);
+            ventana.setTxt_fecha(fechaSql);
+            ventana.setTxt_proveedor(proveedorSql);
             ventana.setVisible(true);
             
             

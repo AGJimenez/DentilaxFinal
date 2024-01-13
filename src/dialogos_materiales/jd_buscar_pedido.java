@@ -133,10 +133,10 @@ public class jd_buscar_pedido extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						//SQL si lo encuentra, abre ventana:
 						ConectorDB_mysql consulta= new ConectorDB_mysql();
-						String dni = txt_IntroduceId.getText().toString();	
+						String id = txt_IntroduceId.getText().toString();	
 						dispose();
 						try {
-							consulta.consulta_paciente(dni);
+							consulta.consulta_pedido(id);
 							
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
@@ -151,10 +151,10 @@ public class jd_buscar_pedido extends JDialog {
 					public void keyPressed(KeyEvent e) {
 						if(e.getKeyCode()==KeyEvent.VK_ENTER) {
 							ConectorDB_mysql consulta= new ConectorDB_mysql();
-							String dni = txt_IntroduceId.getText().toString();	
+							String id = txt_IntroduceId.getText().toString();	
 							dispose();
 							try {
-								consulta.consulta_paciente(dni);
+								consulta.consulta_pedido(id);
 								
 							} catch (SQLException e1) {
 								// TODO Auto-generated catch block

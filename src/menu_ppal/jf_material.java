@@ -64,11 +64,14 @@ public class jf_material extends JFrame {
 
         jp_menu = new fondos.Fondo();
         btn_buscar_pedido = new javax.swing.JButton();
+        btn_buscar_pedido.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_buscar_pedido.setIcon(new ImageIcon(jf_material.class.getResource("/iconos_submenus/btn_buscarPedido_admin.png")));
         btn_buscar_pedido.setBounds(68, 620, 188, 41);
         btn_buscar_pedido.setBorderPainted(false);
         btn_buscar_pedido.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		dialogos_materiales.jd_buscar_pedido ventana = new dialogos_materiales.jd_buscar_pedido();
+        		ventana.setVisible(true);
         	}
         });
         btn_nuevo_pedido = new javax.swing.JButton();
