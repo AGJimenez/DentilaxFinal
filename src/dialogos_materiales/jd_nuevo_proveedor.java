@@ -61,7 +61,7 @@ public class jd_nuevo_proveedor extends JDialog {
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_nuevo_proveedor.class.getResource("/iconos_menus/dentilaxIcono.png")));
 		setModal(true);
-		setBounds(100, 100, 453, 322);
+		setBounds(100, 100, 712, 376);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -72,7 +72,7 @@ public class jd_nuevo_proveedor extends JDialog {
 		JSeparator separator = new JSeparator();
 		separator.setBackground(new Color(0, 128, 192));
 		separator.setForeground(new Color(0, 128, 192));
-		separator.setBounds(98, 66, 237, 8);
+		separator.setBounds(31, 164, 164, 8);
 		contentPanel.add(separator);
 		
 		
@@ -80,7 +80,7 @@ public class jd_nuevo_proveedor extends JDialog {
 		txt_proveedor.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if(txt_proveedor.getText().equals("Introduce producto")) {
+				if(txt_proveedor.getText().equals("Introduce proveedor")) {
 					txt_proveedor.setText("");
 				}
 				txt_proveedor.setForeground(Color.BLACK);
@@ -89,7 +89,7 @@ public class jd_nuevo_proveedor extends JDialog {
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (txt_proveedor.getText().isEmpty()) {
-					txt_proveedor.setText("Introduce producto");
+					txt_proveedor.setText("Introduce proveedor");
 				}
 			}
 		});
@@ -98,7 +98,7 @@ public class jd_nuevo_proveedor extends JDialog {
 		txt_proveedor.setText("Introduce proveedor");
 		txt_proveedor.setBorder(null);
 		txt_proveedor.setFont(new Font("Arial", Font.PLAIN, 17));
-		txt_proveedor.setBounds(96, 22, 164, 44);
+		txt_proveedor.setBounds(31, 121, 164, 44);
 		txt_proveedor.setBackground(null);
 		contentPanel.add(txt_proveedor);
 		txt_proveedor.setColumns(10);
@@ -107,7 +107,7 @@ public class jd_nuevo_proveedor extends JDialog {
 		txt_producto.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusGained(FocusEvent e) {
-				if(txt_producto.getText().equals("Introduce cantidad")) {
+				if(txt_producto.getText().equals("Introduce producto")) {
 					txt_producto.setText("");
 				}
 				txt_producto.setForeground(Color.BLACK);
@@ -115,7 +115,7 @@ public class jd_nuevo_proveedor extends JDialog {
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (txt_producto.getText().isEmpty()) {
-					txt_producto.setText("Introduce cantidad");
+					txt_producto.setText("Introduce producto");
 				}
 			}
 		});
@@ -128,26 +128,13 @@ public class jd_nuevo_proveedor extends JDialog {
 		txt_producto.setColumns(10);
 		txt_producto.setBorder(null);
 		txt_producto.setBackground((Color) null);
-		txt_producto.setBounds(98, 85, 164, 44);
+		txt_producto.setBounds(250, 121, 164, 44);
 		contentPanel.add(txt_producto);
-		
-		txt_producto.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
-				dentilax_bdd.ConectorDB_mysql consulta = new dentilax_bdd.ConectorDB_mysql();
-				consulta.insertar_solicitud(txt_proveedor.getText().toString(), getTxt_invisible_2().getText().toString(), txt_producto.getText().toString());
-				JOptionPane.showMessageDialog(null, "Producto "+txt_proveedor.getText().toString()+" solicitado con éxito");
-				//SQL 
-				dispose();
-				}
-			}
-		});
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setForeground(new Color(0, 128, 192));
 		separator_1.setBackground(new Color(0, 128, 192));
-		separator_1.setBounds(98, 121, 237, 8);
+		separator_1.setBounds(250, 164, 164, 8);
 		contentPanel.add(separator_1);
 		
 		txt_invisible_2 = new JTextField();
@@ -159,6 +146,20 @@ public class jd_nuevo_proveedor extends JDialog {
 		txt_invisible_2.setColumns(10);
 		
 		txt_precio = new JTextField();
+		txt_precio.addFocusListener(new FocusAdapter() {
+			public void focusGained(FocusEvent e) {
+				if(txt_precio.getText().equals("Introduce precio")) {
+					txt_precio.setText("");
+				}
+				txt_precio.setForeground(Color.BLACK);
+			}
+			@Override
+			public void focusLost(FocusEvent e) {
+				if (txt_precio.getText().isEmpty()) {
+					txt_precio.setText("Introduce precio");
+				}
+			}
+		});
 		txt_precio.setText("Introduce precio");
 		txt_precio.setOpaque(false);
 		txt_precio.setHorizontalAlignment(SwingConstants.CENTER);
@@ -166,14 +167,50 @@ public class jd_nuevo_proveedor extends JDialog {
 		txt_precio.setColumns(10);
 		txt_precio.setBorder(null);
 		txt_precio.setBackground((Color) null);
-		txt_precio.setBounds(98, 156, 164, 44);
+		txt_precio.setBounds(495, 121, 138, 44);
 		contentPanel.add(txt_precio);
 		
+		txt_precio.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+				dentilax_bdd.ConectorDB_mysql consulta = new dentilax_bdd.ConectorDB_mysql();
+				consulta.insertar_solicitud(txt_proveedor.getText().toString(), getTxt_invisible_2().getText().toString(), txt_producto.getText().toString());
+				JOptionPane.showMessageDialog(null, "Producto "+txt_proveedor.getText().toString()+" solicitado con éxito");
+				//SQL 
+				dispose();
+				}
+			}
+		});
 		JSeparator separator_1_1 = new JSeparator();
 		separator_1_1.setForeground(new Color(0, 128, 192));
 		separator_1_1.setBackground(new Color(0, 128, 192));
-		separator_1_1.setBounds(98, 192, 237, 8);
+		separator_1_1.setBounds(489, 164, 144, 8);
 		contentPanel.add(separator_1_1);
+		
+		JPanel panel_contened = new JPanel();
+		panel_contened.setLayout(null);
+		panel_contened.setBackground(new Color(32, 160, 216));
+		panel_contened.setBounds(10, 12, 674, 43);
+		contentPanel.add(panel_contened);
+		
+		JLabel lbl_producto = new JLabel("PRODUCTO");
+		lbl_producto.setForeground(Color.WHITE);
+		lbl_producto.setFont(new Font("Dialog", Font.BOLD, 17));
+		lbl_producto.setBounds(270, 11, 96, 21);
+		panel_contened.add(lbl_producto);
+		
+		JLabel lbl_proveedor = new JLabel("PROVEEDOR");
+		lbl_proveedor.setForeground(Color.WHITE);
+		lbl_proveedor.setFont(new Font("Dialog", Font.BOLD, 17));
+		lbl_proveedor.setBounds(49, 11, 110, 21);
+		panel_contened.add(lbl_proveedor);
+		
+		JLabel lbl_precio = new JLabel("PRECIO");
+		lbl_precio.setForeground(Color.WHITE);
+		lbl_precio.setFont(new Font("Dialog", Font.BOLD, 17));
+		lbl_precio.setBounds(503, 11, 96, 21);
+		panel_contened.add(lbl_precio);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setPreferredSize(new Dimension(10, 60));
@@ -201,7 +238,7 @@ public class jd_nuevo_proveedor extends JDialog {
 				btn_anadir.setFont(new Font("Barlow", Font.BOLD, 20));
 				btn_anadir.setForeground(new Color(255, 255, 255));
 				btn_anadir.setBackground(new Color(32, 160, 216));
-				btn_anadir.setBounds(41, 0, 153, 43);
+				btn_anadir.setBounds(103, 0, 153, 43);
 				btn_anadir.setActionCommand("OK");
 				buttonPane.add(btn_anadir);
 				
@@ -218,7 +255,7 @@ public class jd_nuevo_proveedor extends JDialog {
 				btn_cancelar.setFont(new Font("Barlow", Font.BOLD, 20));
 				btn_cancelar.setForeground(new Color(255, 255, 255));
 				btn_cancelar.setBackground(new Color(32, 160, 216));
-				btn_cancelar.setBounds(240, 0, 153, 43);
+				btn_cancelar.setBounds(429, 0, 153, 43);
 				btn_cancelar.setActionCommand("Cancel");
 				buttonPane.add(btn_cancelar);
 			}

@@ -92,7 +92,7 @@ public class jd_hacer_pedido extends JDialog {
 		panel_contened.setBounds(10, 43, 557, 43);
 		contentPanel.add(panel_contened);
 		
-		JLabel lbl_cantidad = new JLabel("Cantidad");
+		JLabel lbl_cantidad = new JLabel("CANTIDAD");
 		lbl_cantidad.setForeground(Color.WHITE);
 		lbl_cantidad.setFont(new Font("Barlow", Font.BOLD, 17));
 		lbl_cantidad.setBounds(338, 11, 96, 21);

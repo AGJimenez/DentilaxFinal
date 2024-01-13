@@ -97,7 +97,7 @@ public class jd_proveedores extends JDialog {
                 JButton btn_insertar = new JButton("NUEVO");
                 btn_insertar.addActionListener(new ActionListener() {
                 	public void actionPerformed(ActionEvent e) {
-                		
+                		dispose();
                 		jd_nuevo_proveedor nuevo = new jd_nuevo_proveedor();
                 		nuevo.setVisible(true);
                 		
