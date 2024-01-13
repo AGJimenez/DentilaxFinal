@@ -36,7 +36,7 @@ public class jd_pedido_menudr extends JDialog {
         setTitle("Pedido");
         setIconImage(Toolkit.getDefaultToolkit().getImage(jd_pedido_menudr.class.getResource("/iconos_menus/dentilaxIcono.png")));
         setModal(true);
-        setPreferredSize(new Dimension(1198, 531));
+        setPreferredSize(new Dimension(723, 531));
         setResizable(false);
         setBounds(100, 100, 709, 531);
         getContentPane().setLayout(new BorderLayout());

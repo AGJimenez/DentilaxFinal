@@ -41,9 +41,9 @@ public class jd_revisar_solicitud extends JDialog {
         setTitle("Solicitudes");
         setIconImage(Toolkit.getDefaultToolkit().getImage(jd_revisar_solicitud.class.getResource("/iconos_menus/dentilaxIcono.png")));
         setModal(true);
-        setPreferredSize(new Dimension(1198, 531));
+        setPreferredSize(new Dimension(723, 531));
         setResizable(false);
-        setBounds(100, 100, 714, 468);
+        setBounds(100, 100, 721, 531);
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setBackground(Color.WHITE);
         contentPanel.setPreferredSize(new Dimension(1198, 531));
@@ -128,7 +128,7 @@ public class jd_revisar_solicitud extends JDialog {
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(new Color(191, 231, 249));
-		panel.setBounds(20, 31, 487, 54);
+		panel.setBounds(30, 31, 487, 54);
 		contentPanel.add(panel);
 		
 		JLabel lbl_inventario_disponible = new JLabel("SOLICITUDES PENDIENTES REALIZADAS");

@@ -37,9 +37,9 @@ public class jd_proveedores extends JDialog {
         setTitle("Proveedores");
         setIconImage(Toolkit.getDefaultToolkit().getImage(jd_proveedores.class.getResource("/iconos_menus/dentilaxIcono.png")));
         setModal(true);
-        setPreferredSize(new Dimension(1198, 531));
+        setPreferredSize(new Dimension(762, 531));
         setResizable(false);
-        setBounds(100, 100, 709, 531);
+        setBounds(100, 100, 730, 531);
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setBackground(Color.WHITE);
         contentPanel.setPreferredSize(new Dimension(1198, 531));
@@ -49,15 +49,15 @@ public class jd_proveedores extends JDialog {
         contentPanel.setLayout(null);
 
         JPanel panel_contened = new JPanel();
-        panel_contened.setBounds(9, 96, 674, 43);
+        panel_contened.setBounds(35, 96, 674, 43);
         panel_contened.setBackground(new Color(32, 160, 216));
         contentPanel.add(panel_contened);
         panel_contened.setLayout(null);
 
-        JLabel lbl_ID = new JLabel("ID_PROVEEDOR");
+        JLabel lbl_ID = new JLabel("ID");
         lbl_ID.setForeground(Color.WHITE);
         lbl_ID.setFont(new Font("Barlow", Font.BOLD, 17));
-        lbl_ID.setBounds(10, 11, 96, 21);
+        lbl_ID.setBounds(71, 11, 143, 21);
         panel_contened.add(lbl_ID);
 
         JLabel lbl_producto = new JLabel("PROVEEDOR");
@@ -66,10 +66,10 @@ public class jd_proveedores extends JDialog {
         lbl_producto.setBounds(257, 11, 110, 21);
         panel_contened.add(lbl_producto);
 
-        JLabel lbl_cantidad = new JLabel("PRECIO_PRODUCTO");
+        JLabel lbl_cantidad = new JLabel("PRECIO DE PRODUCTO");
         lbl_cantidad.setForeground(Color.WHITE);
         lbl_cantidad.setFont(new Font("Barlow", Font.BOLD, 17));
-        lbl_cantidad.setBounds(480, 11, 110, 21);
+        lbl_cantidad.setBounds(447, 11, 204, 21);
         panel_contened.add(lbl_cantidad);
 
         JPanel buttonPane = new JPanel();
@@ -79,7 +79,7 @@ public class jd_proveedores extends JDialog {
         buttonPane.setLayout(null);
         
                 JButton btn_salir = new JButton("SALIR");
-                btn_salir.setBounds(485, 0, 153, 43);
+                btn_salir.setBounds(555, 0, 153, 43);
                 buttonPane.add(btn_salir);
                 btn_salir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btn_salir.setBorder(null);
@@ -95,11 +95,11 @@ public class jd_proveedores extends JDialog {
                 btn_salir.setActionCommand("Cancel");
                 
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(12, 150, 671, 247);
+        scrollPane.setBounds(38, 150, 671, 247);
         contentPanel.add(scrollPane);
         
                 table = new JTable();
-                scrollPane.setColumnHeaderView(table);
+                scrollPane.setViewportView(table);
                 table.setModel(new DefaultTableModel(
                 	new Object[][] {
                 		{null, null, null},
@@ -130,12 +130,12 @@ public class jd_proveedores extends JDialog {
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(new Color(191, 231, 249));
-		panel.setBounds(10, 31, 497, 54);
+		panel.setBounds(38, 29, 497, 54);
 		contentPanel.add(panel);
 		
 		JLabel lbl_inventario_disponible = new JLabel("INVENTARIO DISPONIBLE");
 		lbl_inventario_disponible.setFont(new Font("Barlow", Font.BOLD, 20));
-		lbl_inventario_disponible.setBounds(10, 0, 229, 54);
+		lbl_inventario_disponible.setBounds(24, 0, 294, 54);
 		panel.add(lbl_inventario_disponible);
 		
 		txt_invisible = new JTextField();

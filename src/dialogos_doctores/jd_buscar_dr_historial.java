@@ -57,7 +57,7 @@ public class jd_buscar_dr_historial extends JDialog {
 	 */
 	public jd_buscar_dr_historial(String DNI_doctor) {
 		setModal(true);
-		setPreferredSize(new Dimension(1198, 531));
+		setPreferredSize(new Dimension(723, 531));
 		setResizable(false);
 		setBounds(100, 100, 715, 531);
 		getContentPane().setLayout(new BorderLayout());

@@ -34,7 +34,7 @@ public class jd_buscar_paciente_historial extends JDialog {
         setTitle("Historial de paciente");
         setIconImage(Toolkit.getDefaultToolkit().getImage(jd_buscar_paciente_historial.class.getResource("/iconos_menus/dentilaxIcono.png")));
         setModal(true);
-        setPreferredSize(new Dimension(1198, 531));
+        setPreferredSize(new Dimension(723, 531));
         setResizable(false);
         setBounds(100, 100, 709, 531);
         getContentPane().setLayout(new BorderLayout());

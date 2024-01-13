@@ -33,12 +33,12 @@ public class jd_inventario extends JDialog {
     private JTextField txt_invisible;
 
     public jd_inventario() {
+    	setResizable(false);
         setTitle("Inventario");
         setIconImage(Toolkit.getDefaultToolkit().getImage(jd_inventario.class.getResource("/iconos_menus/dentilaxIcono.png")));
         setModal(true);
-        setPreferredSize(new Dimension(1198, 531));
-        setResizable(false);
-        setBounds(100, 100, 709, 531);
+        setPreferredSize(new Dimension(762, 531));
+        setBounds(100, 100, 771, 531);
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setBackground(Color.WHITE);
         contentPanel.setPreferredSize(new Dimension(1198, 531));
@@ -48,7 +48,7 @@ public class jd_inventario extends JDialog {
         contentPanel.setLayout(null);
 
         JPanel panel_contened = new JPanel();
-        panel_contened.setBounds(9, 96, 674, 43);
+        panel_contened.setBounds(41, 96, 674, 43);
         panel_contened.setBackground(new Color(32, 160, 216));
         contentPanel.add(panel_contened);
         panel_contened.setLayout(null);
@@ -78,7 +78,7 @@ public class jd_inventario extends JDialog {
         buttonPane.setLayout(null);
         
                 JButton btn_salir = new JButton("SALIR");
-                btn_salir.setBounds(485, 0, 153, 43);
+                btn_salir.setBounds(565, 0, 153, 43);
                 buttonPane.add(btn_salir);
                 btn_salir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btn_salir.setBorder(null);
@@ -94,11 +94,11 @@ public class jd_inventario extends JDialog {
                 btn_salir.setActionCommand("Cancel");
                 
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(12, 150, 671, 247);
+        scrollPane.setBounds(44, 150, 671, 247);
         contentPanel.add(scrollPane);
         
                 table = new JTable();
-                scrollPane.setColumnHeaderView(table);
+                scrollPane.setViewportView(table);
                 table.setModel(new DefaultTableModel(
                 	new Object[][] {
                 		{null, null, null},
@@ -129,12 +129,12 @@ public class jd_inventario extends JDialog {
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(new Color(191, 231, 249));
-		panel.setBounds(10, 31, 497, 54);
+		panel.setBounds(41, 31, 497, 54);
 		contentPanel.add(panel);
 		
 		JLabel lbl_inventario_disponible = new JLabel("INVENTARIO DISPONIBLE");
 		lbl_inventario_disponible.setFont(new Font("Barlow", Font.BOLD, 20));
-		lbl_inventario_disponible.setBounds(10, 0, 229, 54);
+		lbl_inventario_disponible.setBounds(10, 0, 277, 54);
 		panel.add(lbl_inventario_disponible);
 		
 		txt_invisible = new JTextField();
