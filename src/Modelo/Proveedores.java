@@ -4,13 +4,15 @@ public class Proveedores {
 	
 	private int id_proveedor;
 	private String proveedor;
-	private int precio_producto;
+	private String producto;
+	private int precio;
 	
-	public Proveedores(int id_proveedor, String proveedor, int precio_producto) {
+	public Proveedores(int id_proveedor, String proveedor, String producto, int precio) {
 		super();
 		this.id_proveedor = id_proveedor;
 		this.proveedor = proveedor;
-		this.precio_producto = precio_producto;		
+		this.producto = producto;	
+		this.precio = precio;
 		
 	}
 
@@ -30,17 +32,25 @@ public class Proveedores {
 		this.proveedor = proveedor;
 	}
 
-	public int getPrecio_producto() {
-		return precio_producto;
+	public String getProducto() {
+		return producto;
 	}
 
-	public void setPrecio_producto(int precio_producto) {
-		this.precio_producto = precio_producto;
+	public void setProducto(String producto) {
+		this.producto = producto;
+	}
+	
+	public int getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(int precio) {
+		this.precio = precio;
 	}
 
 	@Override
 	public String toString() {
-		return "Proveedores [id_proveedor=" + id_proveedor + ", proveedor=" + proveedor + ", precio_producto="
-				+ precio_producto + "]";
+		return "Proveedores [id_proveedor=" + id_proveedor + ", proveedor=" + proveedor + ", producto="
+				+ producto + ", precio=" + precio + "]";
 	}	
 }

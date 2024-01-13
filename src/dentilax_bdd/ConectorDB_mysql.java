@@ -1906,15 +1906,16 @@ public List<Proveedores> obtenerProveedores() {
        try {
            conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
            statement = conect.createStatement();
-           String query = "SELECT ID_proveedor, Proveedor, Precio_producto FROM proveedores";
+           String query = "SELECT ID_proveedor, Proveedor, Producto, Precio_producto FROM proveedores";
            ResultSet resultSet = statement.executeQuery(query);
 
            while (resultSet.next()) {
                int id = resultSet.getInt("ID_proveedor");
-               String producto = resultSet.getString("Proveedor");
-               int cantidad = resultSet.getInt("Precio_producto");
+               String proveedor = resultSet.getString("Proveedor");
+               String producto = resultSet.getString("Producto");
+               int precio = resultSet.getInt("Precio_producto");
 
-               Proveedores Proveedores = new Proveedores(id,producto,cantidad);
+               Proveedores Proveedores = new Proveedores(id, proveedor, producto, precio);
 
                proveedores.add(Proveedores);
            }

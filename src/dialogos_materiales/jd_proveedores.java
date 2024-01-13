@@ -57,20 +57,26 @@ public class jd_proveedores extends JDialog {
         JLabel lbl_ID = new JLabel("ID");
         lbl_ID.setForeground(Color.WHITE);
         lbl_ID.setFont(new Font("Barlow", Font.BOLD, 17));
-        lbl_ID.setBounds(71, 11, 143, 21);
+        lbl_ID.setBounds(71, 11, 55, 21);
         panel_contened.add(lbl_ID);
 
-        JLabel lbl_producto = new JLabel("PROVEEDOR");
+        JLabel lbl_proveedor = new JLabel("PROVEEDOR");
+        lbl_proveedor.setForeground(Color.WHITE);
+        lbl_proveedor.setFont(new Font("Barlow", Font.BOLD, 17));
+        lbl_proveedor.setBounds(201, 11, 110, 21);
+        panel_contened.add(lbl_proveedor);
+
+        JLabel lbl_producto = new JLabel("PRODUCTO");
         lbl_producto.setForeground(Color.WHITE);
         lbl_producto.setFont(new Font("Barlow", Font.BOLD, 17));
-        lbl_producto.setBounds(257, 11, 110, 21);
+        lbl_producto.setBounds(366, 11, 127, 21);
         panel_contened.add(lbl_producto);
-
-        JLabel lbl_cantidad = new JLabel("PRECIO DE PRODUCTO");
-        lbl_cantidad.setForeground(Color.WHITE);
-        lbl_cantidad.setFont(new Font("Barlow", Font.BOLD, 17));
-        lbl_cantidad.setBounds(447, 11, 204, 21);
-        panel_contened.add(lbl_cantidad);
+        
+        JLabel lbl_precio = new JLabel("PRECIO");
+        lbl_precio.setForeground(Color.WHITE);
+        lbl_precio.setFont(new Font("Dialog", Font.BOLD, 17));
+        lbl_precio.setBounds(537, 11, 127, 21);
+        panel_contened.add(lbl_precio);
 
         JPanel buttonPane = new JPanel();
         buttonPane.setBackground(Color.WHITE);
@@ -137,13 +143,14 @@ public class jd_proveedores extends JDialog {
                 		{null, null, null},
                 	},
                 	new String[] {
-                		"", "", ""
+                		"", "", "",""
                 	}
                 ));
 		 model=new DefaultTableModel();
 			model.addColumn("Id_proveedor");
 			model.addColumn("Proveedor");
-			model.addColumn("Precio_producto");
+			model.addColumn("Producto");
+			model.addColumn("Precio");
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
@@ -151,10 +158,10 @@ public class jd_proveedores extends JDialog {
 		panel.setBounds(38, 29, 497, 54);
 		contentPanel.add(panel);
 		
-		JLabel lbl_inventario_disponible = new JLabel("INVENTARIO DISPONIBLE");
-		lbl_inventario_disponible.setFont(new Font("Barlow", Font.BOLD, 20));
-		lbl_inventario_disponible.setBounds(24, 0, 294, 54);
-		panel.add(lbl_inventario_disponible);
+		JLabel lbl_proveedores_disponible = new JLabel("PROVEEDORES DISPONIBLE");
+		lbl_proveedores_disponible.setFont(new Font("Barlow", Font.BOLD, 20));
+		lbl_proveedores_disponible.setBounds(24, 0, 307, 54);
+		panel.add(lbl_proveedores_disponible);
 		
 		txt_invisible = new JTextField();
 		txt_invisible.setVisible(false);
@@ -186,10 +193,11 @@ public class jd_proveedores extends JDialog {
            model.setRowCount(0);
 
            for (Proveedores info : proveedores) {
-               Object[] fila = new Object[3];
+               Object[] fila = new Object[4];
                fila[0] = info.getId_proveedor();
                fila[1] = info.getProveedor();
-               fila[2] = info.getPrecio_producto();
+               fila[2] = info.getProducto();
+               fila[3] = info.getPrecio();
 
             //   model.setRowCount(model.getRowCount()+1);
                model.addRow(fila);
