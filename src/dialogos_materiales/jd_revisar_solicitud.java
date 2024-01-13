@@ -8,6 +8,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.swing.JButton;
@@ -41,9 +42,9 @@ public class jd_revisar_solicitud extends JDialog {
         setTitle("Solicitudes");
         setIconImage(Toolkit.getDefaultToolkit().getImage(jd_revisar_solicitud.class.getResource("/iconos_menus/dentilaxIcono.png")));
         setModal(true);
-        setPreferredSize(new Dimension(723, 531));
+        setPreferredSize(new Dimension(723, 470));
         setResizable(false);
-        setBounds(100, 100, 721, 531);
+        setBounds(100, 100, 723, 471);
         getContentPane().setLayout(new BorderLayout());
         contentPanel.setBackground(Color.WHITE);
         contentPanel.setPreferredSize(new Dimension(1198, 531));
@@ -188,13 +189,23 @@ public class jd_revisar_solicitud extends JDialog {
 		        btn_solicitar.addActionListener(new ActionListener() {
 		        	public void actionPerformed(ActionEvent e) {
 		        		if (indiceFilaSeleccionada != -1) {
-		                    int idSolicitud = (int) table.getValueAt(indiceFilaSeleccionada, 0); // Obtener ID desde la fila seleccionada
+		        			 int idSolicitud = (int) table.getValueAt(indiceFilaSeleccionada, 0);
+		        			 	String producto = (String) table.getValueAt(indiceFilaSeleccionada, 1);
+		        			    int cantidad = (int) table.getValueAt(indiceFilaSeleccionada, 3);
 		                    
+		        			    System.out.println("Producto: " + producto);
+		        			    System.out.println("Cantidad: " + cantidad);
+		        			    
 		                    // Actualizar la base de datos
 		                    ConectorDB_mysql conection = new ConectorDB_mysql();
 		                    conection.conectar();
 		                    conection.actualizarEstadoSolicitud(idSolicitud, "Aceptada");
-		                   // conection.insertar_pedido(getName(), idSolicitud); habria que realizar la consulta cruzada, queda pendiente
+		                    try {
+								conection.insertar_pedido(producto, cantidad);
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							} 
 		                    // Actualizar la tabla
 		                    llenarTabla(conection.obtenerSolicitudesActivas());
 		                }

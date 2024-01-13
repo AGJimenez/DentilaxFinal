@@ -94,6 +94,24 @@ public class jd_proveedores extends JDialog {
                 btn_salir.setBackground(new Color(32, 160, 216));
                 btn_salir.setActionCommand("Cancel");
                 
+                JButton btn_insertar = new JButton("NUEVO");
+                btn_insertar.addActionListener(new ActionListener() {
+                	public void actionPerformed(ActionEvent e) {
+                		
+                		jd_nuevo_proveedor nuevo = new jd_nuevo_proveedor();
+                		nuevo.setVisible(true);
+                		
+                	}
+                });
+                btn_insertar.setForeground(Color.WHITE);
+                btn_insertar.setFont(new Font("Barlow", Font.BOLD, 20));
+                btn_insertar.setBorderPainted(false);
+                btn_insertar.setBorder(null);
+                btn_insertar.setBackground(new Color(32, 160, 216));
+                btn_insertar.setActionCommand("Cancel");
+                btn_insertar.setBounds(35, 0, 153, 43);
+                buttonPane.add(btn_insertar);
+                
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setBounds(38, 150, 671, 247);
         contentPanel.add(scrollPane);

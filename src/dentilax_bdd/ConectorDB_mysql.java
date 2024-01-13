@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.sql.Date;
@@ -929,37 +930,84 @@ public void insertar_doctor(String dni, String apellidos, String nombre, String 
 		ex.printStackTrace();
 	}
 }
-/*
-public void insertar_pedido(String producto, int cantidad) throws SQLException{
-	
-	COGEMOS EL ID DE PROVEEDOR TABLA PROVEEDORES, Y EL PRECIO DE LA MISMA.
-	LUEGO EN TABLA PEDIDOS, INSERTAMOS.
-	
-	try {
-	
-		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
-		statement = conect.createStatement();
-		String query = "INSERT INTO pedidos (Producto, Cantidad, Precio, Fecha, id_proveedor) " +
-            "VALUES ('" + producto + "', '" + cantidad + "', '" +  precio + "', '" + fecha + "', '" + id_proveedor + "')";
 
-		int fila = statement.executeUpdate(query);
-		
-		// Verificar si la inserción se realizó con éxito
-		if (fila > 0) {
-			System.out.println("Inserción exitosa.");
-			JOptionPane.showMessageDialog(null, "Doctor añadido con éxito");
-		} else {
-			System.out.println("La inserción no tuvo éxito.");
-			
-		}
-		
-	}
-	catch(SQLException ex) {
-		JOptionPane.showMessageDialog(null, "Error en la inserción de doctor, comprueba los campos.");
-		ex.printStackTrace();
-	}
+public void insertar_pedido(String producto, int cantidad) throws SQLException {
+    int precio = 0;
+    int id_proveedor = 0;
+
+    try {
+        conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+
+        // Obtener el precio del producto desde la tabla de proveedores
+        String obtenerPrecioQuery = "SELECT Precio_Producto FROM proveedores WHERE Producto = ?";
+        try (PreparedStatement obtenerPrecioStatement = conect.prepareStatement(obtenerPrecioQuery)) {
+            obtenerPrecioStatement.setString(1, producto);
+            try (ResultSet resultSet = obtenerPrecioStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    precio = resultSet.getInt("Precio_Producto");
+                }
+            }
+        }
+
+        // Obtener el ID del proveedor desde la tabla de proveedores
+        String obtenerIdProveedorQuery = "SELECT ID_proveedor FROM proveedores WHERE Producto = ?";
+        try (PreparedStatement obtenerIdProveedorStatement = conect.prepareStatement(obtenerIdProveedorQuery)) {
+            obtenerIdProveedorStatement.setString(1, producto);
+            try (ResultSet resultSet = obtenerIdProveedorStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    id_proveedor = resultSet.getInt("ID_proveedor");
+                }
+            }
+        }
+
+        // Verificar si se encontró un proveedor
+        if (id_proveedor == 0) {
+            // Mostrar un JOptionPane informando del error y recomendando crear un proveedor
+            JOptionPane.showMessageDialog(null, "Error: No se encontró un proveedor para el producto '"
+                    + producto + "'. Recomendamos crear un proveedor para este producto.");
+            return; // Salir del método, ya que no se puede continuar sin un proveedor
+        }
+
+        // Obtener la fecha actual
+        String fechaStr = LocalDate.now().toString();
+
+        // Convertir la cadena de fecha a un objeto Date
+        java.sql.Date fecha = null;
+        try {
+            fecha = new java.sql.Date(new SimpleDateFormat("yyyy-MM-dd").parse(fechaStr).getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        // Utilizar una consulta parametrizada para evitar la inyección de SQL
+        String query = "INSERT INTO pedidos (Producto, Cantidad, Precio, Fecha, id_proveedor) VALUES (?, ?, ?, ?, ?)";
+        try (PreparedStatement preparedStatement = conect.prepareStatement(query)) {
+            preparedStatement.setString(1, producto);
+            preparedStatement.setInt(2, cantidad);
+            preparedStatement.setDouble(3, precio);
+            preparedStatement.setDate(4, fecha);
+            preparedStatement.setInt(5, id_proveedor);
+
+            int fila = preparedStatement.executeUpdate();
+
+            if (fila > 0) {
+                System.out.println("Inserción exitosa.");
+                JOptionPane.showMessageDialog(null, "Pedido añadido con éxito");
+            } else {
+                System.out.println("La inserción no tuvo éxito.");
+            }
+        }
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error en la inserción del pedido, comprueba los campos.");
+        ex.printStackTrace();
+    } finally {
+        // Cerrar la conexión en el bloque finally para asegurar su cierre
+        if (conect != null) {
+            conect.close();
+        }
+    }
 }
-*/
+
 public void baja_doctor(String dni) throws SQLException {
 
     try {
@@ -1195,6 +1243,8 @@ public void insertar_solicitud(String solicitud, String DNI_doctor, String canti
 	}
 	
 }
+
+
 
 public void eliminar_especialidad(String especialidad) throws SQLException{
 	String query = "DELETE FROM especialidad WHERE Nombre = ?";
@@ -1817,6 +1867,30 @@ public List<Proveedores> obtenerProveedores() {
 	return proveedores;
 
 }
+public void insertar_proveedor(String proveedor, String precio, String producto) throws SQLException {
+	 conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+     
+    try {
+        int precioParseado = Integer.parseInt(precio);
+        // Crear la conexión y preparar la consulta
+        String sql = "INSERT INTO proveedores (Proveedor, Precio_producto, Producto) VALUES (?, ?, ?)";
+        try (PreparedStatement statement = conect.prepareStatement(sql)) {
+            // Establecer los valores en la consulta
+            statement.setString(1, proveedor);
+            statement.setInt(2, precioParseado);
+            statement.setString(3, producto);
+
+            // Ejecutar la consulta
+            statement.executeUpdate();
+        }
+    } catch (NumberFormatException e) {
+        e.printStackTrace(); // Manejo de errores al parsear el precio
+    } catch (SQLException e) {
+        e.printStackTrace(); // Manejo de errores en la ejecución de la consulta SQL
+    }
+}
+
+
 }
 
 	
