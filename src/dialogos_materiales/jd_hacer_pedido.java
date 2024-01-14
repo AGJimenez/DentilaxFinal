@@ -43,7 +43,7 @@ public class jd_hacer_pedido extends JDialog {
 	private JTextField txt_invisible_2;
 	dentilax_bdd.ConectorDB_mysql consultasDB = new dentilax_bdd.ConectorDB_mysql();
 	private List<String> inventario = new ArrayList<>();
-	JComboBox cb_inventario = new JComboBox();
+	JComboBox cb_productos = new JComboBox();
 
 	/**
 	 * Launch the application.
@@ -63,7 +63,7 @@ public class jd_hacer_pedido extends JDialog {
 	 */
 	public jd_hacer_pedido() {
 		try {
-			consultasDB.mostarCbInventario(this);
+			consultasDB.mostarCbProductosProv(this);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -138,7 +138,7 @@ public class jd_hacer_pedido extends JDialog {
 				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
 				dentilax_bdd.ConectorDB_mysql consulta = new dentilax_bdd.ConectorDB_mysql();
 
-		        String splitted[] =  cb_inventario.getSelectedItem().toString().split(": ");
+		        String splitted[] =  cb_productos.getSelectedItem().toString().split(": ");
 		        String producto = splitted[1];
 				consulta.insertar_solicitud(producto, getTxt_invisible_2().getText().toString(), txt_cantidad.getText().toString());
 				JOptionPane.showMessageDialog(null, "Producto "+producto+" solicitado con éxito");
@@ -162,10 +162,10 @@ public class jd_hacer_pedido extends JDialog {
 		contentPanel.add(txt_invisible_2);
 		txt_invisible_2.setColumns(10);
 		
-		cb_inventario.setFont(new Font("Arial", Font.PLAIN, 14));
-		cb_inventario.setBackground(new Color(191, 231, 249));
-		cb_inventario.setBounds(14, 120, 248, 37);
-		contentPanel.add(cb_inventario);
+		cb_productos.setFont(new Font("Arial", Font.PLAIN, 14));
+		cb_productos.setBackground(new Color(191, 231, 249));
+		cb_productos.setBounds(14, 120, 248, 37);
+		contentPanel.add(cb_productos);
 		
 		{
 			JPanel buttonPane = new JPanel();
@@ -179,7 +179,7 @@ public class jd_hacer_pedido extends JDialog {
 					public void actionPerformed(ActionEvent e) {
 						dentilax_bdd.ConectorDB_mysql consulta = new dentilax_bdd.ConectorDB_mysql();
 
-				        String producto =  cb_inventario.getSelectedItem().toString();
+				        String producto =  cb_productos.getSelectedItem().toString();
 						int cantidad = Integer.parseInt(txt_cantidad.getText().toString());
 						try {
 							consulta.insertar_pedido(producto,  cantidad);
@@ -233,11 +233,11 @@ public class jd_hacer_pedido extends JDialog {
 		this.txt_invisible_2.setText(txt_invisible);
 	}
 	
-	public JComboBox<String> getCb_inventario() {
-        return cb_inventario;
+	public JComboBox<String> getCb_productos() {
+        return cb_productos;
     }
 
-	 public void setCb_inventario(String items) {
-		 cb_inventario.addItem(items); 
+	 public void setCb_productos(String items) {
+		 cb_productos.addItem(items); 
 	    }
 }

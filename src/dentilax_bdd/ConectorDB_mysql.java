@@ -1638,19 +1638,19 @@ public void mostarCbCitasDr(jd_nueva_consulta datos) throws SQLException {
     }
 }
 
-public void mostarCbInventario(jd_hacer_pedido datos) throws SQLException {
+public void mostarCbProductosProv(jd_hacer_pedido datos) throws SQLException {
     // Consulta para ver el nombre de las tablas
 	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
     statement = conect.createStatement();
     try {
-        String sql = "SELECT Nombre FROM inventario";
+        String sql = "SELECT Producto FROM proveedores";
         ResultSet rs = statement.executeQuery(sql);
 
         // Extraer datos del result set
         while (rs.next()) {
             // Obtener el nombre y el DNI de la tabla
-            String nombre = rs.getString("Nombre");
-            datos.setCb_inventario(nombre);
+            String nombre = rs.getString("Producto");
+            datos.setCb_productos(nombre);
         }
     } finally {
         if (statement != null) {
