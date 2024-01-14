@@ -1768,6 +1768,7 @@ public void insertarOdontograma(int id_diente, String observaciones, int id_paci
             // Verificar si la inserción se realizó con éxito
             if (fila > 0) {
                 System.out.println("Inserción exitosa.");
+                JOptionPane.showMessageDialog(null, "Cambios realizados con éxito");
             } else {
                 System.out.println("La inserción no tuvo éxito.");
             }

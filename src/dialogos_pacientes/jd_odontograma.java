@@ -1042,6 +1042,9 @@ public class jd_odontograma extends JDialog {
 		JButton btn_actualizar = new JButton("ACTUALIZAR");
 		btn_actualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				dispose();
+				jd_odontograma act = new jd_odontograma(dniPasar);
+				act.setVisible(true);
 				
 				for (Integer opcion : id_diente_lista) {
 				    switch (opcion) {
