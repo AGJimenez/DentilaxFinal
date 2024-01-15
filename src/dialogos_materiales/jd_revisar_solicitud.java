@@ -95,7 +95,7 @@ public class jd_revisar_solicitud extends JDialog {
         
                 table = new JTable();
                 table.setAutoCreateRowSorter(true);
-                scrollPane.setViewportView(table);
+                scrollPane.setColumnHeaderView(table);
                 table.setModel(new DefaultTableModel(
                 	new Object[][] {
                 		{null, null, null, null, null},
@@ -181,7 +181,9 @@ public class jd_revisar_solicitud extends JDialog {
 		        btn_solicitar_1.setBorder(null);
 		        btn_solicitar_1.setBackground(new Color(32, 160, 216));
 		        btn_solicitar_1.setActionCommand("Cancel");
-		        
+		        ConectorDB_mysql conection = new ConectorDB_mysql();
+                conection.conectar();
+		        llenarTabla(conection.obtenerSolicitudesActivas());
 		        JButton btn_solicitar = new JButton("ACEPTAR");
 		        btn_solicitar.setBounds(30, 357, 153, 43);
 		        contentPanel.add(btn_solicitar);
@@ -197,8 +199,7 @@ public class jd_revisar_solicitud extends JDialog {
 		        			    System.out.println("Cantidad: " + cantidad);
 		        			    
 		                    // Actualizar la base de datos
-		                    ConectorDB_mysql conection = new ConectorDB_mysql();
-		                    conection.conectar();
+		                  
 		                    conection.actualizarEstadoSolicitud(idSolicitud, "Aceptada");
 		                    try {
 								conection.insertar_pedido(producto, cantidad);
@@ -207,7 +208,7 @@ public class jd_revisar_solicitud extends JDialog {
 								e1.printStackTrace();
 							} 
 		                    // Actualizar la tabla
-		                    llenarTabla(conection.obtenerSolicitudesActivas());
+		                  
 		                }
 		        	}
 		        });
@@ -252,7 +253,7 @@ public class jd_revisar_solicitud extends JDialog {
 		        });
 	
 		
-			ConectorDB_mysql conection = new ConectorDB_mysql();
+			
 			conection.conectar();
 			
 			//System.out.println(conection.obtenerInfoCitas().toString());
