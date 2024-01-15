@@ -261,12 +261,12 @@ public String consulta_paciente(String dni) throws SQLException{
 	}
 
 
-public String consulta_paciente_menudr(String dni) throws SQLException{
+public String consulta_paciente_menudr(String nombre, String apellidos) throws SQLException{
 	
 	try {
 		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 		statement = conect.createStatement();
-		String query = "SELECT * FROM pacientes WHERE DNI_paciente = '" + dni +"'";
+		String query = "SELECT DNI_paciente, Nombre, Apellidos FROM pacientes WHERE Nombre = '" + nombre + "' AND Apellidos = '" + apellidos + "'";
         ResultSet resultSet = statement.executeQuery(query);
 		
         if (resultSet.next()) {
@@ -295,7 +295,7 @@ public String consulta_paciente_menudr(String dni) throws SQLException{
 	catch(SQLException ex) {
 		
 	}
-	return dni;
+	return nombre;
 	
 }
 
@@ -711,6 +711,44 @@ public String consulta_doctor_eliminar(String dni) throws SQLException{
 	    }
 
 	    return solicitudesActivas;
+	}
+	
+	public List<Paciente> obtener_pacientes() {
+	    List<Paciente> pacientes = new ArrayList<>();
+
+	    try {
+	        conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+	        statement = conect.createStatement();
+	        String query = "SELECT nombre, apellidos, observaciones, seguro FROM pacientes";
+	        ResultSet resultSet = statement.executeQuery(query);
+
+	        while (resultSet.next()) {
+	            String nombre = resultSet.getString("nombre");
+	            String apellidos = resultSet.getString("apellidos");
+	            String observaciones = resultSet.getString("observaciones");
+	            String seguro = resultSet.getString("seguro");
+
+	            Paciente paciente = new Paciente(nombre, apellidos, observaciones, observaciones);
+
+	            pacientes.add(paciente);
+	        }
+
+	    } catch (SQLException ex) {
+	        ex.printStackTrace();
+	    } finally {
+	        try {
+	            if (statement != null) {
+	                statement.close();
+	            }
+	            if (conect != null) {
+	                conect.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    return pacientes;
 	}
 	
 	public List<Pedido> obtener_pedidos(LocalDate date) {
