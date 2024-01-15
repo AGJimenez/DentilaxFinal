@@ -95,7 +95,7 @@ public class jd_revisar_solicitud extends JDialog {
         
                 table = new JTable();
                 table.setAutoCreateRowSorter(true);
-                scrollPane.setColumnHeaderView(table);
+                scrollPane.setViewportView(table);
                 table.setModel(new DefaultTableModel(
                 	new Object[][] {
                 		{null, null, null, null, null},

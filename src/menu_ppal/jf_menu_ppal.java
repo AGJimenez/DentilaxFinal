@@ -28,6 +28,7 @@ import java.awt.Toolkit;
 import javax.swing.border.LineBorder;
 
 import dialogos_materiales.jd_hacer_pedido;
+import dialogos_materiales.jd_revisar_solicitud;
 
 import javax.swing.KeyStroke;
 import java.awt.event.KeyEvent;
@@ -374,35 +375,67 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         jmenu_material.add(jmenuitem_menu_material);
         
         jmenuitem_buscar_pedido = new JMenuItem("Buscar pedido");
+        jmenuitem_buscar_pedido.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_material ventana_p = new jf_material();
+        		dialogos_materiales.jd_buscar_pedido ventana = new dialogos_materiales.jd_buscar_pedido();
+        		ventana_p.setVisible(true);
+        		ventana.setVisible(true);
+        	}
+        });
         jmenuitem_buscar_pedido.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_material.add(jmenuitem_buscar_pedido);
         
         jmenuitem_proveedores = new JMenuItem("Proveedores");
+        jmenuitem_proveedores.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_material ventana_p = new jf_material();
+        		dialogos_materiales.jd_proveedores ventana = new dialogos_materiales.jd_proveedores();
+        		ventana_p.setVisible(true);
+        		ventana.setVisible(true);
+        	}
+        });
         jmenuitem_proveedores.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_material.add(jmenuitem_proveedores);
-        
-        jmenuitem_cancelar = new JMenuItem("Cancelar pedido");
-        jmenuitem_cancelar.setFont(new Font("Arial", Font.PLAIN, 12));
-        jmenu_material.add(jmenuitem_cancelar);
         
         jmenuitem_nuevo_pedido = new JMenuItem("Nuevo pedido");
         jmenuitem_nuevo_pedido.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
-        		menu_ppal.jf_material ventana = new menu_ppal.jf_material();
+        		jf_material ventana_p = new jf_material();
         		dialogos_materiales.jd_hacer_pedido pedido = new dialogos_materiales.jd_hacer_pedido();
-        		ventana.setVisible(true);
+        		ventana_p.setVisible(true);
         		pedido.setVisible(true);
         	}
         });
+        
+        jmenuitem_inventario = new JMenuItem("Inventario");
+        jmenuitem_inventario.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		menu_ppal.jf_material ventana_p = new menu_ppal.jf_material();
+        		dialogos_materiales.jd_inventario ventana = new dialogos_materiales.jd_inventario();
+        		ventana_p.setVisible(true);
+        		ventana.setVisible(true);
+        	}
+        });
+        jmenuitem_inventario.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_material.add(jmenuitem_inventario);
         jmenuitem_nuevo_pedido.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_material.add(jmenuitem_nuevo_pedido);
         
-        jmenuitem_inventario = new JMenuItem("Inventario");
-        jmenuitem_inventario.setFont(new Font("Arial", Font.PLAIN, 12));
-        jmenu_material.add(jmenuitem_inventario);
-        
         jmenuitem_solicitudes = new JMenuItem("Solicitudes");
+        jmenuitem_solicitudes.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_material ventana_p = new jf_material();
+        		dialogos_materiales.jd_revisar_solicitud ventana = new dialogos_materiales.jd_revisar_solicitud();
+        		ventana_p.setVisible(true);
+        		ventana.setVisible(true);
+        	}
+        });
         jmenuitem_solicitudes.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_material.add(jmenuitem_solicitudes);
 
@@ -502,6 +535,10 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         jmenu_facturacion.add(jmenuitem_buscar_factura);
         
         jmenuitem_historial_pago = new JMenuItem("Historial de pago");
+        jmenuitem_historial_pago.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	}
+        });
         jmenuitem_historial_pago.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_facturacion.add(jmenuitem_historial_pago);
         
@@ -611,45 +648,38 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         			//---ShortCuts para material---
         			if(combo.contains(KeyEvent.VK_1)&&combo.contains(KeyEvent.VK_M)&&combo.contains(16)) {
         				dispose();
-        				jf_material ventana = new jf_material();
-        				//dialogos_material.jd_ ventana_buscar = new dialogos_material.jd_();
+        				jf_material ventana_p = new jf_material();
+        				dialogos_materiales.jd_buscar_pedido ventana = new dialogos_materiales.jd_buscar_pedido();
+        				ventana_p.setVisible(true);
         				ventana.setVisible(true);
-        				//ventana_buscar.setVisible(true);
         			}
         			if(combo.contains(KeyEvent.VK_2)&&combo.contains(KeyEvent.VK_M)&&combo.contains(16)) {
         				dispose();
-        				jf_material ventana = new jf_material();
-        				//dialogos_material.jd_ ventana_buscar = new dialogos_material.jd_();
+        				jf_material ventana_p = new jf_material();
+        				dialogos_materiales.jd_proveedores ventana = new dialogos_materiales.jd_proveedores();
+        				ventana_p.setVisible(true);
         				ventana.setVisible(true);
-        				//ventana_buscar.setVisible(true);
         			}
         			if(combo.contains(KeyEvent.VK_3)&&combo.contains(KeyEvent.VK_M)&&combo.contains(16)) {
         				dispose();
-        				jf_material ventana = new jf_material();
-        				//dialogos_material.jd_buscar ventana_buscar = new dialogos_material.jd_buscar();
+        				jf_material ventana_p = new jf_material();
+        				dialogos_materiales.jd_inventario ventana = new dialogos_materiales.jd_inventario();
+        				ventana_p.setVisible(true);
         				ventana.setVisible(true);
-        				//ventana_buscar.setVisible(true);
         			}
         			if(combo.contains(KeyEvent.VK_4)&&combo.contains(KeyEvent.VK_M)&&combo.contains(16)) {
         				dispose();
-        				jf_material ventana = new jf_material();
-        				//dialogos_material.jd_buscar ventana_buscar = new dialogos_material.jd_buscar();
+        				jf_material ventana_p = new jf_material();
+                		dialogos_materiales.jd_hacer_pedido ventana = new dialogos_materiales.jd_hacer_pedido();
+        				ventana_p.setVisible(true);
         				ventana.setVisible(true);
-        				//ventana_buscar.setVisible(true);
         			}
         			if(combo.contains(KeyEvent.VK_5)&&combo.contains(KeyEvent.VK_M)&&combo.contains(16)) {
         				dispose();
-        				jf_material ventana = new jf_material();
-        				//dialogos_material.jd_ ventana_buscar = new dialogos_material.jd_();
+        				jf_material ventana_p = new jf_material();
+                		dialogos_materiales.jd_revisar_solicitud ventana = new dialogos_materiales.jd_revisar_solicitud();
+        				ventana_p.setVisible(true);
         				ventana.setVisible(true);
-        				//ventana_buscar.setVisible(true);
-        			}
-        			if(combo.contains(KeyEvent.VK_6)&&combo.contains(KeyEvent.VK_M)&&combo.contains(16)) {
-        				dispose();
-        				jf_material ventana = new jf_material();
-        				//dialogos_material.jd_ ventana_buscar = new dialogos_material.jd_();
-        				ventana.setVisible(true);
-        				//ventana_buscar.setVisible(true);
         			}
         			
         			//---ShortCuts para consultas---
@@ -1081,7 +1111,6 @@ public class jf_menu_ppal extends javax.swing.JFrame {
     private JMenuItem jmenuitem_alta_doctores;
     private JMenuItem jmenuitem_menu_material;
     private JMenuItem jmenuitem_proveedores;
-    private JMenuItem jmenuitem_cancelar;
     private JMenuItem jmenuitem_nuevo_pedido;
     private JMenuItem jmenuitem_buscar_pedido;
     private JMenuItem jmenuitem_inventario;

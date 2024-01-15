@@ -918,7 +918,7 @@ public class jd_odontograma extends JDialog {
                 table.setBorder(null);
                 table.setGridColor(new Color(30, 160, 216));
                 table.setFont(new Font("Arial", Font.PLAIN, 12));
-                scrollPane.setColumnHeaderView(table);
+                scrollPane.setViewportView(table);
                 table.setModel(new DefaultTableModel(
                 	new Object[][] {
                 		{null, null, null},
