@@ -45,7 +45,12 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch"/>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="220" y="10" width="71" height="21" uuid="4a6a6f6d-0469-41cf-8bc8-bd27be701a1e"/>
+				<text><![CDATA[Dentilax]]></text>
+			</staticText>
+		</band>
 	</title>
 	<pageHeader>
 		<band height="35" splitType="Stretch"/>
@@ -122,7 +127,12 @@
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="0" width="170" height="40" uuid="706b49a0-cc2a-4663-8a13-d0c3f78a8c5d"/>
+				<text><![CDATA[WWW.DENTILAX.COM]]></text>
+			</staticText>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>
