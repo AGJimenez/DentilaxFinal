@@ -1,0 +1,8 @@
+<xml version='1.0' encoding='ISO-8859-1'?>
+<toc version = "1.0">
+    <tocitem text = "Indice" target = "Indice"/>
+    <tocitem text = "Documento2" target = "Documento2"/>
+    <tocitem text = "Documento3" target = "Documento3"/>
+    <tocitem text = "Documento4" target = "Documento4"/>
+    </tocitem>
+</toc>

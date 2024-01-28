@@ -1,0 +1,7 @@
+<xml version='1.0' encoding='ISO-8859-1'?>
+<index version = "1.0">
+    <indexitem text = "Indice" target = "Indice"/>
+    <indexitem text = "Documento2" target = "Documento2"/>
+    <indexitem text = "Documento3" target = "Documento3"/>
+    <indexitem text = "Documento4" target = "Documento4"/>
+</index>
