@@ -121,14 +121,11 @@ public class jd_historial_solicitud extends JDialog {
                 	new String[] {
                 		"", "", "", "", "", ""
                 	}
-                ) {
-                	boolean[] columnEditables = new boolean[] {
-                		false, false, false, false, false, false
-                	};
-                	public boolean isCellEditable(int row, int column) {
-                		return columnEditables[column];
+                ));
+                for (int i = 0; i < table.getColumnCount(); i++) {
+                	Class<?> col_class = table.getColumnClass(i);
+                	table.setDefaultEditor(col_class,  null);
                 	}
-                });
                 table.getColumnModel().getColumn(0).setResizable(false);
                 table.getColumnModel().getColumn(0).setPreferredWidth(15);
                 table.getColumnModel().getColumn(1).setResizable(false);

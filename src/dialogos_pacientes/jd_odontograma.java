@@ -913,6 +913,7 @@ public class jd_odontograma extends JDialog {
         panel.add(scrollPane);
         
                 table = new JTable();
+                table.setColumnSelectionAllowed(true);
                 table.setShowGrid(false);
                 table.setOpaque(false);
                 table.setBorder(null);
@@ -941,6 +942,11 @@ public class jd_odontograma extends JDialog {
                 		"", "", ""
                 	}
                 ));
+               
+                for (int i = 0; i < table.getColumnCount(); i++) {
+                	Class<?> col_class = table.getColumnClass(i);
+                	table.setDefaultEditor(col_class,  null);
+                	}
 		 model=new DefaultTableModel();
 			model.addColumn("Diente");
 			model.addColumn("Observaciones");

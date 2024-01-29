@@ -55,6 +55,7 @@ public class jd_buscar_consulta_modificar_encontrada extends JDialog {
 	 * Create the dialog.
 	 */
 	public jd_buscar_consulta_modificar_encontrada() {
+		setUndecorated(true);
 		setPreferredSize(new Dimension(554, 343));
 		setModal(true);
 		setResizable(false);
@@ -217,12 +218,8 @@ public class jd_buscar_consulta_modificar_encontrada extends JDialog {
 			btn_modificar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					jd_mod_consulta vent = new jd_mod_consulta(getLbl_id().getText().toString());
-					vent.setVisible(true);
-					
-					
-										
+					vent.setVisible(true);			
 					dispose();
-				
 				}
 			});
 			btn_modificar.setForeground(Color.WHITE);

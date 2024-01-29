@@ -719,6 +719,7 @@ public class jf_consulta extends JFrame {
         jp_menu.add(btn_nueva_cita);
         
         JButton btn_mod_cita = new JButton();
+        btn_mod_cita.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_mod_cita.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		jd_buscar_consulta_editar vent = new jd_buscar_consulta_editar();

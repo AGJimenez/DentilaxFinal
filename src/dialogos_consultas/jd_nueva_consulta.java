@@ -529,8 +529,8 @@ public class jd_nueva_consulta extends JDialog {
 
 	private void selecionarFecha(JCalendar calendar) {
 		Date fechaSeleccionada = calendar.getDate();
-		// Crear un objeto SimpleDateFormat con el formato dd-mm-yyyy
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		// Crear un objeto SimpleDateFormat con el formato dd/mm/yyyy
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		// Formatear la fecha seleccionada
 		String fechaFormateada = sdf.format(fechaSeleccionada);
 		

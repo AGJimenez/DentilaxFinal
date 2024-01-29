@@ -84,6 +84,7 @@ public class jd_mod_consulta extends JDialog {
 	 * Create the dialog.
 	 */
 	public jd_mod_consulta(String id_cita) {
+		setModal(true);
 		this.idCita = Integer.parseInt(id_cita);
 		try {
 			//CON ESTO MOSTRAMOS LOS COMBO BOX

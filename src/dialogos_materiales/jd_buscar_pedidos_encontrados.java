@@ -94,6 +94,10 @@ public class jd_buscar_pedidos_encontrados extends JDialog {
                 		"", "", ""
                 	}
                 ));
+                for (int i = 0; i < table.getColumnCount(); i++) {
+                	Class<?> col_class = table.getColumnClass(i);
+                	table.setDefaultEditor(col_class,  null);
+                	}
                 table.getColumnModel().getColumn(0).setPreferredWidth(15);
                 model = new DefaultTableModel();
                 model.addColumn("ID");

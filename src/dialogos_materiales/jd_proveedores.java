@@ -146,6 +146,10 @@ public class jd_proveedores extends JDialog {
                 		"", "", "",""
                 	}
                 ));
+                for (int i = 0; i < table.getColumnCount(); i++) {
+                	Class<?> col_class = table.getColumnClass(i);
+                	table.setDefaultEditor(col_class,  null);
+                	}
 		 model=new DefaultTableModel();
 			model.addColumn("Id_proveedor");
 			model.addColumn("Proveedor");

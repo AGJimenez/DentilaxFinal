@@ -140,6 +140,10 @@ public class jd_pedido_menudr extends JDialog {
                 		"", "", ""
                 	}
                 ));
+                for (int i = 0; i < table.getColumnCount(); i++) {
+                	Class<?> col_class = table.getColumnClass(i);
+                	table.setDefaultEditor(col_class,  null);
+                	}
 		 model=new DefaultTableModel();
 			model.addColumn("ID");
 			model.addColumn("Producto");

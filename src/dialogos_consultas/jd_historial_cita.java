@@ -86,6 +86,7 @@ public class jd_historial_cita extends JDialog {
 		contentPanel.add(lblNombre);
 		
 		txtIntroduceTexto = new JTextField();
+		txtIntroduceTexto.setEnabled(false);
 		txtIntroduceTexto.setBounds(12, 104, 674, 40);
 		txtIntroduceTexto.setEditable(false);
 		txtIntroduceTexto.setBackground(new Color(191, 231, 249));
@@ -135,6 +136,10 @@ public class jd_historial_cita extends JDialog {
 					"Fecha", "Tipo", "Paciente"
 				}
 			));
+			for (int i = 0; i < table.getColumnCount(); i++) {
+            	Class<?> col_class = table.getColumnClass(i);
+            	table.setDefaultEditor(col_class,  null);
+            	}
 			model.addColumn("Fecha");
 			model.addColumn("Tipo");
 			model.addColumn("Paciente");

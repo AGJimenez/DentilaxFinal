@@ -20,6 +20,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 
+import com.toedter.calendar.JCalendar;
+
 import Modelo.Cita;
 import Modelo.Doctor;
 import Modelo.Inventario;
@@ -44,6 +46,7 @@ public class ConectorDB_mysql {
 	ResultSet resultado = null;
 	Connection conect = null;
 	Statement statement;
+    JCalendar calendar = new JCalendar();
 	
 
 
@@ -1537,30 +1540,44 @@ public void agendar_cita(String DNI_doctor, String fecha, String especialidad, S
         statement = conect.createStatement();
 
         // Convertir el string de fecha al formato deseado
+        java.util.Date actual_date = calendar.getDate();
+        System.out.println(actual_date);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         java.util.Date utilDate = sdf.parse(fecha);
         long time = utilDate.getTime();
         java.sql.Date sqlDate = new java.sql.Date(time);
+        System.out.println(sqlDate);
 
         String query = "INSERT INTO citas (DNI_doctor, Fecha, Especialidad, Observaciones, DNI_paciente, Hora) " +
                 "VALUES ('" + DNI_doctor + "', '" + sqlDate + "', '" + especialidad + "', '" + observaciones + "', '" + DNI_paciente + "', '" + hora + "')";
 
-        int fila = statement.executeUpdate(query);
+        if(sqlDate.after(actual_date)) {
+        	int fila = statement.executeUpdate(query);
+        	if (fila > 0) {
+                System.out.println("Inserción exitosa.");
+        		JOptionPane.showMessageDialog(null, "Cita añadida con éxito");
+            } else {
+                System.out.println("La inserción no tuvo éxito.");
+            }
+        	System.out.println("Valores antes de la inserción:");
+            System.out.println("DNI_doctor: " + DNI_doctor);
+            System.out.println("fecha: " + fecha);
+            System.out.println("especialidad: " + especialidad);
+            System.out.println("observaciones: " + observaciones);
+            System.out.println("DNI_paciente: " + DNI_paciente);
+            System.out.println("hora: " + hora);
+        }
+        else {
+
+            JOptionPane.showMessageDialog(null, "Fecha anterior a la actual");
+        }
+        
 
         // Verificar si la inserción se realizó con éxito
-        if (fila > 0) {
-            System.out.println("Inserción exitosa.");
-        } else {
-            System.out.println("La inserción no tuvo éxito.");
-        }
+        
 
-        System.out.println("Valores antes de la inserción:");
-        System.out.println("DNI_doctor: " + DNI_doctor);
-        System.out.println("fecha: " + fecha);
-        System.out.println("especialidad: " + especialidad);
-        System.out.println("observaciones: " + observaciones);
-        System.out.println("DNI_paciente: " + DNI_paciente);
-        System.out.println("hora: " + hora);
+        
+
 
     } catch (SQLException | ParseException ex) {
         ex.printStackTrace();
