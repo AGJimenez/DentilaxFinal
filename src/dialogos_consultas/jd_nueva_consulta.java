@@ -89,6 +89,7 @@ public class jd_nueva_consulta extends JDialog {
 			//CON ESTO MOSTRAMOS LOS COMBO BOX
 			consultasDB.mostarCbCitasPac(this);
 			consultasDB.mostarCbCitasDr(this);
+			consultasDB.mostarCbCitasEsp(this);
 			guardarPacientesOriginales();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -476,19 +477,8 @@ public class jd_nueva_consulta extends JDialog {
 
 		String pacienteSeleccionado = cb_paciente.getSelectedItem().toString();
 		String doctorSeleccionado = cb_doctor.getSelectedItem().toString();
-		 Timer timer = new Timer(1000, new ActionListener() {
-	            @Override
-	            public void actionPerformed(ActionEvent e) {
-	            	jd_nueva_consulta ventana = new jd_nueva_consulta();
-	            	try {
-	    				consultasDB.mostarCbCitasEsp(doctorSeleccionado,ventana);
-	    			} catch (SQLException r) {
-	    				// TODO Auto-generated catch block
-	    				r.printStackTrace();
-	    			}
-	            }
-	        });
-	        timer.start();
+		String especialidadSeleccionado = cb_especialidad.getSelectedItem().toString();
+		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(jd_nueva_consulta.class.getResource("/iconos_menus/fondo (1).png")));
 		lblNewLabel.setBounds(0, 0, 1100, 600);
