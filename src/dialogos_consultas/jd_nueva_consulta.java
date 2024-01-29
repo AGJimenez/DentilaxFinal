@@ -87,7 +87,7 @@ public class jd_nueva_consulta extends JDialog {
 			//CON ESTO MOSTRAMOS LOS COMBO BOX
 			consultasDB.mostarCbCitasPac(this);
 			consultasDB.mostarCbCitasDr(this);
-			consultasDB.mostarCbCitasEsp(this);
+			consultasDB.mostarCbCitasEsp("espera",this);
 			guardarPacientesOriginales();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

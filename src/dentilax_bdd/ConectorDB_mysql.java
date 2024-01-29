@@ -1744,12 +1744,12 @@ finally {
     return especialidades;
 }
 
-public void mostarCbCitasEsp(jd_nueva_consulta datos) throws SQLException {
+public void mostarCbCitasEsp(String dni, jd_nueva_consulta datos) throws SQLException {
     // Consulta para ver el nombre de las tablas
 	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
     statement = conect.createStatement();
     try {
-        String sql = "SELECT Nombre FROM especialidad";
+        String sql = "SELECT especialidad.Nombre FROM especialidad JOIN doctores ON doctores.Especialidad = especialidad.Nombre WHERE doctores.DNI_doctor = '"+ dni + "'";
         ResultSet rs = statement.executeQuery(sql);
 
         // Extraer datos del result set
