@@ -132,15 +132,55 @@ public class jf_consulta extends JFrame {
        popupMenu.add(mntmNewMenuItem);
        
        mntmNewMenuItem_1 = new JMenuItem("Buscar cita");
+       mntmNewMenuItem_1.addActionListener(new ActionListener() {
+       	public void actionPerformed(ActionEvent e) {
+       		dialogos_consultas.jd_buscar_cita ventana = new dialogos_consultas.jd_buscar_cita();
+			ventana.setVisible(true);
+    	}
+    });
        popupMenu.add(mntmNewMenuItem_1);
        
        mntmNewMenuItem_2 = new JMenuItem("Historial");
+       mntmNewMenuItem_2.addActionListener(new ActionListener() {
+       	public void actionPerformed(ActionEvent e) {
+       		
+            //HISTORIAL 
+         	System.out.println("prueba básica sout");
+          
+         	new jd_historial_cita().setVisible(true);
+             
+             
+     	}
+     });
        popupMenu.add(mntmNewMenuItem_2);
        
        mntmNewMenuItem_3 = new JMenuItem("Eliminar cita");
+       mntmNewMenuItem_3.addActionListener(new ActionListener() {
+       	public void actionPerformed(ActionEvent e) {
+       		dialogos_consultas.jd_buscar_consulta_eliminar ventana = new dialogos_consultas.jd_buscar_consulta_eliminar();
+    		ventana.setVisible(true);
+    	}
+    });
        popupMenu.add(mntmNewMenuItem_3);
        
        mntmNewMenuItem_4 = new JMenuItem("Nueva cita");
+       mntmNewMenuItem_4.addActionListener(new ActionListener() {
+       	public void actionPerformed(ActionEvent e) {
+       		dialogos_consultas.jd_nueva_consulta nuevaConsulta = new dialogos_consultas.jd_nueva_consulta();
+    		nuevaConsulta.setVisible(true);
+    		
+    	}
+    });
+       
+       JMenuItem mntmNewMenuItem_5 = new JMenuItem("Modificar cita");
+       mntmNewMenuItem_5.addActionListener(new ActionListener() {
+       	public void actionPerformed(ActionEvent e) {
+    		jd_buscar_consulta_editar vent = new jd_buscar_consulta_editar();
+    		vent.setVisible(true); 		
+    		
+    	}
+    });
+       popupMenu.add(mntmNewMenuItem_5);
        popupMenu.add(mntmNewMenuItem_4);
         
        JLabel fecha = new JLabel("");
