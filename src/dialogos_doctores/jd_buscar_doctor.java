@@ -39,7 +39,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JTable;
 
-public class jd_buscar_doctor_baja extends JDialog {
+public class jd_buscar_doctor extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
@@ -52,7 +52,7 @@ public class jd_buscar_doctor_baja extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			jd_buscar_doctor_baja dialog = new jd_buscar_doctor_baja();
+			jd_buscar_doctor dialog = new jd_buscar_doctor();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -63,9 +63,9 @@ public class jd_buscar_doctor_baja extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public jd_buscar_doctor_baja() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_buscar_doctor_baja.class.getResource("/iconos_menus/dentilaxIcono.png")));
-		setTitle("Dar baja");
+	public jd_buscar_doctor() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_buscar_doctor.class.getResource("/iconos_menus/dentilaxIcono.png")));
+		setTitle("Buscar doctor");
 		setPreferredSize(new Dimension(554, 343));
 		setModal(true);
 		setResizable(false);
@@ -184,7 +184,7 @@ public class jd_buscar_doctor_baja extends JDialog {
 	                    String apellidos = (String) table.getValueAt(indiceFilaSeleccionada, 1);
 	                    try {
 	                    	dispose();
-	                    	conection.consulta_doctor_eliminar(nombre, apellidos);
+	                    	conection.consulta_doctor(nombre, apellidos);
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();

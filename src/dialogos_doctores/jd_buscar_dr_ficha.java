@@ -101,7 +101,6 @@ public class jd_buscar_dr_ficha extends JDialog {
 			txt_dni.setBackground(new Color(191, 231, 249));
 			txt_dni.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_dni.setHorizontalAlignment(SwingConstants.CENTER);
-			txt_dni.setText("77981983t");
 			txt_dni.setBounds(223, 130, 226, 34);
 			contentPanel.add(txt_dni);
 			txt_dni.setColumns(10);
@@ -112,7 +111,6 @@ public class jd_buscar_dr_ficha extends JDialog {
 			txt_nombre.setBorder(null);
 			txt_nombre.setBackground(new Color(191, 231, 249));
 			txt_nombre.setFont(new Font("Arial", Font.PLAIN, 14));
-			txt_nombre.setText("Alejandro Alfredo");
 			txt_nombre.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_nombre.setBounds(223, 177, 226, 34);
 			contentPanel.add(txt_nombre);
@@ -125,7 +123,6 @@ public class jd_buscar_dr_ficha extends JDialog {
 			txt_apellidos.setBorder(null);
 			txt_apellidos.setBackground(new Color(191, 231, 249));
 			txt_apellidos.setFont(new Font("Arial", Font.PLAIN, 14));
-			txt_apellidos.setText("Fernandez de la Rosa Ximenez");
 			txt_apellidos.setBounds(224, 225, 225, 34);
 			contentPanel.add(txt_apellidos);
 			txt_apellidos.setColumns(10);
@@ -139,7 +136,6 @@ public class jd_buscar_dr_ficha extends JDialog {
 		}
 		{
 			txt_salario = new JTextField();
-			txt_salario.setText("24.000/año");
 			txt_salario.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_salario.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_salario.setEditable(false);
@@ -158,7 +154,6 @@ public class jd_buscar_dr_ficha extends JDialog {
 		}
 		{
 			txt_especialidad = new JTextField();
-			txt_especialidad.setText("Odontopediatría");
 			txt_especialidad.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_especialidad.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_especialidad.setEditable(false);
@@ -177,7 +172,6 @@ public class jd_buscar_dr_ficha extends JDialog {
 		}
 		{
 			txt_telefono = new JTextField();
-			txt_telefono.setText("662 59 25 50");
 			txt_telefono.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_telefono.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_telefono.setEditable(false);

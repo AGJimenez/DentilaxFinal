@@ -9,6 +9,9 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import dentilax_bdd.ConectorDB_mysql;
+
 import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -193,8 +196,15 @@ public class jd_buscar_doctor_baja_encontrado extends JDialog {
 			btn_ficha.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					dispose();
+					ConectorDB_mysql conector = new ConectorDB_mysql();
+					try {
+						conector.consulta_doctor_ficha(getTxt_dni().getText().toString());
 					jd_buscar_dr_ficha ventana = new jd_buscar_dr_ficha();
-					ventana.setVisible(true);
+				}
+					catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					}
 				}
 			});
 			btn_ficha.setForeground(Color.WHITE);

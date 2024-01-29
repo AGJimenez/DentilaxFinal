@@ -105,7 +105,6 @@ public class jd_buscar_paciente_ficha extends JDialog {
 			txt_dni.setBackground(new Color(191, 231, 249));
 			txt_dni.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_dni.setHorizontalAlignment(SwingConstants.CENTER);
-			txt_dni.setText("77981983t");
 			txt_dni.setBounds(223, 99, 226, 34);
 			contentPanel.add(txt_dni);
 			txt_dni.setColumns(10);
@@ -116,7 +115,6 @@ public class jd_buscar_paciente_ficha extends JDialog {
 			txt_nombre.setBorder(null);
 			txt_nombre.setBackground(new Color(191, 231, 249));
 			txt_nombre.setFont(new Font("Arial", Font.PLAIN, 14));
-			txt_nombre.setText("Alejandro Alfredo");
 			txt_nombre.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_nombre.setBounds(223, 146, 226, 34);
 			contentPanel.add(txt_nombre);
@@ -129,7 +127,6 @@ public class jd_buscar_paciente_ficha extends JDialog {
 			txt_apellidos.setBorder(null);
 			txt_apellidos.setBackground(new Color(191, 231, 249));
 			txt_apellidos.setFont(new Font("Arial", Font.PLAIN, 14));
-			txt_apellidos.setText("Fernandez de la Rosa Ximenez");
 			txt_apellidos.setBounds(224, 194, 225, 34);
 			contentPanel.add(txt_apellidos);
 			txt_apellidos.setColumns(10);
@@ -143,7 +140,6 @@ public class jd_buscar_paciente_ficha extends JDialog {
 		}
 		{
 			txt_genero = new JTextField();
-			txt_genero.setText("Varón");
 			txt_genero.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_genero.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_genero.setEditable(false);
@@ -162,7 +158,6 @@ public class jd_buscar_paciente_ficha extends JDialog {
 		}
 		{
 			txt_estado = new JTextField();
-			txt_estado.setText("De alta");
 			txt_estado.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_estado.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_estado.setEditable(false);
@@ -181,7 +176,6 @@ public class jd_buscar_paciente_ficha extends JDialog {
 		}
 		{
 			txt_seguro = new JTextField();
-			txt_seguro.setText("Privado");
 			txt_seguro.setHorizontalAlignment(SwingConstants.CENTER);
 			txt_seguro.setFont(new Font("Arial", Font.PLAIN, 14));
 			txt_seguro.setEditable(false);
@@ -199,7 +193,6 @@ public class jd_buscar_paciente_ficha extends JDialog {
 		contentPanel.add(lbl_telefono);
 		
 		txt_telefono = new JTextField();
-		txt_telefono.setText("662 59 25 50");
 		txt_telefono.setHorizontalAlignment(SwingConstants.CENTER);
 		txt_telefono.setFont(new Font("Arial", Font.PLAIN, 14));
 		txt_telefono.setEditable(false);

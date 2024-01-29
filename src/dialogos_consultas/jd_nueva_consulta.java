@@ -35,6 +35,8 @@ import javax.swing.JTextField;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import javax.swing.Timer;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
@@ -87,7 +89,6 @@ public class jd_nueva_consulta extends JDialog {
 			//CON ESTO MOSTRAMOS LOS COMBO BOX
 			consultasDB.mostarCbCitasPac(this);
 			consultasDB.mostarCbCitasDr(this);
-			consultasDB.mostarCbCitasEsp("espera",this);
 			guardarPacientesOriginales();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -186,6 +187,7 @@ public class jd_nueva_consulta extends JDialog {
 		cb_doctor.setFont(new Font("Arial", Font.PLAIN, 14));
 		cb_doctor.setBackground(new Color(191, 231, 249));
 		cb_doctor.setBounds(248, 153, 248, 37);
+		cb_doctor.setSelectedIndex(0);
 		contentPanel.add(cb_doctor);
 		
 	
@@ -471,16 +473,28 @@ public class jd_nueva_consulta extends JDialog {
 		});*/
 		
 		// Obtener la fecha seleccionada
-		
-		
+
+		String pacienteSeleccionado = cb_paciente.getSelectedItem().toString();
+		String doctorSeleccionado = cb_doctor.getSelectedItem().toString();
+		 Timer timer = new Timer(1000, new ActionListener() {
+	            @Override
+	            public void actionPerformed(ActionEvent e) {
+	            	jd_nueva_consulta ventana = new jd_nueva_consulta();
+	            	try {
+	    				consultasDB.mostarCbCitasEsp(doctorSeleccionado,ventana);
+	    			} catch (SQLException r) {
+	    				// TODO Auto-generated catch block
+	    				r.printStackTrace();
+	    			}
+	            }
+	        });
+	        timer.start();
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(jd_nueva_consulta.class.getResource("/iconos_menus/fondo (1).png")));
 		lblNewLabel.setBounds(0, 0, 1100, 600);
 		contentPanel.add(lblNewLabel);
 		
-		String pacienteSeleccionado = cb_paciente.getSelectedItem().toString();
-		String doctorSeleccionado = cb_doctor.getSelectedItem().toString();
-		String especialidadteSeleccionado = cb_especialidad.getSelectedItem().toString();
+		//String especialidadteSeleccionado = cb_especialidad.getSelectedItem().toString();
 		
 		selecionarFecha(calendar);
 		
@@ -515,7 +529,8 @@ public class jd_nueva_consulta extends JDialog {
         }
         cb_paciente.setModel(model);
         cb_paciente.setPopupVisible(true);
-    
+        
+       
 
 	        
 	    }//llave clase
@@ -554,6 +569,8 @@ public class jd_nueva_consulta extends JDialog {
 	        
 	        String splitDr[] = cb_doctor.getSelectedItem().toString().split(": ");
 	        String dniDoc = splitDr[1];
+	        
+			
 	        okButton.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
 	                dentilax_bdd.ConectorDB_mysql conect = new dentilax_bdd.ConectorDB_mysql();
@@ -569,7 +586,8 @@ public class jd_nueva_consulta extends JDialog {
 	                	dispose();
 	                }
 	            }
-	        });	        	 
+	        });	     
+	        
 	}		
 	
 	public JTextField getTxt_fecha() {

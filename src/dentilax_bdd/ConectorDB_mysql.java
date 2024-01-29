@@ -135,12 +135,12 @@ public String consulta_paciente_editar(String dni) throws SQLException{
 		
 	}
 
-public String consulta_paciente_cargar(String dni) throws SQLException{
+public String consulta_paciente_cargar(String nombre, String apellidos) throws SQLException{
 	
 	try {
 		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 		statement = conect.createStatement();
-		String query = "SELECT * FROM pacientes WHERE DNI_paciente = '" + dni +"'";
+		String query = "SELECT * FROM pacientes WHERE Nombre = '" + nombre +"' AND Apellidos = '"+ apellidos+"'";
         ResultSet resultSet = statement.executeQuery(query);
 		
         if (resultSet.next()) {
@@ -183,16 +183,16 @@ public String consulta_paciente_cargar(String dni) throws SQLException{
 	catch(SQLException ex) {
 		
 	}
-	return dni;
+	return nombre;
 	
 }
 	
-	public String consulta_doctor(String dni) throws SQLException{
+	public String consulta_doctor(String nombre, String apellidos) throws SQLException{
 		
 		try {
 			conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 			statement = conect.createStatement();
-			String query = "SELECT * FROM doctores WHERE DNI_doctor = '" + dni +"'";
+			String query = "SELECT * FROM doctores WHERE Nombre = '" + nombre +"' AND Apellidos = '" + apellidos + "'";
             ResultSet resultSet = statement.executeQuery(query);
 			
             if (resultSet.next()) {
@@ -221,16 +221,16 @@ public String consulta_paciente_cargar(String dni) throws SQLException{
 		catch(SQLException ex) {
 			
 		}
-		return dni;
+		return nombre;
 		
 	}
 	
-public String consulta_paciente(String dni) throws SQLException{
+public String consulta_paciente(String nombre, String apellidos) throws SQLException{
 		
 		try {
 			conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 			statement = conect.createStatement();
-			String query = "SELECT * FROM pacientes WHERE DNI_paciente = '" + dni +"'";
+			String query = "SELECT * FROM pacientes WHERE Nombre = '" + nombre +"' AND Apellidos = '"+ apellidos+"'";
             ResultSet resultSet = statement.executeQuery(query);
 			
             if (resultSet.next()) {
@@ -259,7 +259,7 @@ public String consulta_paciente(String dni) throws SQLException{
 		catch(SQLException ex) {
 			
 		}
-		return dni;
+		return nombre;
 		
 	}
 
@@ -383,12 +383,12 @@ public String consulta_buscar_cita(String dni, String fecha) throws SQLException
 	
 }
 
-public String consulta_paciente_eliminar(String dni) throws SQLException{
+public String consulta_paciente_eliminar(String nombre, String apellidos) throws SQLException{
 	
 	try {
 		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 		statement = conect.createStatement();
-		String query = "SELECT * FROM pacientes WHERE DNI_paciente = '" + dni +"'";
+		String query = "SELECT * FROM pacientes WHERE Nombre = '" + nombre +"' AND Apellidos = '"+ apellidos +"'";
         ResultSet resultSet = statement.executeQuery(query);
 		
         if (resultSet.next()) {
@@ -417,16 +417,16 @@ public String consulta_paciente_eliminar(String dni) throws SQLException{
 	catch(SQLException ex) {
 		
 	}
-	return dni;
+	return nombre;
 	
 }
 
-public String consulta_doctor_eliminar(String dni) throws SQLException{
+public String consulta_doctor_eliminar(String nombre, String apellidos) throws SQLException{
 	
 	try {
 		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 		statement = conect.createStatement();
-		String query = "SELECT * FROM doctores WHERE DNI_doctor = '" + dni +"'";
+		String query = "SELECT * FROM doctores WHERE Nombre = '" + nombre + "' AND Apellidos = '" + apellidos + "'";
         ResultSet resultSet = statement.executeQuery(query);
 		
         if (resultSet.next()) {
@@ -454,40 +454,9 @@ public String consulta_doctor_eliminar(String dni) throws SQLException{
 	catch(SQLException ex) {
 		
 	}
-	return dni;
+	return nombre;
 	
 }
-	
-	public String consulta_doctor_editar(String dni) throws SQLException{
-		
-		try {
-			conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
-			statement = conect.createStatement();
-			String query = "SELECT * FROM doctores WHERE DNI_doctor = '" + dni +"'";
-            ResultSet resultSet = statement.executeQuery(query);
-			
-            if (resultSet.next()) {
-                // Resultado encontrado
-                System.out.println("Resultado encontrado");
-                String dniSql = resultSet.getString("DNI_doctor");
-                String nombreSql = resultSet.getString("Nombre");
-                String apellidosSql = resultSet.getString("Apellidos");
-                               
-                
-            } else {
-                // Acceso denegado
-                System.out.println("No se ha encontrado nada");
-                JOptionPane.showMessageDialog(null, "Error, no se ha encontrado nada");
-            }
-			
-			
-		}
-		catch(SQLException ex) {
-			
-		}
-		return dni;
-		
-	}
 	
 	public List<Cita> obtenerInfoCitas() {
         List<Cita> historiales = new ArrayList<>();
@@ -716,6 +685,46 @@ public String consulta_doctor_eliminar(String dni) throws SQLException{
 	    return solicitudesActivas;
 	}
 	
+	public List<Doctor> obtener_doctores() {
+	    List<Doctor> doctores = new ArrayList<>();
+
+	    try {
+	        conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+	        statement = conect.createStatement();
+	        String query = "SELECT nombre, apellidos, especialidad, telefono, correo FROM doctores";
+	        ResultSet resultSet = statement.executeQuery(query);
+
+	        while (resultSet.next()) {
+	            String nombre = resultSet.getString("nombre");
+	            String apellidos = resultSet.getString("apellidos");
+	            String especialidad = resultSet.getString("especialidad");
+	            String telefono = resultSet.getString("telefono");
+	            String correo = resultSet.getString("correo");
+
+	            Doctor doctor = new Doctor(nombre, apellidos, especialidad, telefono, correo);
+
+	            doctores.add(doctor);
+	        }
+
+	    } catch (SQLException ex) {
+	        ex.printStackTrace();
+	    } finally {
+	        try {
+	            if (statement != null) {
+	                statement.close();
+	            }
+	            if (conect != null) {
+	                conect.close();
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+
+	    return doctores;
+	}
+	
+	
 	public List<Paciente> obtener_pacientes() {
 	    List<Paciente> pacientes = new ArrayList<>();
 
@@ -930,12 +939,12 @@ public List<String> cargarEspecialidades() {
     return especialidades;
 }
 
-public String consulta_doctor_cargar(String dni) throws SQLException{
+public String consulta_doctor_cargar(String nombre, String apellidos) throws SQLException{
 	
 	try {
 		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 		statement = conect.createStatement();
-		String query = "SELECT * FROM doctores WHERE DNI_doctor = '" + dni +"'";
+		String query = "SELECT * FROM doctores WHERE Nombre = '" + nombre +"' AND Apellidos = '" + apellidos + "'";
         ResultSet resultSet = statement.executeQuery(query);
 		
         if (resultSet.next()) {
@@ -978,7 +987,7 @@ public String consulta_doctor_cargar(String dni) throws SQLException{
 	catch(SQLException ex) {
 		
 	}
-	return dni;
+	return nombre;
 	
 }
 

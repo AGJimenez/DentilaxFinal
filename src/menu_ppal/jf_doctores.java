@@ -81,7 +81,7 @@ public class jf_doctores extends javax.swing.JFrame {
 	        	public void actionPerformed(ActionEvent e) {
 	        		dispose();
 					jf_doctores ventana = new jf_doctores();
-					dialogos_doctores.jd_buscar_dr ventana_buscar = new dialogos_doctores.jd_buscar_dr();
+					dialogos_doctores.jd_buscar_doctor ventana_buscar = new dialogos_doctores.jd_buscar_doctor();
 					ventana.setVisible(true);
 					ventana_buscar.setVisible(true);
 	        	}
@@ -147,10 +147,6 @@ public class jf_doctores extends javax.swing.JFrame {
 	        	public void actionPerformed(ActionEvent e) {
 	        		dialogos_doctores.jd_buscar_doctor_editar ventana = new dialogos_doctores.jd_buscar_doctor_editar();
 	        		ventana.setVisible(true);
-	        		dentilax_bdd.ConectorDB_mysql sentencia = new dentilax_bdd.ConectorDB_mysql();
-	        	//	sentencia.editar_doctor(getWarningString(), getName(), getName(), getName(), getName(), getName(), getName(), getTitle(), getWarningString(), getName());
-	        		
-	        		
 	        	}
 	        });
 	        btn_editar_dr.setIcon(new ImageIcon(jf_doctores.class.getResource("/iconos_submenus/btn_editarDr_admin.png")));
@@ -201,7 +197,7 @@ public class jf_doctores extends javax.swing.JFrame {
 	        btn_buscar_doctor.setOpaque(false);
 	        btn_buscar_doctor.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
-	        		dialogos_doctores.jd_buscar_dr ventana = new dialogos_doctores.jd_buscar_dr();
+	        		dialogos_doctores.jd_buscar_doctor ventana = new dialogos_doctores.jd_buscar_doctor();
 	        		ventana.setVisible(true);
 	        	}
 	        });
@@ -375,7 +371,7 @@ public class jf_doctores extends javax.swing.JFrame {
 	        	public void actionPerformed(ActionEvent e) {
 	        		dispose();
 					jf_doctores ventana = new jf_doctores();
-					dialogos_doctores.jd_buscar_dr ventana_buscar = new dialogos_doctores.jd_buscar_dr();
+					dialogos_doctores.jd_buscar_doctor ventana_buscar = new dialogos_doctores.jd_buscar_doctor();
 					ventana.setVisible(true);
 					ventana_buscar.setVisible(true);
 	        	}
@@ -687,7 +683,7 @@ public class jf_doctores extends javax.swing.JFrame {
 	        			if(combo.contains(KeyEvent.VK_1)&&combo.contains(KeyEvent.VK_D)&&combo.contains(16)) {
 	        				dispose();
 	        				jf_doctores ventana = new jf_doctores();
-	        				dialogos_doctores.jd_buscar_dr ventana_buscar = new dialogos_doctores.jd_buscar_dr();
+	        				dialogos_doctores.jd_buscar_doctor ventana_buscar = new dialogos_doctores.jd_buscar_doctor();
 	        				ventana.setVisible(true);
 	        				ventana_buscar.setVisible(true);
 	        			}

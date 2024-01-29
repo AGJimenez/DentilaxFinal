@@ -234,7 +234,7 @@ public class jf_facturacion extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
         		jf_doctores ventana = new jf_doctores();
-        		dialogos_doctores.jd_buscar_dr ventana_buscar = new dialogos_doctores.jd_buscar_dr();
+        		dialogos_doctores.jd_buscar_doctor ventana_buscar = new dialogos_doctores.jd_buscar_doctor();
         		ventana.setVisible(true);
         		ventana_buscar.setVisible(true);
         	}
@@ -522,7 +522,7 @@ public class jf_facturacion extends JFrame {
         			if(combo.contains(KeyEvent.VK_1)&&combo.contains(KeyEvent.VK_D)&&combo.contains(16)) {
         				dispose();
         				jf_doctores ventana = new jf_doctores();
-        				dialogos_doctores.jd_buscar_dr ventana_buscar = new dialogos_doctores.jd_buscar_dr();
+        				dialogos_doctores.jd_buscar_doctor ventana_buscar = new dialogos_doctores.jd_buscar_doctor();
         				ventana.setVisible(true);
         				ventana_buscar.setVisible(true);
         			}
