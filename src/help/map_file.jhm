@@ -1,7 +1,10 @@
 <xml version='1.0' encoding='ISO-8859-1'?>
 <map version = "1.0">
     <mapID target = "Indice" url = "html/index.html"/>
-    <mapID target = "Documento2" url = "html/h2.html"/>
-    <mapID target = "Documento3" url = "html/h3.html"/>
-    <mapID target = "Documento4" url = "html/h4.html"/>
+    <mapID target = "adminPacientes" url = "html/adminPacientes.html"/>
+    <mapID target = "doctor" url = "html/doctor.html"/>
+    <mapID target = "material" url = "html/material.html"/>
+    <mapID target = "consultas" url = "html/consultas.html"/>
+    <mapID target = "facturacion" url = "html/facturacion.html"/>
+    <mapID target = "ajustes" url = "html/ajustes.html"/>
 </map>

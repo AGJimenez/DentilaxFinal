@@ -1,0 +1,10 @@
+
+<index version = "1.0">
+    <indexitem text = "Indice" target = "Indice"/>
+    <indexitem text = "Gestión de pacientes admin" target = "adminPacientes"/>
+    <indexitem text = "Gestión de doctores admin" target = "doctor"/>
+    <indexitem text = "Gestión de material admin" target = "material"/>
+    <indexitem text = "Gestión de citas" target = "consultas"/>
+    <indexitem text = "Gestión de facturación" target = "facturacion"/>
+    <indexitem text = "Ajustes" target = "ajustes"/>
+</index>

@@ -577,22 +577,25 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         btn_ayuda.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_ayuda.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		
-				try {
-					File fichero  = new File("src/help/help_set.hs");
-					URL hsUrl = fichero.toURI().toURL();
-					HelpSet helpset = new HelpSet(getClass().getClassLoader(),hsUrl);
-					HelpBroker hb = helpset.createHelpBroker();
-					hb.enableHelpOnButton(btn_ayuda, "Indice", helpset);//cuando pulse sobre el boton
-				} 
-				catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-        		
-        		
-        		
+        	    try {
+        	        // Ruta al archivo de ayuda
+        	        File fichero = new File("src/help/help_set.hs");
+        	        URL hsUrl = fichero.toURI().toURL();
+
+        	        // Crear el conjunto de ayuda
+        	        HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsUrl);
+
+        	        // Crear el broker de ayuda
+        	        HelpBroker hb = helpset.createHelpBroker();
+
+        	        // Habilitar la ayuda en el botón con el tema "Indice"
+        	        hb.enableHelpOnButton(btn_ayuda, "Indice", helpset);
+
+        	    } catch (Exception e1) {
+        	        e1.printStackTrace();
+        	    }
         	}
+
         });
         btn_ayuda.setOpaque(false);
         btn_ayuda.setFont(new Font("Arial", Font.PLAIN, 12));
