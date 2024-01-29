@@ -204,9 +204,14 @@ public class jf_menu_doctor extends javax.swing.JFrame {
 
         setJMenuBar(menu_inicio);
         
-        mn_ayuda = new JMenu("AYUDA");
-        mn_ayuda.setHorizontalTextPosition(SwingConstants.LEFT);
-        menu_inicio.add(mn_ayuda);
+        btn_ayuda = new JButton("AYUDA");
+        btn_ayuda.setOpaque(false);
+        btn_ayuda.setFont(new Font("Arial", Font.PLAIN, 12));
+        btn_ayuda.setFocusable(true);
+        btn_ayuda.setFocusPainted(false);
+        btn_ayuda.setContentAreaFilled(false);
+        btn_ayuda.setBorderPainted(false);
+        menu_inicio.add(btn_ayuda);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -260,11 +265,11 @@ public class jf_menu_doctor extends javax.swing.JFrame {
     private javax.swing.JMenu mn_ajustes;
     private javax.swing.JPanel jp_menu;
     private javax.swing.JMenuBar menu_inicio;
-    private JMenu mn_ayuda;
     private JLabel fecha;
     private JButton btnNewButton;
     private JPanel panel;
     private JLabel lbl_dni_doctor;
     private JMenuItem jmenuitem_menu_paciente;
     private JMenuItem jmenuitem_solicitar_material;
+    private JButton btn_ayuda;
 }

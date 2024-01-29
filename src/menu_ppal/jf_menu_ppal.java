@@ -7,6 +7,8 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.GroupLayout.Alignment;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import javax.swing.AbstractAction;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
@@ -44,6 +46,9 @@ import javax.swing.JPopupMenu;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.net.URL;
+
 import javax.swing.JMenu;
 
 
@@ -187,8 +192,6 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         jmenu_facturacion.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_ajustes = new javax.swing.JMenu();
         jmenu_ajustes.setFont(new Font("Arial", Font.PLAIN, 12));
-        jmenu_ayuda = new javax.swing.JMenu();
-        jmenu_ayuda.setFont(new Font("Arial", Font.PLAIN, 12));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
        
@@ -565,13 +568,39 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         mntmNewMenuItem = new JMenuItem("New menu item");
         jmenu_ajustes.add(mntmNewMenuItem);
 
-        jmenu_ayuda.setText("AYUDA");
-        menu_inicio.add(jmenu_ayuda);
-
         setJMenuBar(menu_inicio);
         
         combo = new ArrayList<>();
         btn_inicio.setFocusable(true);
+        
+        JButton btn_ayuda = new JButton("AYUDA");
+        btn_ayuda.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btn_ayuda.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+				try {
+					File fichero  = new File("src/help/help_set.hs");
+					URL hsUrl = fichero.toURI().toURL();
+					HelpSet helpset = new HelpSet(getClass().getClassLoader(),hsUrl);
+					HelpBroker hb = helpset.createHelpBroker();
+					hb.enableHelpOnButton(btn_ayuda, "Indice", helpset);//cuando pulse sobre el boton
+				} 
+				catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+        		
+        		
+        		
+        	}
+        });
+        btn_ayuda.setOpaque(false);
+        btn_ayuda.setFont(new Font("Arial", Font.PLAIN, 12));
+        btn_ayuda.setFocusable(true);
+        btn_ayuda.setFocusPainted(false);
+        btn_ayuda.setContentAreaFilled(false);
+        btn_ayuda.setBorderPainted(false);
+        menu_inicio.add(btn_ayuda);
         btn_inicio.addKeyListener(new KeyAdapter() {
         	@Override
         	public void keyPressed(KeyEvent e) {
@@ -1096,7 +1125,6 @@ public class jf_menu_ppal extends javax.swing.JFrame {
     private javax.swing.JMenu jmenu_consulta;
     private javax.swing.JMenu jmenu_facturacion;
     private javax.swing.JMenu jmenu_ajustes;
-    private javax.swing.JMenu jmenu_ayuda;
     private javax.swing.JPanel jp_menu;
     private javax.swing.JMenuBar menu_inicio;
     private JMenuItem jmenuitem_menu_paciente;

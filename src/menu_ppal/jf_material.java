@@ -109,8 +109,6 @@ public class jf_material extends JFrame {
         jMenu6.setFont(new Font("Arial", Font.PLAIN, 12));
         jMenu7 = new javax.swing.JMenu();
         jMenu7.setFont(new Font("Arial", Font.PLAIN, 12));
-        jMenu8 = new javax.swing.JMenu();
-        jMenu8.setFont(new Font("Arial", Font.PLAIN, 12));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         
@@ -498,13 +496,19 @@ public class jf_material extends JFrame {
         jMenu7.setText("AJUSTES");
         menu_inicio.add(jMenu7);
 
-        jMenu8.setText("AYUDA");
-        menu_inicio.add(jMenu8);
-
         setJMenuBar(menu_inicio);
         
         combo = new ArrayList<>();
         btn_inicio.setFocusable(true);
+        
+        btn_ayuda = new JButton("AYUDA");
+        btn_ayuda.setOpaque(false);
+        btn_ayuda.setFont(new Font("Arial", Font.PLAIN, 12));
+        btn_ayuda.setFocusable(true);
+        btn_ayuda.setFocusPainted(false);
+        btn_ayuda.setContentAreaFilled(false);
+        btn_ayuda.setBorderPainted(false);
+        menu_inicio.add(btn_ayuda);
         btn_inicio.addKeyListener(new KeyAdapter() {
         	@Override
         	public void keyPressed(KeyEvent e) {
@@ -767,7 +771,6 @@ public class jf_material extends JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
     private javax.swing.JPanel jp_menu;
     private javax.swing.JMenuBar menu_inicio;
     private JButton btn_inventario;
@@ -808,6 +811,7 @@ public class jf_material extends JFrame {
     private JMenuItem jmenuitem_historial_pago;
     private JMenuItem jmenuitem_balance_gastos;
     private JMenuItem jmenuitem_nueva_factura;
+    private JButton btn_ayuda;
     // End of variables declaration//GEN-END:variables
 
 	private static void addPopup(Component component, final JPopupMenu popup) {

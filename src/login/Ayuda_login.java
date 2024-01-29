@@ -93,5 +93,5 @@ public class Ayuda_login extends JDialog {
 		setBounds(100, 100, 450, 301);
 		setLocationRelativeTo(panel);
 	}
-
 }
+

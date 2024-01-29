@@ -426,10 +426,6 @@ public class jf_pacientes extends JFrame {
 		JMenu mn_ajustes = new JMenu("AJUSTES");
 		mn_ajustes.setFont(new Font("Arial", Font.PLAIN, 12));
 		menuBar.add(mn_ajustes);
-		
-		JMenu mn_ayuda = new JMenu("AYUDA");
-		mn_ayuda.setFont(new Font("Arial", Font.PLAIN, 12));
-		menuBar.add(mn_ayuda);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -515,6 +511,15 @@ public class jf_pacientes extends JFrame {
         
         combo = new ArrayList<>();
         btn_inicio.setFocusable(true);
+        
+        JButton btn_ayuda = new JButton("AYUDA");
+        btn_ayuda.setOpaque(false);
+        btn_ayuda.setFont(new Font("Arial", Font.PLAIN, 12));
+        btn_ayuda.setFocusable(true);
+        btn_ayuda.setFocusPainted(false);
+        btn_ayuda.setContentAreaFilled(false);
+        btn_ayuda.setBorderPainted(false);
+        menuBar.add(btn_ayuda);
         btn_inicio.addKeyListener(new KeyAdapter() {
         	@Override
         	public void keyPressed(KeyEvent e) {

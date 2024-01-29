@@ -227,8 +227,6 @@ public class jf_consulta extends JFrame {
         jmenu_facturacion.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_ajustes = new javax.swing.JMenu();
         jmenu_ajustes.setFont(new Font("Arial", Font.PLAIN, 12));
-        jmenu_ayuda = new javax.swing.JMenu();
-        jmenu_ayuda.setFont(new Font("Arial", Font.PLAIN, 12));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -562,13 +560,19 @@ public class jf_consulta extends JFrame {
         jmenu_ajustes.setText("AJUSTES");
         menu_inicio.add(jmenu_ajustes);
 
-        jmenu_ayuda.setText("AYUDA");
-        menu_inicio.add(jmenu_ayuda);
-
         setJMenuBar(menu_inicio);
         
         combo = new ArrayList<>();
         btn_inicio.setFocusable(true);
+        
+        btn_ayuda = new JButton("AYUDA");
+        btn_ayuda.setOpaque(false);
+        btn_ayuda.setFont(new Font("Arial", Font.PLAIN, 12));
+        btn_ayuda.setFocusable(true);
+        btn_ayuda.setFocusPainted(false);
+        btn_ayuda.setContentAreaFilled(false);
+        btn_ayuda.setBorderPainted(false);
+        menu_inicio.add(btn_ayuda);
         btn_inicio.addKeyListener(new KeyAdapter() {
         	@Override
         	public void keyPressed(KeyEvent e) {
@@ -816,7 +820,6 @@ public class jf_consulta extends JFrame {
     private javax.swing.JMenu jmenu_consulta;
     private javax.swing.JMenu jmenu_facturacion;
     private javax.swing.JMenu jmenu_ajustes;
-    private javax.swing.JMenu jmenu_ayuda;
     private javax.swing.JPanel jp_menu;
     private javax.swing.JMenuBar menu_inicio;
     private JButton btn_eliminar_cita;
@@ -854,6 +857,7 @@ public class jf_consulta extends JFrame {
     private JMenuItem mntmNewMenuItem_2;
     private JMenuItem mntmNewMenuItem_3;
     private JMenuItem mntmNewMenuItem_4;
+    private JButton btn_ayuda;
     // End of variables declaration//GEN-END:variables
 
 	private static void addPopup(Component component, final JPopupMenu popup) {
