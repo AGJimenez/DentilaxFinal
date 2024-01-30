@@ -38,6 +38,8 @@ import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.JTable;
+import javax.swing.JComboBox;
+import javax.swing.JToggleButton;
 
 public class jd_buscar_doctor_baja extends JDialog {
 
@@ -46,6 +48,9 @@ public class jd_buscar_doctor_baja extends JDialog {
     private static DefaultTableModel model;
     private static JTable table;
     private int indiceFilaSeleccionada;
+    protected JTextField txt_filtrar;
+    dentilax_bdd.ConectorDB_mysql consultasDB = new dentilax_bdd.ConectorDB_mysql();
+	JComboBox cb_filtrar = new JComboBox();
 
 	/**
 	 * Launch the application.
@@ -64,6 +69,13 @@ public class jd_buscar_doctor_baja extends JDialog {
 	 * Create the dialog.
 	 */
 	public jd_buscar_doctor_baja() {
+		try {
+			//CON ESTO MOSTRAMOS LOS COMBO BOX
+			consultasDB.mostrar_filtro_doctor_baja(this);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_buscar_doctor_baja.class.getResource("/iconos_menus/dentilaxIcono.png")));
 		setTitle("Dar baja");
 		setPreferredSize(new Dimension(554, 343));
@@ -169,6 +181,51 @@ public class jd_buscar_doctor_baja extends JDialog {
 		lbl_correo.setFont(new Font("Dialog", Font.BOLD, 17));
 		lbl_correo.setBounds(554, 11, 96, 21);
 		panel_contened.add(lbl_correo);
+		
+		JPanel panel_contened_1 = new JPanel();
+		panel_contened_1.setLayout(null);
+		panel_contened_1.setBackground(new Color(32, 160, 216));
+		panel_contened_1.setBounds(241, 35, 417, 53);
+		contentPanel.add(panel_contened_1);
+		
+		txt_filtrar = new JTextField();
+		txt_filtrar.setHorizontalAlignment(SwingConstants.CENTER);
+		txt_filtrar.setFont(new Font("Arial", Font.PLAIN, 14));
+		txt_filtrar.setColumns(10);
+		txt_filtrar.setBorder(null);
+		txt_filtrar.setBackground(new Color(191, 231, 249));
+		txt_filtrar.setBounds(219, 11, 188, 31);
+		panel_contened_1.add(txt_filtrar);
+		
+		cb_filtrar.setSelectedIndex(0);
+		cb_filtrar.setFont(new Font("Arial", Font.PLAIN, 14));
+		cb_filtrar.setBackground(new Color(191, 231, 249));
+		cb_filtrar.setBounds(10, 8, 188, 37);
+		panel_contened_1.add(cb_filtrar);
+		
+		JToggleButton btn_filtrar_toggle = new JToggleButton("");
+		btn_filtrar_toggle.setOpaque(true);
+		btn_filtrar_toggle.setBorderPainted(false);
+		btn_filtrar_toggle.setBackground(new Color(32, 160, 216));
+		btn_filtrar_toggle.setBounds(676, 40, 47, 43);
+		contentPanel.add(btn_filtrar_toggle);
+		btn_filtrar_toggle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(btn_filtrar_toggle.isSelected()) {
+					String field_filtrado = cb_filtrar.getSelectedItem().toString();
+					try {
+						llenarTabla(conection.filtrar_tabla_doctor(field_filtrado,txt_filtrar.getText().toString()));
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				else {
+					txt_filtrar.setText("");
+					llenarTabla(conection.obtener_doctores());
+				}
+			}
+		});
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(Color.WHITE);
@@ -190,6 +247,29 @@ public class jd_buscar_doctor_baja extends JDialog {
 							e1.printStackTrace();
 						} 
 	                }
+					}
+				});
+				txt_filtrar.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyPressed(KeyEvent e) {
+						if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+							if(btn_filtrar_toggle.isSelected()) {
+								txt_filtrar.setText("");
+								llenarTabla(conection.obtener_doctores());
+								btn_filtrar_toggle.setSelected(false);
+							}
+							
+							else {
+								String field_filtrado = cb_filtrar.getSelectedItem().toString();
+								try {
+									llenarTabla(conection.filtrar_tabla_doctor(field_filtrado,txt_filtrar.getText().toString()));
+								} catch (SQLException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+								btn_filtrar_toggle.setSelected(true);
+							}
+						}
 					}
 				});
 				btn_buscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -252,4 +332,19 @@ public class jd_buscar_doctor_baja extends JDialog {
 
         return model;
     }
+	public JComboBox<String> getCb_filtrar() {
+		return cb_filtrar;
+	}
+
+	public void setCb_filtrar(String items) {
+		cb_filtrar.addItem(items);
+	}
+
+	public JTextField getTxt_filtrar() {
+		return txt_filtrar;
+	}
+
+	public void setTxt_filtrar(JTextField txt_filtrar) {
+		this.txt_filtrar = txt_filtrar;
+	}
 }

@@ -70,7 +70,7 @@ public class jf_material extends JFrame {
         btn_buscar_pedido.setBorderPainted(false);
         btn_buscar_pedido.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		dialogos_materiales.jd_buscar_pedido ventana = new dialogos_materiales.jd_buscar_pedido();
+        		dialogos_materiales.jd_buscar_pedidos ventana = new dialogos_materiales.jd_buscar_pedidos();
         		ventana.setVisible(true);
         	}
         });

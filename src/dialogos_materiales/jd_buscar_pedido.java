@@ -57,6 +57,7 @@ public class jd_buscar_pedido extends JDialog {
 	 * Create the dialog.
 	 */
 	public jd_buscar_pedido() {
+		/*
 		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_buscar_pedido.class.getResource("/iconos_menus/dentilaxIcono.png")));
 		setTitle("Buscar pedido");
 		setPreferredSize(new Dimension(554, 343));
@@ -141,8 +142,8 @@ public class jd_buscar_pedido extends JDialog {
 						LocalDate date = LocalDate.parse(fecha);
 						consulta.conectar();
 						dispose();
-						jd_buscar_pedidos_encontrados ventana = new jd_buscar_pedidos_encontrados();
-						ventana.llenarTabla(consulta.obtener_pedidos(date));
+						jd_buscar_pedidos ventana = new jd_buscar_pedidos();
+						llenarTabla(consulta.obtener_pedidos());
 						ventana.setVisible(true);
 						
 						//si no if no encontrado
@@ -156,7 +157,8 @@ public class jd_buscar_pedido extends JDialog {
 							String fecha = txt_IntroduceFecha.getText().toString();
 							LocalDate date = LocalDate.parse(fecha);
 							consulta.conectar();
-							jd_buscar_pedidos_encontrados ventana = new jd_buscar_pedidos_encontrados();
+							dispose();
+							jd_buscar_pedidos ventana = new jd_buscar_pedidos();
 							ventana.llenarTabla(consulta.obtener_pedidos(date));
 							ventana.setVisible(true);
 							dispose();
@@ -190,6 +192,6 @@ public class jd_buscar_pedido extends JDialog {
 				buttonPane.add(btn_cancelar);
 			}
 		}
-		
+	*/	
 	}
 }

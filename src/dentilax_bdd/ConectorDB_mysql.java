@@ -34,8 +34,14 @@ import dialogos_consultas.jd_historial_cita;
 import dialogos_consultas.jd_mod_consulta;
 import dialogos_consultas.jd_nueva_consulta;
 import dialogos_doctores.jd_buscar_doctor;
+import dialogos_doctores.jd_buscar_doctor_baja;
+import dialogos_doctores.jd_buscar_doctor_editar;
+import dialogos_materiales.jd_buscar_pedidos;
 import dialogos_materiales.jd_hacer_pedido;
+import dialogos_materiales.jd_proveedores;
 import dialogos_pacientes.jd_buscar_paciente;
+import dialogos_pacientes.jd_buscar_paciente_baja;
+import dialogos_pacientes.jd_buscar_paciente_editar;
 
 
 public class ConectorDB_mysql {
@@ -765,19 +771,19 @@ public String consulta_doctor_eliminar(String nombre, String apellidos) throws S
 	    return pacientes;
 	}
 	
-	public List<Pedido> obtener_pedidos(LocalDate date) {
+	public List<Pedido> obtener_pedidos() {
 	    List<Pedido> pedidos = new ArrayList<>();
 
 	    try {
 	        conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 	        statement = conect.createStatement();
-	        String query = "SELECT ID_pedidos, Producto, Fecha FROM pedidos WHERE Fecha = '"+date+"'";
+	        String query = "SELECT ID_pedidos, Producto, Fecha FROM pedidos";
 	        ResultSet resultSet = statement.executeQuery(query);
 
 	        while (resultSet.next()) {
 	            int id = resultSet.getInt("ID_pedidos");
 	            String nombreProducto = resultSet.getString("Producto");
-	            Date fecha = resultSet.getDate("Fecha");
+	            String fecha = resultSet.getString("Fecha");
 	            Pedido pedido = new Pedido(id, nombreProducto, fecha);
 	            pedidos.add(pedido);
 	        }
@@ -1827,12 +1833,138 @@ public void mostrar_filtro_paciente(jd_buscar_paciente datos) throws SQLExceptio
     }
 }
 
+public void mostrar_filtro_paciente_editar(jd_buscar_paciente_editar datos) throws SQLException {
+    // Consulta para ver el nombre de las tablas
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SHOW fields FROM pacientes WHERE field = 'DNI_paciente' OR field = 'Nombre' OR field = 'Apellidos' OR field = 'Estado';";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+        	String Field = rs.getString("Field");
+            datos.setCb_filtrar(Field);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+
+public void mostrar_filtro_paciente_baja(jd_buscar_paciente_baja datos) throws SQLException {
+    // Consulta para ver el nombre de las tablas
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SHOW fields FROM pacientes WHERE field = 'DNI_paciente' OR field = 'Nombre' OR field = 'Apellidos' OR field = 'Estado';";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+        	String Field = rs.getString("Field");
+            datos.setCb_filtrar(Field);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+
 public void mostrar_filtro_doctor(jd_buscar_doctor datos) throws SQLException {
     // Consulta para ver el nombre de las tablas
 	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
     statement = conect.createStatement();
     try {
         String sql = "SHOW fields FROM doctores WHERE field = 'DNI_doctor' OR field = 'Nombre' OR field = 'Apellidos' OR field = 'Estado' OR field = 'Especialidad';";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+        	String Field = rs.getString("Field");
+            datos.setCb_filtrar(Field);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+
+public void mostrar_filtro_doctor_editar(jd_buscar_doctor_editar datos) throws SQLException {
+    // Consulta para ver el nombre de las tablas
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SHOW fields FROM doctores WHERE field = 'DNI_doctor' OR field = 'Nombre' OR field = 'Apellidos' OR field = 'Estado' OR field = 'Especialidad';";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+        	String Field = rs.getString("Field");
+            datos.setCb_filtrar(Field);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+
+public void mostrar_filtro_doctor_baja(jd_buscar_doctor_baja datos) throws SQLException {
+    // Consulta para ver el nombre de las tablas
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SHOW fields FROM doctores WHERE field = 'DNI_doctor' OR field = 'Nombre' OR field = 'Apellidos' OR field = 'Estado' OR field = 'Especialidad';";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+        	String Field = rs.getString("Field");
+            datos.setCb_filtrar(Field);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+
+public void mostrar_filtro_pedidos(jd_buscar_pedidos datos) throws SQLException {
+    // Consulta para ver el nombre de las tablas
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SHOW fields FROM pedidos WHERE field = 'Producto' OR field = 'Fecha';";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+        	String Field = rs.getString("Field");
+            datos.setCb_filtrar(Field);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+
+public void mostrar_filtro_proveedores(jd_proveedores datos) throws SQLException {
+    // Consulta para ver el nombre de las tablas
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SHOW fields FROM proveedores WHERE field = 'Proveedor' OR field = 'Producto';";
         ResultSet rs = statement.executeQuery(sql);
 
         // Extraer datos del result set
@@ -1923,6 +2055,81 @@ public List<Doctor> filtrar_tabla_doctor(String campo, String variable) throws S
     }
 
     return doctores;
+	
+}
+
+public List<Pedido> filtrar_tabla_pedidos(String campo, String variable) throws SQLException{
+	List<Pedido> pedidos = new ArrayList<>();
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "SELECT * FROM pedidos WHERE " + campo + " LIKE '" + variable + "%' OR " + campo + " LIKE '%" + variable + "'";
+        ResultSet resultSet = statement.executeQuery(query);
+		
+        while (resultSet.next()) {
+            int id_pedido = resultSet.getInt("ID_pedidos");
+            String nombre_producto = resultSet.getString("Producto");
+            String fecha = resultSet.getString("Fecha");
+
+            Pedido class_pedido = new Pedido(id_pedido, nombre_producto, fecha);
+
+            pedidos.add(class_pedido);
+        }
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    } finally {
+        try {
+            if (statement != null) {
+                statement.close();
+            }
+            if (conect != null) {
+                conect.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    return pedidos;
+	
+}
+
+public List<Proveedores> filtrar_tabla_proveedor(String campo, String variable) throws SQLException{
+	List<Proveedores> proveedores = new ArrayList<>();
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "SELECT * FROM proveedores WHERE " + campo + " LIKE '" + variable + "%' OR " + campo + " LIKE '%" + variable + "'";
+        ResultSet resultSet = statement.executeQuery(query);
+		
+        while (resultSet.next()) {
+            int id_proveedor = resultSet.getInt("ID_proveedor");
+            String proveedor = resultSet.getString("Proveedor");
+            String producto = resultSet.getString("Producto");
+            int precio = resultSet.getInt("Precio_producto");
+
+            Proveedores class_proveedor = new Proveedores(id_proveedor, proveedor, producto, precio);
+
+            proveedores.add(class_proveedor);
+        }
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    } finally {
+        try {
+            if (statement != null) {
+                statement.close();
+            }
+            if (conect != null) {
+                conect.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    return proveedores;
 	
 }
 

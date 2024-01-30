@@ -5,11 +5,10 @@ import java.util.Date;
 public class Pedido {
 
 	private int id_pedido;
-	private String nombre_producto;
-	private Date fecha;
+	private String nombre_producto, fecha;
 	
 
-	public Pedido(int id_pedido, String nombre_producto, Date fecha) {
+	public Pedido(int id_pedido, String nombre_producto, String fecha) {
 		super();
 		this.id_pedido = id_pedido;
 		this.nombre_producto = nombre_producto;
@@ -35,12 +34,12 @@ public class Pedido {
 		this.nombre_producto = nombre_producto;
 	}
 	
-	public Date getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
 
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 

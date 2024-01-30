@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -31,8 +33,11 @@ import Modelo.Paciente;
 import Modelo.Pedido;
 import Modelo.Solicitud;
 import dentilax_bdd.ConectorDB_mysql;
+import javax.swing.SwingConstants;
+import javax.swing.JComboBox;
+import javax.swing.JToggleButton;
 
-public class jd_buscar_pedidos_encontrados extends JDialog {
+public class jd_buscar_pedidos extends JDialog {
 
     private static final long serialVersionUID = 1L;
     private final JPanel contentPanel = new JPanel();
@@ -40,10 +45,20 @@ public class jd_buscar_pedidos_encontrados extends JDialog {
     private static DefaultTableModel model;
     private JTextField txt_invisible;
     private int indiceFilaSeleccionada;
+    protected JTextField txt_filtrar;
+    dentilax_bdd.ConectorDB_mysql consultasDB = new dentilax_bdd.ConectorDB_mysql();
+    JComboBox cb_filtrar = new JComboBox();
 
-    public jd_buscar_pedidos_encontrados() {
+    public jd_buscar_pedidos() {
+    	try {
+			//CON ESTO MOSTRAMOS LOS COMBO BOX
+			consultasDB.mostrar_filtro_pedidos(this);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         setTitle("Pedidos");
-        setIconImage(Toolkit.getDefaultToolkit().getImage(jd_buscar_pedidos_encontrados.class.getResource("/iconos_menus/dentilaxIcono.png")));
+        setIconImage(Toolkit.getDefaultToolkit().getImage(jd_buscar_pedidos.class.getResource("/iconos_menus/dentilaxIcono.png")));
         setModal(true);
         setPreferredSize(new Dimension(723, 470));
         setResizable(false);
@@ -103,16 +118,20 @@ public class jd_buscar_pedidos_encontrados extends JDialog {
                 model.addColumn("ID");
                 model.addColumn("Producto");
                 model.addColumn("Fecha");
+
+    			ConectorDB_mysql conection = new ConectorDB_mysql();
+    			conection.conectar();
+                llenarTabla(conection.obtener_pedidos());
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBackground(new Color(191, 231, 249));
-		panel.setBounds(30, 31, 256, 54);
+		panel.setBounds(10, 31, 160, 54);
 		contentPanel.add(panel);
 		
 		JLabel lbl_pedidos = new JLabel("PEDIDOS");
 		lbl_pedidos.setFont(new Font("Barlow", Font.BOLD, 20));
-		lbl_pedidos.setBounds(24, 0, 374, 54);
+		lbl_pedidos.setBounds(24, 0, 119, 54);
 		panel.add(lbl_pedidos);
 		
 		txt_invisible = new JTextField();
@@ -170,6 +189,81 @@ public class jd_buscar_pedidos_encontrados extends JDialog {
 		        btn_ficha.setBackground(new Color(32, 160, 216));
 		        btn_ficha.setActionCommand("Cancel");
 		        
+		        JPanel panel_contened_1 = new JPanel();
+		        panel_contened_1.setLayout(null);
+		        panel_contened_1.setBackground(new Color(32, 160, 216));
+		        panel_contened_1.setBounds(193, 31, 417, 53);
+		        contentPanel.add(panel_contened_1);
+		        
+		        txt_filtrar = new JTextField();
+		        txt_filtrar.setHorizontalAlignment(SwingConstants.CENTER);
+		        txt_filtrar.setFont(new Font("Arial", Font.PLAIN, 14));
+		        txt_filtrar.setColumns(10);
+		        txt_filtrar.setBorder(null);
+		        txt_filtrar.setBackground(new Color(191, 231, 249));
+		        txt_filtrar.setBounds(219, 11, 188, 31);
+		        panel_contened_1.add(txt_filtrar);
+		        
+		        cb_filtrar.setFont(new Font("Arial", Font.PLAIN, 14));
+		        cb_filtrar.setBackground(new Color(191, 231, 249));
+		        cb_filtrar.setBounds(10, 8, 188, 37);
+		        panel_contened_1.add(cb_filtrar);
+		        
+		        JToggleButton btn_filtrar_toggle = new JToggleButton("");
+		        btn_filtrar_toggle.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						if(btn_filtrar_toggle.isSelected()) {
+							String field_filtrado = cb_filtrar.getSelectedItem().toString();
+							try {
+								llenarTabla(conection.filtrar_tabla_pedidos(field_filtrado,txt_filtrar.getText().toString()));
+							} catch (SQLException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+						}
+						else {
+							txt_filtrar.setText("");
+							llenarTabla(conection.obtener_pedidos());
+						}
+					}
+				});
+		        btn_filtrar_toggle.setOpaque(true);
+		        btn_filtrar_toggle.setBorderPainted(false);
+		        btn_filtrar_toggle.setBackground(new Color(32, 160, 216));
+		        btn_filtrar_toggle.setBounds(631, 38, 47, 43);
+		        contentPanel.add(btn_filtrar_toggle);
+		        txt_filtrar.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyPressed(KeyEvent e) {
+						if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+							txt_filtrar.requestFocus();
+						}
+					}
+				});
+				txt_filtrar.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyPressed(KeyEvent e) {
+						if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+							if(btn_filtrar_toggle.isSelected()) {
+								txt_filtrar.setText("");
+								llenarTabla(conection.obtener_pedidos());
+								btn_filtrar_toggle.setSelected(false);
+							}
+							
+							else {
+								String field_filtrado = cb_filtrar.getSelectedItem().toString();
+								try {
+									llenarTabla(conection.filtrar_tabla_pedidos(field_filtrado,txt_filtrar.getText().toString()));
+								} catch (SQLException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+								btn_filtrar_toggle.setSelected(true);
+							}
+						}
+					}
+				});
+		        
 		        ListSelectionModel selectionModel = table.getSelectionModel();
 		        selectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // Permite seleccionar solo una fila
 
@@ -207,10 +301,20 @@ public class jd_buscar_pedidos_encontrados extends JDialog {
 		return txt_invisible;
 	}
 
-
-
 	public void setTxt_invisible(String txt_invisible) {
 		this.txt_invisible.setText(txt_invisible);
+	}
+	
+	public void setCb_filtrar(String items) {
+		cb_filtrar.addItem(items);
+	}
+
+	public JTextField getTxt_filtrar() {
+		return txt_filtrar;
+	}
+
+	public void setTxt_filtrar(JTextField txt_filtrar) {
+		this.txt_filtrar = txt_filtrar;
 	}
 }
 

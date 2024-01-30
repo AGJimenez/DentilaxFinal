@@ -81,7 +81,7 @@ public class jd_buscar_paciente extends JDialog {
 		setPreferredSize(new Dimension(554, 343));
 		setModal(true);
 		setResizable(false);
-		setBounds(100, 100, 769, 517);
+		setBounds(100, 100, 770, 518);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
