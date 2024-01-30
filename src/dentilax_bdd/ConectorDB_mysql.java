@@ -33,7 +33,9 @@ import Modelo.Solicitud;
 import dialogos_consultas.jd_historial_cita;
 import dialogos_consultas.jd_mod_consulta;
 import dialogos_consultas.jd_nueva_consulta;
+import dialogos_doctores.jd_buscar_doctor;
 import dialogos_materiales.jd_hacer_pedido;
+import dialogos_pacientes.jd_buscar_paciente;
 
 
 public class ConectorDB_mysql {
@@ -740,7 +742,7 @@ public String consulta_doctor_eliminar(String nombre, String apellidos) throws S
 	            String observaciones = resultSet.getString("observaciones");
 	            String seguro = resultSet.getString("seguro");
 
-	            Paciente paciente = new Paciente(nombre, apellidos, observaciones, observaciones);
+	            Paciente paciente = new Paciente(nombre, apellidos, observaciones, seguro);
 
 	            pacientes.add(paciente);
 	        }
@@ -1802,6 +1804,126 @@ public int obtenerIdPacientePorDni(String DNI_paciente) {
     }
 
     return idPaciente;
+}
+
+public void mostrar_filtro_paciente(jd_buscar_paciente datos) throws SQLException {
+    // Consulta para ver el nombre de las tablas
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SHOW fields FROM pacientes WHERE field = 'DNI_paciente' OR field = 'Nombre' OR field = 'Apellidos' OR field = 'Estado';";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+        	String Field = rs.getString("Field");
+            datos.setCb_filtrar(Field);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+
+public void mostrar_filtro_doctor(jd_buscar_doctor datos) throws SQLException {
+    // Consulta para ver el nombre de las tablas
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SHOW fields FROM doctores WHERE field = 'DNI_doctor' OR field = 'Nombre' OR field = 'Apellidos' OR field = 'Estado' OR field = 'Especialidad';";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+        	String Field = rs.getString("Field");
+            datos.setCb_filtrar(Field);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+
+public List<Paciente> filtrar_tabla_paciente(String campo, String variable) throws SQLException{
+	List<Paciente> pacientes = new ArrayList<>();
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "SELECT * FROM pacientes WHERE " + campo + " LIKE '" + variable + "%' OR " + campo + " LIKE '%" + variable + "'";
+        ResultSet resultSet = statement.executeQuery(query);
+		
+        while (resultSet.next()) {
+            String nombre = resultSet.getString("nombre");
+            String apellidos = resultSet.getString("apellidos");
+            String observaciones = resultSet.getString("observaciones");
+            String seguro = resultSet.getString("seguro");
+
+            Paciente paciente = new Paciente(nombre, apellidos, observaciones, seguro);
+
+            pacientes.add(paciente);
+        }
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    } finally {
+        try {
+            if (statement != null) {
+                statement.close();
+            }
+            if (conect != null) {
+                conect.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    return pacientes;
+	
+}
+
+
+public List<Doctor> filtrar_tabla_doctor(String campo, String variable) throws SQLException{
+	List<Doctor> doctores = new ArrayList<>();
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "SELECT * FROM doctores WHERE " + campo + " LIKE '" + variable + "%' OR " + campo + " LIKE '%" + variable + "'";
+        ResultSet resultSet = statement.executeQuery(query);
+		
+        while (resultSet.next()) {
+            String nombre = resultSet.getString("nombre");
+            String apellidos = resultSet.getString("apellidos");
+            String especialidad = resultSet.getString("especialidad");
+            String telefono = resultSet.getString("telefono");
+            String correo = resultSet.getString("correo");
+
+            Doctor doctor = new Doctor(nombre, apellidos, especialidad, telefono, correo);
+
+            doctores.add(doctor);
+        }
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    } finally {
+        try {
+            if (statement != null) {
+                statement.close();
+            }
+            if (conect != null) {
+                conect.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    return doctores;
+	
 }
 
 

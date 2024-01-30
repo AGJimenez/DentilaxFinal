@@ -3,6 +3,7 @@ package Modelo;
 public class Doctor {
 
 	private String nombre, apellidos, telefono, correo, fecha, especialidad, dniPaciente;
+	
 
 	public Doctor(String fecha, String especialidad, String dniPaciente) {
 		super();
@@ -19,6 +20,8 @@ public class Doctor {
 		this.telefono = telefono;
 		this.correo = correo;
 	}
+	
+	
 	public String getNombre() {
 		return nombre;
 	}
