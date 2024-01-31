@@ -1571,6 +1571,8 @@ public void agendar_cita(String DNI_doctor, String fecha, String especialidad, S
         String query = "INSERT INTO citas (DNI_doctor, Fecha, Especialidad, Observaciones, DNI_paciente, Hora) " +
                 "VALUES ('" + DNI_doctor + "', '" + sqlDate + "', '" + especialidad + "', '" + observaciones + "', '" + DNI_paciente + "', '" + hora + "')";
 
+        String queryFactura = "INSERT INTO facturacion (DNI_paciente, Nombre, Apellidos, Fecha, Pagado, Por_pagar) " + "VALUES ('" + DNI_paciente + "', '" + NOMBRE + "', '" + APELLIDOS + "', '" + sqlDate + "', '" + PAGADO + "', '" + POR PAGAR + "')";
+        
         if(sqlDate.after(actual_date)) {
         	int fila = statement.executeUpdate(query);
         	if (fila > 0) {
