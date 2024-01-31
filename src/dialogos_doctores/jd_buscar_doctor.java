@@ -40,6 +40,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JTable;
 import javax.swing.JComboBox;
 import javax.swing.JToggleButton;
+import javax.swing.ImageIcon;
 
 public class jd_buscar_doctor extends JDialog {
 
@@ -206,6 +207,8 @@ public class jd_buscar_doctor extends JDialog {
 		cb_filtrar.setBackground(new Color(191, 231, 249));
 		
 		JToggleButton btn_filtrar_toggle = new JToggleButton("");
+		btn_filtrar_toggle.setSelectedIcon(new ImageIcon(jd_buscar_doctor.class.getResource("/iconos_submenus/nofiltrar.png")));
+		btn_filtrar_toggle.setIcon(new ImageIcon(jd_buscar_doctor.class.getResource("/iconos_submenus/iconoFiltrar.png")));
 		btn_filtrar_toggle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(btn_filtrar_toggle.isSelected()) {

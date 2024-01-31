@@ -30,6 +30,7 @@ import dentilax_bdd.ConectorDB_mysql;
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.JToggleButton;
+import javax.swing.ImageIcon;
 
 public class jd_proveedores extends JDialog {
 
@@ -216,6 +217,8 @@ public class jd_proveedores extends JDialog {
 		cb_filtrar.setBounds(10, 8, 188, 37);
 		panel_contened_1.add(cb_filtrar);
 		JToggleButton btn_filtrar_toggle = new JToggleButton("");
+		btn_filtrar_toggle.setSelectedIcon(new ImageIcon(jd_proveedores.class.getResource("/iconos_submenus/nofiltrar.png")));
+		btn_filtrar_toggle.setIcon(new ImageIcon(jd_proveedores.class.getResource("/iconos_submenus/iconoFiltrar.png")));
 		btn_filtrar_toggle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(btn_filtrar_toggle.isSelected()) {
