@@ -1039,7 +1039,9 @@ public class jd_odontograma extends JDialog {
 			
 			int idPaciente = consulta.obtenerIdPacientePorDni(dniPaciente);
 			consulta.insertarOdontograma(id_diente, observaciones, idPaciente);//le paso el dni para buscar la id
-				
+			dispose();
+			jd_odontograma recarga = new jd_odontograma(dniPasar);
+			recarga.setVisible(true);
 			}
 		});
 		btn_salir_1.setForeground(Color.WHITE);
@@ -1083,125 +1085,6 @@ public class jd_odontograma extends JDialog {
 		lbl_cantidad.setFont(new Font("Barlow", Font.BOLD, 17));
 		lbl_cantidad.setBounds(397, 11, 110, 21);
 		panel_contened.add(lbl_cantidad);
-		
-		JButton btn_actualizar = new JButton("ACTUALIZAR");
-		btn_actualizar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				jd_odontograma act = new jd_odontograma(dniPasar);
-				act.setVisible(true);
-				
-				for (Integer opcion : id_diente_lista) {
-				    switch (opcion) {
-				        case 11:
-				            lb_diente11.setVisible(true);
-				            break;
-				        case 12:
-				            lb_12.setVisible(true);
-				            break;
-				        case 13:
-				            lb_13.setVisible(true);
-				            break;
-				        case 14:
-				            lb_14.setVisible(true);
-				            break;
-				        case 15:
-				            lb_15.setVisible(true);
-				            break;
-				        case 16:
-				            lb_16.setVisible(true);
-				            break;
-				        case 17:
-				            lb_17.setVisible(true);
-				            break;
-				        case 18:
-				            lb_18.setVisible(true);
-				            break;
-				        case 21:
-				            lb_21.setVisible(true);
-				            break;
-				        case 22:
-				            lb_22.setVisible(true);
-				            break;
-				        case 23:
-				            lb_23.setVisible(true);
-				            break;
-				        case 24:
-				            lb_24.setVisible(true);
-				            break;
-				        case 25:
-				            lb_25.setVisible(true);
-				            break;
-				        case 26:
-				            lb_26.setVisible(true);
-				            break;
-				        case 27:
-				            lb_27.setVisible(true);
-				            break;
-				        case 28:
-				            lb_28.setVisible(true);
-				            break;
-				        case 31:
-				            lb_31.setVisible(true);
-				            break;
-				        case 32:
-				            lb_32.setVisible(true);
-				            break;
-				        case 33:
-				            lb_33.setVisible(true);
-				            break;
-				        case 34:
-				            lb_34.setVisible(true);
-				            break;
-				        case 35:
-				            lb_35.setVisible(true);
-				            break;
-				        case 36:
-				            lb_36.setVisible(true);
-				            break;
-				        case 37:
-				            lb_37.setVisible(true);
-				            break;
-				        case 38:
-				            lb_38.setVisible(true);
-				            break;
-				        case 41:
-				            lb_41.setVisible(true);
-				            break;
-				        case 42:
-				            lb_42.setVisible(true);
-				            break;
-				        case 43:
-				            lb_43.setVisible(true);
-				            break;
-				        case 44:
-				            lb_44.setVisible(true);
-				            break;
-				        case 45:
-				            lb_45.setVisible(true);
-				            break;
-				        case 46:
-				            lb_46.setVisible(true);
-				            break;
-				        case 47:
-				            lb_47.setVisible(true);
-				            break;
-				        case 48:
-				            lb_48.setVisible(true);
-				            break;
-				        default:
-				            System.out.println("Opción por defecto");
-				    }
-				}
-			}
-		});
-		btn_actualizar.setForeground(Color.WHITE);
-		btn_actualizar.setFont(new Font("Barlow", Font.BOLD, 20));
-		btn_actualizar.setBorderPainted(false);
-		btn_actualizar.setBackground(new Color(32, 160, 216));
-		btn_actualizar.setActionCommand("Cancel");
-		btn_actualizar.setBounds(218, 579, 153, 43);
-		panel.add(btn_actualizar);
 		System.out.println("cargarndo "+cargar);
 		
 		JLabel lblNewLabel = new JLabel("");

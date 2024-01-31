@@ -2469,10 +2469,15 @@ public List<Cita> filtrar_tabla_historial_citas(String campo, String variable) t
 
 public void insertarOdontograma(int id_diente, String observaciones, int id_paciente) {
     try {
+        // Validar que los campos obligatorios no estén vacíos
+        if (observaciones == null || observaciones.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Error: Observaciones no pueden estar vacías.");
+            return;
+        }
+
         conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 
         // Obtener el ID del diente a partir del DNI del paciente y el ID del diente
-        
 
         // Crear la sentencia de inserción
         String query = "INSERT INTO odontograma (id_diente, observaciones, fecha, id_paciente) VALUES (?, ?, ?, ?)";
@@ -2505,6 +2510,7 @@ public void insertarOdontograma(int id_diente, String observaciones, int id_paci
         ex.printStackTrace();
     }
 }
+
 public List<Integer> mostrarDientes(int id_paciente) {
     List<Integer> listaIdDientes = new ArrayList<>();
 
