@@ -2046,6 +2046,27 @@ public void mostrar_filtro_solicitudes(jd_historial_solicitud datos) throws SQLE
     }
 }
 
+public void mostrar_filtro_historial_cita(jd_historial_cita datos) throws SQLException {
+    // Consulta para ver el nombre de las tablas
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SHOW fields FROM citas WHERE field = 'Fecha' OR field = 'Especialidad'  OR field = 'DNI_paciente';";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+        	String Field = rs.getString("Field");
+            datos.setCb_filtrar(Field);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+
 public List<Paciente> filtrar_tabla_paciente(String campo, String variable) throws SQLException{
 	List<Paciente> pacientes = new ArrayList<>();
 	try {
@@ -2315,6 +2336,44 @@ public List<Solicitud> filtrar_tabla_solicitudes(String campo, String variable) 
     }
 
     return solicitudes;
+	
+}
+
+public List<Cita> filtrar_tabla_historial_citas(String campo, String variable) throws SQLException{
+	List<Cita> citas = new ArrayList<>();
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "SELECT * FROM citas WHERE " + campo + " LIKE '" + variable + "%' OR " + campo + " LIKE '%" + variable + "'";
+        ResultSet resultSet = statement.executeQuery(query);
+		
+        while (resultSet.next()) {
+            String fecha = resultSet.getString("Fecha");
+            String especialidad = resultSet.getString("Especialidad");
+            String dni_paciente = resultSet.getString("DNI_paciente");
+            
+
+            Cita class_cita = new Cita(fecha, especialidad, dni_paciente);
+
+            citas.add(class_cita);
+        }
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    } finally {
+        try {
+            if (statement != null) {
+                statement.close();
+            }
+            if (conect != null) {
+                conect.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    return citas;
 	
 }
 

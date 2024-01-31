@@ -205,6 +205,23 @@ public class jd_buscar_doctor_baja extends JDialog {
 		panel_contened_1.add(cb_filtrar);
 		
 		JToggleButton btn_filtrar_toggle = new JToggleButton("");
+		btn_filtrar_toggle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(btn_filtrar_toggle.isSelected()) {
+					String field_filtrado = cb_filtrar.getSelectedItem().toString();
+					try {
+						llenarTabla(conection.filtrar_tabla_doctor(field_filtrado,txt_filtrar.getText().toString()));
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				else {
+					txt_filtrar.setText("");
+					llenarTabla(conection.obtener_doctores());
+				}
+			}
+		});
 		btn_filtrar_toggle.setSelectedIcon(new ImageIcon(jd_buscar_doctor_baja.class.getResource("/iconos_submenus/nofiltrar.png")));
 		btn_filtrar_toggle.setIcon(new ImageIcon(jd_buscar_doctor_baja.class.getResource("/iconos_submenus/iconoFiltrar.png")));
 		btn_filtrar_toggle.setOpaque(true);
@@ -250,6 +267,14 @@ public class jd_buscar_doctor_baja extends JDialog {
 							e1.printStackTrace();
 						} 
 	                }
+					}
+				});
+				txt_filtrar.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyPressed(KeyEvent e) {
+						if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+							txt_filtrar.requestFocus();
+						}
 					}
 				});
 				txt_filtrar.addKeyListener(new KeyAdapter() {
