@@ -7,13 +7,14 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="imagenes"/>
-	<classpathentry kind="lib" path="D:/Librerias dentilax/mysql-connector-java-5.1.47.jar"/>
-	<classpathentry kind="lib" path="D:/Librerias dentilax/jcalendar-1.4.jar"/>
-	<classpathentry kind="lib" path="D:/Librerias dentilax/javax.activation-1.1.0.v201105071233.jar"/>
-	<classpathentry kind="lib" path="D:/Librerias dentilax/javax.ejb.jar"/>
-	<classpathentry kind="lib" path="D:/Librerias dentilax/javax.faces-api-2.0.jar"/>
-	<classpathentry kind="lib" path="D:/Librerias dentilax/javax-inject.jar"/>
-	<classpathentry kind="lib" path="D:/Librerias dentilax/mail.jar"/>
-	<classpathentry kind="lib" path="D:/Librerias dentilax/fecha.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Medac/Downloads/mysql-connector-java-5.1.47/mysql-connector-java-5.1.47.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Medac/Downloads/lib/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Medac/Downloads/mail/lib/javax.activation-1.1.0.v201105071233.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Medac/Downloads/mail/lib/javax.ejb.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Medac/Downloads/mail/lib/javax.faces-api-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Medac/Downloads/mail/lib/javax-inject.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Medac/Downloads/mail/lib/mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Medac/Downloads/javahelp-2.0.02.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Medac/Downloads/fecha.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -33,6 +33,8 @@ import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
+import beans.Fecha;
+import javax.swing.SwingConstants;
 
 public class jf_material extends JFrame {
 
@@ -66,7 +68,7 @@ public class jf_material extends JFrame {
         btn_buscar_pedido = new javax.swing.JButton();
         btn_buscar_pedido.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_buscar_pedido.setIcon(new ImageIcon(jf_material.class.getResource("/iconos_submenus/btn_buscarPedido_admin.png")));
-        btn_buscar_pedido.setBounds(68, 620, 188, 41);
+        btn_buscar_pedido.setBounds(68, 594, 188, 41);
         btn_buscar_pedido.setBorderPainted(false);
         btn_buscar_pedido.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -83,7 +85,7 @@ public class jf_material extends JFrame {
         	}
         });
         btn_nuevo_pedido.setIcon(new ImageIcon(jf_material.class.getResource("/iconos_submenus/btn_nuevoPedido_admin.png")));
-        btn_nuevo_pedido.setBounds(879, 620, 188, 41);
+        btn_nuevo_pedido.setBounds(879, 594, 188, 41);
         btn_nuevo_pedido.setBorderPainted(false);
         btn_proveedores = new javax.swing.JButton();
         btn_proveedores.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -94,7 +96,7 @@ public class jf_material extends JFrame {
         	}
         });
         btn_proveedores.setIcon(new ImageIcon(jf_material.class.getResource("/iconos_submenus/btn_proveedores_admin.png")));
-        btn_proveedores.setBounds(401, 620, 188, 41);
+        btn_proveedores.setBounds(401, 594, 188, 41);
         btn_proveedores.setBorderPainted(false);
         menu_inicio = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
@@ -121,7 +123,7 @@ public class jf_material extends JFrame {
         	}
         });
         btn_inventario.setIcon(new ImageIcon(jf_material.class.getResource("/iconos_submenus/btn_inventario_admin.png")));
-        btn_inventario.setBounds(634, 620, 188, 41);
+        btn_inventario.setBounds(634, 594, 188, 41);
         btn_inventario.setContentAreaFilled(false);
         btn_inventario.setBorder(null);
         btn_inventario.setOpaque(false);
@@ -136,7 +138,7 @@ public class jf_material extends JFrame {
         	}
         });
         btn_solicitudes.setIcon(new ImageIcon(jf_material.class.getResource("/iconos_submenus/btn_solicitudes_admin.png")));
-        btn_solicitudes.setBounds(1210, 620, 188, 41);
+        btn_solicitudes.setBounds(1210, 594, 188, 41);
         btn_solicitudes.setBorderPainted(false);
 
         menu_inicio.setBackground(new java.awt.Color(32, 160, 216));
@@ -693,6 +695,11 @@ public class jf_material extends JFrame {
             .addComponent(jp_menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jp_menu.setLayout(null);
+        
+        Fecha fecha = new Fecha();
+        fecha.setHorizontalAlignment(SwingConstants.CENTER);
+        fecha.setBounds(1168, 636, 256, 40);
+        jp_menu.add(fecha);
         
         popupMenu = new JPopupMenu();
         addPopup(jp_menu, popupMenu);

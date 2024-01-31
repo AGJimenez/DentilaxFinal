@@ -1,0 +1,11 @@
+
+<toc version = "1.0">
+    <tocitem text = "Indice" target = "Indice"/>
+    <tocitem text = "Gestión de pacientes admin" target = "adminPacientes"/>
+    <tocitem text = "Gestión de doctores admin" target = "doctor"/>
+    <tocitem text = "Gestión de material admin" target = "material"/>
+    <tocitem text = "Gestión de citas" target = "citas"/>
+    <tocitem text = "Gestión de facturación" target = "facturacion"/>
+    <tocitem text = "Ajustes" target = "ajustes"/>
+    
+</toc>
