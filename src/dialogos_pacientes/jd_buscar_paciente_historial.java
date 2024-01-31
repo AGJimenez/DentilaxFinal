@@ -111,6 +111,21 @@ public class jd_buscar_paciente_historial extends JDialog {
         btn_salir.setBounds(530, 0, 153, 43);
         btn_salir.setActionCommand("Cancel");
         buttonPane.add(btn_salir);
+        
+        JButton btn_salir_1 = new JButton("IMPRIMIR");
+        btn_salir_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        	}
+        });
+        btn_salir_1.setForeground(Color.WHITE);
+        btn_salir_1.setFont(new Font("Barlow", Font.BOLD, 20));
+        btn_salir_1.setBorderPainted(false);
+        btn_salir_1.setBorder(null);
+        btn_salir_1.setBackground(new Color(32, 160, 216));
+        btn_salir_1.setActionCommand("Cancel");
+        btn_salir_1.setBounds(65, 0, 153, 43);
+        buttonPane.add(btn_salir_1);
 
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setBounds(12, 147, 671, 265);
