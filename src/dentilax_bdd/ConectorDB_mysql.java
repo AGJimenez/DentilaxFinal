@@ -1554,6 +1554,8 @@ public String consulta_ver_ficha(String ID) throws SQLException{
 private static final String FORMATO_FECHA = "yyyy/MM/dd";
 
 public void agendar_cita(String DNI_doctor, String fecha, String especialidad, String observaciones, String DNI_paciente, String hora) {
+    Connection conect = null;
+    Statement statement = null;
 
     try {
         conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
@@ -1568,38 +1570,61 @@ public void agendar_cita(String DNI_doctor, String fecha, String especialidad, S
         java.sql.Date sqlDate = new java.sql.Date(time);
         System.out.println(sqlDate);
 
-        String query = "INSERT INTO citas (DNI_doctor, Fecha, Especialidad, Observaciones, DNI_paciente, Hora) " +
-                "VALUES ('" + DNI_doctor + "', '" + sqlDate + "', '" + especialidad + "', '" + observaciones + "', '" + DNI_paciente + "', '" + hora + "')";
+        // Realizar SELECT para obtener Nombre y Apellidos del paciente
+        String queryApoyo = "SELECT Nombre, Apellidos FROM pacientes WHERE DNI_paciente = '" + DNI_paciente + "'";
+        ResultSet resultSet = statement.executeQuery(queryApoyo);
 
-        String queryFactura = "INSERT INTO facturacion (DNI_paciente, Nombre, Apellidos, Fecha, Pagado, Por_pagar) " + "VALUES ('" + DNI_paciente + "', '" + NOMBRE + "', '" + APELLIDOS + "', '" + sqlDate + "', '" + PAGADO + "', '" + POR PAGAR + "')";
-        
-        if(sqlDate.after(actual_date)) {
-        	int fila = statement.executeUpdate(query);
-        	if (fila > 0) {
-                System.out.println("Inserción exitosa.");
-        		JOptionPane.showMessageDialog(null, "Cita añadida con éxito");
-            } else {
-                System.out.println("La inserción no tuvo éxito.");
+        // Obtener los valores de Nombre y Apellidos
+        String nombrePaciente = "";
+        String apellidosPaciente = "";
+        if (resultSet.next()) {
+            nombrePaciente = resultSet.getString("Nombre");
+            apellidosPaciente = resultSet.getString("Apellidos");
+        }
+
+        // Verificar si la fecha de facturación es posterior a la actual
+        if (sqlDate.after(actual_date)) {
+            // Construir queryFactura sin especificar ID_factura (se asumirá AUTO_INCREMENT)
+            String queryFactura = "INSERT INTO facturacion (DNI_paciente, Nombre, Apellidos, Fecha, Pagado, Por_pagar) " +
+                    "VALUES ('" + DNI_paciente + "', '" + nombrePaciente + "', '" + apellidosPaciente + "', '" + sqlDate + "', '" + 0 + "', '" + 0 + "')";
+
+            // Ejecutar INSERT para la factura
+            int filaFactura = statement.executeUpdate(queryFactura, Statement.RETURN_GENERATED_KEYS);
+
+            // Obtener el ID_factura recién insertado
+            ResultSet generatedKeys = statement.getGeneratedKeys();
+            int nuevoIdFactura = 0;
+            if (generatedKeys.next()) {
+                nuevoIdFactura = generatedKeys.getInt(1);
             }
-        	System.out.println("Valores antes de la inserción:");
-            System.out.println("DNI_doctor: " + DNI_doctor);
-            System.out.println("fecha: " + fecha);
-            System.out.println("especialidad: " + especialidad);
-            System.out.println("observaciones: " + observaciones);
-            System.out.println("DNI_paciente: " + DNI_paciente);
-            System.out.println("hora: " + hora);
+
+            // Construir query para la cita con el nuevo valor de ID_factura
+            String queryCita = "INSERT INTO citas (ID_factura, DNI_doctor, Fecha, Especialidad, Observaciones, DNI_paciente, Hora) " +
+                    "VALUES ('" + nuevoIdFactura + "', '" + DNI_doctor + "', '" + sqlDate + "', '" + especialidad + "', '" + observaciones + "', '" + DNI_paciente + "', '" + hora + "')";
+
+            if (sqlDate.after(actual_date)) {
+                // Ejecutar INSERT para la cita
+                int filaCita = statement.executeUpdate(queryCita);
+                if (filaCita > 0) {
+                    System.out.println("Inserción de cita exitosa.");
+                    JOptionPane.showMessageDialog(null, "Cita añadida con éxito");
+                } else {
+                    System.out.println("La inserción de cita no tuvo éxito.");
+                }
+
+                System.out.println("Valores antes de la inserción:");
+                System.out.println("DNI_doctor: " + DNI_doctor);
+                System.out.println("fecha: " + fecha);
+                System.out.println("especialidad: " + especialidad);
+                System.out.println("observaciones: " + observaciones);
+                System.out.println("DNI_paciente: " + DNI_paciente);
+                System.out.println("hora: " + hora);
+            } else {
+                JOptionPane.showMessageDialog(null, "Fecha anterior a la actual");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Fecha de facturación anterior a la actual");
         }
-        else {
-
-            JOptionPane.showMessageDialog(null, "Fecha anterior a la actual");
-        }
-        
-
-        // Verificar si la inserción se realizó con éxito
-        
-
-        
-
 
     } catch (SQLException | ParseException ex) {
         ex.printStackTrace();
@@ -1616,6 +1641,7 @@ public void agendar_cita(String DNI_doctor, String fecha, String especialidad, S
         }
     }
 }
+
 
 public void modificarCita(int idCita, String DNI_doctor, String fecha, String especialidad, String observaciones, String DNI_paciente, String hora) {
     try {
