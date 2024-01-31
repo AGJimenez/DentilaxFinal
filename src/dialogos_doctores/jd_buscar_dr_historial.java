@@ -158,6 +158,21 @@ public class jd_buscar_dr_historial extends JDialog {
 				btn_salir.setActionCommand("Cancel");
 				buttonPane.add(btn_salir);
 			}
+			{
+				JButton btn_salir = new JButton("IMPRIMIR");
+				btn_salir.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+					}
+				});
+				btn_salir.setForeground(Color.WHITE);
+				btn_salir.setFont(new Font("Barlow", Font.BOLD, 20));
+				btn_salir.setBorderPainted(false);
+				btn_salir.setBorder(null);
+				btn_salir.setBackground(new Color(32, 160, 216));
+				btn_salir.setActionCommand("Cancel");
+				btn_salir.setBounds(59, 0, 153, 43);
+				buttonPane.add(btn_salir);
+			}
 		}
 		
 		ConectorDB_mysql conection = new ConectorDB_mysql();

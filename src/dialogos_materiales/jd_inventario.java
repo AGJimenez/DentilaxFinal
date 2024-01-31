@@ -109,6 +109,16 @@ public class jd_inventario extends JDialog {
                 btn_salir.setBackground(new Color(32, 160, 216));
                 btn_salir.setActionCommand("Cancel");
                 
+                JButton btn_salir_1 = new JButton("IMPRIMIR");
+                btn_salir_1.setForeground(Color.WHITE);
+                btn_salir_1.setFont(new Font("Barlow", Font.BOLD, 20));
+                btn_salir_1.setBorderPainted(false);
+                btn_salir_1.setBorder(null);
+                btn_salir_1.setBackground(new Color(32, 160, 216));
+                btn_salir_1.setActionCommand("Cancel");
+                btn_salir_1.setBounds(34, 0, 153, 43);
+                buttonPane.add(btn_salir_1);
+                
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setBounds(44, 150, 671, 247);
         contentPanel.add(scrollPane);

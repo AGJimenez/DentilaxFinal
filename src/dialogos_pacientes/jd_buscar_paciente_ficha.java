@@ -223,6 +223,15 @@ public class jd_buscar_paciente_ficha extends JDialog {
 				btn_salir.setActionCommand("Cancel");
 				buttonPane.add(btn_salir);
 			}
+			
+			JButton btn_salir = new JButton("IMPRIMIR");
+			btn_salir.setForeground(Color.WHITE);
+			btn_salir.setFont(new Font("Barlow", Font.BOLD, 20));
+			btn_salir.setBorderPainted(false);
+			btn_salir.setBackground(new Color(32, 160, 216));
+			btn_salir.setActionCommand("Cancel");
+			btn_salir.setBounds(37, 0, 153, 43);
+			buttonPane.add(btn_salir);
 		}
 	}
 
@@ -281,5 +290,4 @@ public class jd_buscar_paciente_ficha extends JDialog {
 	public void setTxt_telefono(String txt_telefono) {
 		this.txt_telefono.setText(txt_telefono);;
 	}
-	
 }

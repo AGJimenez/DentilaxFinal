@@ -209,6 +209,16 @@ public class jd_historial_cita extends JDialog {
 		btn_filtrar_toggle.setBackground(new Color(32, 160, 216));
 		btn_filtrar_toggle.setBounds(729, 40, 47, 43);
 		contentPanel.add(btn_filtrar_toggle);
+		
+		JButton btn_salir_1 = new JButton("IMPRIMIR");
+		btn_salir_1.setForeground(Color.WHITE);
+		btn_salir_1.setFont(new Font("Barlow", Font.BOLD, 20));
+		btn_salir_1.setBorderPainted(false);
+		btn_salir_1.setBorder(null);
+		btn_salir_1.setBackground(new Color(32, 160, 216));
+		btn_salir_1.setActionCommand("Cancel");
+		btn_salir_1.setBounds(652, 0, 124, 31);
+		contentPanel.add(btn_salir_1);
 		txt_filtrar.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
