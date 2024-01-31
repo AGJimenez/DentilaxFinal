@@ -5,11 +5,10 @@ import java.util.Date;
 public class Solicitud {
 
 	private int id_solicitud, cantidad;
-	private String dni_doctor, nombre_producto, estado;
-	private Date fecha;
+	private String dni_doctor, nombre_producto, fecha, estado;
 	
 
-	public Solicitud(int id_solicitud, String nombre_producto, String dni_doctor, int cantidad, Date fecha, String estado) {
+	public Solicitud(int id_solicitud, String nombre_producto, String dni_doctor, int cantidad, String fecha, String estado) {
 		super();
 		this.id_solicitud = id_solicitud;
 		this.nombre_producto = nombre_producto;
@@ -70,12 +69,12 @@ public class Solicitud {
 	}
 
 
-	public Date getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
 
-	public void setFecha(Date fecha) {
+	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
 

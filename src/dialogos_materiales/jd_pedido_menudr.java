@@ -192,7 +192,7 @@ public class jd_pedido_menudr extends JDialog {
            for (Inventario productos : inventario) {
                Object[] fila = new Object[3];
                fila[0] = productos.getId();
-               fila[1] = productos.getProducto();
+               fila[1] = productos.getNombre();
                fila[2] = productos.getCantidad();
 
             //   model.setRowCount(model.getRowCount()+1);

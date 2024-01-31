@@ -2,12 +2,12 @@ package Modelo;
 
 public class Inventario {
 
-	private String id, producto, cantidad;
+	private String id, nombre, cantidad;
 
-	public Inventario(String id, String producto, String cantidad) {
+	public Inventario(String id, String nombre, String cantidad) {
 		super();
 		this.id = id;
-		this.producto = producto;
+		this.nombre = nombre;
 		this.cantidad = cantidad;
 	}
 
@@ -19,12 +19,12 @@ public class Inventario {
 		this.id = id;
 	}
 
-	public String getProducto() {
-		return producto;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setProducto(String producto) {
-		this.producto = producto;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
 	public String getCantidad() {
@@ -37,7 +37,7 @@ public class Inventario {
 
 	@Override
 	public String toString() {
-		return "Pedido [id=" + id + ", producto=" + producto + ", cantidad=" + cantidad + "]";
+		return "Pedido [id=" + id + ", nombre=" + nombre + ", cantidad=" + cantidad + "]";
 	}
 
 

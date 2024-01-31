@@ -318,7 +318,7 @@ public class jf_facturacion extends JFrame {
         	public void actionPerformed(ActionEvent e) {
         		dispose();
         		jf_material ventana_p = new jf_material();
-        		dialogos_materiales.jd_buscar_pedido ventana = new dialogos_materiales.jd_buscar_pedido();
+        		dialogos_materiales.jd_buscar_pedidos ventana = new dialogos_materiales.jd_buscar_pedidos();
         		ventana_p.setVisible(true);
         		ventana.setVisible(true);
         	}
@@ -584,7 +584,7 @@ public class jf_facturacion extends JFrame {
         			if(combo.contains(KeyEvent.VK_1)&&combo.contains(KeyEvent.VK_M)&&combo.contains(16)) {
         				dispose();
         				jf_material ventana_p = new jf_material();
-        				dialogos_materiales.jd_buscar_pedido ventana = new dialogos_materiales.jd_buscar_pedido();
+        				dialogos_materiales.jd_buscar_pedidos ventana = new dialogos_materiales.jd_buscar_pedidos();
         				ventana_p.setVisible(true);
         				ventana.setVisible(true);
         			}

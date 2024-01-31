@@ -38,7 +38,10 @@ import dialogos_doctores.jd_buscar_doctor_baja;
 import dialogos_doctores.jd_buscar_doctor_editar;
 import dialogos_materiales.jd_buscar_pedidos;
 import dialogos_materiales.jd_hacer_pedido;
+import dialogos_materiales.jd_historial_solicitud;
+import dialogos_materiales.jd_inventario;
 import dialogos_materiales.jd_proveedores;
+import dialogos_materiales.jd_revisar_solicitud;
 import dialogos_pacientes.jd_buscar_paciente;
 import dialogos_pacientes.jd_buscar_paciente_baja;
 import dialogos_pacientes.jd_buscar_paciente_editar;
@@ -627,7 +630,7 @@ public String consulta_doctor_eliminar(String nombre, String apellidos) throws S
 	            String nombreProducto = resultSet.getString("Nombre_producto");
 	            String dniDoctor = resultSet.getString("DNI_doctor");
 	            int cantidad = resultSet.getInt("Cantidad");
-	            Date fecha = resultSet.getDate("Fecha");
+	            String fecha = resultSet.getString("Fecha");
 	            String estado = resultSet.getString("Estado");
 
 	            Solicitud solicitud = new Solicitud(id, nombreProducto, dniDoctor, cantidad, fecha, estado);
@@ -667,7 +670,7 @@ public String consulta_doctor_eliminar(String nombre, String apellidos) throws S
 	            String nombreProducto = resultSet.getString("Nombre_producto");
 	            String dniDoctor = resultSet.getString("DNI_doctor");
 	            int cantidad = resultSet.getInt("Cantidad");
-	            Date fecha = resultSet.getDate("Fecha");
+	            String fecha = resultSet.getString("Fecha");
 	            String estado = resultSet.getString("Estado");
 
 	            Solicitud solicitud = new Solicitud(id, nombreProducto, dniDoctor, cantidad, fecha, estado);
@@ -1980,6 +1983,69 @@ public void mostrar_filtro_proveedores(jd_proveedores datos) throws SQLException
     }
 }
 
+public void mostrar_filtro_inventario(jd_inventario datos) throws SQLException {
+    // Consulta para ver el nombre de las tablas
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SHOW fields FROM inventario WHERE field = 'Nombre';";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+        	String Field = rs.getString("Field");
+            datos.setCb_filtrar(Field);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+
+public void mostrar_filtro_solicitudes_activas(jd_revisar_solicitud datos) throws SQLException {
+    // Consulta para ver el nombre de las tablas
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SHOW fields FROM solicitudes WHERE field = 'Nombre_producto' OR field = 'Fecha';";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+        	String Field = rs.getString("Field");
+            datos.setCb_filtrar(Field);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+
+public void mostrar_filtro_solicitudes(jd_historial_solicitud datos) throws SQLException {
+    // Consulta para ver el nombre de las tablas
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SHOW fields FROM solicitudes WHERE field = 'Nombre_producto' OR field = 'Fecha'  OR field = 'Estado';";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+        	String Field = rs.getString("Field");
+            datos.setCb_filtrar(Field);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+
 public List<Paciente> filtrar_tabla_paciente(String campo, String variable) throws SQLException{
 	List<Paciente> pacientes = new ArrayList<>();
 	try {
@@ -2130,6 +2196,125 @@ public List<Proveedores> filtrar_tabla_proveedor(String campo, String variable) 
     }
 
     return proveedores;
+	
+}
+
+public List<Inventario> filtrar_tabla_inventario(String campo, String variable) throws SQLException{
+	List<Inventario> inventarios = new ArrayList<>();
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "SELECT * FROM inventario WHERE " + campo + " LIKE '" + variable + "%' OR " + campo + " LIKE '%" + variable + "'";
+        ResultSet resultSet = statement.executeQuery(query);
+		
+        while (resultSet.next()) {
+        	String id_producto = resultSet.getString("ID_producto");
+            String nombre = resultSet.getString("Nombre");
+            String cantidad = resultSet.getString("Cantidad");
+
+            Inventario class_inventario = new Inventario(id_producto, nombre, cantidad);
+
+            inventarios.add(class_inventario);
+        }
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    } finally {
+        try {
+            if (statement != null) {
+                statement.close();
+            }
+            if (conect != null) {
+                conect.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    return inventarios;
+	
+}
+
+public List<Solicitud> filtrar_tabla_solicitudes_activas(String campo, String variable) throws SQLException{
+	List<Solicitud> solicitudes = new ArrayList<>();
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "SELECT * FROM solicitudes WHERE Estado = 'Activa' AND " + campo + " LIKE '" + variable + "%' OR " + campo + " LIKE '%" + variable + "'";
+        ResultSet resultSet = statement.executeQuery(query);
+		
+        while (resultSet.next()) {
+            int id_solicitud = resultSet.getInt("ID_solicitud");
+            String nombre_producto = resultSet.getString("Nombre_producto");
+            String dni_doctor = resultSet.getString("DNI_doctor");
+            int cantidad = resultSet.getInt("Cantidad");
+            String fecha = resultSet.getString("Fecha");
+            String estado = resultSet.getString("Estado");
+            
+
+            Solicitud class_solicitud = new Solicitud(id_solicitud, nombre_producto, dni_doctor, cantidad, fecha, estado);
+
+            solicitudes.add(class_solicitud);
+        }
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    } finally {
+        try {
+            if (statement != null) {
+                statement.close();
+            }
+            if (conect != null) {
+                conect.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    return solicitudes;
+	
+}
+
+public List<Solicitud> filtrar_tabla_solicitudes(String campo, String variable) throws SQLException{
+	List<Solicitud> solicitudes = new ArrayList<>();
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "SELECT * FROM solicitudes WHERE " + campo + " LIKE '" + variable + "%' OR " + campo + " LIKE '%" + variable + "'";
+        ResultSet resultSet = statement.executeQuery(query);
+		
+        while (resultSet.next()) {
+            int id_solicitud = resultSet.getInt("ID_solicitud");
+            String nombre_producto = resultSet.getString("Nombre_producto");
+            String dni_doctor = resultSet.getString("DNI_doctor");
+            int cantidad = resultSet.getInt("Cantidad");
+            String fecha = resultSet.getString("Fecha");
+            String estado = resultSet.getString("Estado");
+            
+
+            Solicitud class_solicitud = new Solicitud(id_solicitud, nombre_producto, dni_doctor, cantidad, fecha, estado);
+
+            solicitudes.add(class_solicitud);
+        }
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    } finally {
+        try {
+            if (statement != null) {
+                statement.close();
+            }
+            if (conect != null) {
+                conect.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    return solicitudes;
 	
 }
 
