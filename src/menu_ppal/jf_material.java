@@ -3,6 +3,8 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
 import javax.swing.AbstractAction;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -32,6 +34,9 @@ import javax.swing.JPopupMenu;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.net.URL;
+
 import javax.swing.ImageIcon;
 import beans.Fecha;
 import javax.swing.SwingConstants;
@@ -504,6 +509,27 @@ public class jf_material extends JFrame {
         btn_inicio.setFocusable(true);
         
         btn_ayuda = new JButton("AYUDA");
+        btn_ayuda.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        	    try {
+        	        // Ruta al archivo de ayuda
+        	        File fichero = new File("src/help/help_set.hs");
+        	        URL hsUrl = fichero.toURI().toURL();
+
+        	        // Crear el conjunto de ayuda
+        	        HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsUrl);
+
+        	        // Crear el broker de ayuda
+        	        HelpBroker hb = helpset.createHelpBroker();
+
+        	        // Habilitar la ayuda en el botón con el tema "Indice"
+        	        hb.enableHelpOnButton(btn_ayuda, "Indice", helpset);
+
+        	    } catch (Exception e1) {
+        	        e1.printStackTrace();
+        	    }
+        	}
+        });
         btn_ayuda.setOpaque(false);
         btn_ayuda.setFont(new Font("Arial", Font.PLAIN, 12));
         btn_ayuda.setFocusable(true);
