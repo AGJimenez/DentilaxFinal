@@ -8,8 +8,12 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -19,8 +23,12 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import Modelo.Cita;
 import Modelo.Paciente;
 import dentilax_bdd.ConectorDB_mysql;
+import javax.swing.SwingConstants;
+import javax.swing.JComboBox;
+import javax.swing.JToggleButton;
 
 public class jd_buscar_paciente_historial extends JDialog {
 
@@ -29,8 +37,18 @@ public class jd_buscar_paciente_historial extends JDialog {
     private JTextField txt_nombre_paciente;
     private static JTable table;
     private static DefaultTableModel model;
+    protected JTextField txt_filtrar;
+    dentilax_bdd.ConectorDB_mysql consultasDB = new dentilax_bdd.ConectorDB_mysql();
+    JComboBox cb_filtrar = new JComboBox();
 
     public jd_buscar_paciente_historial(String DNI_paciente) {
+    	try {
+			//CON ESTO MOSTRAMOS LOS COMBO BOX
+			consultasDB.mostrar_filtro_paciente_historial(this);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         setTitle("Historial de paciente");
         setIconImage(Toolkit.getDefaultToolkit().getImage(jd_buscar_paciente_historial.class.getResource("/iconos_menus/dentilaxIcono.png")));
         setModal(true);
@@ -46,15 +64,10 @@ public class jd_buscar_paciente_historial extends JDialog {
         contentPanel.setLayout(null);
 
         JPanel panel = new JPanel();
-        panel.setBounds(0, 32, 497, 54);
+        panel.setBounds(0, 32, 180, 54);
         panel.setBackground(new Color(191, 231, 249));
         contentPanel.add(panel);
         panel.setLayout(null);
-
-        JLabel lbl_paciente = new JLabel("PACIENTE:");
-        lbl_paciente.setFont(new Font("Barlow", Font.BOLD, 20));
-        lbl_paciente.setBounds(10, 0, 105, 54);
-        panel.add(lbl_paciente);
 
         txt_nombre_paciente = new JTextField();
         txt_nombre_paciente.setEditable(false);
@@ -62,7 +75,7 @@ public class jd_buscar_paciente_historial extends JDialog {
         txt_nombre_paciente.setText(DNI_paciente);
         txt_nombre_paciente.setBorder(null);
         txt_nombre_paciente.setOpaque(false);
-        txt_nombre_paciente.setBounds(125, 0, 355, 54);
+        txt_nombre_paciente.setBounds(10, 0, 103, 54);
         panel.add(txt_nombre_paciente);
         txt_nombre_paciente.setColumns(10);
 
@@ -131,36 +144,136 @@ public class jd_buscar_paciente_historial extends JDialog {
         scrollPane.setBounds(12, 147, 671, 265);
         contentPanel.add(scrollPane);
 
+        ConectorDB_mysql conection = new ConectorDB_mysql();
+        List<Cita> historialPaciente = conection.obtenerInfoPaciente(DNI_paciente);
+
         table = new JTable();
         model = new DefaultTableModel();
-        model.addColumn("Fecha");
-        model.addColumn("Tratamiento");
-        model.addColumn("DNI_doctor");
+        
+        model.addColumn("");
+        model.addColumn("");
+        model.addColumn("");
         table.setModel(model);
         scrollPane.setViewportView(table);
+        
+        JPanel panel_contened_1 = new JPanel();
+        panel_contened_1.setLayout(null);
+        panel_contened_1.setBackground(new Color(32, 160, 216));
+        panel_contened_1.setBounds(193, 35, 417, 53);
+        contentPanel.add(panel_contened_1);
+        
+        txt_filtrar = new JTextField();
+        txt_filtrar.setHorizontalAlignment(SwingConstants.CENTER);
+        txt_filtrar.setFont(new Font("Arial", Font.PLAIN, 14));
+        txt_filtrar.setColumns(10);
+        txt_filtrar.setBorder(null);
+        txt_filtrar.setBackground(new Color(191, 231, 249));
+        txt_filtrar.setBounds(219, 11, 188, 31);
+        panel_contened_1.add(txt_filtrar);
+        
+        cb_filtrar.setSelectedIndex(0);
+        cb_filtrar.setFont(new Font("Arial", Font.PLAIN, 14));
+        cb_filtrar.setBackground(new Color(191, 231, 249));
+        cb_filtrar.setBounds(10, 8, 188, 37);
+        panel_contened_1.add(cb_filtrar);
+        
+        JToggleButton btn_filtrar_toggle = new JToggleButton("");
+		btn_filtrar_toggle.setSelectedIcon(new ImageIcon(jd_buscar_paciente_historial.class.getResource("/iconos_submenus/nofiltrar.png")));
+		btn_filtrar_toggle.setIcon(new ImageIcon(jd_buscar_paciente_historial.class.getResource("/iconos_submenus/iconoFiltrar.png")));
+		btn_filtrar_toggle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(btn_filtrar_toggle.isSelected()) {
+					String field_filtrado = cb_filtrar.getSelectedItem().toString();
+					try {
+						llenarTabla(conection.filtrar_tabla_paciente_historial(field_filtrado,txt_filtrar.getText().toString(), getTxt_nombre_paciente().getText().toString()));
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				else {
+					txt_filtrar.setText("");
+					llenarTabla(historialPaciente);
+				}
+			}
+		});
+        btn_filtrar_toggle.setOpaque(true);
+        btn_filtrar_toggle.setBorderPainted(false);
+        btn_filtrar_toggle.setBackground(new Color(32, 160, 216));
+        btn_filtrar_toggle.setBounds(635, 40, 47, 43);
+        contentPanel.add(btn_filtrar_toggle);
+        for (int i = 0; i < table.getColumnCount(); i++) {
+        	Class<?> col_class = table.getColumnClass(i);
+        	table.setDefaultEditor(col_class,  null);
+        	}
+        txt_filtrar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+					txt_filtrar.requestFocus();
+				}
+			}
+		});
+		txt_filtrar.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+					if(btn_filtrar_toggle.isSelected()) {
+						txt_filtrar.setText("");
+						llenarTabla(historialPaciente);
+						btn_filtrar_toggle.setSelected(false);
+					}
+					
+					else {
+						String field_filtrado = cb_filtrar.getSelectedItem().toString();
+						try {
+							llenarTabla(conection.filtrar_tabla_paciente_historial(field_filtrado,txt_filtrar.getText().toString(), getTxt_nombre_paciente().getText().toString()));
+						} catch (SQLException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						btn_filtrar_toggle.setSelected(true);
+					}
+				}
+			}
+		});
+        
 
-        ConectorDB_mysql conection = new ConectorDB_mysql();
         conection.conectar();
 
-        List<Paciente> historialPaciente = conection.obtenerInfoPaciente(DNI_paciente);
-        System.out.println(DNI_paciente);
         llenarTabla(historialPaciente);
     }
 
-    public void llenarTabla(List<Paciente> historialPaciente) {
-        if (historialPaciente != null && !historialPaciente.isEmpty()) {
-            model.setColumnCount(0); // Limpiar columnas existentes
-            Object[] columnNames = {"Fecha", "Tratamiento", "DNI_doctor"};
-            model.setColumnIdentifiers(columnNames); // Establecer nuevas columnas
-
-            for (Paciente historial : historialPaciente) {
+    public void llenarTabla(List<Cita> historialPaciente) {
+    	DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
+            for (Cita historial : historialPaciente) {
                 Object[] fila = new Object[3];
                 fila[0] = historial.getFecha();
-                fila[1] = historial.getTratamiento();
-                fila[2] = historial.getDni_dr();
+                fila[1] = historial.getEspecialidad();
+                fila[2] = historial.getDniDoctor();
                 model.addRow(fila);
             }
-        }
     }
+    
+    public void setCb_filtrar(String items) {
+		cb_filtrar.addItem(items);
+	}
+
+	public JTextField getTxt_filtrar() {
+		return txt_filtrar;
+	}
+
+	public void setTxt_filtrar(JTextField txt_filtrar) {
+		this.txt_filtrar = txt_filtrar;
+	}
+
+	public JTextField getTxt_nombre_paciente() {
+		return txt_nombre_paciente;
+	}
+
+	public void setTxt_nombre_paciente(JTextField txt_nombre_paciente) {
+		this.txt_nombre_paciente = txt_nombre_paciente;
+	}
 }
 

@@ -45,6 +45,8 @@ import dialogos_materiales.jd_revisar_solicitud;
 import dialogos_pacientes.jd_buscar_paciente;
 import dialogos_pacientes.jd_buscar_paciente_baja;
 import dialogos_pacientes.jd_buscar_paciente_editar;
+import dialogos_pacientes.jd_buscar_paciente_encontrado_menudr;
+import dialogos_pacientes.jd_buscar_paciente_historial;
 
 
 public class ConectorDB_mysql {
@@ -483,7 +485,7 @@ public String consulta_doctor_eliminar(String nombre, String apellidos) throws S
                 String especialidad = resultSet.getString("Especialidad");
                 String dniPaciente = resultSet.getString("DNI_paciente");
 
-               Cita historial = new Cita(fecha,especialidad,dniPaciente);
+               Cita historial = new Cita(fecha,especialidad,dniPaciente,"");
 
                 historiales.add(historial);
             }
@@ -548,8 +550,8 @@ public String consulta_doctor_eliminar(String nombre, String apellidos) throws S
         return historiales;
     }
 	
-	public List<Paciente> obtenerInfoPaciente(String DNI_paciente) {
-	    List<Paciente> historiales = new ArrayList<>();
+	public List<Cita> obtenerInfoPaciente(String DNI_paciente) {
+	    List<Cita> historiales = new ArrayList<>();
 
 	    try {
 	        conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
@@ -565,7 +567,7 @@ public String consulta_doctor_eliminar(String nombre, String apellidos) throws S
 	            String esp = resultSet.getString("Especialidad");
 	            String dni = resultSet.getString("DNI_doctor");
 
-	            Paciente historial = new Paciente(fecha, esp, dni);
+	            Cita historial = new Cita(fecha, esp, dni);
 	            historiales.add(historial);
 	        }
 
@@ -2095,6 +2097,27 @@ public void mostrar_filtro_historial_cita(jd_historial_cita datos) throws SQLExc
     }
 }
 
+public void mostrar_filtro_paciente_historial(jd_buscar_paciente_historial datos) throws SQLException {
+    // Consulta para ver el nombre de las tablas
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SHOW fields FROM citas WHERE field = 'Fecha' OR field = 'Especialidad' OR field = 'DNI_doctor';";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+        	String Field = rs.getString("Field");
+            datos.setCb_filtrar(Field);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+
 public List<Paciente> filtrar_tabla_paciente(String campo, String variable) throws SQLException{
 	List<Paciente> pacientes = new ArrayList<>();
 	try {
@@ -2130,6 +2153,43 @@ public List<Paciente> filtrar_tabla_paciente(String campo, String variable) thro
     }
 
     return pacientes;
+	
+}
+
+public List<Cita> filtrar_tabla_paciente_historial(String campo, String variable, String datos) throws SQLException{
+	List<Cita> citas = new ArrayList<>();
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "SELECT * FROM citas WHERE DNI_paciente = '"+ datos + "' AND " + campo + " LIKE '" + variable + "%' OR " + campo + " LIKE '%" + variable + "'";
+        ResultSet resultSet = statement.executeQuery(query);
+		
+        while (resultSet.next()) {
+            String fecha = resultSet.getString("Fecha");
+            String especialidad = resultSet.getString("Especialidad");
+            String dni_doctor = resultSet.getString("DNI_doctor");
+
+            Cita cita = new Cita(fecha, especialidad, dni_doctor);
+
+            citas.add(cita);
+        }
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    } finally {
+        try {
+            if (statement != null) {
+                statement.close();
+            }
+            if (conect != null) {
+                conect.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    return citas;
 	
 }
 
@@ -2381,7 +2441,7 @@ public List<Cita> filtrar_tabla_historial_citas(String campo, String variable) t
             String dni_paciente = resultSet.getString("DNI_paciente");
             
 
-            Cita class_cita = new Cita(fecha, especialidad, dni_paciente);
+            Cita class_cita = new Cita(fecha, especialidad, dni_paciente, "");
 
             citas.add(class_cita);
         }

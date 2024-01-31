@@ -176,6 +176,7 @@ public class jd_buscar_paciente_menudr extends JDialog {
 	                    String nombre = (String) table.getValueAt(indiceFilaSeleccionada, 0);
 	                    String apellidos = (String) table.getValueAt(indiceFilaSeleccionada, 1);
 	                    try {
+	                    	dispose();
 	                    	conection.consulta_paciente_menudr(nombre, apellidos);
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block

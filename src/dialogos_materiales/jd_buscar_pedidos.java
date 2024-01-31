@@ -159,37 +159,6 @@ public class jd_buscar_pedidos extends JDialog {
 		        btn_salir.setBackground(new Color(32, 160, 216));
 		        btn_salir.setActionCommand("Cancel");
 		        
-		        JButton btn_ficha = new JButton("FICHA");
-		        btn_ficha.setBounds(95, 357, 153, 43);
-		        contentPanel.add(btn_ficha);
-		        btn_ficha.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		        btn_ficha.addActionListener(new ActionListener() {
-		        	public void actionPerformed(ActionEvent e) {
-		        		if (indiceFilaSeleccionada != -1) {
-		        			 int id_pedido = (int) table.getValueAt(indiceFilaSeleccionada, 0);
-		        			 	String producto = (String) table.getValueAt(indiceFilaSeleccionada, 1);
-		        			    Date fecha = (Date) table.getValueAt(indiceFilaSeleccionada, 2);
-		        			    fecha.toString();
-		                    // Actualizar la base de datos
-		                    ConectorDB_mysql conection = new ConectorDB_mysql();
-		                    conection.conectar();
-		                    try {
-			                    dispose();
-		                    conection.consulta_pedido(id_pedido);
-							} catch (SQLException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
-		                }
-		        	}
-		        });
-		        btn_ficha.setForeground(Color.WHITE);
-		        btn_ficha.setFont(new Font("Barlow", Font.BOLD, 20));
-		        btn_ficha.setBorderPainted(false);
-		        btn_ficha.setBorder(null);
-		        btn_ficha.setBackground(new Color(32, 160, 216));
-		        btn_ficha.setActionCommand("Cancel");
-		        
 		        JPanel panel_contened_1 = new JPanel();
 		        panel_contened_1.setLayout(null);
 		        panel_contened_1.setBackground(new Color(32, 160, 216));
