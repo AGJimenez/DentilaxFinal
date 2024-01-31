@@ -843,6 +843,7 @@ public String consulta_doctor_eliminar(String nombre, String apellidos) throws S
 
 
 
+
 public String consulta_doctor_ficha(String dni) throws SQLException{
 		
 		try {

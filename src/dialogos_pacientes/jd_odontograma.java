@@ -15,6 +15,8 @@ import java.awt.Container;
 import java.awt.Font;
 import javax.swing.JComboBox;
 import javax.swing.border.LineBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import Modelo.Inventario;
@@ -33,12 +35,18 @@ import javax.swing.JCheckBox;
 import javax.swing.JTextArea;
 import javax.swing.DropMode;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class jd_odontograma extends JDialog {
 
 	private static final long serialVersionUID = 1L;
     private static JTable table;
     private static DefaultTableModel model;
+    
     ConectorDB_mysql consulta = new ConectorDB_mysql();
 	/**
 	 * Launch the application.
@@ -80,6 +88,20 @@ public class jd_odontograma extends JDialog {
 		setBounds(100, 100, 1200, 801);
 		getContentPane().setLayout(null);
 		
+		JPanel panel = new JPanel();
+		panel.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
+		panel.setBackground(Color.WHITE);
+		panel.setBounds(529, 41, 582, 653);
+		getContentPane().add(panel);
+		panel.setLayout(null);
+		
+		JTextArea ta_observaciones = new JTextArea();
+		ta_observaciones.setBorder(new LineBorder(new Color(0, 0, 0)));
+		ta_observaciones.setFont(new Font("Arial", Font.PLAIN, 16));
+		ta_observaciones.setLineWrap(true);
+		ta_observaciones.setBounds(35, 113, 517, 198);
+		panel.add(ta_observaciones);
+		
 		JLabel lb_diente = new JLabel("Diente");
 		lb_diente.setForeground(new Color(0, 128, 192));
 		lb_diente.setFont(new Font("Barlow", Font.PLAIN, 24));
@@ -91,6 +113,7 @@ public class jd_odontograma extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				lb_diente.setText("Diente 34");
 				List<Odontograma> odontogramasParaDiente = consulta.obtenerOdontogramaPorDiente(34, idPacientePorDni);
+				
 				llenarTabla(odontogramasParaDiente);
 			}
 		});
@@ -900,12 +923,6 @@ public class jd_odontograma extends JDialog {
 		}
 
 		
-		JPanel panel = new JPanel();
-		panel.setBorder(new LineBorder(new Color(0, 0, 0), 1, true));
-		panel.setBackground(Color.WHITE);
-		panel.setBounds(529, 41, 582, 653);
-		getContentPane().add(panel);
-		panel.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBorder(null);
@@ -913,6 +930,8 @@ public class jd_odontograma extends JDialog {
         panel.add(scrollPane);
         
                 table = new JTable();
+
+                table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
                 table.setColumnSelectionAllowed(true);
                 table.setShowGrid(false);
                 table.setOpaque(false);
@@ -952,8 +971,33 @@ public class jd_odontograma extends JDialog {
 			model.addColumn("Observaciones");
 			model.addColumn("Fecha");
 		
-		
+			 table.addMouseListener(new MouseAdapter() {
+		            @Override
+		            public void mouseClicked(MouseEvent e) {
+		                int selectedRow = table.getSelectedRow();
+		                int selectedColumn = table.getSelectedColumn();
 
+		                if (selectedRow != -1 && selectedColumn != -1) {
+		                	Object selectedValue = table.getValueAt(selectedRow, selectedColumn);
+		                    ta_observaciones.setText(selectedValue.toString());
+		                    
+		                	ta_observaciones.addFocusListener(new FocusAdapter() {
+		            			@Override
+		            			public void focusGained(FocusEvent e) {
+		            				ta_observaciones.setText("");
+		            			}
+		            			@Override
+		            			public void focusLost(FocusEvent e) {
+		            				ta_observaciones.setText(selectedValue.toString());
+		            			}
+		            		});
+		                    
+		                }
+		            }
+		        });
+
+			 
+			 
 		panel.add(lb_diente);
 		
 		JLabel lblNewLabel_2_1 = new JLabel("Observaciones");
@@ -961,12 +1005,7 @@ public class jd_odontograma extends JDialog {
 		lblNewLabel_2_1.setBounds(218, 79, 149, 23);
 		panel.add(lblNewLabel_2_1);
 		
-		JTextArea ta_observaciones = new JTextArea();
-		ta_observaciones.setBorder(new LineBorder(new Color(0, 0, 0)));
-		ta_observaciones.setFont(new Font("Arial", Font.PLAIN, 16));
-		ta_observaciones.setLineWrap(true);
-		ta_observaciones.setBounds(35, 113, 517, 198);
-		panel.add(ta_observaciones);
+	
 		
 		JButton btn_salir = new JButton("SALIR");
 		btn_salir.addActionListener(new ActionListener() {
