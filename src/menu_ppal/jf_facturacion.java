@@ -102,19 +102,8 @@ public class jf_facturacion extends JFrame {
         btn_historial_pago.setContentAreaFilled(false);
         btn_historial_pago.setOpaque(false);
         btn_historial_pago.setIcon(new ImageIcon(jf_facturacion.class.getResource("/iconos_submenus/btn_historialpago_admin.png")));
-        btn_historial_pago.setBounds(401, 594, 188, 41);
+        btn_historial_pago.setBounds(600, 594, 188, 41);
         btn_historial_pago.setBorderPainted(false);
-        btn_balance_gastos = new javax.swing.JButton();
-        btn_balance_gastos.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
-        btn_balance_gastos.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        btn_balance_gastos.setContentAreaFilled(false);
-        btn_balance_gastos.setIcon(new ImageIcon(jf_facturacion.class.getResource("/iconos_submenus/btn_balanceGastos_admin.png")));
-        btn_balance_gastos.setOpaque(false);
-        btn_balance_gastos.setBounds(891, 594, 188, 41);
-        btn_balance_gastos.setBorderPainted(false);
         menu_inicio = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu2.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -736,7 +725,6 @@ public class jf_facturacion extends JFrame {
         popupMenu.add(mntmNewMenuItem_4);
         jp_menu.add(btn_buscar_factura);
         jp_menu.add(btn_historial_pago);
-        jp_menu.add(btn_balance_gastos);
         jp_menu.add(btn_nueva_factura);
         
         fecha = new JLabel("");
@@ -799,7 +787,6 @@ public class jf_facturacion extends JFrame {
     private javax.swing.JMenu jMenu7;
     private javax.swing.JPanel jp_menu;
     private javax.swing.JMenuBar menu_inicio;
-    private JButton btn_balance_gastos;
     private JButton btn_inicio;
     private JLabel fecha;
     private JPopupMenu popupMenu;
