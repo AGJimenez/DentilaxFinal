@@ -4,37 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manual - Administrador - Pacientes</title>
+    <style>
+        body {
+            background-color: #dff6ff; /* Color de fondo clarito */
+            color: #333; /* Color de texto */
+            font-family: Arial, sans-serif; /* Tipo de fuente */
+            margin: 60px; /* Márgenes a los lados */
+            text-align: left; /* Texto alineado a la izquierda */
+        }
+
+        img {
+            display: block; /* Para alinear las imágenes a la izquierda */
+            margin: 0; /* Elimina cualquier margen alrededor de la imagen */
+            max-width: 100%; /* Hace que las imágenes no sobrepasen su contenedor */
+            height: auto; /* Mantiene la proporción de la imagen */
+            margin-bottom: 10px; /* Márgenes inferior para las imágenes */
+            width: 500px; /* Ancho fijo para todas las imágenes */
+            height: 330px; /* Altura fija para todas las imágenes */
+        }
+
+        h1, h2, h3 {
+            color: #469fff; /* Color azul para los títulos */
+        }
+    </style>
 </head>
 <body>
     <h1>Administrador de Pacientes</h1>
 
     <h2 id="admin-pacientes">Pacientes</h2>
-    <p>En esta ventana, podrá buscar pacientes, editarlos, darlos de baja y dar de alta a pacientes nuevos. Como administrador, deberá introducir el DNI de los mismos
+    <p>En esta ventana, podrá buscar pacientes, editarlos, darlos de baja y dar de alta a pacientes nuevos. Como administrador, usará una tabla
         para acceder a su información, ya sea para realizar búsquedas, editar la información de los mismos o para darlos de baja. A continuación se detalla información sobre 
         estos procedimientos.
     </p>
 
     <h3>Buscar paciente</h3>
-    <p>Como se especificaba en el apartado anterior, deberá introducir su DNI para poder acceder a la información del mismo, apareciendo esta pantalla si lo insertó correctamente:
+    <p>Como se especificaba en el apartado anterior, seleccionará la fila a buscar, apareciendo esta pantalla si lo insertó correctamente:
     </p>
-    <img src="pacienteencontrado.png" alt="">
+    <img src="../imagenes/buscarPacienteAdmin.png" alt="imagen">
     <p>Tras esto, podrá acceder pulsando en los diferentes botones a toda la información del mismo:</p>
-    <img src="fichapaciente.png" alt="">
+    <img src="../imagenes/pacienteencontrado.png" alt="imagen2">
     <br>
-    <img src="tabla informacion paciente.png" alt="">
 
     <h3>Editar paciente</h3>
-    <p>Como se especificaba en el apartado anterior, deberá introducir su DNI para poder acceder a la información del mismo, apareciendo esta pantalla si lo insertó correctamente:</p>
-    <img src="editarpaciente.png" alt="">
+    <p>Como se especificaba en el apartado anterior, seleccionará la fila a buscar, apareciendo esta pantalla si lo insertó correctamente:</p>
+    <img src="../imagenes/editarpaciente.png" alt="">
 
     <h3>Baja de paciente</h3>
-    <p>Para dar la baja, es tan simple como buscar al paciente por su DNI y pulsar en el campo dar baja:</p>
-    <img src="baja.png" alt="">
+    <p>Para dar la baja, es tan simple como buscar al paciente en la tabla, y pulsar en el campo dar baja:</p>
+    <img src="../imagenes/bajaPaciente.png" alt="">
 
     <h3>Alta de paciente</h3>
     <p>Para dar de alta a un nuevo paciente, seguirá el mismo procedimiento que siguió al editarlo, solo que esta vez, se abrirá directamente la pantalla para introducir la información sobre
          el mismo
     </p>
-    <img src="alta.png" alt="">
+    <img src="../imagenes/altaPaciente.png" alt="">
 </body>
 </html>
