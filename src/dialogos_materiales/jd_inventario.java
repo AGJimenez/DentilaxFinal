@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -26,6 +27,8 @@ import Modelo.Cita;
 import Modelo.Inventario;
 import Modelo.Paciente;
 import dentilax_bdd.ConectorDB_mysql;
+import dialogos_pacientes.jd_buscar_paciente;
+
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.JToggleButton;
@@ -200,6 +203,8 @@ public class jd_inventario extends JDialog {
 		panel_contened_1.add(cb_filtrar);
 		
 		JToggleButton btn_filtrar_toggle = new JToggleButton("");
+		btn_filtrar_toggle.setSelectedIcon(new ImageIcon(jd_buscar_paciente.class.getResource("/iconos_submenus/nofiltrar.png")));
+		btn_filtrar_toggle.setIcon(new ImageIcon(jd_buscar_paciente.class.getResource("/iconos_submenus/iconoFiltrar.png")));
 		btn_filtrar_toggle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(btn_filtrar_toggle.isSelected()) {
@@ -253,13 +258,6 @@ public class jd_inventario extends JDialog {
 				}
 			}
 		});
-
-	
-		
-			conection.conectar();
-			
-			//System.out.println(conection.obtenerInfoCitas().toString());
-			llenarTabla(conection.obtenerInventario() );
 			
 	}
 	

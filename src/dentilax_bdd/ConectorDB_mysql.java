@@ -40,6 +40,7 @@ import dialogos_materiales.jd_buscar_pedidos;
 import dialogos_materiales.jd_hacer_pedido;
 import dialogos_materiales.jd_historial_solicitud;
 import dialogos_materiales.jd_inventario;
+import dialogos_materiales.jd_pedido_menudr;
 import dialogos_materiales.jd_proveedores;
 import dialogos_materiales.jd_revisar_solicitud;
 import dialogos_pacientes.jd_buscar_paciente;
@@ -47,6 +48,7 @@ import dialogos_pacientes.jd_buscar_paciente_baja;
 import dialogos_pacientes.jd_buscar_paciente_editar;
 import dialogos_pacientes.jd_buscar_paciente_encontrado_menudr;
 import dialogos_pacientes.jd_buscar_paciente_historial;
+import dialogos_pacientes.jd_buscar_paciente_menudr;
 
 
 public class ConectorDB_mysql {
@@ -1867,6 +1869,27 @@ public void mostrar_filtro_paciente(jd_buscar_paciente datos) throws SQLExceptio
     }
 }
 
+public void mostrar_filtro_paciente_menu_dr(jd_buscar_paciente_menudr datos) throws SQLException {
+    // Consulta para ver el nombre de las tablas
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SHOW fields FROM pacientes WHERE field = 'DNI_paciente' OR field = 'Nombre' OR field = 'Apellidos' OR field = 'Estado';";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+        	String Field = rs.getString("Field");
+            datos.setCb_filtrar(Field);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+
 public void mostrar_filtro_paciente_editar(jd_buscar_paciente_editar datos) throws SQLException {
     // Consulta para ver el nombre de las tablas
 	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
@@ -2015,6 +2038,27 @@ public void mostrar_filtro_proveedores(jd_proveedores datos) throws SQLException
 }
 
 public void mostrar_filtro_inventario(jd_inventario datos) throws SQLException {
+    // Consulta para ver el nombre de las tablas
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SHOW fields FROM inventario WHERE field = 'Nombre';";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+        	String Field = rs.getString("Field");
+            datos.setCb_filtrar(Field);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+
+public void mostrar_filtro_inventario_menu_dr(jd_pedido_menudr datos) throws SQLException {
     // Consulta para ver el nombre de las tablas
 	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
     statement = conect.createStatement();
