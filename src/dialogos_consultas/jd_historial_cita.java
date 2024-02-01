@@ -63,10 +63,7 @@ public class jd_historial_cita extends JDialog {
 			jd_historial_cita dialog = new jd_historial_cita();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
-	
-			//aqui tienes que obtener la lista
-			//lista que viene de conectorDB
-
+			
 				
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -231,7 +228,6 @@ public class jd_historial_cita extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				
 			try {
 				Map parametros = new HashMap();

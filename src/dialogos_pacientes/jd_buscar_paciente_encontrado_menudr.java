@@ -174,7 +174,7 @@ public class jd_buscar_paciente_encontrado_menudr extends JDialog {
 						dispose();
 						try {
 							conector.consulta_paciente_ficha(getTxt_dni().getText().toString());
-							jd_buscar_paciente_ficha ventana = new jd_buscar_paciente_ficha();
+							jd_buscar_paciente_ficha ventana = new jd_buscar_paciente_ficha(txt_dni.getText().toString());
 							
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block

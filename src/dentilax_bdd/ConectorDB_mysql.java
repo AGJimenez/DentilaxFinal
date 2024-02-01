@@ -597,6 +597,7 @@ public String consulta_doctor_eliminar(String nombre, String apellidos) throws S
 	public List<Cita> obtenerInfoPaciente(String DNI_paciente) {
 	    List<Cita> historiales = new ArrayList<>();
 
+	    
 	    try {
 	        conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 	        statement = conect.createStatement();
@@ -943,7 +944,7 @@ public String consulta_paciente_ficha(String dni) throws SQLException{
         if (resultSet.next()) {
             // Resultado encontrado
             System.out.println("Resultado encontrado");
-            dialogos_pacientes.jd_buscar_paciente_ficha ventana = new dialogos_pacientes.jd_buscar_paciente_ficha();
+            dialogos_pacientes.jd_buscar_paciente_ficha ventana = new dialogos_pacientes.jd_buscar_paciente_ficha(dni);
             String dniSql = resultSet.getString("DNI_paciente");
             String nombreSql = resultSet.getString("Nombre");
             String apellidosSql = resultSet.getString("Apellidos");

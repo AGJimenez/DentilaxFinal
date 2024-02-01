@@ -11,7 +11,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,9 +25,18 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+import com.mysql.jdbc.Connection;
+
 import Modelo.Cita;
 import Modelo.Paciente;
 import dentilax_bdd.ConectorDB_mysql;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.JToggleButton;
@@ -39,6 +50,7 @@ public class jd_buscar_paciente_historial extends JDialog {
     private static DefaultTableModel model;
     protected JTextField txt_filtrar;
     dentilax_bdd.ConectorDB_mysql consultasDB = new dentilax_bdd.ConectorDB_mysql();
+    private ConectorDB_mysql conection;
     JComboBox cb_filtrar = new JComboBox();
 
     public jd_buscar_paciente_historial(String DNI_paciente) {
@@ -129,9 +141,22 @@ public class jd_buscar_paciente_historial extends JDialog {
         btn_salir_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_salir_1.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		
+        		try {
+    				Map parametros = new HashMap();
+    				parametros.put("DNI_paciente", DNI_paciente);
+    				JasperReport reporte = JasperCompileManager.compileReport("Informes/Historial_paciente.jrxml");
+    				JasperPrint jp;
+    				ConectorDB_mysql c = new ConectorDB_mysql();
+    					jp = JasperFillManager.fillReport(reporte, parametros, c.conectar() );
+    					JasperViewer.viewReport(jp,false);
+    				} catch (JRException e1) {
+    					// TODO Auto-generated catch block
+    					e1.printStackTrace();
+    				}
         	}
-        });
+        }
+        	
+        );
         btn_salir_1.setForeground(Color.WHITE);
         btn_salir_1.setFont(new Font("Barlow", Font.BOLD, 20));
         btn_salir_1.setBorderPainted(false);
