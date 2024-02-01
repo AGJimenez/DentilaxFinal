@@ -228,7 +228,7 @@ public class jd_historial_cita extends JDialog {
 				
 			try {
 				Map parametros = new HashMap();
-			JasperReport reporte = JasperCompileManager.compileReport("src/Informes/Historial_cita.jrxml");
+			JasperReport reporte = JasperCompileManager.compileReport("Informes/Historial_cita.jrxml");
 			JasperPrint jp;
 				jp = JasperFillManager.fillReport(reporte, parametros, conection.conectar());
 				JasperViewer.viewReport(jp,false);
