@@ -16,7 +16,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import java.awt.Cursor;
@@ -26,6 +28,13 @@ import javax.swing.table.DefaultTableModel;
 
 import Modelo.Cita;
 import dentilax_bdd.ConectorDB_mysql;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+
 import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 import javax.swing.JToggleButton;
@@ -211,6 +220,26 @@ public class jd_historial_cita extends JDialog {
 		contentPanel.add(btn_filtrar_toggle);
 		
 		JButton btn_salir_1 = new JButton("IMPRIMIR");
+		btn_salir_1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				
+			try {
+				Map parametros = new HashMap();
+			JasperReport reporte = JasperCompileManager.compileReport("src/Informes/Historial_cita.jrxml");
+			JasperPrint jp;
+				jp = JasperFillManager.fillReport(reporte, parametros, conection.conectar());
+				JasperViewer.viewReport(jp,false);
+			} catch (JRException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		
+			}
+			
+		});
 		btn_salir_1.setForeground(Color.WHITE);
 		btn_salir_1.setFont(new Font("Barlow", Font.BOLD, 20));
 		btn_salir_1.setBorderPainted(false);
