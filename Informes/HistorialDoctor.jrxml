@@ -6,7 +6,7 @@
 	<parameter name="DNI_doctor" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT * FROM citas
-WHERE DNI_doctor =  $P{DNI_doctor} ]]>
+WHERE DNI_doctor =  $P{DNI_doctor}]]>
 	</queryString>
 	<field name="Fecha" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="Fecha"/>

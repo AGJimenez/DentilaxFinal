@@ -9,6 +9,15 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import dentilax_bdd.ConectorDB_mysql;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+
 import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -20,12 +29,15 @@ import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.util.HashMap;
+import java.util.Map;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class jd_buscar_dr_ficha extends JDialog {
 
 	private static final long serialVersionUID = 1L;
+	protected static final Object DNI_doctor = null;
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txt_dni;
 	private JTextField txt_nombre;
@@ -39,7 +51,7 @@ public class jd_buscar_dr_ficha extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			jd_buscar_dr_ficha dialog = new jd_buscar_dr_ficha();
+			jd_buscar_dr_ficha dialog = new jd_buscar_dr_ficha(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -50,7 +62,7 @@ public class jd_buscar_dr_ficha extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public jd_buscar_dr_ficha() {
+	public jd_buscar_dr_ficha(String DNI_doctor) {
 		setModal(true);
 		setPreferredSize(new Dimension(545, 554));
 		setResizable(false);
@@ -205,6 +217,22 @@ public class jd_buscar_dr_ficha extends JDialog {
 			}
 			{
 				JButton btn_salir = new JButton("IMPRIMIR");
+				btn_salir.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						try {
+		    				Map parametros = new HashMap();
+		    				parametros.put("DNI_doctor", DNI_doctor);
+		    				JasperReport reporte = JasperCompileManager.compileReport("Informes/FichaDoctor.jrxml");
+		    				JasperPrint jp;
+		    				ConectorDB_mysql c = new ConectorDB_mysql();
+		    					jp = JasperFillManager.fillReport(reporte, parametros, c.conectar() );
+		    					JasperViewer.viewReport(jp,false);
+		    				} catch (JRException e1) {
+		    					// TODO Auto-generated catch block
+		    					e1.printStackTrace();
+		    				}
+					}
+				});
 				btn_salir.setForeground(Color.WHITE);
 				btn_salir.setFont(new Font("Barlow", Font.BOLD, 20));
 				btn_salir.setBorderPainted(false);

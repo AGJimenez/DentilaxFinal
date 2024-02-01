@@ -900,7 +900,7 @@ public String consulta_doctor_ficha(String dni) throws SQLException{
             if (resultSet.next()) {
                 // Resultado encontrado
                 System.out.println("Resultado encontrado");
-                dialogos_doctores.jd_buscar_dr_ficha ventana = new dialogos_doctores.jd_buscar_dr_ficha();
+                dialogos_doctores.jd_buscar_dr_ficha ventana = new dialogos_doctores.jd_buscar_dr_ficha(dni);
                 String dniSql = resultSet.getString("DNI_doctor");
                 String nombreSql = resultSet.getString("Nombre");
                 String apellidosSql = resultSet.getString("Apellidos");

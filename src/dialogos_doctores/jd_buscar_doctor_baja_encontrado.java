@@ -199,7 +199,7 @@ public class jd_buscar_doctor_baja_encontrado extends JDialog {
 					ConectorDB_mysql conector = new ConectorDB_mysql();
 					try {
 						conector.consulta_doctor_ficha(getTxt_dni().getText().toString());
-					jd_buscar_dr_ficha ventana = new jd_buscar_dr_ficha();
+					jd_buscar_dr_ficha ventana = new jd_buscar_dr_ficha(txt_dni.getText().toString());
 				}
 					catch (SQLException e1) {
 					// TODO Auto-generated catch block
