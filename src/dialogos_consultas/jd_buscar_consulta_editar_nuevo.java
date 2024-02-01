@@ -43,7 +43,7 @@ import javax.swing.JComboBox;
 import javax.swing.JToggleButton;
 import javax.swing.ImageIcon;
 
-public class jd_buscar_consulta_eliminar extends JDialog {
+public class jd_buscar_consulta_editar_nuevo extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
@@ -59,7 +59,7 @@ public class jd_buscar_consulta_eliminar extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			jd_buscar_consulta_eliminar dialog = new jd_buscar_consulta_eliminar();
+			jd_buscar_consulta_editar_nuevo dialog = new jd_buscar_consulta_editar_nuevo();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -70,16 +70,16 @@ public class jd_buscar_consulta_eliminar extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public jd_buscar_consulta_eliminar() {
+	public jd_buscar_consulta_editar_nuevo() {
 		try {
 			//CON ESTO MOSTRAMOS LOS COMBO BOX
-			consultasDB.mostrar_filtro_cita_eliminar(this);
+			consultasDB.mostrar_filtro_cita_editar(this);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_buscar_consulta_eliminar.class.getResource("/iconos_menus/dentilaxIcono.png")));
-		setTitle("Eliminar consulta");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_buscar_consulta_editar_nuevo.class.getResource("/iconos_menus/dentilaxIcono.png")));
+		setTitle("Editar consulta");
 		setPreferredSize(new Dimension(554, 343));
 		setModal(true);
 		setResizable(false);
@@ -91,10 +91,10 @@ public class jd_buscar_consulta_eliminar extends JDialog {
 		contentPanel.setLayout(null);
 		setLocationRelativeTo(contentPanel);
 		{
-			JLabel lbl_citas = new JLabel("CITAS");
-			lbl_citas.setFont(new Font("Barlow", Font.BOLD, 20));
-			lbl_citas.setBounds(26, 35, 176, 42);
-			contentPanel.add(lbl_citas);
+			JLabel lbl_pacientes = new JLabel("CITAS");
+			lbl_pacientes.setFont(new Font("Barlow", Font.BOLD, 20));
+			lbl_pacientes.setBounds(26, 35, 176, 42);
+			contentPanel.add(lbl_pacientes);
 		}
 		{
 			JPanel panel = new JPanel();
@@ -140,7 +140,7 @@ public class jd_buscar_consulta_eliminar extends JDialog {
                 model = new DefaultTableModel();
                 model.addColumn("Fecha");
                 model.addColumn("Especialidad");
-                model.addColumn("Paciente");
+                model.addColumn("Pacientes");
 
                 ConectorDB_mysql conection = new ConectorDB_mysql();
                 conection.conectar();
@@ -155,19 +155,19 @@ public class jd_buscar_consulta_eliminar extends JDialog {
 		JLabel lbl_fecha = new JLabel("FECHA");
 		lbl_fecha.setForeground(Color.WHITE);
 		lbl_fecha.setFont(new Font("Barlow", Font.BOLD, 17));
-		lbl_fecha.setBounds(34, 11, 96, 21);
+		lbl_fecha.setBounds(72, 11, 96, 21);
 		panel_contened.add(lbl_fecha);
 		
 		JLabel lbl_especialidad = new JLabel("ESPECIALIDAD");
 		lbl_especialidad.setForeground(Color.WHITE);
 		lbl_especialidad.setFont(new Font("Barlow", Font.BOLD, 17));
-		lbl_especialidad.setBounds(261, 11, 126, 21);
+		lbl_especialidad.setBounds(285, 11, 125, 21);
 		panel_contened.add(lbl_especialidad);
 		
 		JLabel lbl_dni_paciente = new JLabel("PACIENTES");
 		lbl_dni_paciente.setForeground(Color.WHITE);
 		lbl_dni_paciente.setFont(new Font("Barlow", Font.BOLD, 17));
-		lbl_dni_paciente.setBounds(519, 11, 140, 21);
+		lbl_dni_paciente.setBounds(509, 11, 140, 21);
 		panel_contened.add(lbl_dni_paciente);
 		
 		JPanel panel_contened_1 = new JPanel();
@@ -193,14 +193,14 @@ public class jd_buscar_consulta_eliminar extends JDialog {
 		
 		JToggleButton btn_filtrar_toggle = new JToggleButton("");
 		btn_filtrar_toggle.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btn_filtrar_toggle.setSelectedIcon(new ImageIcon(jd_buscar_consulta_eliminar.class.getResource("/iconos_submenus/nofiltrar.png")));
-		btn_filtrar_toggle.setIcon(new ImageIcon(jd_buscar_consulta_eliminar.class.getResource("/iconos_submenus/iconoFiltrar.png")));
+		btn_filtrar_toggle.setSelectedIcon(new ImageIcon(jd_buscar_consulta_editar_nuevo.class.getResource("/iconos_submenus/nofiltrar.png")));
+		btn_filtrar_toggle.setIcon(new ImageIcon(jd_buscar_consulta_editar_nuevo.class.getResource("/iconos_submenus/iconoFiltrar.png")));
 		btn_filtrar_toggle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(btn_filtrar_toggle.isSelected()) {
 					String field_filtrado = cb_filtrar.getSelectedItem().toString();
 					try {
-						llenarTabla(conection.filtrar_tabla_eliminar_citas(field_filtrado,txt_filtrar.getText().toString()));
+						llenarTabla(conection.filtrar_tabla_editar_citas(field_filtrado,txt_filtrar.getText().toString()));
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -224,16 +224,15 @@ public class jd_buscar_consulta_eliminar extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			buttonPane.setLayout(null);
 			{
-				JButton btn_buscar = new JButton("BUSCAR");
-				btn_buscar.addActionListener(new ActionListener() {
+				JButton btn_editar = new JButton("EDITAR");
+				btn_editar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						if (indiceFilaSeleccionada != -1) {
-							String fecha = (String) table.getValueAt(indiceFilaSeleccionada, 0);
-		                    String dni = (String) table.getValueAt(indiceFilaSeleccionada, 2);
-	                    dentilax_bdd.ConectorDB_mysql consulta = new dentilax_bdd.ConectorDB_mysql();
+						String fecha = (String) table.getValueAt(indiceFilaSeleccionada, 0);
+			            String dni = (String) table.getValueAt(indiceFilaSeleccionada, 2);
 	                    try {
 	                    	dispose();
-	                    	consulta.consulta_eliminar_cita(fecha, dni);
+	                    	conection.consulta_buscar_cita(fecha, dni);
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -241,6 +240,7 @@ public class jd_buscar_consulta_eliminar extends JDialog {
 	                }
 					}
 				});
+				
 				txt_filtrar.addKeyListener(new KeyAdapter() {
 					@Override
 					public void keyPressed(KeyEvent e) {
@@ -249,7 +249,6 @@ public class jd_buscar_consulta_eliminar extends JDialog {
 						}
 					}
 				});
-				
 				txt_filtrar.addKeyListener(new KeyAdapter() {
 					@Override
 					public void keyPressed(KeyEvent e) {
@@ -263,7 +262,7 @@ public class jd_buscar_consulta_eliminar extends JDialog {
 							else {
 								String field_filtrado = cb_filtrar.getSelectedItem().toString();
 								try {
-									llenarTabla(conection.filtrar_tabla_eliminar_citas(field_filtrado,txt_filtrar.getText().toString()));
+									llenarTabla(conection.filtrar_tabla_editar_citas(field_filtrado,txt_filtrar.getText().toString()));
 								} catch (SQLException e1) {
 									// TODO Auto-generated catch block
 									e1.printStackTrace();
@@ -273,14 +272,14 @@ public class jd_buscar_consulta_eliminar extends JDialog {
 						}
 					}
 				});
-				btn_buscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-				btn_buscar.setBorderPainted(false);
-				btn_buscar.setFont(new Font("Barlow", Font.BOLD, 20));
-				btn_buscar.setForeground(new Color(255, 255, 255));
-				btn_buscar.setBackground(new Color(32, 160, 216));
-				btn_buscar.setBounds(56, 0, 153, 43);
-				btn_buscar.setActionCommand("OK");
-				buttonPane.add(btn_buscar);
+				btn_editar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				btn_editar.setBorderPainted(false);
+				btn_editar.setFont(new Font("Barlow", Font.BOLD, 20));
+				btn_editar.setForeground(new Color(255, 255, 255));
+				btn_editar.setBackground(new Color(32, 160, 216));
+				btn_editar.setBounds(56, 0, 153, 43);
+				btn_editar.setActionCommand("OK");
+				buttonPane.add(btn_editar);
 				
 			}
 			{

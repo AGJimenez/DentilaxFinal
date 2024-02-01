@@ -27,7 +27,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-import dialogos_consultas.jd_buscar_consulta_editar;
+import dialogos_consultas.jd_buscar_consulta_editar_nuevo;
 import dialogos_consultas.jd_historial_cita;
 
 import java.awt.Font;
@@ -179,7 +179,7 @@ public class jf_consulta extends JFrame {
        JMenuItem mntmNewMenuItem_5 = new JMenuItem("Modificar cita");
        mntmNewMenuItem_5.addActionListener(new ActionListener() {
        	public void actionPerformed(ActionEvent e) {
-    		jd_buscar_consulta_editar vent = new jd_buscar_consulta_editar();
+    		jd_buscar_consulta_editar_nuevo vent = new jd_buscar_consulta_editar_nuevo();
     		vent.setVisible(true); 		
     		
     	}
@@ -791,7 +791,7 @@ public class jf_consulta extends JFrame {
         btn_mod_cita.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_mod_cita.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		jd_buscar_consulta_editar vent = new jd_buscar_consulta_editar();
+        		jd_buscar_consulta_editar_nuevo vent = new jd_buscar_consulta_editar_nuevo();
         		vent.setVisible(true); 		
         		
         	}

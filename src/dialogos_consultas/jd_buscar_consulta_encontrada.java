@@ -176,6 +176,7 @@ public class jd_buscar_consulta_encontrada extends JDialog {
 						String datos = getLbl_id().getText().toString();
 						System.out.println(datos);
 						try {
+							dispose();
 							consulta_ficha.consulta_ver_ficha(datos);
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block

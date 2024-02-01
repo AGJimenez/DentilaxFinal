@@ -30,6 +30,9 @@ import Modelo.Paciente;
 import Modelo.Pedido;
 import Modelo.Proveedores;
 import Modelo.Solicitud;
+import dialogos_consultas.jd_buscar_cita;
+import dialogos_consultas.jd_buscar_consulta_editar_nuevo;
+import dialogos_consultas.jd_buscar_consulta_eliminar;
 import dialogos_consultas.jd_historial_cita;
 import dialogos_consultas.jd_mod_consulta;
 import dialogos_consultas.jd_nueva_consulta;
@@ -362,7 +365,7 @@ public String consulta_pedido(int id) throws SQLException{
 	
 }
 
-public String consulta_buscar_cita(String dni, String fecha) throws SQLException{
+public String consulta_buscar_cita(String fecha, String dni) throws SQLException{
 	
 	try {
 		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
@@ -374,6 +377,43 @@ public String consulta_buscar_cita(String dni, String fecha) throws SQLException
             // Resultado encontrado
             System.out.println("Resultado encontrado");
             dialogos_consultas.jd_buscar_consulta_encontrada ventana = new dialogos_consultas.jd_buscar_consulta_encontrada();
+            String IDSql = resultSet.getString("citas.ID_cita");
+            String FechaSql = resultSet.getString("citas.Fecha");
+            String DoctorSql = resultSet.getString("doctores.Nombre");
+            String PacienteSql = resultSet.getString("pacientes.Nombre");
+            ventana.setLbl_id(IDSql);
+            ventana.setTxt_fecha(FechaSql);
+            ventana.setTxt_doctor(DoctorSql);
+            ventana.setTxt_paciente(PacienteSql);
+            
+            ventana.setVisible(true);
+        } else {
+            // Acceso denegado
+            System.out.println("No se ha encontrado nada");
+            JOptionPane.showMessageDialog(null, "Error, no se ha encontrado nada");
+        }
+		
+		
+	}
+	catch(SQLException ex) {
+		
+	}
+	return dni;
+	
+}
+
+public String consulta_eliminar_cita(String fecha, String dni) throws SQLException{
+	
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query =  "SELECT citas.ID_cita, citas.Fecha, doctores.Nombre, pacientes.Nombre FROM citas JOIN doctores ON citas.DNI_doctor = doctores.DNI_doctor JOIN pacientes ON citas.DNI_paciente = pacientes.DNI_paciente WHERE citas.DNI_paciente = '" + dni +"' AND citas.Fecha = '"+ fecha+ "'";
+        ResultSet resultSet = statement.executeQuery(query);
+		
+        if (resultSet.next()) {
+            // Resultado encontrado
+            System.out.println("Resultado encontrado");
+            dialogos_consultas.jd_buscar_consulta_eliminar_encontrada ventana = new dialogos_consultas.jd_buscar_consulta_eliminar_encontrada();
             String IDSql = resultSet.getString("citas.ID_cita");
             String FechaSql = resultSet.getString("citas.Fecha");
             String DoctorSql = resultSet.getString("doctores.Nombre");
@@ -2122,7 +2162,70 @@ public void mostrar_filtro_solicitudes(jd_historial_solicitud datos) throws SQLE
     }
 }
 
+public void mostrar_filtro_cita(jd_buscar_cita datos) throws SQLException {
+    // Consulta para ver el nombre de las tablas
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SHOW fields FROM citas WHERE field = 'Fecha' OR field = 'Especialidad'  OR field = 'DNI_paciente';";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+        	String Field = rs.getString("Field");
+            datos.setCb_filtrar(Field);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+
 public void mostrar_filtro_historial_cita(jd_historial_cita datos) throws SQLException {
+    // Consulta para ver el nombre de las tablas
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SHOW fields FROM citas WHERE field = 'Fecha' OR field = 'Especialidad'  OR field = 'DNI_paciente';";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+        	String Field = rs.getString("Field");
+            datos.setCb_filtrar(Field);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+
+public void mostrar_filtro_cita_eliminar(jd_buscar_consulta_eliminar datos) throws SQLException {
+    // Consulta para ver el nombre de las tablas
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SHOW fields FROM citas WHERE field = 'Fecha' OR field = 'Especialidad'  OR field = 'DNI_paciente';";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+        	String Field = rs.getString("Field");
+            datos.setCb_filtrar(Field);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+
+public void mostrar_filtro_cita_editar(jd_buscar_consulta_editar_nuevo datos) throws SQLException {
     // Consulta para ver el nombre de las tablas
 	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
     statement = conect.createStatement();
@@ -2531,7 +2634,121 @@ public List<Solicitud> filtrar_tabla_solicitudes(String campo, String variable) 
 	
 }
 
+public List<Cita> filtrar_tabla_buscar_citas(String campo, String variable) throws SQLException{
+	List<Cita> citas = new ArrayList<>();
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "SELECT * FROM citas WHERE " + campo + " LIKE '" + variable + "%' OR " + campo + " LIKE '%" + variable + "'";
+        ResultSet resultSet = statement.executeQuery(query);
+		
+        while (resultSet.next()) {
+            String fecha = resultSet.getString("Fecha");
+            String especialidad = resultSet.getString("Especialidad");
+            String dni_paciente = resultSet.getString("DNI_paciente");
+            
+
+            Cita class_cita = new Cita(fecha, especialidad, dni_paciente, "");
+
+            citas.add(class_cita);
+        }
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    } finally {
+        try {
+            if (statement != null) {
+                statement.close();
+            }
+            if (conect != null) {
+                conect.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    return citas;
+	
+}
+
 public List<Cita> filtrar_tabla_historial_citas(String campo, String variable) throws SQLException{
+	List<Cita> citas = new ArrayList<>();
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "SELECT * FROM citas WHERE " + campo + " LIKE '" + variable + "%' OR " + campo + " LIKE '%" + variable + "'";
+        ResultSet resultSet = statement.executeQuery(query);
+		
+        while (resultSet.next()) {
+            String fecha = resultSet.getString("Fecha");
+            String especialidad = resultSet.getString("Especialidad");
+            String dni_paciente = resultSet.getString("DNI_paciente");
+            
+
+            Cita class_cita = new Cita(fecha, especialidad, dni_paciente, "");
+
+            citas.add(class_cita);
+        }
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    } finally {
+        try {
+            if (statement != null) {
+                statement.close();
+            }
+            if (conect != null) {
+                conect.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    return citas;
+	
+}
+
+public List<Cita> filtrar_tabla_eliminar_citas(String campo, String variable) throws SQLException{
+	List<Cita> citas = new ArrayList<>();
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "SELECT * FROM citas WHERE " + campo + " LIKE '" + variable + "%' OR " + campo + " LIKE '%" + variable + "'";
+        ResultSet resultSet = statement.executeQuery(query);
+		
+        while (resultSet.next()) {
+            String fecha = resultSet.getString("Fecha");
+            String especialidad = resultSet.getString("Especialidad");
+            String dni_paciente = resultSet.getString("DNI_paciente");
+            
+
+            Cita class_cita = new Cita(fecha, especialidad, dni_paciente, "");
+
+            citas.add(class_cita);
+        }
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    } finally {
+        try {
+            if (statement != null) {
+                statement.close();
+            }
+            if (conect != null) {
+                conect.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    return citas;
+	
+}
+
+public List<Cita> filtrar_tabla_editar_citas(String campo, String variable) throws SQLException{
 	List<Cita> citas = new ArrayList<>();
 	try {
 		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
