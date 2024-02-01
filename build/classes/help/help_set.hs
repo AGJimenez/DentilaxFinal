@@ -23,7 +23,7 @@
     <view>
         <name>Tabla de contenido</name>
         <label>Tabla de contenido</label>
-        <type>javax.help-TOCView</type>
+        <type>javax.help.TOCView</type>
         <data>toc.xml</data>
     </view>
 </helpset>

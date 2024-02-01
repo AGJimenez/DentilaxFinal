@@ -1,11 +1,19 @@
 
-<toc version = "1.0">
-    <tocitem text = "Indice" target = "Indice"/>
-    <tocitem text = "Gestión de pacientes admin" target = "adminPacientes"/>
-    <tocitem text = "Gestión de doctores admin" target = "doctor"/>
-    <tocitem text = "Gestión de material admin" target = "material"/>
-    <tocitem text = "Gestión de citas" target = "citas"/>
-    <tocitem text = "Gestión de facturación" target = "facturacion"/>
-    <tocitem text = "Ajustes" target = "ajustes"/>
+<toc version="1.0">
+    <tocitem text="Indice" target="Indice"/>
     
+    <!-- Nodo de Administrador -->
+    <tocitem text="Administrador" target="admin">
+        <tocitem text="Gestión de pacientes" target="adminPacientes"/>
+        <tocitem text="Gestión de doctores" target="doctor"/>
+        <tocitem text="Gestión de material" target="material"/>
+        <tocitem text="Gestión de citas" target="citas"/>
+        <tocitem text="Gestión de facturación" target="facturacion"/>
+        <tocitem text="Ajustes" target="ajustes"/>
+    </tocitem>
+
+    <!-- Nodo de Doctor -->
+    <tocitem text="Doctor" target="doctor">
+        <tocitem text="Ayuda doctor" target="ayudaDoctores"/>
+    </tocitem>
 </toc>
