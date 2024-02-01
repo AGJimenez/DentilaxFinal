@@ -579,8 +579,22 @@ public class jf_doctores extends javax.swing.JFrame {
 	        		ventana_historial.setVisible(true);
 	        	}
 	        });
+	        
+	        jmenuitem_modificar_cita = new JMenuItem("Modificar cita");
+	        jmenuitem_modificar_cita.setFont(new Font("Arial", Font.PLAIN, 12));
+	        jMenu5.add(jmenuitem_modificar_cita);
 	        jmenuitem_nueva_cita.setFont(new Font("Arial", Font.PLAIN, 12));
 	        jMenu5.add(jmenuitem_nueva_cita);
+	        jmenuitem_modificar_cita.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		dispose();
+	        		jf_consulta ventana = new jf_consulta();
+	        		dialogos_consultas.jd_buscar_consulta_editar ventana_historial = new dialogos_consultas.jd_buscar_consulta_editar();
+	        		ventana.setVisible(true);
+	        		ventana_historial.setVisible(true);
+	        	}
+	        });
+	        
 
 	        jMenu6.setText("FACTURACIÓN");
 	        menu_inicio.add(jMenu6);
@@ -610,13 +624,9 @@ public class jf_doctores extends javax.swing.JFrame {
 	        jmenuitem_buscar_factura.setFont(new Font("Arial", Font.PLAIN, 12));
 	        jMenu6.add(jmenuitem_buscar_factura);
 	        
-	        jmenuitem_historial_pago = new JMenuItem("Historial pago");
+	        jmenuitem_historial_pago = new JMenuItem("Historial de pago");
 	        jmenuitem_historial_pago.setFont(new Font("Arial", Font.PLAIN, 12));
 	        jMenu6.add(jmenuitem_historial_pago);
-	        
-	        jmenuitem_balance_gastos = new JMenuItem("Balance gastos");
-	        jmenuitem_balance_gastos.setFont(new Font("Arial", Font.PLAIN, 12));
-	        jMenu6.add(jmenuitem_balance_gastos);
 	        
 	        jmenuitem_nueva_factura = new JMenuItem("Nueva factura");
 	        jmenuitem_nueva_factura.addActionListener(new ActionListener() {
@@ -915,10 +925,10 @@ public class jf_doctores extends javax.swing.JFrame {
 	    private JMenuItem jmenuitem_menu_facturacion;
 	    private JMenuItem jmenuitem_historial_pago;
 	    private JMenuItem jmenuitem_nueva_factura;
-	    private JMenuItem jmenuitem_balance_gastos;
 	    private JLabel fecha;
 	    private JMenuItem jmenuitem_editar_doctor;
 	    private JButton btn_ayuda;
+	    private JMenuItem jmenuitem_modificar_cita;
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {

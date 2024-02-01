@@ -457,6 +457,19 @@ public class jf_material extends JFrame {
         		ventana_historial.setVisible(true);
         	}
         });
+        
+        jmenuitem_modificar_cita = new JMenuItem("Modificar cita");
+        jmenuitem_modificar_cita.setFont(new Font("Arial", Font.PLAIN, 12));
+        jMenu5.add(jmenuitem_modificar_cita);
+        jmenuitem_modificar_cita.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_consulta ventana = new jf_consulta();
+        		dialogos_consultas.jd_buscar_consulta_editar ventana_historial = new dialogos_consultas.jd_buscar_consulta_editar();
+        		ventana.setVisible(true);
+        		ventana_historial.setVisible(true);
+        	}
+        });
         jmenuitem_nueva_cita.setFont(new Font("Arial", Font.PLAIN, 12));
         jMenu5.add(jmenuitem_nueva_cita);
 
@@ -491,10 +504,6 @@ public class jf_material extends JFrame {
         jmenuitem_historial_pago = new JMenuItem("Historial de pago");
         jmenuitem_historial_pago.setFont(new Font("Arial", Font.PLAIN, 12));
         jMenu6.add(jmenuitem_historial_pago);
-        
-        jmenuitem_balance_gastos = new JMenuItem("Balance de gastos");
-        jmenuitem_balance_gastos.setFont(new Font("Arial", Font.PLAIN, 12));
-        jMenu6.add(jmenuitem_balance_gastos);
         
         jmenuitem_nueva_factura = new JMenuItem("Nueva factura");
         jmenuitem_nueva_factura.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -842,9 +851,9 @@ public class jf_material extends JFrame {
     private JMenuItem jmenuitem_menu_facturacion;
     private JMenuItem jmenuitem_buscar_factura;
     private JMenuItem jmenuitem_historial_pago;
-    private JMenuItem jmenuitem_balance_gastos;
     private JMenuItem jmenuitem_nueva_factura;
     private JButton btn_ayuda;
+    private JMenuItem jmenuitem_modificar_cita;
     // End of variables declaration//GEN-END:variables
 
 	private static void addPopup(Component component, final JPopupMenu popup) {

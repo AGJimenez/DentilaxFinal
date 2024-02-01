@@ -27,7 +27,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-import dialogos_consultas.jd_buscar_consulta_editar_nuevo;
+import dialogos_consultas.jd_buscar_consulta_editar;
 import dialogos_consultas.jd_historial_cita;
 
 import java.awt.Font;
@@ -179,7 +179,7 @@ public class jf_consulta extends JFrame {
        JMenuItem mntmNewMenuItem_5 = new JMenuItem("Modificar cita");
        mntmNewMenuItem_5.addActionListener(new ActionListener() {
        	public void actionPerformed(ActionEvent e) {
-    		jd_buscar_consulta_editar_nuevo vent = new jd_buscar_consulta_editar_nuevo();
+    		jd_buscar_consulta_editar vent = new jd_buscar_consulta_editar();
     		vent.setVisible(true); 		
     		
     	}
@@ -525,10 +525,41 @@ public class jf_consulta extends JFrame {
         jmenuitem_eliminar_cita = new JMenuItem("Eliminar cita");
         jmenuitem_eliminar_cita.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_consulta.add(jmenuitem_eliminar_cita);
+        jmenuitem_eliminar_cita.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_consulta ventana = new jf_consulta();
+        		dialogos_consultas.jd_buscar_consulta_eliminar ventana_historial = new dialogos_consultas.jd_buscar_consulta_eliminar();
+        		ventana.setVisible(true);
+        		ventana_historial.setVisible(true);
+        	}
+        });
+        
+        jmenuitem_modificar_cita = new JMenuItem("Modificar cita");
+        jmenuitem_modificar_cita.setFont(new Font("Arial", Font.PLAIN, 12));
+        jmenu_consulta.add(jmenuitem_modificar_cita);
+        jmenuitem_modificar_cita.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_consulta ventana = new jf_consulta();
+        		dialogos_consultas.jd_buscar_consulta_editar ventana_historial = new dialogos_consultas.jd_buscar_consulta_editar();
+        		ventana.setVisible(true);
+        		ventana_historial.setVisible(true);
+        	}
+        });
         
         jmenuitem_nueva_cita = new JMenuItem("Nueva cita");
         jmenuitem_nueva_cita.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_consulta.add(jmenuitem_nueva_cita);
+        jmenuitem_nueva_cita.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_consulta ventana = new jf_consulta();
+        		dialogos_consultas.jd_nueva_consulta ventana_historial = new dialogos_consultas.jd_nueva_consulta();
+        		ventana.setVisible(true);
+        		ventana_historial.setVisible(true);
+        	}
+        });
 
         jmenu_facturacion.setText("FACTURACIÓN");
         menu_inicio.add(jmenu_facturacion);
@@ -552,10 +583,6 @@ public class jf_consulta extends JFrame {
         jmenuitem_historial_pago = new JMenuItem("Historial de pago");
         jmenuitem_historial_pago.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_facturacion.add(jmenuitem_historial_pago);
-        
-        jmenuitem_balance_gastos = new JMenuItem("Balance de gastos");
-        jmenuitem_balance_gastos.setFont(new Font("Arial", Font.PLAIN, 12));
-        jmenu_facturacion.add(jmenuitem_balance_gastos);
         
         jmenuitem_nueva_factura = new JMenuItem("Nueva factura");
         jmenuitem_nueva_factura.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -733,6 +760,13 @@ public class jf_consulta extends JFrame {
         			if(combo.contains(KeyEvent.VK_4)&&combo.contains(KeyEvent.VK_C)&&combo.contains(16)) {
         				dispose();
         				jf_consulta ventana = new jf_consulta();
+        				dialogos_consultas.jd_buscar_consulta_editar ventana_buscar = new dialogos_consultas.jd_buscar_consulta_editar();
+        				ventana.setVisible(true);
+        				ventana_buscar.setVisible(true);
+        			}
+        			if(combo.contains(KeyEvent.VK_5)&&combo.contains(KeyEvent.VK_C)&&combo.contains(16)) {
+        				dispose();
+        				jf_consulta ventana = new jf_consulta();
         				dialogos_consultas.jd_nueva_consulta ventana_nueva = new dialogos_consultas.jd_nueva_consulta();
         				ventana.setVisible(true);
         				ventana_nueva.setVisible(true);
@@ -754,13 +788,6 @@ public class jf_consulta extends JFrame {
         				//ventana_buscar.setVisible(true);
         			}
         			if(combo.contains(KeyEvent.VK_3)&&combo.contains(KeyEvent.VK_F)&&combo.contains(16)) {
-        				dispose();
-        				jf_facturacion ventana = new jf_facturacion();
-        				//dialogos_facturacion.jd_buscar ventana_buscar = new dialogos_facturacion.jd_buscar();
-        				ventana.setVisible(true);
-        				//ventana_buscar.setVisible(true);
-        			}
-        			if(combo.contains(KeyEvent.VK_4)&&combo.contains(KeyEvent.VK_F)&&combo.contains(16)) {
         				dispose();
         				jf_facturacion ventana = new jf_facturacion();
         				dialogos_facturas.jd_nueva_factura ventana_nueva = new dialogos_facturas.jd_nueva_factura();
@@ -791,7 +818,7 @@ public class jf_consulta extends JFrame {
         btn_mod_cita.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_mod_cita.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
-        		jd_buscar_consulta_editar_nuevo vent = new jd_buscar_consulta_editar_nuevo();
+        		jd_buscar_consulta_editar vent = new jd_buscar_consulta_editar();
         		vent.setVisible(true); 		
         		
         	}
@@ -873,7 +900,6 @@ public class jf_consulta extends JFrame {
     private JMenuItem jmenuitem_eliminar_cita;
     private JMenuItem jmenuitem_menu_facturacion;
     private JMenuItem jmenuitem_nueva_factura;
-    private JMenuItem jmenuitem_balance_gastos;
     private JMenuItem jmenuitem_buscar_factura;
     private JMenuItem jmenuitem_historial_pago;
     private JPopupMenu popupMenu;
@@ -883,6 +909,7 @@ public class jf_consulta extends JFrame {
     private JMenuItem mntmNewMenuItem_3;
     private JMenuItem mntmNewMenuItem_4;
     private JButton btn_ayuda;
+    private JMenuItem jmenuitem_modificar_cita;
     // End of variables declaration//GEN-END:variables
 
 	private static void addPopup(Component component, final JPopupMenu popup) {

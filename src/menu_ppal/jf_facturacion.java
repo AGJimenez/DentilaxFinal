@@ -431,6 +431,19 @@ public class jf_facturacion extends JFrame {
         		ventana_historial.setVisible(true);
         	}
         });
+        
+        JMenuItem jmenuitem_modificar_cita = new JMenuItem("Modificar cita");
+        jmenuitem_modificar_cita.setFont(new Font("Arial", Font.PLAIN, 12));
+        jMenu5.add(jmenuitem_modificar_cita);
+        jmenuitem_modificar_cita.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		dispose();
+        		jf_consulta ventana = new jf_consulta();
+        		dialogos_consultas.jd_buscar_consulta_editar ventana_historial = new dialogos_consultas.jd_buscar_consulta_editar();
+        		ventana.setVisible(true);
+        		ventana_historial.setVisible(true);
+        	}
+        });
         jmenuitem_nueva_cita.setFont(new Font("Arial", Font.PLAIN, 12));
         jMenu5.add(jmenuitem_nueva_cita);
 
@@ -449,10 +462,6 @@ public class jf_facturacion extends JFrame {
         JMenuItem jmenuitem_historial_pago = new JMenuItem("Historial de pago");
         jmenuitem_historial_pago.setFont(new Font("Arial", Font.PLAIN, 12));
         jMenu6.add(jmenuitem_historial_pago);
-        
-        JMenuItem jmenuitem_balance_gastos = new JMenuItem("Balance de gastos");
-        jmenuitem_balance_gastos.setFont(new Font("Arial", Font.PLAIN, 12));
-        jMenu6.add(jmenuitem_balance_gastos);
         
         JMenuItem jmenuitem_nueva_factura = new JMenuItem("Nueva factura");
         jmenuitem_nueva_factura.setFont(new Font("Arial", Font.PLAIN, 12));

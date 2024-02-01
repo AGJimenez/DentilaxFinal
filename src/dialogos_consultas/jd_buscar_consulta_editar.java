@@ -8,36 +8,52 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
-import dialogos_pacientes.jd_buscar_paciente_baja_encontrado;
+import Modelo.Cita;
+import Modelo.Paciente;
+import Modelo.Solicitud;
+import dentilax_bdd.ConectorDB_mysql;
 
 import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.Cursor;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.JSeparator;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.sql.SQLException;
+import java.util.List;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JTable;
+import javax.swing.JComboBox;
+import javax.swing.JToggleButton;
+import javax.swing.ImageIcon;
 
 public class jd_buscar_consulta_editar extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
-	private JTextField txt_IntroduceID;
-	
+    private static DefaultTableModel model;
+    private static JTable table;
+    private int indiceFilaSeleccionada;
+    protected JTextField txt_filtrar;
+    dentilax_bdd.ConectorDB_mysql consultasDB = new dentilax_bdd.ConectorDB_mysql();
+    JComboBox cb_filtrar = new JComboBox();
+
 	/**
 	 * Launch the application.
 	 */
@@ -55,12 +71,19 @@ public class jd_buscar_consulta_editar extends JDialog {
 	 * Create the dialog.
 	 */
 	public jd_buscar_consulta_editar() {
+		try {
+			//CON ESTO MOSTRAMOS LOS COMBO BOX
+			consultasDB.mostrar_filtro_cita_editar(this);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_buscar_consulta_editar.class.getResource("/iconos_menus/dentilaxIcono.png")));
-		setTitle("Modificar cita");
+		setTitle("Editar consulta");
 		setPreferredSize(new Dimension(554, 343));
 		setModal(true);
 		setResizable(false);
-		setBounds(100, 100, 554, 343);
+		setBounds(100, 100, 769, 517);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -68,73 +91,133 @@ public class jd_buscar_consulta_editar extends JDialog {
 		contentPanel.setLayout(null);
 		setLocationRelativeTo(contentPanel);
 		{
-			JLabel lbl_buscar_consulta_eliminar = new JLabel("INTRODUCE UN ID PARA MODIFICAR CITA");
-			lbl_buscar_consulta_eliminar.setFont(new Font("Barlow", Font.BOLD, 20));
-			lbl_buscar_consulta_eliminar.setBounds(35, 35, 369, 42);
-			contentPanel.add(lbl_buscar_consulta_eliminar);
-		}
-		{
-			txt_IntroduceID = new JTextField();
-			txt_IntroduceID.addKeyListener(new KeyAdapter() {
-				@Override
-				public void keyPressed(KeyEvent e) {
-					if(e.getKeyCode()==KeyEvent.VK_ENTER) {
-						dentilax_bdd.ConectorDB_mysql consulta = new dentilax_bdd.ConectorDB_mysql();
-						dispose();
-						try {
-							consulta.consulta_cita_modificar_encontrar(txt_IntroduceID.getText().toString());
-							dialogos_consultas.jd_buscar_consulta_modificar_encontrada ventana = new dialogos_consultas.jd_buscar_consulta_modificar_encontrada();
-						} catch (SQLException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-					}
-				}
-			});
-			txt_IntroduceID.addFocusListener(new FocusAdapter() {
-				@Override
-				public void focusGained(FocusEvent e) {
-					if (txt_IntroduceID.getText().equals("Introduce ID cita")) {
-						txt_IntroduceID.setText("");
-	                }
-				}
-				@Override
-				public void focusLost(FocusEvent e) {
-					if (txt_IntroduceID.getText().isEmpty()) {
-						txt_IntroduceID.setText("Introduce ID cita");
-	                }
-				}
-			});
-			txt_IntroduceID.setOpaque(false);
-			txt_IntroduceID.setText("Introduce ID cita");
-			txt_IntroduceID.setHorizontalAlignment(SwingConstants.LEFT);
-			txt_IntroduceID.setFont(new Font("Arial", Font.PLAIN, 17));
-			txt_IntroduceID.setColumns(10);
-			txt_IntroduceID.setBorder(null);
-			txt_IntroduceID.setBackground(new Color(0, 128, 192));
-			txt_IntroduceID.setBounds(110, 140, 382, 44);
-			contentPanel.add(txt_IntroduceID);
-		}
-		{
-			JLabel lbl_id = new JLabel("ID");
-			lbl_id.setForeground(new Color(0, 128, 192));
-			lbl_id.setFont(new Font("Barlow", Font.BOLD, 22));
-			lbl_id.setBounds(59, 140, 38, 44);
-			contentPanel.add(lbl_id);
+			JLabel lbl_pacientes = new JLabel("CITAS");
+			lbl_pacientes.setFont(new Font("Barlow", Font.BOLD, 20));
+			lbl_pacientes.setBounds(26, 35, 176, 42);
+			contentPanel.add(lbl_pacientes);
 		}
 		{
 			JPanel panel = new JPanel();
 			panel.setBackground(new Color(191, 231, 249));
-			panel.setBounds(0, 24, 426, 64);
+			panel.setBounds(0, 24, 217, 64);
 			contentPanel.add(panel);
 		}
-		{
-			JSeparator separator = new JSeparator();
-			separator.setForeground(new Color(0, 128, 192));
-			separator.setBackground(new Color(0, 128, 192));
-			separator.setBounds(100, 175, 237, 8);
-			contentPanel.add(separator);
-		}
+		
+		JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(30, 150, 683, 244);
+        contentPanel.add(scrollPane);
+        
+                table = new JTable();
+                table.setAutoCreateRowSorter(true);
+                scrollPane.setViewportView(table);
+                table.setModel(new DefaultTableModel(
+                	new Object[][] {
+                		{null, null, null, null, null},
+                		{null, null, null, null, null},
+                		{null, null, null, null, null},
+                		{null, null, null, null, null},
+                		{null, null, null, null, null},
+                		{null, null, null, null, null},
+                		{null, null, null, null, null},
+                		{null, null, null, null, null},
+                		{null, null, null, null, null},
+                		{null, null, null, null, null},
+                		{null, null, null, null, null},
+                		{null, null, null, null, null},
+                		{null, null, null, null, null},
+                		{null, null, null, null, null},
+                		{null, null, null, null, null},
+                	},
+                	new String[] {
+                		"", "", "",""
+                	}
+                ));
+                for (int i = 0; i < table.getColumnCount(); i++) {
+                	Class<?> col_class = table.getColumnClass(i);
+                	table.setDefaultEditor(col_class,  null);
+                	}
+                table.removeColumn(table.getColumnModel().getColumn(3));
+                table.getColumnModel().getColumn(0).setPreferredWidth(15);
+                model = new DefaultTableModel();
+                model.addColumn("Fecha");
+                model.addColumn("Especialidad");
+                model.addColumn("Pacientes");
+
+                ConectorDB_mysql conection = new ConectorDB_mysql();
+                conection.conectar();
+                llenarTabla(conection.obtenerInfoCitas());
+		
+		JPanel panel_contened = new JPanel();
+		panel_contened.setLayout(null);
+		panel_contened.setBackground(new Color(32, 160, 216));
+		panel_contened.setBounds(26, 99, 715, 43);
+		contentPanel.add(panel_contened);
+		
+		JLabel lbl_fecha = new JLabel("FECHA");
+		lbl_fecha.setForeground(Color.WHITE);
+		lbl_fecha.setFont(new Font("Barlow", Font.BOLD, 17));
+		lbl_fecha.setBounds(72, 11, 96, 21);
+		panel_contened.add(lbl_fecha);
+		
+		JLabel lbl_especialidad = new JLabel("ESPECIALIDAD");
+		lbl_especialidad.setForeground(Color.WHITE);
+		lbl_especialidad.setFont(new Font("Barlow", Font.BOLD, 17));
+		lbl_especialidad.setBounds(285, 11, 125, 21);
+		panel_contened.add(lbl_especialidad);
+		
+		JLabel lbl_dni_paciente = new JLabel("PACIENTES");
+		lbl_dni_paciente.setForeground(Color.WHITE);
+		lbl_dni_paciente.setFont(new Font("Barlow", Font.BOLD, 17));
+		lbl_dni_paciente.setBounds(509, 11, 140, 21);
+		panel_contened.add(lbl_dni_paciente);
+		
+		JPanel panel_contened_1 = new JPanel();
+		panel_contened_1.setLayout(null);
+		panel_contened_1.setBackground(new Color(32, 160, 216));
+		panel_contened_1.setBounds(241, 35, 417, 53);
+		contentPanel.add(panel_contened_1);
+		
+		txt_filtrar = new JTextField();
+		txt_filtrar.setHorizontalAlignment(SwingConstants.CENTER);
+		txt_filtrar.setFont(new Font("Arial", Font.PLAIN, 14));
+		txt_filtrar.setColumns(10);
+		txt_filtrar.setBorder(null);
+		txt_filtrar.setBackground(new Color(191, 231, 249));
+		txt_filtrar.setBounds(219, 11, 188, 31);
+		panel_contened_1.add(txt_filtrar);
+		
+		cb_filtrar.setSelectedIndex(0);
+		cb_filtrar.setFont(new Font("Arial", Font.PLAIN, 14));
+		cb_filtrar.setBackground(new Color(191, 231, 249));
+		cb_filtrar.setBounds(10, 8, 188, 37);
+		panel_contened_1.add(cb_filtrar);
+		
+		JToggleButton btn_filtrar_toggle = new JToggleButton("");
+		btn_filtrar_toggle.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btn_filtrar_toggle.setSelectedIcon(new ImageIcon(jd_buscar_consulta_editar.class.getResource("/iconos_submenus/nofiltrar.png")));
+		btn_filtrar_toggle.setIcon(new ImageIcon(jd_buscar_consulta_editar.class.getResource("/iconos_submenus/iconoFiltrar.png")));
+		btn_filtrar_toggle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(btn_filtrar_toggle.isSelected()) {
+					String field_filtrado = cb_filtrar.getSelectedItem().toString();
+					try {
+						llenarTabla(conection.filtrar_tabla_editar_citas(field_filtrado,txt_filtrar.getText().toString()));
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+				else {
+					txt_filtrar.setText("");
+					llenarTabla(conection.obtenerInfoCitas());
+				}
+			}
+		});
+		btn_filtrar_toggle.setOpaque(true);
+		btn_filtrar_toggle.setBorderPainted(false);
+		btn_filtrar_toggle.setBackground(new Color(32, 160, 216));
+		btn_filtrar_toggle.setBounds(676, 40, 47, 43);
+		contentPanel.add(btn_filtrar_toggle);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(Color.WHITE);
@@ -142,29 +225,62 @@ public class jd_buscar_consulta_editar extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			buttonPane.setLayout(null);
 			{
-				JButton btn_buscar = new JButton("BUSCAR");
-				btn_buscar.addActionListener(new ActionListener() {
+				JButton btn_editar = new JButton("EDITAR");
+				btn_editar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						dentilax_bdd.ConectorDB_mysql consulta = new dentilax_bdd.ConectorDB_mysql();
-						dispose();
-						try {
-							consulta.consulta_cita_modificar_encontrar(txt_IntroduceID.getText().toString());
-							dialogos_consultas.jd_buscar_consulta_modificar_encontrada ventana = new dialogos_consultas.jd_buscar_consulta_modificar_encontrada();
+						if (indiceFilaSeleccionada != -1) {
+			            String id = (String) table.getModel().getValueAt(indiceFilaSeleccionada, 3);
+			            System.out.println(id);
+	                    try {
+	                    	dispose();
+	                    	conection.consulta_cita_modificar_encontrar(id);
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
-						}
-						
+						} 
+	                }
 					}
 				});
-				btn_buscar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-				btn_buscar.setBorderPainted(false);
-				btn_buscar.setFont(new Font("Barlow", Font.BOLD, 20));
-				btn_buscar.setForeground(new Color(255, 255, 255));
-				btn_buscar.setBackground(new Color(32, 160, 216));
-				btn_buscar.setBounds(56, 0, 153, 43);
-				btn_buscar.setActionCommand("OK");
-				buttonPane.add(btn_buscar);
+				
+				txt_filtrar.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyPressed(KeyEvent e) {
+						if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+							txt_filtrar.requestFocus();
+						}
+					}
+				});
+				txt_filtrar.addKeyListener(new KeyAdapter() {
+					@Override
+					public void keyPressed(KeyEvent e) {
+						if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+							if(btn_filtrar_toggle.isSelected()) {
+								txt_filtrar.setText("");
+								llenarTabla(conection.obtenerInfoCitas());
+								btn_filtrar_toggle.setSelected(false);
+							}
+							
+							else {
+								String field_filtrado = cb_filtrar.getSelectedItem().toString();
+								try {
+									llenarTabla(conection.filtrar_tabla_editar_citas(field_filtrado,txt_filtrar.getText().toString()));
+								} catch (SQLException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
+								btn_filtrar_toggle.setSelected(true);
+							}
+						}
+					}
+				});
+				btn_editar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				btn_editar.setBorderPainted(false);
+				btn_editar.setFont(new Font("Barlow", Font.BOLD, 20));
+				btn_editar.setForeground(new Color(255, 255, 255));
+				btn_editar.setBackground(new Color(32, 160, 216));
+				btn_editar.setBounds(56, 0, 153, 43);
+				btn_editar.setActionCommand("OK");
+				buttonPane.add(btn_editar);
 				
 			}
 			{
@@ -179,15 +295,63 @@ public class jd_buscar_consulta_editar extends JDialog {
 				btn_cancelar.setFont(new Font("Barlow", Font.BOLD, 20));
 				btn_cancelar.setForeground(new Color(255, 255, 255));
 				btn_cancelar.setBackground(new Color(32, 160, 216));
-				btn_cancelar.setBounds(333, 0, 153, 43);
+				btn_cancelar.setBounds(583, 0, 153, 43);
 				btn_cancelar.setActionCommand("Cancel");
 				buttonPane.add(btn_cancelar);
 			}
+			ListSelectionModel selectionModel = table.getSelectionModel();
+	        selectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // Permite seleccionar solo una fila
+
+	        selectionModel.addListSelectionListener(new ListSelectionListener() {
+	            @Override
+	            public void valueChanged(ListSelectionEvent e) {
+	                if (!e.getValueIsAdjusting()) {
+	                    int selectedRow = table.getSelectedRow();
+	                    // Almacena el índice de la fila seleccionada
+	                   
+	                    indiceFilaSeleccionada = selectedRow;
+	                }
+	            }
+	        });
 		}
+		
+	} 
+	public static DefaultTableModel llenarTabla(List<Cita> historialCitas) {
+        // Nos aseguramos de que la lista no sea Null
+		
+		// System.out.println(historialCitas.toString());
+        if (historialCitas != null) {
+            // Limpiamos el modelo de la tabla antes de agregar nuevos datos
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            model.setRowCount(0);
+
+            for (Cita historial : historialCitas) {
+                Object[] fila = new Object[4];
+                fila[0] = historial.getFecha();
+                fila[1] = historial.getEspecialidad();
+                fila[2] = historial.getDniPaciente();
+                fila[3] = historial.getId();
+
+             //   model.setRowCount(model.getRowCount()+1);
+                model.addRow(fila);
+            }
+
+
+        }
+  
+
+
+        return model;
+    }
+	public void setCb_filtrar(String items) {
+		cb_filtrar.addItem(items);
 	}
 
-	public JTextField getTxt_IntroduceID() {
-		return txt_IntroduceID;
+	public JTextField getTxt_filtrar() {
+		return txt_filtrar;
 	}
 
+	public void setTxt_filtrar(JTextField txt_filtrar) {
+		this.txt_filtrar = txt_filtrar;
+	}
 }

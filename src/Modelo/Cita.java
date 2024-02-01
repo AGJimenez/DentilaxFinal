@@ -2,13 +2,14 @@ package Modelo;
 
 public class Cita {
 	
-	private String fecha,especialidad,dniPaciente, dniDoctor;
+	private String id,fecha,especialidad,dniPaciente, dniDoctor;
 
-	public Cita(String fecha, String especialidad, String dniPaciente, String si) {
+	public Cita(String fecha, String especialidad, String dniPaciente, String id) {
 		super();
 		this.fecha = fecha;
 		this.especialidad = especialidad;
 		this.dniPaciente = dniPaciente;
+		this.id = id;
 	}
 	
 	public Cita(String fecha, String especialidad, String dniDoctor) {
@@ -53,6 +54,14 @@ public class Cita {
 
 	public void setDniDoctor(String dniDoctor) {
 		this.dniDoctor = dniDoctor;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 	
 	

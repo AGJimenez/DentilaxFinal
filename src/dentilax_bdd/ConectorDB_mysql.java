@@ -31,7 +31,7 @@ import Modelo.Pedido;
 import Modelo.Proveedores;
 import Modelo.Solicitud;
 import dialogos_consultas.jd_buscar_cita;
-import dialogos_consultas.jd_buscar_consulta_editar_nuevo;
+import dialogos_consultas.jd_buscar_consulta_editar;
 import dialogos_consultas.jd_buscar_consulta_eliminar;
 import dialogos_consultas.jd_historial_cita;
 import dialogos_consultas.jd_mod_consulta;
@@ -520,15 +520,16 @@ public String consulta_doctor_eliminar(String nombre, String apellidos) throws S
         try {
             conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
             statement = conect.createStatement();
-            String query = "SELECT Fecha, Especialidad, DNI_paciente FROM citas";
+            String query = "SELECT Fecha, Especialidad, DNI_paciente, ID_cita FROM citas";
             ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
                 String fecha = resultSet.getString("Fecha");
                 String especialidad = resultSet.getString("Especialidad");
                 String dniPaciente = resultSet.getString("DNI_paciente");
+                String id = resultSet.getString("ID_cita");
 
-               Cita historial = new Cita(fecha,especialidad,dniPaciente,"");
+               Cita historial = new Cita(fecha,especialidad,dniPaciente,id);
 
                 historiales.add(historial);
             }
@@ -2225,7 +2226,7 @@ public void mostrar_filtro_cita_eliminar(jd_buscar_consulta_eliminar datos) thro
     }
 }
 
-public void mostrar_filtro_cita_editar(jd_buscar_consulta_editar_nuevo datos) throws SQLException {
+public void mostrar_filtro_cita_editar(jd_buscar_consulta_editar datos) throws SQLException {
     // Consulta para ver el nombre de las tablas
 	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
     statement = conect.createStatement();

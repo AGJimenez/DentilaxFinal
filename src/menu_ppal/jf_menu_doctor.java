@@ -163,8 +163,11 @@ public class jf_menu_doctor extends javax.swing.JFrame {
         menu_inicio = new javax.swing.JMenuBar();
         
         mn_paciente = new javax.swing.JMenu();
+        mn_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
         mn_pedidos = new javax.swing.JMenu();
+        mn_pedidos.setFont(new Font("Arial", Font.PLAIN, 12));
         mn_ajustes = new javax.swing.JMenu();
+        mn_ajustes.setFont(new Font("Arial", Font.PLAIN, 12));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
