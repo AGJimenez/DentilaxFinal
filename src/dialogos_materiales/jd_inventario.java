@@ -113,6 +113,7 @@ public class jd_inventario extends JDialog {
                 btn_salir.setActionCommand("Cancel");
                 
                 JButton btn_salir_1 = new JButton("IMPRIMIR");
+                btn_salir_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
                 btn_salir_1.setForeground(Color.WHITE);
                 btn_salir_1.setFont(new Font("Barlow", Font.BOLD, 20));
                 btn_salir_1.setBorderPainted(false);
@@ -203,6 +204,7 @@ public class jd_inventario extends JDialog {
 		panel_contened_1.add(cb_filtrar);
 		
 		JToggleButton btn_filtrar_toggle = new JToggleButton("");
+		btn_filtrar_toggle.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btn_filtrar_toggle.setSelectedIcon(new ImageIcon(jd_buscar_paciente.class.getResource("/iconos_submenus/nofiltrar.png")));
 		btn_filtrar_toggle.setIcon(new ImageIcon(jd_buscar_paciente.class.getResource("/iconos_submenus/iconoFiltrar.png")));
 		btn_filtrar_toggle.addActionListener(new ActionListener() {

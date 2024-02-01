@@ -2,6 +2,7 @@ package dialogos_consultas;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -28,6 +29,9 @@ import javax.swing.table.DefaultTableModel;
 
 import Modelo.Cita;
 import dentilax_bdd.ConectorDB_mysql;
+
+
+import dialogos_pacientes.jd_buscar_paciente;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -83,7 +87,7 @@ public class jd_historial_cita extends JDialog {
 		setTitle("Historial");
 		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_historial_cita.class.getResource("/iconos_menus/dentilaxIcono.png")));
 		setResizable(false);
-		setBounds(100, 100, 802, 465);
+		setBounds(100, 100, 815, 540);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(new Color(255, 255, 255));
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -196,6 +200,9 @@ public class jd_historial_cita extends JDialog {
 		panel_contened_1.add(cb_filtrar);
 		
 		JToggleButton btn_filtrar_toggle = new JToggleButton("");
+		btn_filtrar_toggle.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btn_filtrar_toggle.setSelectedIcon(new ImageIcon(jd_buscar_paciente.class.getResource("/iconos_submenus/nofiltrar.png")));
+		btn_filtrar_toggle.setIcon(new ImageIcon(jd_buscar_paciente.class.getResource("/iconos_submenus/iconoFiltrar.png")));
 		btn_filtrar_toggle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(btn_filtrar_toggle.isSelected()) {
@@ -240,14 +247,31 @@ public class jd_historial_cita extends JDialog {
 			}
 			
 		});
+		btn_salir_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btn_salir_1.setForeground(Color.WHITE);
 		btn_salir_1.setFont(new Font("Barlow", Font.BOLD, 20));
 		btn_salir_1.setBorderPainted(false);
 		btn_salir_1.setBorder(null);
 		btn_salir_1.setBackground(new Color(32, 160, 216));
 		btn_salir_1.setActionCommand("Cancel");
-		btn_salir_1.setBounds(652, 0, 124, 31);
+		btn_salir_1.setBounds(37, 436, 153, 43);
 		contentPanel.add(btn_salir_1);
+		
+		JButton btn_salir = new JButton("SALIR");
+		btn_salir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btn_salir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btn_salir.setForeground(Color.WHITE);
+		btn_salir.setFont(new Font("Barlow", Font.BOLD, 20));
+		btn_salir.setBorderPainted(false);
+		btn_salir.setBorder(null);
+		btn_salir.setBackground(new Color(32, 160, 216));
+		btn_salir.setActionCommand("Cancel");
+		btn_salir.setBounds(592, 436, 153, 43);
+		contentPanel.add(btn_salir);
 		txt_filtrar.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -335,6 +359,5 @@ public class jd_historial_cita extends JDialog {
 		public void setTxt_filtrar(JTextField txt_filtrar) {
 			this.txt_filtrar = txt_filtrar;
 		}
-
 }
 

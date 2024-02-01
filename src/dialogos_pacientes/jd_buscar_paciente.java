@@ -199,6 +199,7 @@ public class jd_buscar_paciente extends JDialog {
 		panel_contened_1.add(cb_filtrar);
 		
 		JToggleButton btn_filtrar_toggle = new JToggleButton("");
+		btn_filtrar_toggle.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btn_filtrar_toggle.setSelectedIcon(new ImageIcon(jd_buscar_paciente.class.getResource("/iconos_submenus/nofiltrar.png")));
 		btn_filtrar_toggle.setIcon(new ImageIcon(jd_buscar_paciente.class.getResource("/iconos_submenus/iconoFiltrar.png")));
 		btn_filtrar_toggle.addActionListener(new ActionListener() {

@@ -17,7 +17,7 @@ public class Cita {
 		this.especialidad = especialidad;
 		this.setDniDoctor(dniDoctor);
 	}
-
+	
 	public String getFecha() {
 		return fecha;
 	}

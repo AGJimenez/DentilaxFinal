@@ -205,6 +205,7 @@ public class jd_buscar_doctor_baja extends JDialog {
 		panel_contened_1.add(cb_filtrar);
 		
 		JToggleButton btn_filtrar_toggle = new JToggleButton("");
+		btn_filtrar_toggle.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btn_filtrar_toggle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(btn_filtrar_toggle.isSelected()) {
