@@ -44,7 +44,7 @@ import javax.swing.JComboBox;
 import javax.swing.JToggleButton;
 import javax.swing.ImageIcon;
 
-public class jd_buscar_factura extends JDialog {
+public class jd_historial_factura extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
@@ -60,7 +60,7 @@ public class jd_buscar_factura extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			jd_buscar_factura dialog = new jd_buscar_factura();
+			jd_historial_factura dialog = new jd_historial_factura();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -71,7 +71,7 @@ public class jd_buscar_factura extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public jd_buscar_factura() {
+	public jd_historial_factura() {
 		try {
 			//CON ESTO MOSTRAMOS LOS COMBO BOX
 			consultasDB.mostrar_filtro_factura(this);
@@ -79,7 +79,7 @@ public class jd_buscar_factura extends JDialog {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_buscar_factura.class.getResource("/iconos_menus/dentilaxIcono.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_historial_factura.class.getResource("/iconos_menus/dentilaxIcono.png")));
 		setTitle("Buscar factura");
 		setPreferredSize(new Dimension(554, 343));
 		setModal(true);
@@ -196,8 +196,8 @@ public class jd_buscar_factura extends JDialog {
 		
 		JToggleButton btn_filtrar_toggle = new JToggleButton("");
 		btn_filtrar_toggle.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btn_filtrar_toggle.setSelectedIcon(new ImageIcon(jd_buscar_factura.class.getResource("/iconos_submenus/nofiltrar.png")));
-		btn_filtrar_toggle.setIcon(new ImageIcon(jd_buscar_factura.class.getResource("/iconos_submenus/iconoFiltrar.png")));
+		btn_filtrar_toggle.setSelectedIcon(new ImageIcon(jd_historial_factura.class.getResource("/iconos_submenus/nofiltrar.png")));
+		btn_filtrar_toggle.setIcon(new ImageIcon(jd_historial_factura.class.getResource("/iconos_submenus/iconoFiltrar.png")));
 		btn_filtrar_toggle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(btn_filtrar_toggle.isSelected()) {

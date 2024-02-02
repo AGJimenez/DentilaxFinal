@@ -24,6 +24,7 @@ import com.toedter.calendar.JCalendar;
 
 import Modelo.Cita;
 import Modelo.Doctor;
+import Modelo.Factura;
 import Modelo.Inventario;
 import Modelo.Odontograma;
 import Modelo.Paciente;
@@ -40,6 +41,7 @@ import dialogos_doctores.jd_buscar_doctor;
 import dialogos_doctores.jd_buscar_doctor_baja;
 import dialogos_doctores.jd_buscar_doctor_editar;
 import dialogos_doctores.jd_buscar_dr_historial;
+import dialogos_facturas.jd_buscar_factura;
 import dialogos_materiales.jd_buscar_pedidos;
 import dialogos_materiales.jd_hacer_pedido;
 import dialogos_materiales.jd_historial_solicitud;
@@ -530,6 +532,45 @@ public String consulta_doctor_eliminar(String nombre, String apellidos) throws S
                 String id = resultSet.getString("ID_cita");
 
                Cita historial = new Cita(fecha,especialidad,dniPaciente,id);
+
+                historiales.add(historial);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();  // 
+        } finally {
+            // Aqui vamos a cerrar recursos (statement y conexión) en el bloque finally
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                if (conect != null) {
+                    conect.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return historiales;
+    }
+	
+	public List<Factura> obtener_facturas() {
+        List<Factura> historiales = new ArrayList<>();
+
+        try {
+            conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+            statement = conect.createStatement();
+            String query = "SELECT Fecha, Nombre, Apellidos, Por_pagar FROM facturacion";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                String Fecha = resultSet.getString("Fecha");
+                String Nombre = resultSet.getString("Nombre");
+                String Apellidos = resultSet.getString("Apellidos");
+                String Por_pagar = resultSet.getString("Por_pagar");
+
+                Factura historial = new Factura(Fecha,Nombre,Apellidos,Por_pagar);
 
                 historiales.add(historial);
             }
@@ -2248,6 +2289,27 @@ public void mostrar_filtro_cita_editar(jd_buscar_consulta_editar datos) throws S
     }
 }
 
+public void mostrar_filtro_factura(jd_buscar_factura datos) throws SQLException {
+    // Consulta para ver el nombre de las tablas
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SHOW fields FROM facturacion WHERE field = 'DNI_paciente' OR field = 'Nombre'  OR field = 'Apellidos' OR field = 'Fecha' OR field = 'Por_pagar';";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+        	String Field = rs.getString("Field");
+            datos.setCb_filtrar(Field);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
+
 public void mostrar_filtro_paciente_historial(jd_buscar_paciente_historial datos) throws SQLException {
     // Consulta para ver el nombre de las tablas
 	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
@@ -2785,6 +2847,45 @@ public List<Cita> filtrar_tabla_editar_citas(String campo, String variable) thro
     }
 
     return citas;
+	
+}
+
+public List<Factura> filtrar_tabla_buscar_facturas(String campo, String variable) throws SQLException{
+	List<Factura> factura = new ArrayList<>();
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "SELECT * FROM facturacion WHERE " + campo + " LIKE '" + variable + "%' OR " + campo + " LIKE '%" + variable + "'";
+        ResultSet resultSet = statement.executeQuery(query);
+		
+        while (resultSet.next()) {
+            String fecha = resultSet.getString("Fecha");
+            String Nombre = resultSet.getString("Nombre");
+            String Apellidos = resultSet.getString("Apellidos");
+            String Por_pagar = resultSet.getString("Por_pagar");
+            
+
+            Factura class_factura = new Factura(fecha, Nombre, Apellidos, Por_pagar);
+
+            factura.add(class_factura);
+        }
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    } finally {
+        try {
+            if (statement != null) {
+                statement.close();
+            }
+            if (conect != null) {
+                conect.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    return factura;
 	
 }
 
