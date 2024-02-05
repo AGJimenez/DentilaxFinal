@@ -93,17 +93,6 @@ public class jf_facturacion extends JFrame {
         	}
         });
         btn_nueva_factura.setBorderPainted(false);
-        btn_historial_pago = new javax.swing.JButton();
-        btn_historial_pago.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
-        btn_historial_pago.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-        btn_historial_pago.setContentAreaFilled(false);
-        btn_historial_pago.setOpaque(false);
-        btn_historial_pago.setIcon(new ImageIcon(jf_facturacion.class.getResource("/iconos_submenus/btn_historialpago_admin.png")));
-        btn_historial_pago.setBounds(600, 594, 188, 41);
-        btn_historial_pago.setBorderPainted(false);
         menu_inicio = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenu2.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -459,10 +448,6 @@ public class jf_facturacion extends JFrame {
         jmenuitem_buscar_factura.setFont(new Font("Arial", Font.PLAIN, 12));
         jMenu6.add(jmenuitem_buscar_factura);
         
-        JMenuItem jmenuitem_historial_pago = new JMenuItem("Historial de pago");
-        jmenuitem_historial_pago.setFont(new Font("Arial", Font.PLAIN, 12));
-        jMenu6.add(jmenuitem_historial_pago);
-        
         JMenuItem jmenuitem_nueva_factura = new JMenuItem("Nueva factura");
         jmenuitem_nueva_factura.setFont(new Font("Arial", Font.PLAIN, 12));
         jMenu6.add(jmenuitem_nueva_factura);
@@ -663,13 +648,6 @@ public class jf_facturacion extends JFrame {
         			if(combo.contains(KeyEvent.VK_3)&&combo.contains(KeyEvent.VK_F)&&combo.contains(16)) {
         				dispose();
         				jf_facturacion ventana = new jf_facturacion();
-        				//dialogos_facturacion.jd_buscar ventana_buscar = new dialogos_facturacion.jd_buscar();
-        				ventana.setVisible(true);
-        				//ventana_buscar.setVisible(true);
-        			}
-        			if(combo.contains(KeyEvent.VK_4)&&combo.contains(KeyEvent.VK_F)&&combo.contains(16)) {
-        				dispose();
-        				jf_facturacion ventana = new jf_facturacion();
         				dialogos_facturas.jd_nueva_factura ventana_nueva = new dialogos_facturas.jd_nueva_factura();
         				ventana.setVisible(true);
         				ventana_nueva.setVisible(true);
@@ -733,7 +711,6 @@ public class jf_facturacion extends JFrame {
         });
         popupMenu.add(mntmNewMenuItem_4);
         jp_menu.add(btn_buscar_factura);
-        jp_menu.add(btn_historial_pago);
         jp_menu.add(btn_nueva_factura);
         
         fecha = new JLabel("");
@@ -785,7 +762,6 @@ public class jf_facturacion extends JFrame {
             }
         });
     }
-    private javax.swing.JButton btn_historial_pago;
     private javax.swing.JButton btn_nueva_factura;
     private javax.swing.JButton btn_buscar_factura;
     private javax.swing.JMenu jMenu2;

@@ -624,10 +624,6 @@ public class jf_doctores extends javax.swing.JFrame {
 	        jmenuitem_buscar_factura.setFont(new Font("Arial", Font.PLAIN, 12));
 	        jMenu6.add(jmenuitem_buscar_factura);
 	        
-	        jmenuitem_historial_pago = new JMenuItem("Historial de pago");
-	        jmenuitem_historial_pago.setFont(new Font("Arial", Font.PLAIN, 12));
-	        jMenu6.add(jmenuitem_historial_pago);
-	        
 	        jmenuitem_nueva_factura = new JMenuItem("Nueva factura");
 	        jmenuitem_nueva_factura.addActionListener(new ActionListener() {
 	        	public void actionPerformed(ActionEvent e) {
@@ -836,13 +832,6 @@ public class jf_doctores extends javax.swing.JFrame {
 	        			if(combo.contains(KeyEvent.VK_3)&&combo.contains(KeyEvent.VK_F)&&combo.contains(16)) {
 	        				dispose();
 	        				jf_facturacion ventana = new jf_facturacion();
-	        				//dialogos_facturacion.jd_buscar ventana_buscar = new dialogos_facturacion.jd_buscar();
-	        				ventana.setVisible(true);
-	        				//ventana_buscar.setVisible(true);
-	        			}
-	        			if(combo.contains(KeyEvent.VK_4)&&combo.contains(KeyEvent.VK_F)&&combo.contains(16)) {
-	        				dispose();
-	        				jf_facturacion ventana = new jf_facturacion();
 	        				dialogos_facturas.jd_nueva_factura ventana_nueva = new dialogos_facturas.jd_nueva_factura();
 	        				ventana.setVisible(true);
 	        				ventana_nueva.setVisible(true);
@@ -923,7 +912,6 @@ public class jf_doctores extends javax.swing.JFrame {
 	    private JMenuItem jmenuitem_nuevo_pedido;
 	    private JMenuItem jmenuitem_proveedores;
 	    private JMenuItem jmenuitem_menu_facturacion;
-	    private JMenuItem jmenuitem_historial_pago;
 	    private JMenuItem jmenuitem_nueva_factura;
 	    private JLabel fecha;
 	    private JMenuItem jmenuitem_editar_doctor;

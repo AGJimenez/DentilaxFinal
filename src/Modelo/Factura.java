@@ -2,14 +2,16 @@ package Modelo;
 
 public class Factura {
 	
-	private String fecha, nombre, apellidos, por_pagar;
+	private String id, fecha, nombre, apellidos, por_pagar, pagado;
 
-	public Factura(String fecha, String nombre, String apellidos, String por_pagar) {
+	public Factura(String fecha, String nombre, String apellidos, String por_pagar, String id, String pagado) {
 		super();
 		this.fecha = fecha;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.por_pagar = por_pagar;
+		this.id = id;
+		this.pagado = pagado;
 	}
 
 	public String getFecha() {
@@ -42,5 +44,21 @@ public class Factura {
 
 	public void setPor_pagar(String por_pagar) {
 		this.por_pagar = por_pagar;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getPagado() {
+		return pagado;
+	}
+
+	public void setPagado(String pagado) {
+		this.pagado = pagado;
 	}
 }

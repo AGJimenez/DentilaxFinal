@@ -580,10 +580,6 @@ public class jf_consulta extends JFrame {
         jmenuitem_buscar_factura.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_facturacion.add(jmenuitem_buscar_factura);
         
-        jmenuitem_historial_pago = new JMenuItem("Historial de pago");
-        jmenuitem_historial_pago.setFont(new Font("Arial", Font.PLAIN, 12));
-        jmenu_facturacion.add(jmenuitem_historial_pago);
-        
         jmenuitem_nueva_factura = new JMenuItem("Nueva factura");
         jmenuitem_nueva_factura.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_facturacion.add(jmenuitem_nueva_factura);
@@ -901,7 +897,6 @@ public class jf_consulta extends JFrame {
     private JMenuItem jmenuitem_menu_facturacion;
     private JMenuItem jmenuitem_nueva_factura;
     private JMenuItem jmenuitem_buscar_factura;
-    private JMenuItem jmenuitem_historial_pago;
     private JPopupMenu popupMenu;
     private JMenuItem mntmNewMenuItem;
     private JMenuItem mntmNewMenuItem_1;

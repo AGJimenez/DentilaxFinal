@@ -428,10 +428,6 @@ public class jf_pacientes extends JFrame {
 		jmenuitem_buscar_factura.setFont(new Font("Arial", Font.PLAIN, 12));
 		mn_facturacion.add(jmenuitem_buscar_factura);
 		
-		JMenuItem jmenuitem_historial_pago = new JMenuItem("Historial de pago");
-		jmenuitem_historial_pago.setFont(new Font("Arial", Font.PLAIN, 12));
-		mn_facturacion.add(jmenuitem_historial_pago);
-		
 		JMenuItem jmenuitem_nueva_factura = new JMenuItem("Nueva factura");
 		jmenuitem_nueva_factura.setFont(new Font("Arial", Font.PLAIN, 12));
 		mn_facturacion.add(jmenuitem_nueva_factura);
@@ -711,13 +707,6 @@ public class jf_pacientes extends JFrame {
         				//ventana_buscar.setVisible(true);
         			}
         			if(combo.contains(KeyEvent.VK_3)&&combo.contains(KeyEvent.VK_F)&&combo.contains(16)) {
-        				dispose();
-        				jf_facturacion ventana = new jf_facturacion();
-        				//dialogos_facturacion.jd_buscar ventana_buscar = new dialogos_facturacion.jd_buscar();
-        				ventana.setVisible(true);
-        				//ventana_buscar.setVisible(true);
-        			}
-        			if(combo.contains(KeyEvent.VK_4)&&combo.contains(KeyEvent.VK_F)&&combo.contains(16)) {
         				dispose();
         				jf_facturacion ventana = new jf_facturacion();
         				dialogos_facturas.jd_nueva_factura ventana_nueva = new dialogos_facturas.jd_nueva_factura();
