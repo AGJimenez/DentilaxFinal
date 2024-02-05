@@ -1588,6 +1588,7 @@ public void consulta_modificar_factura(String id, int por_pagar) throws SQLExcep
 	}
 
 public void consulta_cobrar_factura(String id, int por_pagar, int pagado, int pagar) throws SQLException{
+	dialogos_facturas.jd_cobrar_factura ventana = new dialogos_facturas.jd_cobrar_factura();
     conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
     statement = conect.createStatement();
     int total_pagado = pagado + pagar;
@@ -1595,9 +1596,14 @@ public void consulta_cobrar_factura(String id, int por_pagar, int pagado, int pa
 	String query = "UPDATE facturacion SET Pagado = '"+ total_pagado + "', Por_pagar = '" + total_pagar + "' WHERE ID_factura = '" + id + "'";
     
 		if(por_pagar>=0) {
-			statement.executeUpdate(query);
-            System.out.println("Factura cobrada");
-            JOptionPane.showMessageDialog(null, "Factura cobrada");
+			if(total_pagar > 0) {
+				statement.executeUpdate(query);
+	            System.out.println("Factura cobrada");
+	            JOptionPane.showMessageDialog(null, "Factura cobrada");
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Error cobrado mas de lo que se tiene que pagar");
+			}
 		}
 		else {
 			JOptionPane.showMessageDialog(null, "Error campo vacio o numero negativo");

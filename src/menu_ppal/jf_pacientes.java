@@ -425,10 +425,28 @@ public class jf_pacientes extends JFrame {
 		mn_facturacion.add(jmenuitem_menu_facturacion);
 		
 		JMenuItem jmenuitem_buscar_factura = new JMenuItem("Buscar factura");
+		jmenuitem_buscar_factura.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+        		jf_facturacion ventana = new jf_facturacion();
+        		dialogos_facturas.jd_buscar_factura ventana_buscar = new dialogos_facturas.jd_buscar_factura();
+        		ventana.setVisible(true);
+        		ventana_buscar.setVisible(true);
+			}
+		});
 		jmenuitem_buscar_factura.setFont(new Font("Arial", Font.PLAIN, 12));
 		mn_facturacion.add(jmenuitem_buscar_factura);
 		
 		JMenuItem jmenuitem_nueva_factura = new JMenuItem("Nueva factura");
+		jmenuitem_nueva_factura.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+        		jf_facturacion ventana = new jf_facturacion();
+        		dialogos_facturas.jd_nueva_factura ventana_nueva = new dialogos_facturas.jd_nueva_factura();
+        		ventana.setVisible(true);
+        		ventana_nueva.setVisible(true);
+			}
+		});
 		jmenuitem_nueva_factura.setFont(new Font("Arial", Font.PLAIN, 12));
 		mn_facturacion.add(jmenuitem_nueva_factura);
 		
@@ -695,23 +713,21 @@ public class jf_pacientes extends JFrame {
         			if(combo.contains(KeyEvent.VK_1)&&combo.contains(KeyEvent.VK_F)&&combo.contains(16)) {
         				dispose();
         				jf_facturacion ventana = new jf_facturacion();
-        				dialogos_facturas.jd_buscar_factura ventana_buscar = new dialogos_facturas.jd_buscar_factura();
         				ventana.setVisible(true);
-        				ventana_buscar.setVisible(true);
         			}
         			if(combo.contains(KeyEvent.VK_2)&&combo.contains(KeyEvent.VK_F)&&combo.contains(16)) {
         				dispose();
-        				jf_facturacion ventana = new jf_facturacion();
-        				//dialogos_facturacion.jd_buscar ventana_buscar = new dialogos_facturacion.jd_buscar();
-        				ventana.setVisible(true);
-        				//ventana_buscar.setVisible(true);
+                		jf_facturacion ventana = new jf_facturacion();
+                		dialogos_facturas.jd_buscar_factura ventana_buscar = new dialogos_facturas.jd_buscar_factura();
+                		ventana.setVisible(true);
+                		ventana_buscar.setVisible(true);
         			}
         			if(combo.contains(KeyEvent.VK_3)&&combo.contains(KeyEvent.VK_F)&&combo.contains(16)) {
         				dispose();
-        				jf_facturacion ventana = new jf_facturacion();
-        				dialogos_facturas.jd_nueva_factura ventana_nueva = new dialogos_facturas.jd_nueva_factura();
-        				ventana.setVisible(true);
-        				ventana_nueva.setVisible(true);
+                		jf_facturacion ventana = new jf_facturacion();
+                		dialogos_facturas.jd_nueva_factura ventana_nueva = new dialogos_facturas.jd_nueva_factura();
+                		ventana.setVisible(true);
+                		ventana_nueva.setVisible(true);
         			}
         		}
         	}
