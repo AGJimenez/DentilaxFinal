@@ -3,6 +3,7 @@
     <mapID target = "Indice" url = "html/index.html"/>
     <mapID target = "adminPacientes" url = "html/adminPacientes.html"/>
     <mapID target = "doctor" url = "html/doctor.html"/>
+    <mapID target= "ayudaDoctores" url = "html/ayudaDoctores.html"/>
     <mapID target = "material" url = "html/material.html"/>
     <mapID target = "consultas" url = "html/consultas.html"/>
     <mapID target = "facturacion" url = "html/facturacion.html"/>

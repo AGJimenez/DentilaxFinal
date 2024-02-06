@@ -36,6 +36,7 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
@@ -46,14 +47,16 @@ import javax.swing.JComboBox;
 import javax.swing.JToggleButton;
 import javax.swing.ImageIcon;
 
-public class jd_buscar_factura extends JDialog {
+public class jd_historial_cobro extends JDialog {
 
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
     private static DefaultTableModel model;
     private static JTable table;
     private int indiceFilaSeleccionada;
+    private String dniPaciente;
     protected JTextField txt_filtrar;
+	private JLabel lbl_invisible = new JLabel("");
     dentilax_bdd.ConectorDB_mysql consultasDB = new dentilax_bdd.ConectorDB_mysql();
     JComboBox cb_filtrar = new JComboBox();
 
@@ -62,7 +65,7 @@ public class jd_buscar_factura extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			jd_buscar_factura dialog = new jd_buscar_factura();
+			jd_historial_cobro dialog = new jd_historial_cobro(null);
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -73,16 +76,18 @@ public class jd_buscar_factura extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public jd_buscar_factura() {
+	public jd_historial_cobro(String dniPaciente) {
+		
+		this.dniPaciente = dniPaciente;
 		try {
 			//CON ESTO MOSTRAMOS LOS COMBO BOX
-			consultasDB.mostrar_filtro_factura(this);
+			consultasDB.mostrar_filtro_historial_cobro(this);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_buscar_factura.class.getResource("/iconos_menus/dentilaxIcono.png")));
-		setTitle("Buscar factura");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(jd_historial_cobro.class.getResource("/iconos_menus/dentilaxIcono.png")));
+		setTitle("Historial cobro");
 		setPreferredSize(new Dimension(554, 343));
 		setModal(true);
 		setResizable(false);
@@ -94,10 +99,10 @@ public class jd_buscar_factura extends JDialog {
 		contentPanel.setLayout(null);
 		setLocationRelativeTo(contentPanel);
 		{
-			JLabel lbl_facturas = new JLabel("FACTURAS");
-			lbl_facturas.setFont(new Font("Barlow", Font.BOLD, 20));
-			lbl_facturas.setBounds(26, 35, 176, 42);
-			contentPanel.add(lbl_facturas);
+			JLabel lbl_pagos = new JLabel("PAGOS");
+			lbl_pagos.setFont(new Font("Barlow", Font.BOLD, 20));
+			lbl_pagos.setBounds(26, 35, 176, 42);
+			contentPanel.add(lbl_pagos);
 		}
 		{
 			JPanel panel = new JPanel();
@@ -132,26 +137,23 @@ public class jd_buscar_factura extends JDialog {
                 		{null, null, null, null, null},
                 	},
                 	new String[] {
-                		"", "", "", "", "", "", ""
+                		"", "", "", ""
                 	}
                 ));
                 for (int i = 0; i < table.getColumnCount(); i++) {
                 	Class<?> col_class = table.getColumnClass(i);
                 	table.setDefaultEditor(col_class,  null);
                 	}
-                table.removeColumn(table.getColumnModel().getColumn(6));
-                table.removeColumn(table.getColumnModel().getColumn(5));
-                table.removeColumn(table.getColumnModel().getColumn(4));
                 table.getColumnModel().getColumn(0).setPreferredWidth(15);
                 model = new DefaultTableModel();
                 model.addColumn("Fecha");
-                model.addColumn("Nombre");
-                model.addColumn("Apellidos");
+                model.addColumn("DNI_paciente");
+                model.addColumn("Pagado");
                 model.addColumn("Por pagar");
 
                 ConectorDB_mysql conection = new ConectorDB_mysql();
                 conection.conectar();
-                llenarTabla(conection.obtener_facturas());
+                llenarTabla(conection.obtener_facturas_cobro());
 		
 		JPanel panel_contened_1 = new JPanel();
 		panel_contened_1.setLayout(null);
@@ -177,14 +179,14 @@ public class jd_buscar_factura extends JDialog {
 		
 		JToggleButton btn_filtrar_toggle = new JToggleButton("");
 		btn_filtrar_toggle.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btn_filtrar_toggle.setSelectedIcon(new ImageIcon(jd_buscar_factura.class.getResource("/iconos_submenus/nofiltrar.png")));
-		btn_filtrar_toggle.setIcon(new ImageIcon(jd_buscar_factura.class.getResource("/iconos_submenus/iconoFiltrar.png")));
+		btn_filtrar_toggle.setSelectedIcon(new ImageIcon(jd_historial_cobro.class.getResource("/iconos_submenus/nofiltrar.png")));
+		btn_filtrar_toggle.setIcon(new ImageIcon(jd_historial_cobro.class.getResource("/iconos_submenus/iconoFiltrar.png")));
 		btn_filtrar_toggle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(btn_filtrar_toggle.isSelected()) {
 					String field_filtrado = cb_filtrar.getSelectedItem().toString();
 					try {
-						llenarTabla(conection.filtrar_tabla_buscar_facturas(field_filtrado,txt_filtrar.getText().toString()));
+						llenarTabla(conection.filtrar_tabla_cobros_facturas(field_filtrado,txt_filtrar.getText().toString()));
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -192,7 +194,7 @@ public class jd_buscar_factura extends JDialog {
 				}
 				else {
 					txt_filtrar.setText("");
-					llenarTabla(conection.obtener_facturas());
+					llenarTabla(conection.obtener_facturas_cobro());
 				}
 			}
 		});
@@ -208,13 +210,13 @@ public class jd_buscar_factura extends JDialog {
 		panel_contened_2.setBounds(26, 99, 715, 43);
 		contentPanel.add(panel_contened_2);
 		
-		JLabel lbl_fecha = new JLabel("FECHA");
-		lbl_fecha.setForeground(Color.WHITE);
-		lbl_fecha.setFont(new Font("Barlow", Font.BOLD, 17));
-		lbl_fecha.setBounds(26, 11, 96, 21);
-		panel_contened_2.add(lbl_fecha);
+		JLabel lbl_fecha_1 = new JLabel("FECHA");
+		lbl_fecha_1.setForeground(Color.WHITE);
+		lbl_fecha_1.setFont(new Font("Barlow", Font.BOLD, 17));
+		lbl_fecha_1.setBounds(26, 11, 96, 21);
+		panel_contened_2.add(lbl_fecha_1);
 		
-		JLabel lbl_nombre = new JLabel("NOMBRE");
+		JLabel lbl_nombre = new JLabel("DNI");
 		lbl_nombre.setForeground(Color.WHITE);
 		lbl_nombre.setFont(new Font("Barlow", Font.BOLD, 17));
 		lbl_nombre.setBounds(171, 11, 88, 21);
@@ -226,11 +228,14 @@ public class jd_buscar_factura extends JDialog {
 		lbl_por_pagar.setBounds(523, 11, 140, 21);
 		panel_contened_2.add(lbl_por_pagar);
 		
-		JLabel lbl_apellidos = new JLabel("APELLIDOS");
+		JLabel lbl_apellidos = new JLabel("PAGADO");
 		lbl_apellidos.setForeground(Color.WHITE);
 		lbl_apellidos.setFont(new Font("Barlow", Font.BOLD, 17));
 		lbl_apellidos.setBounds(335, 11, 140, 21);
 		panel_contened_2.add(lbl_apellidos);
+		
+		lbl_invisible.setBounds(741, 11, 0, 0);
+		contentPanel.add(lbl_invisible);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(Color.WHITE);
@@ -253,14 +258,14 @@ public class jd_buscar_factura extends JDialog {
 						if(e.getKeyCode()==KeyEvent.VK_ENTER) {
 							if(btn_filtrar_toggle.isSelected()) {
 								txt_filtrar.setText("");
-								llenarTabla(conection.obtener_facturas());
+								llenarTabla(conection.obtener_facturas_cobro());
 								btn_filtrar_toggle.setSelected(false);
 							}
 							
 							else {
 								String field_filtrado = cb_filtrar.getSelectedItem().toString();
 								try {
-									llenarTabla(conection.filtrar_tabla_buscar_facturas(field_filtrado,txt_filtrar.getText().toString()));
+									llenarTabla(conection.filtrar_tabla_cobros_facturas(field_filtrado,txt_filtrar.getText().toString()));
 								} catch (SQLException e1) {
 									// TODO Auto-generated catch block
 									e1.printStackTrace();
@@ -289,37 +294,6 @@ public class jd_buscar_factura extends JDialog {
 				buttonPane.add(btn_cancelar);
 			}
 			
-			JButton btn_cobrar = new JButton("COBRAR");
-			btn_cobrar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btn_cobrar.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					String cobro = (String) table.getModel().getValueAt(indiceFilaSeleccionada, 3);
-					int cero = Integer.valueOf(cobro);
-					if(cero != 0) {
-					dispose();
-					dialogos_facturas.jd_cobrar_factura ventana = new dialogos_facturas.jd_cobrar_factura();
-					ventana.setVisible(true);
-					String id = (String) table.getModel().getValueAt(indiceFilaSeleccionada, 4);
-					String pagado = (String) table.getModel().getValueAt(indiceFilaSeleccionada, 5);
-					System.out.println(id);
-					
-					ventana.setLbl_invisible(id);
-					ventana.setLbl_invisible_2(cobro);
-					ventana.setLbl_invisible_3(pagado);
-					}
-					else {
-						JOptionPane.showMessageDialog(null, "Factura terminada de pagar elija otra");
-					}
-				}
-			});
-			btn_cobrar.setForeground(Color.WHITE);
-			btn_cobrar.setFont(new Font("Barlow", Font.BOLD, 20));
-			btn_cobrar.setBorderPainted(false);
-			btn_cobrar.setBackground(new Color(32, 160, 216));
-			btn_cobrar.setActionCommand("Cancel");
-			btn_cobrar.setBounds(207, 0, 153, 43);
-			buttonPane.add(btn_cobrar);
-			
 			JButton btn_imprimir = new JButton("IMPRIMIR");
 			btn_imprimir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btn_imprimir.setForeground(Color.WHITE);
@@ -329,24 +303,6 @@ public class jd_buscar_factura extends JDialog {
 			btn_imprimir.setActionCommand("Cancel");
 			btn_imprimir.setBounds(30, 0, 153, 43);
 			buttonPane.add(btn_imprimir);
-			
-			JButton btn_cobrar_1 = new JButton("HISTORIAL PAGO");
-			btn_cobrar_1.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					dispose();
-					dialogos_facturas.jd_historial_cobro ventana = new dialogos_facturas.jd_historial_cobro();
-					String dni = (String) table.getModel().getValueAt(indiceFilaSeleccionada, 6);
-					ventana.setLbl_invisible(dni);
-					ventana.setVisible(true);
-				}
-			});
-			btn_cobrar_1.setForeground(Color.WHITE);
-			btn_cobrar_1.setFont(new Font("Barlow", Font.BOLD, 16));
-			btn_cobrar_1.setBorderPainted(false);
-			btn_cobrar_1.setBackground(new Color(32, 160, 216));
-			btn_cobrar_1.setActionCommand("Cancel");
-			btn_cobrar_1.setBounds(393, 0, 153, 43);
-			buttonPane.add(btn_cobrar_1);
 			ListSelectionModel selectionModel = table.getSelectionModel();
 	        selectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // Permite seleccionar solo una fila
 
@@ -362,38 +318,41 @@ public class jd_buscar_factura extends JDialog {
 	            }
 	        });
 		}
-		
 	} 
-	public static DefaultTableModel llenarTabla(List<Factura> historialFactura) {
-        // Nos aseguramos de que la lista no sea Null
-		
-		// System.out.println(historialCitas.toString());
-        if (historialFactura != null) {
-            // Limpiamos el modelo de la tabla antes de agregar nuevos datos
-            DefaultTableModel model = (DefaultTableModel) table.getModel();
-            model.setRowCount(0);
+	public DefaultTableModel llenarTabla(List<Factura> historialFactura, String dniPaciente) {
+	    // Filtrar las facturas por el DNI del paciente
+	    List<Factura> facturasPaciente = historialFactura.stream()
+	            .filter(factura -> factura.getDNI_paciente().equals(dniPaciente))
+	            .collect(Collectors.toList());
 
-            for (Factura historial : historialFactura) {
-                Object[] fila = new Object[7];
-                fila[0] = historial.getFecha();
-                fila[1] = historial.getNombre();
-                fila[2] = historial.getApellidos();
-                fila[3] = historial.getPor_pagar();
-                fila[4] = historial.getId();
-                fila[5] = historial.getPagado();
-                fila[6] = historial.getDNI_paciente();
+	    if (facturasPaciente != null) {
+	        DefaultTableModel model = (DefaultTableModel) table.getModel();
+	        model.setRowCount(0);
 
-             //   model.setRowCount(model.getRowCount()+1);
-                model.addRow(fila);
-            }
-
-
-        }
-  
+	        for (Factura historial : facturasPaciente) {
+	            Object[] fila = new Object[4];
+	            fila[0] = historial.getFecha();
+	            fila[1] = historial.getDNI_paciente();
+	            fila[2] = historial.getPagado();
+	            fila[3] = historial.getPor_pagar();
+	            model.addRow(fila);
+	        }
+	    }
+	    return model;
+	}
 
 
-        return model;
+    public void setDniPaciente(String dniPaciente) {
+        this.dniPaciente = dniPaciente;
     }
+	
+	public JLabel getLbl_invisible() {
+		return lbl_invisible;
+	}
+
+	public void setLbl_invisible(String text) {
+		this.lbl_invisible.setText(text);
+	}
 
 	public void setCb_filtrar(String items) {
 		cb_filtrar.addItem(items);

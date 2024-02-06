@@ -42,6 +42,7 @@ import dialogos_doctores.jd_buscar_doctor_baja;
 import dialogos_doctores.jd_buscar_doctor_editar;
 import dialogos_doctores.jd_buscar_dr_historial;
 import dialogos_facturas.jd_buscar_factura;
+import dialogos_facturas.jd_historial_cobro;
 import dialogos_facturas.jd_nueva_factura;
 import dialogos_materiales.jd_buscar_pedidos;
 import dialogos_materiales.jd_hacer_pedido;
@@ -53,7 +54,6 @@ import dialogos_materiales.jd_revisar_solicitud;
 import dialogos_pacientes.jd_buscar_paciente;
 import dialogos_pacientes.jd_buscar_paciente_baja;
 import dialogos_pacientes.jd_buscar_paciente_editar;
-import dialogos_pacientes.jd_buscar_paciente_encontrado_menudr;
 import dialogos_pacientes.jd_buscar_paciente_historial;
 import dialogos_pacientes.jd_buscar_paciente_menudr;
 
@@ -562,7 +562,7 @@ public String consulta_doctor_eliminar(String nombre, String apellidos) throws S
         try {
             conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
             statement = conect.createStatement();
-            String query = "SELECT Fecha, Nombre, Apellidos, Por_pagar, ID_factura, Pagado FROM facturacion";
+            String query = "SELECT Fecha, Nombre, Apellidos, Por_pagar, ID_factura, Pagado, DNI_paciente FROM facturacion";
             ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
@@ -572,8 +572,9 @@ public String consulta_doctor_eliminar(String nombre, String apellidos) throws S
                 String Por_pagar = resultSet.getString("Por_pagar");
                 String ID_factura = resultSet.getString("ID_factura");
                 String Pagado = resultSet.getString("Pagado");
+                String DNI_paciente = resultSet.getString("DNI_paciente");
 
-                Factura historial = new Factura(Fecha,Nombre,Apellidos,Por_pagar,ID_factura, Pagado);
+                Factura historial = new Factura(Fecha,Nombre,Apellidos,Por_pagar,ID_factura, Pagado, DNI_paciente);
 
                 historiales.add(historial);
             }
@@ -613,7 +614,7 @@ public String consulta_doctor_eliminar(String nombre, String apellidos) throws S
                 String Por_pagar = resultSet.getString("Por_pagar");
                 String ID_factura = resultSet.getString("ID_factura");
                 
-                Factura historial = new Factura(Fecha,Nombre,Apellidos,Por_pagar,ID_factura, "");
+                Factura historial = new Factura(Fecha,Nombre,Apellidos,Por_pagar,ID_factura, "", "");
 
                 historiales.add(historial);
             }
@@ -637,6 +638,45 @@ public String consulta_doctor_eliminar(String nombre, String apellidos) throws S
         return historiales;
     }
 	
+	
+	public List<Factura> obtener_facturas_cobro() {
+        List<Factura> historiales = new ArrayList<>();
+
+        try {
+            conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+            statement = conect.createStatement();
+            String query = "SELECT historial_facturacion.Fecha, historial_facturacion.DNI_paciente, historial_facturacion.Pagado, historial_facturacion.Por_pagar, facturacion.DNI_paciente FROM historial_facturacion JOIN facturacion ON historial_facturacion.DNI_paciente = facturacion.DNI_paciente;";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                String Fecha = resultSet.getString("Fecha");
+                String DNI_paciente = resultSet.getString("historial_facturacion.DNI_paciente");
+                String Pagado = resultSet.getString("Pagado");
+                String Por_pagar = resultSet.getString("Por_pagar");
+
+                Factura historial = new Factura(Fecha, DNI_paciente, Pagado, Por_pagar);
+
+                historiales.add(historial);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();  // 
+        } finally {
+            // Aqui vamos a cerrar recursos (statement y conexión) en el bloque finally
+            try {
+                if (statement != null) {
+                    statement.close();
+                }
+                if (conect != null) {
+                    conect.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return historiales;
+    }
 	
 	public List<Cita> obtenerInfoDoctor(String DNI_doctor) {
         List<Cita> historiales = new ArrayList<>();
@@ -2412,6 +2452,27 @@ public void mostrar_filtro_factura_nueva(jd_nueva_factura datos) throws SQLExcep
         }
     }
 }
+
+public void mostrar_filtro_historial_cobro(jd_historial_cobro datos) throws SQLException {
+    // Consulta para ver el nombre de las tablas
+	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+    statement = conect.createStatement();
+    try {
+        String sql = "SHOW fields FROM facturacion WHERE field = 'Fecha';";
+        ResultSet rs = statement.executeQuery(sql);
+
+        // Extraer datos del result set
+        while (rs.next()) {
+            // Obtener el nombre de la tabla
+        	String Field = rs.getString("Field");
+            datos.setCb_filtrar(Field);
+        }
+    } finally {
+        if (statement != null) {
+            statement.close();
+        }
+    }
+}
 public void mostrar_filtro_paciente_historial(jd_buscar_paciente_historial datos) throws SQLException {
     // Consulta para ver el nombre de las tablas
 	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
@@ -2967,7 +3028,7 @@ public List<Factura> filtrar_tabla_buscar_facturas(String campo, String variable
             String Por_pagar = resultSet.getString("Por_pagar");
             
 
-            Factura class_factura = new Factura(fecha, Nombre, Apellidos, Por_pagar,"", "");
+            Factura class_factura = new Factura(fecha, Nombre, Apellidos, Por_pagar,"", "", "");
 
             factura.add(class_factura);
         }
@@ -3006,7 +3067,46 @@ public List<Factura> filtrar_tabla_buscar_facturas_nuevas(String campo, String v
             String Por_pagar = resultSet.getString("Por_pagar");
             
 
-            Factura class_factura = new Factura(fecha, Nombre, Apellidos, Por_pagar,"", "");
+            Factura class_factura = new Factura(fecha, Nombre, Apellidos, Por_pagar,"", "", "");
+
+            factura.add(class_factura);
+        }
+
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    } finally {
+        try {
+            if (statement != null) {
+                statement.close();
+            }
+            if (conect != null) {
+                conect.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    return factura;
+	
+}
+
+public List<Factura> filtrar_tabla_cobros_facturas(String campo, String variable) throws SQLException{
+	List<Factura> factura = new ArrayList<>();
+	try {
+		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
+		statement = conect.createStatement();
+		String query = "SELECT * FROM facturacion WHERE " + campo + " LIKE '" + variable + "%' OR " + campo + " LIKE '%" + variable + "'";
+        ResultSet resultSet = statement.executeQuery(query);
+		
+        while (resultSet.next()) {
+            String fecha = resultSet.getString("Fecha");
+            String DNI_paciente = resultSet.getString("DNI_paciente");
+            String Pagado = resultSet.getString("Pagado");
+            String Por_pagar = resultSet.getString("Por_pagar");
+            
+
+            Factura class_factura = new Factura(fecha, DNI_paciente, Pagado, Por_pagar,"", "", "");
 
             factura.add(class_factura);
         }

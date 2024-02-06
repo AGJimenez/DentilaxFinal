@@ -72,7 +72,7 @@ public class jf_facturacion extends JFrame {
         btn_buscar_factura.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         btn_buscar_factura.setContentAreaFilled(false);
         btn_buscar_factura.setIcon(new ImageIcon(jf_facturacion.class.getResource("/iconos_submenus/btn_buscarFactura_admin.png")));
-        btn_buscar_factura.setBounds(68, 594, 188, 41);
+        btn_buscar_factura.setBounds(329, 594, 188, 41);
         btn_buscar_factura.setBorderPainted(false);
         btn_buscar_factura.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -85,7 +85,7 @@ public class jf_facturacion extends JFrame {
         btn_nueva_factura.setContentAreaFilled(false);
         btn_nueva_factura.setIcon(new ImageIcon(jf_facturacion.class.getResource("/iconos_submenus/btn_nuevaFactura_admin.png")));
         btn_nueva_factura.setOpaque(false);
-        btn_nueva_factura.setBounds(1209, 594, 188, 41);
+        btn_nueva_factura.setBounds(968, 594, 188, 41);
         btn_nueva_factura.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		dialogos_facturas.jd_nueva_factura ventana = new dialogos_facturas.jd_nueva_factura();

@@ -1054,7 +1054,7 @@ public class jd_odontograma extends JDialog {
 		
 		JLabel lb_dni = new JLabel(dniPasar);
 		lb_dni.setFont(new Font("Barlow Light", Font.PLAIN, 16));
-		lb_dni.setBounds(125, 39, 81, 23);
+		lb_dni.setBounds(125, 39, 104, 23);
 		panel.add(lb_dni);
 		
 		JLabel lblNewLabel_1 = new JLabel("Paciente:");

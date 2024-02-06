@@ -3,6 +3,7 @@
     <indexitem text = "Indice" target = "Indice"/>
     <indexitem text = "Gestión de pacientes admin" target = "adminPacientes"/>
     <indexitem text = "Gestión de doctores admin" target = "doctor"/>
+    <indexitem text = "Ayuda para doctor" target = "ayudaDoctores"/>
     <indexitem text = "Gestión de material admin" target = "material"/>
     <indexitem text = "Gestión de citas" target = "consultas"/>
     <indexitem text = "Gestión de facturación" target = "facturacion"/>
