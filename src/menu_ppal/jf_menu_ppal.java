@@ -991,12 +991,6 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         });
         mnNewMenu_5.add(mntmNewMenuItem_18);
         
-        mntmNewMenuItem_27 = new JMenuItem("Historial de pago");
-        mnNewMenu_5.add(mntmNewMenuItem_27);
-        
-        mntmNewMenuItem_28 = new JMenuItem("Balance de gastos");
-        mnNewMenu_5.add(mntmNewMenuItem_28);
-        
         mntmNewMenuItem_29 = new JMenuItem("Nueva factura");
         mntmNewMenuItem_29.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -1162,8 +1156,6 @@ public class jf_menu_ppal extends javax.swing.JFrame {
     private JMenuItem mntmNewMenuItem_25;
     private JMenuItem mntmNewMenuItem_23;
     private JMenuItem mntmNewMenuItem_26;
-    private JMenuItem mntmNewMenuItem_27;
-    private JMenuItem mntmNewMenuItem_28;
     private JMenuItem mntmNewMenuItem_29;
 	private static void addPopup(Component component, final JPopupMenu popup) {
 		component.addMouseListener(new MouseAdapter() {

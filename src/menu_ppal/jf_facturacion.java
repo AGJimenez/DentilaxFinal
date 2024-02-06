@@ -709,12 +709,6 @@ public class jf_facturacion extends JFrame {
         });
         popupMenu.add(mntmNewMenuItem_1);
         
-        mntmNewMenuItem_2 = new JMenuItem("Historial de pago");
-        popupMenu.add(mntmNewMenuItem_2);
-        
-        mntmNewMenuItem_3 = new JMenuItem("Balance de gastos");
-        popupMenu.add(mntmNewMenuItem_3);
-        
         mntmNewMenuItem_4 = new JMenuItem("Nueva factura");
         mntmNewMenuItem_4.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
@@ -793,8 +787,6 @@ public class jf_facturacion extends JFrame {
     private JPopupMenu popupMenu;
     private JMenuItem mntmNewMenuItem;
     private JMenuItem mntmNewMenuItem_1;
-    private JMenuItem mntmNewMenuItem_2;
-    private JMenuItem mntmNewMenuItem_3;
     private JMenuItem mntmNewMenuItem_4;
     // End of variables declaration//GEN-END:variables
 
