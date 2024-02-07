@@ -141,6 +141,8 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         btn_ajustes.setOpaque(false);
         btn_ajustes.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
+        		easteregg.FlappyBird sorpresa = new easteregg.FlappyBird();
+        		sorpresa.setVisible(true);
         	}
         });
         btn_consultas = new javax.swing.JButton();
