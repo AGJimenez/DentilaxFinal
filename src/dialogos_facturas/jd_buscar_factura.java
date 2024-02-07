@@ -335,9 +335,9 @@ public class jd_buscar_factura extends JDialog {
 				public void actionPerformed(ActionEvent e) {
 					dispose();
 					dialogos_facturas.jd_historial_cobro ventana = new dialogos_facturas.jd_historial_cobro();
-					String dni = (String) table.getModel().getValueAt(indiceFilaSeleccionada, 6);
-					ventana.setLbl_invisible(dni);
-					ventana.setVisible(true);
+			        String dni = (String) table.getModel().getValueAt(indiceFilaSeleccionada, 6);
+			        ventana.llenarTabla(historialFactura, dni); // Asegúrate de pasar la lista correcta de facturas
+			        ventana.setVisible(true);
 				}
 			});
 			btn_cobrar_1.setForeground(Color.WHITE);

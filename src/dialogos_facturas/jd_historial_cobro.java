@@ -342,6 +342,7 @@ public class jd_historial_cobro extends JDialog {
 	}
 
 
+
     public void setDniPaciente(String dniPaciente) {
         this.dniPaciente = dniPaciente;
     }
