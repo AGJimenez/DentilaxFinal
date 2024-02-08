@@ -19,6 +19,12 @@ import Modelo.Factura;
 import Modelo.Paciente;
 import Modelo.Solicitud;
 import dentilax_bdd.ConectorDB_mysql;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 import java.awt.Dimension;
 import java.awt.Color;
@@ -35,7 +41,9 @@ import javax.swing.JSeparator;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -284,6 +292,21 @@ public class jd_historial_cobro extends JDialog {
 			}
 			
 			JButton btn_imprimir = new JButton("IMPRIMIR");
+			btn_imprimir.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					try {
+	    				Map parametros = new HashMap();
+	    				JasperReport reporte = JasperCompileManager.compileReport("Informes/Facturacion.jrxml");
+	    				JasperPrint jp;
+	    				ConectorDB_mysql c = new ConectorDB_mysql();
+	    					jp = JasperFillManager.fillReport(reporte, parametros, c.conectar() );
+	    					JasperViewer.viewReport(jp,false);
+	    				} catch (JRException e1) {
+	    					// TODO Auto-generated catch block
+	    					e1.printStackTrace();
+	    				}
+	        	}
+			});
 			btn_imprimir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btn_imprimir.setForeground(Color.WHITE);
 			btn_imprimir.setFont(new Font("Barlow", Font.BOLD, 20));

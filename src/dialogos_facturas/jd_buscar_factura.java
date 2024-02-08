@@ -317,18 +317,8 @@ public class jd_buscar_factura extends JDialog {
 			btn_cobrar.setBorderPainted(false);
 			btn_cobrar.setBackground(new Color(32, 160, 216));
 			btn_cobrar.setActionCommand("Cancel");
-			btn_cobrar.setBounds(207, 0, 153, 43);
+			btn_cobrar.setBounds(36, 0, 153, 43);
 			buttonPane.add(btn_cobrar);
-			
-			JButton btn_imprimir = new JButton("IMPRIMIR");
-			btn_imprimir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btn_imprimir.setForeground(Color.WHITE);
-			btn_imprimir.setFont(new Font("Barlow", Font.BOLD, 20));
-			btn_imprimir.setBorderPainted(false);
-			btn_imprimir.setBackground(new Color(32, 160, 216));
-			btn_imprimir.setActionCommand("Cancel");
-			btn_imprimir.setBounds(30, 0, 153, 43);
-			buttonPane.add(btn_imprimir);
 			
 			JButton btn_historial_pago = new JButton("HISTORIAL PAGO");
 			btn_historial_pago.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -345,7 +335,7 @@ public class jd_buscar_factura extends JDialog {
 			btn_historial_pago.setBorderPainted(false);
 			btn_historial_pago.setBackground(new Color(32, 160, 216));
 			btn_historial_pago.setActionCommand("Cancel");
-			btn_historial_pago.setBounds(393, 0, 160, 43);
+			btn_historial_pago.setBounds(310, 2, 160, 43);
 			buttonPane.add(btn_historial_pago);
 			ListSelectionModel selectionModel = table.getSelectionModel();
 	        selectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // Permite seleccionar solo una fila

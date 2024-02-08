@@ -231,6 +231,9 @@ public class jd_historial_cita extends JDialog {
 				
 			try {
 				Map parametros = new HashMap();
+				parametros.put("DNI_paciente", txt_filtrar.getText().toString());
+				parametros.put("Especialidad", txt_filtrar.getText().toString());
+				parametros.put("Fecha", txt_filtrar.getText().toString());
 			JasperReport reporte = JasperCompileManager.compileReport("Informes/Historial_cita.jrxml");
 			JasperPrint jp;
 				jp = JasperFillManager.fillReport(reporte, parametros, conection.conectar());
