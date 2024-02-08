@@ -5,7 +5,7 @@
     <mapID target = "doctor" url = "html/doctor.html"/>
     <mapID target= "ayudaDoctores" url = "html/ayudaDoctores.html"/>
     <mapID target = "material" url = "html/material.html"/>
-    <mapID target = "consultas" url = "html/consultas.html"/>
+    <mapID target = "citas" url = "html/consultas.html"/>
     <mapID target = "facturacion" url = "html/facturacion.html"/>
     <mapID target = "ajustes" url = "html/ajustes.html"/>
 </map>
