@@ -28,6 +28,7 @@ public class jd_cobrar_factura extends JDialog {
 	private JLabel lbl_invisible = new JLabel("");
 	private JLabel lbl_invisible_2 = new JLabel("");
 	private JLabel lbl_invisible_3 = new JLabel("");
+	private JLabel lbl_invisible_4 = new JLabel("");
 
 	/**
 	 * Launch the application.
@@ -80,9 +81,8 @@ public class jd_cobrar_factura extends JDialog {
 					    int cobro = Integer.valueOf(pagado);
 					    int invisible_num = Integer.valueOf(lbl_invisible_2.getText().toString());
 					    int invisible_pagado = Integer.valueOf(lbl_invisible_3.getText().toString());
-					    System.out.println(lbl_invisible.getText().toString());
 					    try {
-							consultasDB.consulta_cobrar_factura(lbl_invisible.getText().toString(),invisible_num, invisible_pagado, cobro);
+							consultasDB.consulta_cobrar_factura(lbl_invisible.getText().toString(),invisible_num, invisible_pagado, cobro, lbl_invisible_4.getText().toString());
 							dispose();
 						} catch (SQLException e1) {
 							// TODO Auto-generated catch block
@@ -112,6 +112,9 @@ public class jd_cobrar_factura extends JDialog {
 		
 		lbl_invisible_3.setBounds(463, 69, 0, 0);
 		contentPanel.add(lbl_invisible_3);
+		
+		lbl_invisible_4.setBounds(67, 12, 0, 0);
+		contentPanel.add(lbl_invisible_4);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setPreferredSize(new Dimension(30, 80));
@@ -145,9 +148,8 @@ public class jd_cobrar_factura extends JDialog {
 				    int cobro = Integer.valueOf(pagado);
 				    int invisible_num = Integer.valueOf(lbl_invisible_2.getText().toString());
 				    int invisible_pagado = Integer.valueOf(lbl_invisible_3.getText().toString());
-				    System.out.println(lbl_invisible.getText().toString());
 				    try {
-						consultasDB.consulta_cobrar_factura(lbl_invisible.getText().toString(),invisible_num, invisible_pagado, cobro);
+						consultasDB.consulta_cobrar_factura(lbl_invisible.getText().toString(),invisible_num, invisible_pagado, cobro, lbl_invisible_4.getText().toString());
 						dispose();
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
@@ -188,5 +190,13 @@ public class jd_cobrar_factura extends JDialog {
 
 	public void setLbl_invisible_3(String pagado) {
 		this.lbl_invisible_3.setText(pagado);
+	}
+
+	public JLabel getLbl_invisible_4() {
+		return lbl_invisible_4;
+	}
+
+	public void setLbl_invisible_4(String DNI_paciente) {
+		this.lbl_invisible_4.setText(DNI_paciente);
 	}
 }

@@ -53,32 +53,21 @@ public class jd_historial_cobro extends JDialog {
 	private final JPanel contentPanel = new JPanel();
     private static DefaultTableModel model;
     private static JTable table;
-    private int indiceFilaSeleccionada;
+    private int indiceFilaSeleccionada_2;
     private String dniPaciente;
     protected JTextField txt_filtrar;
-	private JLabel lbl_invisible = new JLabel("");
     dentilax_bdd.ConectorDB_mysql consultasDB = new dentilax_bdd.ConectorDB_mysql();
+    jd_buscar_factura ventana_2;
     JComboBox cb_filtrar = new JComboBox();
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			jd_historial_cobro dialog = new jd_historial_cobro(null);
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	/**
 	 * Create the dialog.
 	 */
-	public jd_historial_cobro(String dniPaciente) {
-		
-		this.dniPaciente = dniPaciente;
+	public jd_historial_cobro(String id) {
 		try {
 			//CON ESTO MOSTRAMOS LOS COMBO BOX
 			consultasDB.mostrar_filtro_historial_cobro(this);
@@ -98,6 +87,7 @@ public class jd_historial_cobro extends JDialog {
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
 		setLocationRelativeTo(contentPanel);
+
 		{
 			JLabel lbl_pagos = new JLabel("PAGOS");
 			lbl_pagos.setFont(new Font("Barlow", Font.BOLD, 20));
@@ -153,7 +143,7 @@ public class jd_historial_cobro extends JDialog {
 
                 ConectorDB_mysql conection = new ConectorDB_mysql();
                 conection.conectar();
-                llenarTabla(conection.obtener_facturas_cobro());
+                llenarTabla(conection.obtener_facturas_cobro(id));
 		
 		JPanel panel_contened_1 = new JPanel();
 		panel_contened_1.setLayout(null);
@@ -186,7 +176,7 @@ public class jd_historial_cobro extends JDialog {
 				if(btn_filtrar_toggle.isSelected()) {
 					String field_filtrado = cb_filtrar.getSelectedItem().toString();
 					try {
-						llenarTabla(conection.filtrar_tabla_cobros_facturas(field_filtrado,txt_filtrar.getText().toString()));
+						llenarTabla(conection.filtrar_tabla_cobros_facturas(field_filtrado,txt_filtrar.getText().toString(), id));
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -194,10 +184,11 @@ public class jd_historial_cobro extends JDialog {
 				}
 				else {
 					txt_filtrar.setText("");
-					llenarTabla(conection.obtener_facturas_cobro());
+	                llenarTabla(conection.obtener_facturas_cobro(id));
 				}
 			}
 		});
+
 		btn_filtrar_toggle.setOpaque(true);
 		btn_filtrar_toggle.setBorderPainted(false);
 		btn_filtrar_toggle.setBackground(new Color(32, 160, 216));
@@ -234,8 +225,6 @@ public class jd_historial_cobro extends JDialog {
 		lbl_apellidos.setBounds(335, 11, 140, 21);
 		panel_contened_2.add(lbl_apellidos);
 		
-		lbl_invisible.setBounds(741, 11, 0, 0);
-		contentPanel.add(lbl_invisible);
 		{
 			JPanel buttonPane = new JPanel();
 			buttonPane.setBackground(Color.WHITE);
@@ -258,14 +247,14 @@ public class jd_historial_cobro extends JDialog {
 						if(e.getKeyCode()==KeyEvent.VK_ENTER) {
 							if(btn_filtrar_toggle.isSelected()) {
 								txt_filtrar.setText("");
-								llenarTabla(conection.obtener_facturas_cobro());
+				                llenarTabla(conection.obtener_facturas_cobro(id));
 								btn_filtrar_toggle.setSelected(false);
 							}
 							
 							else {
 								String field_filtrado = cb_filtrar.getSelectedItem().toString();
 								try {
-									llenarTabla(conection.filtrar_tabla_cobros_facturas(field_filtrado,txt_filtrar.getText().toString()));
+									llenarTabla(conection.filtrar_tabla_cobros_facturas(field_filtrado,txt_filtrar.getText().toString(), id));
 								} catch (SQLException e1) {
 									// TODO Auto-generated catch block
 									e1.printStackTrace();
@@ -313,30 +302,24 @@ public class jd_historial_cobro extends JDialog {
 	                    int selectedRow = table.getSelectedRow();
 	                    // Almacena el índice de la fila seleccionada
 	                   
-	                    indiceFilaSeleccionada = selectedRow;
+	                    indiceFilaSeleccionada_2 = selectedRow;
 	                }
 	            }
 	        });
 		}
 	} 
-	public DefaultTableModel llenarTabla(List<Factura> historialFactura, String dniPaciente) {
+	public DefaultTableModel llenarTabla(List<Factura> historialFactura) {
 	    // Filtrar las facturas por el DNI del paciente
-	    List<Factura> facturasPaciente = historialFactura.stream()
-	            .filter(factura -> factura.getDNI_paciente().equals(dniPaciente))
-	            .collect(Collectors.toList());
-
-	    if (facturasPaciente != null) {
 	        DefaultTableModel model = (DefaultTableModel) table.getModel();
 	        model.setRowCount(0);
 
-	        for (Factura historial : facturasPaciente) {
+	        for (Factura historial : historialFactura) {
 	            Object[] fila = new Object[4];
 	            fila[0] = historial.getFecha();
 	            fila[1] = historial.getDNI_paciente();
 	            fila[2] = historial.getPagado();
 	            fila[3] = historial.getPor_pagar();
 	            model.addRow(fila);
-	        }
 	    }
 	    return model;
 	}
@@ -347,13 +330,6 @@ public class jd_historial_cobro extends JDialog {
         this.dniPaciente = dniPaciente;
     }
 	
-	public JLabel getLbl_invisible() {
-		return lbl_invisible;
-	}
-
-	public void setLbl_invisible(String text) {
-		this.lbl_invisible.setText(text);
-	}
 
 	public void setCb_filtrar(String items) {
 		cb_filtrar.addItem(items);

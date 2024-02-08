@@ -51,7 +51,7 @@ public class jd_buscar_factura extends JDialog {
 	private static final long serialVersionUID = 1L;
 	private final JPanel contentPanel = new JPanel();
     private static DefaultTableModel model;
-    private static JTable table;
+    public static JTable table;
     private int indiceFilaSeleccionada;
     protected JTextField txt_filtrar;
     dentilax_bdd.ConectorDB_mysql consultasDB = new dentilax_bdd.ConectorDB_mysql();
@@ -301,11 +301,11 @@ public class jd_buscar_factura extends JDialog {
 					ventana.setVisible(true);
 					String id = (String) table.getModel().getValueAt(indiceFilaSeleccionada, 4);
 					String pagado = (String) table.getModel().getValueAt(indiceFilaSeleccionada, 5);
-					System.out.println(id);
-					
+					String dni = (String) table.getModel().getValueAt(indiceFilaSeleccionada, 6);
 					ventana.setLbl_invisible(id);
 					ventana.setLbl_invisible_2(cobro);
 					ventana.setLbl_invisible_3(pagado);
+					ventana.setLbl_invisible_4(dni);
 					}
 					else {
 						JOptionPane.showMessageDialog(null, "Factura terminada de pagar elija otra");
@@ -330,23 +330,23 @@ public class jd_buscar_factura extends JDialog {
 			btn_imprimir.setBounds(30, 0, 153, 43);
 			buttonPane.add(btn_imprimir);
 			
-			JButton btn_cobrar_1 = new JButton("HISTORIAL PAGO");
-			btn_cobrar_1.addActionListener(new ActionListener() {
+			JButton btn_historial_pago = new JButton("HISTORIAL PAGO");
+			btn_historial_pago.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			btn_historial_pago.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					dispose();
-					dialogos_facturas.jd_historial_cobro ventana = new dialogos_facturas.jd_historial_cobro();
-			        String dni = (String) table.getModel().getValueAt(indiceFilaSeleccionada, 6);
-			        ventana.llenarTabla(historialFactura, dni); // Asegúrate de pasar la lista correcta de facturas
+			        String id = (String) table.getModel().getValueAt(indiceFilaSeleccionada, 4);
+					dialogos_facturas.jd_historial_cobro ventana = new dialogos_facturas.jd_historial_cobro(id);
 			        ventana.setVisible(true);
+			        dispose();// Asegúrate de pasar la lista correcta de facturas
 				}
 			});
-			btn_cobrar_1.setForeground(Color.WHITE);
-			btn_cobrar_1.setFont(new Font("Barlow", Font.BOLD, 16));
-			btn_cobrar_1.setBorderPainted(false);
-			btn_cobrar_1.setBackground(new Color(32, 160, 216));
-			btn_cobrar_1.setActionCommand("Cancel");
-			btn_cobrar_1.setBounds(393, 0, 153, 43);
-			buttonPane.add(btn_cobrar_1);
+			btn_historial_pago.setForeground(Color.WHITE);
+			btn_historial_pago.setFont(new Font("Barlow", Font.BOLD, 16));
+			btn_historial_pago.setBorderPainted(false);
+			btn_historial_pago.setBackground(new Color(32, 160, 216));
+			btn_historial_pago.setActionCommand("Cancel");
+			btn_historial_pago.setBounds(393, 0, 160, 43);
+			buttonPane.add(btn_historial_pago);
 			ListSelectionModel selectionModel = table.getSelectionModel();
 	        selectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // Permite seleccionar solo una fila
 
@@ -405,5 +405,13 @@ public class jd_buscar_factura extends JDialog {
 
 	public void setTxt_filtrar(JTextField txt_filtrar) {
 		this.txt_filtrar = txt_filtrar;
+	}
+
+	public int getIndiceFilaSeleccionada() {
+		return indiceFilaSeleccionada;
+	}
+
+	public void setIndiceFilaSeleccionada(int indiceFilaSeleccionada) {
+		this.indiceFilaSeleccionada = indiceFilaSeleccionada;
 	}
 }

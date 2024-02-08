@@ -639,22 +639,22 @@ public String consulta_doctor_eliminar(String nombre, String apellidos) throws S
     }
 	
 	
-	public List<Factura> obtener_facturas_cobro() {
+	public List<Factura> obtener_facturas_cobro(String id) {
         List<Factura> historiales = new ArrayList<>();
 
         try {
             conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
             statement = conect.createStatement();
-            String query = "SELECT historial_facturacion.Fecha, historial_facturacion.DNI_paciente, historial_facturacion.Pagado, historial_facturacion.Por_pagar, facturacion.DNI_paciente FROM historial_facturacion JOIN facturacion ON historial_facturacion.DNI_paciente = facturacion.DNI_paciente;";
+            String query = "SELECT Fecha, DNI_paciente, Cobro, Por_pagar, DNI_paciente FROM historial_facturacion WHERE ID_facturacion = '" + id + "'";
             ResultSet resultSet = statement.executeQuery(query);
 
             while (resultSet.next()) {
                 String Fecha = resultSet.getString("Fecha");
-                String DNI_paciente = resultSet.getString("historial_facturacion.DNI_paciente");
-                String Pagado = resultSet.getString("Pagado");
+                String DNI_paciente = resultSet.getString("DNI_paciente");
+                String Cobro = resultSet.getString("Cobro");
                 String Por_pagar = resultSet.getString("Por_pagar");
 
-                Factura historial = new Factura(Fecha, DNI_paciente, Pagado, Por_pagar);
+                Factura historial = new Factura(Fecha, DNI_paciente, Cobro, Por_pagar);
 
                 historiales.add(historial);
             }
@@ -1627,17 +1627,19 @@ public void consulta_modificar_factura(String id, int por_pagar) throws SQLExcep
 		}
 	}
 
-public void consulta_cobrar_factura(String id, int por_pagar, int pagado, int pagar) throws SQLException{
+public void consulta_cobrar_factura(String id, int por_pagar, int pagado, int pagar, String DNI_paciente) throws SQLException{
 	dialogos_facturas.jd_cobrar_factura ventana = new dialogos_facturas.jd_cobrar_factura();
     conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
     statement = conect.createStatement();
     int total_pagado = pagado + pagar;
     int total_pagar = por_pagar - pagar;
 	String query = "UPDATE facturacion SET Pagado = '"+ total_pagado + "', Por_pagar = '" + total_pagar + "' WHERE ID_factura = '" + id + "'";
+	String query_2 = "INSERT INTO dentilax.historial_facturacion (Fecha, DNI_paciente, ID_facturacion, Cobro, Por_pagar) VALUES (CURDATE(), '" + DNI_paciente +"', '" + id + "', '" + pagar +"', '" + total_pagar + "');";
     
 		if(por_pagar>=0) {
 			if(total_pagar > 0) {
 				statement.executeUpdate(query);
+				statement.executeUpdate(query_2);
 	            System.out.println("Factura cobrada");
 	            JOptionPane.showMessageDialog(null, "Factura cobrada");
 			}
@@ -2458,7 +2460,7 @@ public void mostrar_filtro_historial_cobro(jd_historial_cobro datos) throws SQLE
 	conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
     statement = conect.createStatement();
     try {
-        String sql = "SHOW fields FROM facturacion WHERE field = 'Fecha';";
+        String sql = "SHOW fields FROM historial_facturacion WHERE field = 'Fecha';";
         ResultSet rs = statement.executeQuery(sql);
 
         // Extraer datos del result set
@@ -3091,22 +3093,22 @@ public List<Factura> filtrar_tabla_buscar_facturas_nuevas(String campo, String v
 	
 }
 
-public List<Factura> filtrar_tabla_cobros_facturas(String campo, String variable) throws SQLException{
+public List<Factura> filtrar_tabla_cobros_facturas(String campo, String variable, String id) throws SQLException{
 	List<Factura> factura = new ArrayList<>();
 	try {
 		conect = DriverManager.getConnection(URL, USUARIO, CLAVE);
 		statement = conect.createStatement();
-		String query = "SELECT * FROM facturacion WHERE " + campo + " LIKE '" + variable + "%' OR " + campo + " LIKE '%" + variable + "'";
+		String query = "SELECT * FROM historial_facturacion WHERE ID_facturacion = '" + id + "' AND (" + campo + " LIKE '" + variable + "%' OR " + campo + " LIKE '%" + variable + "')";
         ResultSet resultSet = statement.executeQuery(query);
 		
         while (resultSet.next()) {
             String fecha = resultSet.getString("Fecha");
             String DNI_paciente = resultSet.getString("DNI_paciente");
-            String Pagado = resultSet.getString("Pagado");
+            String Cobro = resultSet.getString("Cobro");
             String Por_pagar = resultSet.getString("Por_pagar");
             
 
-            Factura class_factura = new Factura(fecha, DNI_paciente, Pagado, Por_pagar,"", "", "");
+            Factura class_factura = new Factura(fecha, DNI_paciente, Cobro, Por_pagar);
 
             factura.add(class_factura);
         }
