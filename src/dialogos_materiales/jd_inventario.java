@@ -134,6 +134,7 @@ public class jd_inventario extends JDialog {
             					// TODO Auto-generated catch block
             					e1.printStackTrace();
             				}
+                		dispose();
                 	}
                 
                 });

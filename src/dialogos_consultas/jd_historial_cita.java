@@ -242,6 +242,7 @@ public class jd_historial_cita extends JDialog {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+			dispose();
 		
 			}
 			

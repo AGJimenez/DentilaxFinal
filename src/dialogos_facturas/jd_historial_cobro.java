@@ -305,6 +305,7 @@ public class jd_historial_cobro extends JDialog {
 	    					// TODO Auto-generated catch block
 	    					e1.printStackTrace();
 	    				}
+					dispose();
 	        	}
 			});
 			btn_imprimir.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

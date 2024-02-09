@@ -57,6 +57,7 @@ public class jd_buscar_dr_ficha extends JDialog {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 	/**
@@ -231,6 +232,7 @@ public class jd_buscar_dr_ficha extends JDialog {
 		    					// TODO Auto-generated catch block
 		    					e1.printStackTrace();
 		    				}
+						dispose();
 					}
 				});
 				btn_salir.setForeground(Color.WHITE);

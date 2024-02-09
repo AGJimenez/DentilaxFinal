@@ -153,7 +153,7 @@ public class jd_buscar_paciente_historial extends JDialog {
     					// TODO Auto-generated catch block
     					e1.printStackTrace();
     				}
-        		
+        		dispose();
         		
         	}
         }

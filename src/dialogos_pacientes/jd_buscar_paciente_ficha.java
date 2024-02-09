@@ -253,6 +253,7 @@ public class jd_buscar_paciente_ficha extends JDialog {
 	    					// TODO Auto-generated catch block
 	    					e1.printStackTrace();
 	    				}
+		     		dispose();
 	        	}
 	        
 	    		

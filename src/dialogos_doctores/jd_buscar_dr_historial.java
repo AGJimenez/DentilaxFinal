@@ -150,6 +150,7 @@ public class jd_buscar_dr_historial extends JDialog {
     					// TODO Auto-generated catch block
     					e1.printStackTrace();
     				}
+        		dispose();
 			}
         });
         btn_salir_1.setForeground(Color.WHITE);
