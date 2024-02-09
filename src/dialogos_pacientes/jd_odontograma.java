@@ -22,13 +22,21 @@ import javax.swing.table.DefaultTableModel;
 import Modelo.Inventario;
 import Modelo.Odontograma;
 import dentilax_bdd.ConectorDB_mysql;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.awt.event.ActionEvent;
 import java.awt.Cursor;
 import javax.swing.JCheckBox;
@@ -1085,6 +1093,31 @@ public class jd_odontograma extends JDialog {
 		lbl_cantidad.setFont(new Font("Barlow", Font.BOLD, 17));
 		lbl_cantidad.setBounds(397, 11, 110, 21);
 		panel_contened.add(lbl_cantidad);
+		
+		JButton btn_salir_1_1 = new JButton("IMPRIMIR");
+		btn_salir_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+    				Map parametros = new HashMap();
+    				parametros.put("DNI_paciente", DNI_paciente);
+    				JasperReport reporte = JasperCompileManager.compileReport("Informes/Historial_paciente.jrxml");
+    				JasperPrint jp;
+    				ConectorDB_mysql c = new ConectorDB_mysql();
+    					jp = JasperFillManager.fillReport(reporte, parametros, c.conectar() );
+    					JasperViewer.viewReport(jp,false);
+    				} catch (JRException e1) {
+    					// TODO Auto-generated catch block
+    					e1.printStackTrace();
+    				}
+			}
+		});
+		btn_salir_1_1.setForeground(Color.WHITE);
+		btn_salir_1_1.setFont(new Font("Barlow", Font.BOLD, 20));
+		btn_salir_1_1.setBorderPainted(false);
+		btn_salir_1_1.setBackground(new Color(32, 160, 216));
+		btn_salir_1_1.setActionCommand("Cancel");
+		btn_salir_1_1.setBounds(214, 579, 153, 43);
+		panel.add(btn_salir_1_1);
 		System.out.println("cargarndo "+cargar);
 		
 		JLabel lblNewLabel = new JLabel("");
