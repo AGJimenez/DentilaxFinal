@@ -1108,6 +1108,7 @@ public class jd_odontograma extends JDialog {
     					// TODO Auto-generated catch block
     					e1.printStackTrace();
     				}
+				dispose();
 			}
 		});
 		btn_salir_1_1.setForeground(Color.WHITE);
