@@ -1099,7 +1099,6 @@ public class jd_odontograma extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				try {
     				Map parametros = new HashMap();
-    				parametros.put("DNI_paciente", DNI_paciente);
     				JasperReport reporte = JasperCompileManager.compileReport("Informes/Historial_paciente.jrxml");
     				JasperPrint jp;
     				ConectorDB_mysql c = new ConectorDB_mysql();
