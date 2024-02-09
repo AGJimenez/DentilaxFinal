@@ -2,7 +2,7 @@
 <!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="historial_paciente" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4526dbf5-6810-4482-bc8b-5dcec7822d93">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
-	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Conexion_Jasper"/>
 	<parameter name="DNI_paciente" class="java.lang.String"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT * FROM citas
@@ -85,7 +85,9 @@ where DNI_paciente = $P{DNI_paciente}]]>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="20">
+		<band height="100">
+			<property name="com.jaspersoft.studio.unit.height" value="px"/>
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="60f0a0d7-637d-4177-b1c5-5630a8e03849"/>
 			</line>
@@ -116,6 +118,16 @@ where DNI_paciente = $P{DNI_paciente}]]>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{DNI_doctor}]]></textFieldExpression>
 			</textField>
+			<subreport>
+				<reportElement x="0" y="40" width="555" height="50" uuid="5f56e248-63a3-4654-aa9a-0255fec3f4a5">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<subreportParameter name="DNI_paciente">
+					<subreportParameterExpression><![CDATA[$P{DNI_paciente}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["subinforme.jasper"]]></subreportExpression>
+			</subreport>
 		</band>
 	</detail>
 	<columnFooter>
