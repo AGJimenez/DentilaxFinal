@@ -55,14 +55,14 @@ WHERE DNI_paciente =  $P{DNI_paciente}]]>
 					<textElement>
 						<font size="34" isBold="true"/>
 					</textElement>
-					<text><![CDATA[TITLE]]></text>
+					<text><![CDATA[DENTILAX]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="57a91ef4-5ce8-42d1-aa0f-2a5d00221cba"/>
 					<textElement textAlignment="Right">
 						<font size="14" isBold="false"/>
 					</textElement>
-					<text><![CDATA[Add a description here]]></text>
+					<text><![CDATA[Ficha Paciente]]></text>
 				</staticText>
 			</frame>
 		</band>
