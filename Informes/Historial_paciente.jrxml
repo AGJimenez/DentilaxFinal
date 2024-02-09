@@ -3,8 +3,10 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Historial_paciente" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b832a433-4233-4d1d-9e0d-b8b1fc5e54c8">
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Conexion_Jasper"/>
+	<parameter name="DNI_paciente" class="java.lang.String"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT * FROM citas]]>
+		<![CDATA[SELECT * FROM citas
+where DNI_paciente = $P{DNI_paciente}]]>
 	</queryString>
 	<field name="Fecha" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="Fecha"/>
@@ -33,14 +35,14 @@
 					<textElement>
 						<font size="34" isBold="true"/>
 					</textElement>
-					<text><![CDATA[TITLE]]></text>
+					<text><![CDATA[DENTILAX]]></text>
 				</staticText>
 				<staticText>
 					<reportElement x="395" y="43" width="180" height="20" forecolor="#FFFFFF" uuid="8611c600-f156-4eac-a740-65dd67a193f2"/>
 					<textElement textAlignment="Right">
 						<font size="14" isBold="false"/>
 					</textElement>
-					<text><![CDATA[Add a description here]]></text>
+					<text><![CDATA[Historial Paciente]]></text>
 				</staticText>
 			</frame>
 		</band>

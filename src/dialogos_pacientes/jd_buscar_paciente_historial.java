@@ -144,7 +144,7 @@ public class jd_buscar_paciente_historial extends JDialog {
         		try {
     				Map parametros = new HashMap();
     				parametros.put("DNI_paciente", DNI_paciente);
-    				JasperReport reporte = JasperCompileManager.compileReport("Informes/Historial_paciente_odontograma.jrxml");
+    				JasperReport reporte = JasperCompileManager.compileReport("Informes/Historial_paciente.jrxml");
     				JasperPrint jp;
     				ConectorDB_mysql c = new ConectorDB_mysql();
     					jp = JasperFillManager.fillReport(reporte, parametros, c.conectar() );
