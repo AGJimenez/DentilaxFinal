@@ -7,17 +7,17 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="imagenes"/>
-	<classpathentry kind="lib" path="C:/Users/alexg/Downloads/mysql-connector-java-5.1.47/mysql-connector-java-5.1.47.jar"/>
 	<classpathentry kind="con" path="net.sf.jasperreports.JR_CONTAINER"/>
 	<classpathentry kind="con" path="net.sf.jasperreports.JR_DEPENDENCIES_CONTAINER"/>
 	<classpathentry kind="con" path="com.jaspersoft.server.JRS_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/alexg/Downloads/librerias/fecha.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexg/Downloads/librerias/javahelp-2.0.02.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexg/Downloads/librerias/javax.activation-1.1.0.v201105071233.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexg/Downloads/librerias/javax.ejb.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexg/Downloads/librerias/javax.faces-api-2.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexg/Downloads/librerias/javax-inject.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexg/Downloads/librerias/jcalendar-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alexg/Downloads/librerias/mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cristian/Desktop/Dentilax Librerias/lib/fecha.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cristian/Desktop/Dentilax Librerias/lib/javahelp-2.0.02.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cristian/Desktop/Dentilax Librerias/lib/javax.activation-1.1.0.v201105071233.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cristian/Desktop/Dentilax Librerias/lib/javax.ejb.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cristian/Desktop/Dentilax Librerias/lib/javax.faces-api-2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cristian/Desktop/Dentilax Librerias/lib/javax-inject.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cristian/Desktop/Dentilax Librerias/lib/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cristian/Desktop/Dentilax Librerias/lib/mail.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Cristian/Desktop/Dentilax Librerias/lib/mysql-connector-java-5.1.47.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
