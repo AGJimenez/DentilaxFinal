@@ -90,41 +90,41 @@ WHERE DNI_paciente =  $P{DNI_paciente}]]>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="19" width="555" height="1" uuid="926576b6-5bbc-46e4-a5f3-9dc56d340150"/>
 			</line>
 			<textField textAdjust="StretchHeight">
-				<reportElement x="0" y="0" width="185" height="20" uuid="83c9a51a-c25e-4bdf-a397-8d4f876f32e3">
+				<reportElement x="0" y="9" width="185" height="20" uuid="83c9a51a-c25e-4bdf-a397-8d4f876f32e3">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="08de38a4-2652-4bc9-a594-8a100ac566ce"/>
 				</reportElement>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{DNI_paciente}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight">
-				<reportElement x="185" y="0" width="185" height="20" uuid="7b3f7880-593a-49e4-a7fc-ac4e56f5da8d">
+				<reportElement x="185" y="9" width="185" height="20" uuid="7b3f7880-593a-49e4-a7fc-ac4e56f5da8d">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="bddc9003-67d5-47df-9b4f-158d1761f99d"/>
 				</reportElement>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
 			</textField>
 			<textField textAdjust="StretchHeight">
-				<reportElement x="370" y="0" width="185" height="20" uuid="1b830e93-5872-4115-b343-7acc938fca5d">
+				<reportElement x="370" y="9" width="185" height="20" uuid="1b830e93-5872-4115-b343-7acc938fca5d">
 					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0492fc1e-ee5b-464e-bb9b-b87a26a21204"/>
 				</reportElement>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{Apellidos}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="180" y="40" width="219" height="50" uuid="4cfa5a20-777a-4ac6-8b1d-da5abaf0b067"/>
-				<textElement>
-					<font size="26"/>
+				<reportElement mode="Opaque" x="20" y="50" width="510" height="30" forecolor="#006699" backcolor="#E6E6E6" uuid="4cfa5a20-777a-4ac6-8b1d-da5abaf0b067"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri Light" size="24" isBold="false"/>
 				</textElement>
 				<text><![CDATA[ODONTOGRAMA]]></text>
 			</staticText>
 			<subreport>
-				<reportElement x="20" y="100" width="490" height="120" uuid="ffd8cb12-00d6-4591-96fa-7b5d1008db74"/>
+				<reportElement x="20" y="100" width="510" height="120" uuid="ffd8cb12-00d6-4591-96fa-7b5d1008db74"/>
 				<subreportParameter name="DNI_paciente">
 					<subreportParameterExpression><![CDATA[$P{DNI_paciente}]]></subreportParameterExpression>
 				</subreportParameter>
