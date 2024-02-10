@@ -449,10 +449,6 @@ public class jf_pacientes extends JFrame {
 		});
 		jmenuitem_nueva_factura.setFont(new Font("Arial", Font.PLAIN, 12));
 		mn_facturacion.add(jmenuitem_nueva_factura);
-		
-		JMenu mn_ajustes = new JMenu("AJUSTES");
-		mn_ajustes.setFont(new Font("Arial", Font.PLAIN, 12));
-		menuBar.add(mn_ajustes);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 

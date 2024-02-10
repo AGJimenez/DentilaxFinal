@@ -563,7 +563,29 @@ public class jd_nueva_consulta extends JDialog {
 			
 	        okButton.addActionListener(new ActionListener() {
 	            public void actionPerformed(ActionEvent e) {
-	                dentilax_bdd.ConectorDB_mysql conect = new dentilax_bdd.ConectorDB_mysql();
+	            	// Obtener el paciente seleccionado del JComboBox cb_paciente
+	                String pacienteSeleccionado = cb_paciente.getSelectedItem().toString();
+	                String dniPac = null;
+	                // Verificar que se haya seleccionado un paciente
+	                if (pacienteSeleccionado != null && !pacienteSeleccionado.isEmpty()) {
+	                    // Dividir la cadena para obtener el DNI del paciente
+	                    String[] splitted = pacienteSeleccionado.split(": ");
+	                    if (splitted.length == 2) {
+	                        dniPac = splitted[1];
+	                    } else {
+	                        // Manejar el caso en que la cadena no tenga el formato esperado
+	                        System.out.println("Error al obtener el DNI del paciente.");
+	                        return;
+	                    }
+	                } else {
+	                    // Manejar el caso en que no se haya seleccionado ningún paciente
+	                    System.out.println("No se ha seleccionado ningún paciente.");
+	                    return;
+	                }
+	            	
+	            	
+	            	
+	            	dentilax_bdd.ConectorDB_mysql conect = new dentilax_bdd.ConectorDB_mysql();
 	                conect.agendar_cita(dniDoc,
 	                                    txt_fecha.getText().toString(),
 	                                    cb_especialidad.getSelectedItem().toString(),

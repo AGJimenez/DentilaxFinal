@@ -154,6 +154,13 @@ public class jf_menu_doctor extends javax.swing.JFrame {
         btn_solicitar.setBounds(736, 218, 282, 98);
         btn_solicitar.setIcon(new ImageIcon(jf_menu_doctor.class.getResource("/iconos_menus/btn_pedidos_doctor.png")));
         btn_ajustes = new javax.swing.JButton();
+        btn_ajustes.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		
+        		easteregg.FlappyBird sorpresa = new easteregg.FlappyBird();
+        		sorpresa.setVisible(true);
+        	}
+        });
         btn_ajustes.setOpaque(false);
         btn_ajustes.setBorderPainted(false);
         btn_ajustes.setContentAreaFilled(false);
@@ -166,8 +173,6 @@ public class jf_menu_doctor extends javax.swing.JFrame {
         mn_paciente.setFont(new Font("Arial", Font.PLAIN, 12));
         mn_pedidos = new javax.swing.JMenu();
         mn_pedidos.setFont(new Font("Arial", Font.PLAIN, 12));
-        mn_ajustes = new javax.swing.JMenu();
-        mn_ajustes.setFont(new Font("Arial", Font.PLAIN, 12));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -204,9 +209,6 @@ public class jf_menu_doctor extends javax.swing.JFrame {
         jmenuitem_solicitar_material.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_M, InputEvent.ALT_DOWN_MASK));
         jmenuitem_solicitar_material.setFont(new Font("Arial", Font.PLAIN, 12));
         mn_pedidos.add(jmenuitem_solicitar_material);
-
-        mn_ajustes.setText("AJUSTES");
-        menu_inicio.add(mn_ajustes);
 
         setJMenuBar(menu_inicio);
         
@@ -289,7 +291,6 @@ public class jf_menu_doctor extends javax.swing.JFrame {
     private javax.swing.JButton btn_solicitar;
     private javax.swing.JMenu mn_paciente;
     private javax.swing.JMenu mn_pedidos;
-    private javax.swing.JMenu mn_ajustes;
     private javax.swing.JPanel jp_menu;
     private javax.swing.JMenuBar menu_inicio;
     private JLabel fecha;

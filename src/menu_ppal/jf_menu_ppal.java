@@ -192,8 +192,6 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         jmenu_consulta.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_facturacion = new javax.swing.JMenu();
         jmenu_facturacion.setFont(new Font("Arial", Font.PLAIN, 12));
-        jmenu_ajustes = new javax.swing.JMenu();
-        jmenu_ajustes.setFont(new Font("Arial", Font.PLAIN, 12));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
        
@@ -551,12 +549,6 @@ public class jf_menu_ppal extends javax.swing.JFrame {
         });
         jmenuitem_nueva_factura.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_facturacion.add(jmenuitem_nueva_factura);
-
-        jmenu_ajustes.setText("AJUSTES");
-        menu_inicio.add(jmenu_ajustes);
-        
-        mntmNewMenuItem = new JMenuItem("New menu item");
-        jmenu_ajustes.add(mntmNewMenuItem);
 
         setJMenuBar(menu_inicio);
         
@@ -1102,7 +1094,6 @@ public class jf_menu_ppal extends javax.swing.JFrame {
     private javax.swing.JMenu jmenu_material;
     private javax.swing.JMenu jmenu_consulta;
     private javax.swing.JMenu jmenu_facturacion;
-    private javax.swing.JMenu jmenu_ajustes;
     private javax.swing.JPanel jp_menu;
     private javax.swing.JMenuBar menu_inicio;
     private JMenuItem jmenuitem_menu_paciente;
@@ -1129,7 +1120,6 @@ public class jf_menu_ppal extends javax.swing.JFrame {
     private JMenuItem jmenuitem_menu_facturacion;
     private JMenuItem jmenuitem_buscar_factura;
     private JMenuItem jmenuitem_nueva_factura;
-    private JMenuItem mntmNewMenuItem;
     private JButton btn_inicio;
     private JLabel fecha;
     private JMenuItem mntmNewMenuItem_1;

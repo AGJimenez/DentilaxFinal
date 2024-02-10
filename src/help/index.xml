@@ -5,7 +5,7 @@
     <indexitem text = "Gestión de doctores admin" target = "doctor"/>
     <indexitem text = "Ayuda para doctor" target = "ayudaDoctores"/>
     <indexitem text = "Gestión de material admin" target = "material"/>
-    <indexitem text = "Gestión de citas" target = "consultas"/>
+    <indexitem text = "Gestión de citas" target = "citas"/>
     <indexitem text = "Gestión de facturación" target = "facturacion"/>
     <indexitem text = "Ajustes" target = "ajustes"/>
 </index>

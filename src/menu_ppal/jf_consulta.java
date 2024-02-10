@@ -229,8 +229,6 @@ public class jf_consulta extends JFrame {
         jmenu_consulta.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_facturacion = new javax.swing.JMenu();
         jmenu_facturacion.setFont(new Font("Arial", Font.PLAIN, 12));
-        jmenu_ajustes = new javax.swing.JMenu();
-        jmenu_ajustes.setFont(new Font("Arial", Font.PLAIN, 12));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -603,9 +601,6 @@ public class jf_consulta extends JFrame {
         jmenuitem_nueva_factura.setFont(new Font("Arial", Font.PLAIN, 12));
         jmenu_facturacion.add(jmenuitem_nueva_factura);
 
-        jmenu_ajustes.setText("AJUSTES");
-        menu_inicio.add(jmenu_ajustes);
-
         setJMenuBar(menu_inicio);
         
         combo = new ArrayList<>();
@@ -884,7 +879,6 @@ public class jf_consulta extends JFrame {
     private javax.swing.JMenu jmenu_material;
     private javax.swing.JMenu jmenu_consulta;
     private javax.swing.JMenu jmenu_facturacion;
-    private javax.swing.JMenu jmenu_ajustes;
     private javax.swing.JPanel jp_menu;
     private javax.swing.JMenuBar menu_inicio;
     private JButton btn_eliminar_cita;

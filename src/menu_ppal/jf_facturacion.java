@@ -104,8 +104,6 @@ public class jf_facturacion extends JFrame {
         jMenu5.setFont(new Font("Arial", Font.PLAIN, 12));
         jMenu6 = new javax.swing.JMenu();
         jMenu6.setFont(new Font("Arial", Font.PLAIN, 12));
-        jMenu7 = new javax.swing.JMenu();
-        jMenu7.setFont(new Font("Arial", Font.PLAIN, 12));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -469,9 +467,6 @@ public class jf_facturacion extends JFrame {
         });
         jmenuitem_nueva_factura.setFont(new Font("Arial", Font.PLAIN, 12));
         jMenu6.add(jmenuitem_nueva_factura);
-
-        jMenu7.setText("AJUSTES");
-        menu_inicio.add(jMenu7);
         
 
         setJMenuBar(menu_inicio);
@@ -779,7 +774,6 @@ public class jf_facturacion extends JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
     private javax.swing.JPanel jp_menu;
     private javax.swing.JMenuBar menu_inicio;
     private JButton btn_inicio;
