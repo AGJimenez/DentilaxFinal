@@ -129,7 +129,7 @@ WHERE DNI_paciente =  $P{DNI_paciente}]]>
 					<subreportParameterExpression><![CDATA[$P{DNI_paciente}]]></subreportParameterExpression>
 				</subreportParameter>
 				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
-				<subreportExpression><![CDATA["subinforme.jasper"]]></subreportExpression>
+				<subreportExpression><![CDATA["Informes/subinforme.jasper"]]></subreportExpression>
 			</subreport>
 		</band>
 	</detail>
