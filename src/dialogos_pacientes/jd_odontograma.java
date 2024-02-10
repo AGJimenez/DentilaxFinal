@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -1097,19 +1098,22 @@ public class jd_odontograma extends JDialog {
 		JButton btn_salir_1_1 = new JButton("IMPRIMIR");
 		btn_salir_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-    				Map parametros = new HashMap();
-    				JasperReport reporte = JasperCompileManager.compileReport("Informes/Historial_paciente.jrxml");
-    				JasperPrint jp;
-    				ConectorDB_mysql c = new ConectorDB_mysql();
-    					jp = JasperFillManager.fillReport(reporte, parametros, c.conectar() );
-    					JasperViewer.viewReport(jp,false);
-    				} catch (JRException e1) {
-    					// TODO Auto-generated catch block
-    					e1.printStackTrace();
-    				}
-				dispose();
-			}
+				   try {
+				        Map parametros = new HashMap();
+				        parametros.put("DNI_paciente", lb_dni.getText().toString());
+				   
+				        JasperReport reporte = JasperCompileManager.compileReport("Informes/Informe_ppal_odontograma.jrxml");
+				        JasperPrint jp;
+				        ConectorDB_mysql c = new ConectorDB_mysql();
+				        jp = JasperFillManager.fillReport(reporte, parametros, c.conectar());
+				        JasperViewer.viewReport(jp, false);
+				    } catch (JRException e1) {
+				        JOptionPane.showMessageDialog(null, "Error al generar el informe: " + e1.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+				        e1.printStackTrace();
+				    } finally {
+				        dispose();
+				    }
+				}
 		});
 		btn_salir_1_1.setForeground(Color.WHITE);
 		btn_salir_1_1.setFont(new Font("Barlow", Font.BOLD, 20));
